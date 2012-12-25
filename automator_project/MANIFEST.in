@@ -1,0 +1,2 @@
+include src/hal_rest.py
+include README.rst setup.py

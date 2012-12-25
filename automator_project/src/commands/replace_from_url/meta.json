@@ -1,0 +1,9 @@
+{
+	"Description":"Replaces Saves a File in specific Destination",
+	"Icon":"",
+	"Arguments":{
+		"Resource":"str",
+		"Destination":"str",
+	},
+	"Output":"None"
+}

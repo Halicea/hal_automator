@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/buttons">
+        <file>images/Button-Add-icon.png</file>
+        <file>images/HAL-9000-icon.png</file>
+        <file>images/Button-Delete-icon.png</file>
+    </qresource>
+</RCC>
