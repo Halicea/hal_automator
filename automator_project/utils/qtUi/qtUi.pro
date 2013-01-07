@@ -27,7 +27,8 @@ FORMS    += mainwindow.ui \
     resource_viewer.ui \
     confirm_dialog.ui \
     variable_dialog.ui \
-    regex_tool.ui
+    regex_tool.ui \
+    resource_dialog.ui
 
 RESOURCES += \
     images.qrc

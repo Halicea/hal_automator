@@ -2,16 +2,15 @@
 import sys, shutil
 
 root = '/Users/kostamihajlov/MyProjects/hal_automator/automator_project'
-build_dir = 'build/ios'
+build_dir = 'build/pyi.darwin/hal_configurator'
 
 a = Analysis(
       [os.path.join(root,'src','hal_configurator.py'), 
        os.path.join(root,'src','lib/configurator_console.py')],
-      pathex=[os.path.join(root, 'src'), '/Users/kostamihajlov/Downloads/pyinstaller',  os.path.join(root, 'src', 'ui', 'custom_widgets')]
+      pathex=[os.path.join(root, 'src'), '/Users/kostamihajlov/Downloads/pyinstaller',  os.path.join(root, 'src', 'ui', 'custom_widgets')],
       hiddenimports=[],
       hookspath=None
     )
-
 pyz = PYZ(a.pure)
 exe = EXE(pyz,
           a.scripts,
@@ -23,7 +22,7 @@ exe = EXE(pyz,
           strip=None,
           upx=True,
           console=False )
-                                                                                           
+
 version = "0.0.1"
 
 if sys.platform.startswith("darwin"):

@@ -168,12 +168,15 @@
     </property>
     <addaction name="actionClose"/>
     <addaction name="actionOpen"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="actionCloneTo"/>
    </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
     <addaction name="actionRegex_Tool"/>
+    <addaction name="actionConfig_Editor"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -217,8 +220,38 @@
     <string>Open</string>
    </property>
   </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>SaveAs...</string>
+   </property>
+  </action>
+  <action name="actionCloneTo">
+   <property name="text">
+    <string>CloneTo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+C</string>
+   </property>
+  </action>
+  <action name="actionConfig_Editor">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/HAL-9000-icon.png</normaloff>:/buttons/images/HAL-9000-icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Config Editor</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+E</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>
