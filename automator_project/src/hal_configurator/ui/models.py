@@ -1,7 +1,7 @@
 from PySide import QtCore
-import lib.operation_factory as fact
+import hal_configurator.lib.operation_factory as fact
 import os
-from ui.global_vars import GlobalVars
+from global_vars import GlobalVars
 class ResourcesListModel(QtCore.QAbstractListModel):
   
   def __init__(self, resources, *args, **kwargs):

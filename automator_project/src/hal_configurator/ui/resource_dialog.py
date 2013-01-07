@@ -2,8 +2,8 @@
 from PySide import QtGui
 from gen.resource_dialog import Ui_ResourceDialog
 import os
-from ui.global_vars import GlobalVars
-from ui.confirm_dialog import ConfirmDialog
+from global_vars import GlobalVars
+from confirm_dialog import ConfirmDialog
 import shutil
 import random
 import string

@@ -3,7 +3,7 @@ Created on Nov 19, 2012
 
 @author: kostamihajlov
 '''
-from lib.hal_rest import HalRest
+from hal_configurator.lib.hal_rest import HalRest
 class BrandedAppService(object):
   def __init__(self, address):
     self.address = address

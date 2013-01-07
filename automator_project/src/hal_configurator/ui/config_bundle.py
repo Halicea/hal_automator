@@ -3,9 +3,9 @@ from gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
 from uiutils import layout_widgets
 from confirm_dialog import ConfirmDialog
-import lib.operation_factory as op_factory
+import hal_configurator.lib.operation_factory as op_factory
 
-from ui.models import OperationTypeListModel
+from models import OperationTypeListModel
 class OpChooserDialog(QtGui.QDialog):
     def __init__(self, parent=None):
         super(OpChooserDialog, self).__init__(parent)

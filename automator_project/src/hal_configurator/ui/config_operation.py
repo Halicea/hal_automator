@@ -1,6 +1,6 @@
 from PySide import  QtGui
 from gen.config_operation import Ui_OperationWidget
-from ui.custom_widgets.dropable_line_edit import DropableLineEdit
+from custom_widgets.dropable_line_edit import DropableLineEdit
 
 class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
   def __init__(self, op, *args, **kwargs):

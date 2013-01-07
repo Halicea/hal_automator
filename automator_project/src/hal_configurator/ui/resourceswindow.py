@@ -6,9 +6,9 @@ Created on Nov 23, 2012
 import os
 from gen.resourceswindow import Ui_ResourcesWindow
 from PySide import QtCore, QtGui
-from ui.global_vars import GlobalVars
-from ui.confirm_dialog import ConfirmDialog
-from ui.resource_dialog import ResourceDialog
+from global_vars import GlobalVars
+from confirm_dialog import ConfirmDialog
+from resource_dialog import ResourceDialog
 import shutil
 class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
   def __init__(self,*args, **kwargs):

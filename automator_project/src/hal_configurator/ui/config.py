@@ -1,8 +1,8 @@
 from PySide import QtGui
 from gen.config import Ui_ConfigForm
 from config_bundle import BundleWidget
-from ui.resourceswindow import ResourcesWindow
-from ui.variableswindow import VariablesWindow
+from resourceswindow import ResourcesWindow
+from variableswindow import VariablesWindow
 from models import ResourcesListModel, VariablesListModel
 from pprint import pprint
 import json

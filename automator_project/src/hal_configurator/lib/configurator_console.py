@@ -3,9 +3,9 @@
 import sys
 import os
 import json
-from command_executor import CommandExecutor
-from config_loaders import FileConfigLoader, SvcConfigLoader
-from app_prebuilder import AppPreBuilder   
+from hal_configurator.lib.command_executor import CommandExecutor
+from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoader
+from hal_configurator.lib.app_prebuilder import AppPreBuilder   
 svcUrl = "http://localhost:3000"
 
 def main():

@@ -1,7 +1,7 @@
 from PySide import QtGui, QtCore
 from gen.variableswindow import Ui_VariablesWindow
-from ui.confirm_dialog import ConfirmDialog
-from ui.variable_dialog import Dialog
+from confirm_dialog import ConfirmDialog
+from variable_dialog import Dialog
 
 class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
   def __init__(self, *args, **kwargs):

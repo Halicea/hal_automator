@@ -1,13 +1,13 @@
 import sys, os
 sys.path.append(os.path.abspath(__file__))
-import lib.configurator_console as console
-
+import hal_configurator.lib.configurator_console as console
 try:
   from PySide import QtGui
-  from ui.mainwindow import MainWindow
-except:
-  print "No PySide found"
-
+  from hal_configurator.ui.mainwindow import MainWindow
+except Exception, ex:
+  print ex
+  print "No Qt Installed"
+  
 def main():
   app = QtGui.QApplication(sys.argv)
   mw = MainWindow()

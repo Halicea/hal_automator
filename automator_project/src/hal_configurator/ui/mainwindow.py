@@ -7,8 +7,8 @@ import os
 from PySide import QtGui, QtCore
 from gen.mainwindow import Ui_MainWindow
 from configwindow import ConfigWindow
-from lib.config_loaders import FileConfigLoader
-from ui.regex_tool import RegexTool
+from hal_configurator.lib.config_loaders import FileConfigLoader
+from regex_tool import RegexTool
 from global_vars import GlobalVars
 
 config_path = '/Users/kostamihajlov/MyProjects/PrintStandClient/src/Configs'
