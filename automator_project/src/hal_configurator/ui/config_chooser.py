@@ -1,8 +1,8 @@
 
 from PySide import QtGui
 from gen.config_chooser import Ui_ConfigChooserWidget
-from lib.config_loaders import FileConfigLoader
-from ui.configwindow import ConfigWindow
+from hal_configurator.lib.config_loaders import FileConfigLoader
+from hal_configurator.ui.configwindow import ConfigWindow
 
 class ConfigChooserWidget(QtGui.QWidget, Ui_ConfigChooserWidget):
   def __init__(self, *args, **kwargs):

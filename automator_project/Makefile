@@ -26,3 +26,6 @@ clean:
 
 install:
 	sudo python setup.py install
+
+install_console:
+	sudo python setup_console.py install

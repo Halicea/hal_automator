@@ -20,6 +20,9 @@
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="margin">
+    <number>0</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
@@ -70,7 +73,7 @@ p, li { white-space: pre-wrap; }
      </property>
      <widget class="QTabWidget" name="tabs_vars">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+       <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -176,8 +179,8 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>711</width>
-         <height>484</height>
+         <width>309</width>
+         <height>521</height>
         </rect>
        </property>
        <attribute name="label">
@@ -189,8 +192,8 @@ p, li { white-space: pre-wrap; }
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>569</width>
-         <height>328</height>
+         <width>309</width>
+         <height>521</height>
         </rect>
        </property>
        <attribute name="label">
@@ -198,19 +201,6 @@ p, li { white-space: pre-wrap; }
        </attribute>
       </widget>
      </widget>
-    </widget>
-   </item>
-   <item>
-    <widget class="Line" name="line">
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-     <property name="lineWidth">
-      <number>3</number>
-     </property>
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
     </widget>
    </item>
   </layout>

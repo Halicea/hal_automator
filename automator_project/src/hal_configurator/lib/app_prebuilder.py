@@ -12,7 +12,7 @@ class AppPreBuilder(object):
       return self.config
     else:
       self.config = self.loader.load_config()
-    return self.config 
+    return self.config
 
   def apply(self):
     cnf = self.get_config()
@@ -22,5 +22,9 @@ class AppPreBuilder(object):
     global_vars=[]
     if cnf.has_key("Variables"):
       global_vars = cnf["Variables"]
+    global_resources = []
+    if cnf.has_key("Resources"):
+      global_resources = cnf["Resources"]
     for k in cnf["Content"]["OperationBundles"]:
-      self.executor.execute_bundle(k, global_vars)
+      print "ok"
+      self.executor.execute_bundle(k, global_vars, global_resources)

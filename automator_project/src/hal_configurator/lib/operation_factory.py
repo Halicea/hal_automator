@@ -12,7 +12,7 @@ __op_templates ={
       "FileMatch": None,
       "StringMatch": None,
       "ReplaceWith": None
-    }  
+    }
   },
   "replace_from_url":{
     "Code": "replace_from_url",
@@ -21,6 +21,16 @@ __op_templates ={
         "Resource": None,
         "Destination": None
     }  
+  },
+  "add_android_resource":{
+    "Code": "add_android_resource",
+    "Description":"Adds new android resource file in the project",
+    "Arguments":{
+          "ProjectFile": None,
+          "ResourceDestinationFormat":None,
+          "ReplacementArray":None,
+          "ResourceFormat":None
+    }
   }
 }
 

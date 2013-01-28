@@ -4,9 +4,10 @@ from subprocess import call
 import pprint
 ui_cmd = "pyside-uic -o %s %s"
 rcc_cmd = "pyside-rcc -o %s %s"
-ui_root = "../src/ui/gen/"
-ui_classes_root ="../src/ui"
-additional_imports = ["../src/ui/custom_widgets", "../src/ui"]
+ui_root = "../src/hal_configurator/ui/gen/"
+ui_classes_root ="../src/hal_configurator/ui"
+additional_imports = ["../src/hal_configurator/ui/custom_widgets", "../src/hal_configurator/ui"]
+
 ui_class_template ="""
 from PySide import QtGui
 from gen.%(module_name)s import %(class_name)s

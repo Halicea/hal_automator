@@ -1,7 +1,8 @@
-from PySide import QtCore
+from PySide import QtCore, QtGui
 import hal_configurator.lib.operation_factory as fact
 import os
 from global_vars import GlobalVars
+import hal_configurator.plugins as plugins
 class ResourcesListModel(QtCore.QAbstractListModel):
   
   def __init__(self, resources, *args, **kwargs):
@@ -58,7 +59,7 @@ class VariablesListModel(QtCore.QAbstractListModel):
 
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
-      item = '->'.join([self.resources[index.row()]["name"], self.resources[index.row()]["value"]])  
+      item = self.resources[index.row()]["name"]  
       return str(item)
     elif role == QtCore.Qt.UserRole:
       return "{{"+self.resources[index.row()]["name"]+"}}"
@@ -99,11 +100,31 @@ class OperationTypeListModel(QtCore.QAbstractListModel):
       return fact.new_operation(self.op_types[index.row()])
     return None
 
+
+class ToolsListModel(QtCore.QAbstractListModel):
+  def __init__(self, tools, *args, **kwargs):
+    super(ToolsListModel,self).__init__(*args, **kwargs)
+    self.tools = tools
+  
+  def rowCount(self, parent):
+    return len(self.tools)
+    
+  def data(self, index, role):
+    if role == QtCore.Qt.DisplayRole:
+      b = QtGui.QPushButton()
+      tool = self.tools[index.row()]
+      plugin_cls = plugins.__dict__[tool]
+      b.setText(plugin_cls.get_name())
+      return b
+    elif role == QtCore.Qt.UserRole:
+      return fact.new_operation(self.op_types[index.row()])
+    return None
+  
 class ObjectWrapper(QtCore.QObject):
     def __init__(self, thing):
         QtCore.QObject.__init__(self)
         self._thing = thing
- 
+        
     def _name(self):
         return str(self._thing)
       

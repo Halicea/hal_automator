@@ -16,6 +16,8 @@ class RegexTool(QtGui.QWidget, Ui_RegexTool):
   
   def btnRun_clicked(self):
     rem = re.compile(self.txtRegex.text())
+    if self.cbMultiLine.checkState():
+      rem = re.compile(self.txtRegex.text(), re.DOTALL)
     test = self.txtTest.toPlainText()
     res = re.findall(rem, test) 
     result = re.sub(rem, self.txtReplaceWith.text(), test, len(res))

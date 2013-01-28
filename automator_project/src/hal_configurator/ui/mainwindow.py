@@ -67,7 +67,10 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     self.run_external_proc("make install", os.path.dirname(self.working_dir))
   
   def on_scm_reset_clicked(self):
-    self.run_external_proc("git reset --hard HEAD", os.path.dirname(self.working_dir))
+    def state_changed(state):
+      if state== QtCore.QProcess.ProcessState.NotRunning:
+        self.run_external_proc("git clean -f", os.path.dirname(self.working_dir))
+    self.run_external_proc("git reset --hard HEAD", os.path.dirname(self.working_dir), state_changed)
   
   def on_sign_app_clicked(self):
     self.run_external_proc("make sign", os.path.dirname(self.working_dir))
@@ -154,12 +157,14 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     
     #self.proc.start("make", "configure brand="++" verbose=-v")
 
-  def run_external_proc(self, cmd,working_dir):
+  def run_external_proc(self, cmd,working_dir, state_changed=None):
     self.proc = QtCore.QProcess(self)
     self.proc.setWorkingDirectory(working_dir)
     self.proc.readyReadStandardOutput.connect(self.__show_output__)
     self.proc.readyReadStandardOutput.connect(self.__show_error__)
     self.proc.setProcessChannelMode(QtCore.QProcess.ProcessChannelMode.MergedChannels)
+    if state_changed:
+      self.proc.stateChanged.connect(state_changed)
     self.proc.closeWriteChannel()
     #self.proc.setReadChannel(QtCore.QProcess.StandardError)
     self.proc.start(cmd)

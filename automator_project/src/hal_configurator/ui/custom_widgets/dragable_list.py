@@ -39,6 +39,7 @@ class DragableList(QtGui.QListView):
     drag.setHotSpot(QtCore.QPoint(pixmap.width()/2, pixmap.height()/2))
     drag.setPixmap(pixmap)
     drag.start(QtCore.Qt.MoveAction)
+    
   def get_pixmap(self, index):
     pixmap = QtGui.QPixmap()
     return pixmap.grabWidget(self, self.rectForIndex(index))
