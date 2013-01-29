@@ -7,6 +7,7 @@ import codecs
 import os
 class ReplaceText(OperationBase):
   """Replaces Text in the Matched Files"""
+  code = "replace_text"
   def __init__(self, *args, **kwargs):
     super(ReplaceText, self).__init__(*args, **kwargs)
     self.result = []
@@ -18,22 +19,27 @@ class ReplaceText(OperationBase):
     self.kwargs["FileMatch"] = self.FileMatch
     self.kwargs["StringMatch"]=self.StringMatch
     self.kwargs["ReplaceWith"]=self.ReplaceWith
+  
   def get_result(self):
     return ','.join(self.result)
-    
-  def get_arg_descriptors(self):
+  
+  @classmethod  
+  def get_arg_descriptors(cls):
     return [
-            ArgumentDescriptor("FileMatch", "Regex to match on wich files we need to apply the replacement", "text"),
-            ArgumentDescriptor("StringMatch", "Regex for the string we like to replace", "text"),
-            ArgumentDescriptor("ReplaceWith", "The replacement text", "text")
+              ArgumentDescriptor("FileMatch", "Regex to match on wich files we need to apply the replacement", "text"),
+              ArgumentDescriptor("StringMatch", "Regex for the string we like to replace", "text"),
+              ArgumentDescriptor("ReplaceWith", "The replacement text", "text")
             ]
+  
   @classmethod
   def get_name(cls):
     return "Replace Text"
+  
   def get_output_descriptor(self):
     return [
             ArgumentDescriptor("out", "Comma separated list of the paths of the replaced files", "text")
             ]
+  
   def run(self):
     is_valid, errors =  self.validate_args()
     if is_valid:
@@ -70,7 +76,7 @@ class ReplaceText(OperationBase):
         if self.verbose:
           print "\tfound "+str(len(matchset))+" textblocks to replace:"
           for k in matchset:
-            print "\t\t item:"+k
+            print "\t\t item:"+str(k)
        
     # pattern is in the file, so perform replace operation.
     if self.verbose:

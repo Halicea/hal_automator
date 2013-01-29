@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import sys, os
-from hal_configurator.ui.ime_test import ImeForm
+
 from hal_configurator.ui.tool_set import ToolSet
 sys.path.append(os.path.abspath(__file__))
 import hal_configurator.lib.configurator_console as console

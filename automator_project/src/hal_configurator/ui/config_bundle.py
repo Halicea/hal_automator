@@ -3,15 +3,16 @@ from gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
 from uiutils import layout_widgets
 from confirm_dialog import ConfirmDialog
+import hal_configurator.plugins as pl
 import hal_configurator.lib.operation_factory as op_factory
 
-from models import OperationTypeListModel
+from models import ToolsListModel
 class OpChooserDialog(QtGui.QDialog):
     def __init__(self, parent=None):
         super(OpChooserDialog, self).__init__(parent)
         self.setWindowTitle("Choose Operation Type")
         self.cmb = QtGui.QComboBox(self)
-        self.cmb.setModel(OperationTypeListModel())
+        self.cmb.setModel(ToolsListModel(pl.__all__))
 
 class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
   def __init__(self, bundle, *args, **kwargs):
@@ -20,7 +21,6 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     self.ops = []
     self.setupUi()
     self.bindUi()
-  
 
   def setupUi(self):
     super(BundleWidget, self).setupUi(self)
@@ -42,7 +42,7 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
       op = model.data(model.createIndex(b.cmb.currentIndex(), 0), role = QtCore.Qt.UserRole)
       print op
       b.deleteLater()
-      self.add_operation(op)
+      self.add_operation(op.get_empty_dict())
     b.cmb.currentIndexChanged.connect(on_code_chosen)
     b.show()
   
@@ -71,7 +71,6 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     res["Name"] = self.bundle["Name"]
     ops = res["Operations"] = []
     for op in self.ops:
-      
       ops.append(op.get_dict())
     return res
     

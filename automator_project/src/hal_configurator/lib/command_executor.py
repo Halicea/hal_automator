@@ -3,7 +3,8 @@ import urllib2
 import glob
 import re
 import codecs
-#from hal_configurator.commands import replace_text
+import hal_configurator.plugins as plugins
+
 class CommandExecutor(object):
   def __init__(self, resources, resources_root="",verbose=True):
     self.verbose = verbose
@@ -43,21 +44,22 @@ class CommandExecutor(object):
     for gres in global_resources:
       if len([x for x in bundle_res if x["rid"] == gres["rid"]])==0:
         bundle_res.append(gres)
-
+        
     for k in bundle_res:
       if not ("://" in k["url"]):
         k["url"] = self.resources_root+"/"+k["url"]
- 
+    
     for comm in command_bundle["Operations"]:
       self.execute_command(comm, bundle_vars, bundle_res)
-  
+    
   def execute_command(self, command, bundle_vars, bundle_res):
     vars = self.replace_vars(bundle_vars, command["Arguments"])
     vars = self.replace_resources(bundle_res, vars)
-    import hal_configurator.plugins as plugins
+    
     
     cmd  = command["Code"]
     plugin_cls = plugins.__dict__[cmd]
-    plugin = plugin_cls(verbose=True)
+    
+    plugin = plugin_cls(executor = self, variables = bundle_vars, resources = bundle_res,  verbose=True)
     plugin.set_args(**vars)
     plugin.run()

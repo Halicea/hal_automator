@@ -32,7 +32,7 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
       arg_label = QtGui.QLabel(item)
       arg_label.setMinimumWidth(100)
       arg_box = DropableLineEdit(item)
-      if arg =="Resource":
+      if "Resource" in arg:
         arg_box.set_object_format("application/x-resource")
       else:
         arg_box.set_object_format("application/x-variable")
@@ -48,7 +48,7 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
     d = {}
     d["Code"]=self.op["Code"]
     if self.op.has_key("Type"):
-      d["Type"]=self.op["Type"] 
+      d["Type"]=self.op["Type"]
     args = d["Arguments"] = {}
     for l in self.items:
       key = l.children()[1]

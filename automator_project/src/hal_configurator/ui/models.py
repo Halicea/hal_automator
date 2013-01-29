@@ -19,7 +19,7 @@ class ResourcesListModel(QtCore.QAbstractListModel):
       item = self.resources[index.row()]["rid"]
       return str(item)
     elif role==QtCore.Qt.UserRole:
-      return self.resources[index.row()]["rid"]
+      return "{#"+self.resources[index.row()]["rid"]+"#}"
     elif role==QtCore.Qt.EditRole:
       return self.resources[index.row()]
     elif role=="object":
@@ -102,22 +102,24 @@ class OperationTypeListModel(QtCore.QAbstractListModel):
 
 
 class ToolsListModel(QtCore.QAbstractListModel):
-  def __init__(self, tools, *args, **kwargs):
+  def __init__(self, tools, include_void=True, *args, **kwargs):
     super(ToolsListModel,self).__init__(*args, **kwargs)
     self.tools = tools
-  
+    if include_void:
+      self.tools.insert(0, '--Select Item--')
+
   def rowCount(self, parent):
     return len(self.tools)
     
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
-      b = QtGui.QPushButton()
-      tool = self.tools[index.row()]
-      plugin_cls = plugins.__dict__[tool]
-      b.setText(plugin_cls.get_name())
-      return b
+      return self.tools[index.row()]
+      #plugin_cls = plugins.__dict__[tool]
+      #b.setText(plugin_cls.get_name())
+      #return b
     elif role == QtCore.Qt.UserRole:
-      return fact.new_operation(self.op_types[index.row()])
+      return plugins.__dict__[self.tools[index.row()]]
+      #return fact.new_operation(self.tools[index.row()])
     return None
   
 class ObjectWrapper(QtCore.QObject):

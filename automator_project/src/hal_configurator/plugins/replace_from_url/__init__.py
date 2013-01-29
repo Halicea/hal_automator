@@ -7,11 +7,13 @@ import glob
 
 class ReplaceFromUrl(OperationBase):
   """Replaces File(Destination) from a resource file supplied by URI"""
+  code = "replace_from_url"
   def __init__(self,*args, **kwargs):
     super(ReplaceFromUrl, self).__init__(*args, **kwargs)
     self.result = ''
-    
-  def get_arg_descriptors(self):
+  
+  @classmethod  
+  def get_arg_descriptors(cls):
     return [
             ArgumentDescriptor("Resource", "The Resource to use", "text"),
             ArgumentDescriptor("Destination", "Where to put the file(relative to the working dir or absolute)", "text")

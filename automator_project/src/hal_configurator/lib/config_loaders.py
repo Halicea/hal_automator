@@ -73,6 +73,13 @@ class FileConfigLoader(ConfigLoader):
     global last_config_loaded
     print os.path.abspath(self.fileName)                        
     cfg =  json.load(open(self.fileName, 'r'))
+    
+    if cfg["Content"].has_key("Reference"):
+      content_path = os.path.join(os.path.dirname(self.fileName), cfg["Content"]["Reference"])
+      content = json.load(open(content_path , "r"))
+      content["Reference"]=cfg["Content"]["Reference"]
+      cfg["Content"] = content
+
     cfg = self.load_customizations(cfg)
     cfg = self.fix_resource_separator_chars(cfg)
     last_config_loaded = cfg

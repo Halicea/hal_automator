@@ -1,24 +1,48 @@
+from hal_configurator.lib.var_substitutor import VarSubstitutor
 
 class OperationBase(object):
+  
   def __init__(self, *args, **kwargs):
     self.kwargs = {}
     if kwargs.has_key('verbose'):
       self.verbose = kwargs['verbose']
     else:
       self.verbose = False
+    self.executor = kwargs["executor"]
+    self.resources = kwargs['resources']
+    self.variables = kwargs['variables']
+    self.value_substitutor = VarSubstitutor(self.variables, self.resources, self.executor.resources_root)
     self.result = ''
-  
+    
   def get_result(self):
     return self.result
   
   def set_args(self, **kwargs):
     self.kwargs = kwargs
   
+  def get_dict(self):
+    return {
+            "Code":self.get_code(),
+            "Type":self.get_name(), 
+            "Arguments":dict([(x.name, self.kwargs.has_key(x.name) and self.kwargs[x.name] or "") for x in self.get_arg_descriptors()])
+           }
+  @classmethod
+  def get_empty_dict(cls):
+    return{
+            "Code":cls.get_code(),
+            "Type":cls.get_name(), 
+            "Arguments":dict([(x.name, "") for x in cls.get_arg_descriptors()])
+           }
   @classmethod
   def get_name(cls):
     return cls.__name__
   
-  def get_arg_descriptors(self):
+  @classmethod
+  def get_code(cls):
+    return cls.code
+  
+  @classmethod
+  def get_arg_descriptors(cls):
     raise NotImplementedError("Method get_arg_descriptors is not implemented")
   
   def validate_args(self):
@@ -55,6 +79,7 @@ ArgumentTypes = {
   "file": lambda x: True,
   "list": lambda x:True
 }
+
 class ArgumentDescriptor(object):
   def __init__(self, name, description, argument_type, validator=None):
     self.name = name
@@ -72,7 +97,3 @@ class ArgumentDescriptor(object):
   
   def validate_argument(self, argument):
     return self.validator(argument)
-    
-      
-    
-  

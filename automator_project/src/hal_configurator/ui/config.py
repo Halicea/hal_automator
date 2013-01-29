@@ -5,7 +5,10 @@ from resourceswindow import ResourcesWindow
 from variableswindow import VariablesWindow
 from models import ResourcesListModel, VariablesListModel
 from pprint import pprint
+import os
 import json
+import copy
+
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):
     super(ConfigWidget, self).__init__(*args, **kwargs)
@@ -43,9 +46,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"]))
     self.btn_save.clicked.connect(self.save_config)
     self.setup_bundles()
-  
 
-    
   def setup_bundles(self):
     self.la_name.setText(self.get_config()["PublisherId"])
     bundles = self.tlbx_bundles
@@ -67,7 +68,20 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       self.save_path = sp
       print "saved file on "+self.save_path
       f = open(self.save_path,"w")
-      f.write(json.dumps(self.get_dict(), sort_keys = True, indent = 2))
+      d = self.get_dict()
+      
+      if d["Content"].has_key("Reference"):
+        print "writing the referenced file"
+        p = d["Content"]["Reference"]
+        content = copy.deepcopy(d["Content"])
+        d["Content"]={"Reference":p}
+        del content["Reference"]
+        ref_file = os.path.join(os.path.dirname(sp), p)
+        rf = open(ref_file,"w")
+        rf.write(json.dumps(content, sort_keys = True, indent = 2))
+        rf.close()
+      f.write(json.dumps(d, sort_keys = True, indent = 2))
+      f.close()
     else:
       print "Saving cancelled"
 
@@ -79,6 +93,8 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       bundles.append(bw.get_dict())
     d["Resources"]= self.resources_widget.data_model.resources
     d["Variables"]=self.variables_widget.data_model.resources
+    if self.__config__["Content"].has_key("Reference"):
+      d["Content"]["Reference"] = self.__config__["Content"]["Reference"]
     return d
   
 

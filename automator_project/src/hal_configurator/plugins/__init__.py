@@ -1,7 +1,7 @@
 #from delete_file import DeleteFile 
 from replace_text import ReplaceText as replace_text
 from replace_from_url import ReplaceFromUrl as replace_from_url
-from delete_file import ProjectResourcesAppender as add_android_resource
+from add_android_resource import AddAndroidResource as add_android_resource
 __all__ = ["replace_text", "replace_from_url", "add_android_resource"]
 #  def ensure_resource_is_registered(self, path):
 #    templ = '\<AndroidResource Include="'+path+'" /\>'      

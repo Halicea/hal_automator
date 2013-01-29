@@ -26,5 +26,4 @@ class AppPreBuilder(object):
     if cnf.has_key("Resources"):
       global_resources = cnf["Resources"]
     for k in cnf["Content"]["OperationBundles"]:
-      print "ok"
       self.executor.execute_bundle(k, global_vars, global_resources)
