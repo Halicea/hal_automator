@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>667</width>
-    <height>82</height>
+    <width>665</width>
+    <height>159</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -93,6 +93,16 @@
       <enum>QLayout::SetMaximumSize</enum>
      </property>
     </layout>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="txtOutput">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="MinimumExpanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

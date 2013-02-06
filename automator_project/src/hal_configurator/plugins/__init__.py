@@ -2,7 +2,10 @@
 from replace_text import ReplaceText as replace_text
 from replace_from_url import ReplaceFromUrl as replace_from_url
 from add_android_resource import AddAndroidResource as add_android_resource
-__all__ = ["replace_text", "replace_from_url", "add_android_resource"]
+from add_ios_resource import AddIosResource as add_ios_resource
+
+__all__ = ["replace_text", "replace_from_url", "add_android_resource", "add_ios_resource"]
+
 #  def ensure_resource_is_registered(self, path):
 #    templ = '\<AndroidResource Include="'+path+'" /\>'      
 #  
