@@ -18,9 +18,19 @@ class OperationBase(object):
     self.variables = kwargs['variables']
     self.value_substitutor = VarSubstitutor(self.variables, self.resources, self.executor.resources_root)
     self.log = kwargs.has_key("log") and kwargs["log"] or sys.stdout
+    self.description = ""
     self.result = ''
     
-    
+  def real_run(self):
+    sign = "(%s)->%s"%(self.description, self.code)
+    if self.verbose:
+      self.log.write("START %s" % sign)
+      for k in self.get_arg_descriptors():
+        self.log.write("\tp: %s:%s" % (k.name, self.kwargs[k.name]))
+    self.run()
+    if self.verbose: self.log.write("END %s"%sign)
+
+
   def get_result(self):
     return self.result
   

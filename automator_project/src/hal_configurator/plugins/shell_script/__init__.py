@@ -40,9 +40,6 @@ class ShellScript(OperationBase):
   def run(self):
     print os.getcwd()
     cmd = self.command.split(' ')
-    if self.verbose:
-      self.log.write("START Shell script on %s"%self.working_dir)
-      self.log.write("\tcommand:%s"%cmd)
 
     p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE,
                          close_fds=True, cwd=self.working_dir, env=os.environ)
@@ -52,9 +49,7 @@ class ShellScript(OperationBase):
       p.poll() #returns None while subprocess is running
       line = stdout.readline()
       #time.sleep(0.1)
-      self.log.write("  >>>%s"%line)
+      self.log.write("  >>>%s"%line[:-1])
       if (line == "" and p.returncode != None):
         break
     stdout.close()
-    if self.verbose:
-      self.log.write("END Shell Script")

@@ -57,8 +57,7 @@ class CommandExecutor(object):
     if continue_execution:  
       for comm in command_bundle["Operations"]:
         self.execute_command(comm, bundle_vars, bundle_res)
-    
-      
+
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
       cmd  = command["Code"]
@@ -66,8 +65,10 @@ class CommandExecutor(object):
       plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
       vars = self.replace_vars(bundle_vars, command["Arguments"])
       vars = self.replace_resources(bundle_res, vars)
+      if "Description" in command:
+        plugin.description = command["Description"]
       plugin.set_args(**vars)
-      plugin.run()
+      plugin.real_run()
   
   def check_debug_settings(self, obj):
     continue_execution = True

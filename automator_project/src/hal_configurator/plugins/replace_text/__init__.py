@@ -59,17 +59,11 @@ class ReplaceText(OperationBase):
           self.__file_replace__(fname, pat, s_after)
   
   def __file_replace__(self, fname, pat, s_after):
-    # first, see if the pattern is even in the file.
-    if self.verbose:
-      self.log.write("START-file-text-replace")
-      self.log.write("\tfile: %s"%fname)
-    matchset = None
     with open(fname) as f:
       matchset = re.findall(pat, f.read())
       if not matchset:
         if self.verbose:
           self.log.write('\tnothing to replace %s with %s'%(str(pat), s_after))
-          self.log.write("END-file-text-replace")
         return # pattern does not occur in file so we are done.
       else:
         self.result.append(fname)
@@ -89,8 +83,6 @@ class ReplaceText(OperationBase):
       out.write(replaced)
       out.close()
       os.rename(out_fname, fname)
-      if self.verbose:
-        self.log.write("END-file-text-replace")
 
 def test_replace():
   f = open("test.txt", "w")

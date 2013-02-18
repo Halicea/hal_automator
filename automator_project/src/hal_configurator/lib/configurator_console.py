@@ -6,7 +6,7 @@ import json
 from hal_configurator.lib.command_executor import CommandExecutor
 from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoader
 from hal_configurator.lib.app_prebuilder import AppPreBuilder
-from hal_configurator.lib.logers import ConsoleLoger
+from hal_configurator.lib.logers import ConsoleLoger, FileLoger, CompositeLoger
 
 svcUrl = "http://localhost:3000"
 
@@ -56,13 +56,18 @@ def get_loader_executor():
     elif sys.argv[2]=='svc':
       ldr =  SvcConfigLoader(svcUrl, sys.argv[3])
       base_path = os.path.join(svcUrl,"config", sys.argv[3])
-      
+
+    log = ConsoleLoger()
+    if "-log" in sys.argv:
+      file_log = FileLoger(sys.argv[sys.argv.index("-log")+1])
+      log = CompositeLoger(log, file_log)
+
     config = ldr.load_config()
     verbose=False
     if "-v" in sys.argv:
       verbose = True
     print "Executing configurator on:", os.path.abspath('./')
-    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose, log=ConsoleLoger())
+    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose, log=log)
     return ldr, exc
   else:
     print '''

@@ -24,6 +24,7 @@ class AppPreBuilder(object):
 
     cnf = self.get_config()
     self.configure(cnf)
+    self.executor.log.close()
     print "finished execution"
     os.chdir(old_dir)
 

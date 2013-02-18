@@ -32,36 +32,27 @@ class AddAndroidResource(OperationBase):
   def run(self):
     is_valid, errors = self.validate_args()
     if is_valid:
-      if self.verbose:
-        self.log.write("START-add-android-resource")
-        self.log.write("\tdestination %s"%os.path.abspath(self.destination_format))
-        self.log.write("\tsource %s" % self.resource_format)
-        self.log.write("\titerator %s" % self.iterator_array)
-        for k in self.iterator_array:
-          res = self.resource_format%k
-          dest = self.destination_format%k
-          res = self.value_substitutor.substitute(res)
-          dest = self.value_substitutor.substitute(dest)
-          rurl = replace_from_url(executor = self.executor, 
-                                  resources = self.resources, 
-                                  variables = self.variables, 
-                                  verbose=self.verbose)
+      for k in self.iterator_array:
+        res = self.resource_format%k
+        dest = self.destination_format%k
+        res = self.value_substitutor.substitute(res)
+        dest = self.value_substitutor.substitute(dest)
+        rurl = replace_from_url(executor = self.executor,
+                                resources = self.resources,
+                                variables = self.variables,
+                                verbose=self.verbose)
 
-          rtext= replace_text(executor = self.executor, 
-                              resources = self.resources, 
-                              variables = self.variables, 
-                              verbose=self.verbose)
-          match = "</Project>$"
-          repl = "<ItemGroup><AndroidResource Include=\""+dest+"\" /></ItemGroup>\n</Project>"
-          
-          rurl.set_args(res, dest)
-          rtext.set_args(self.project_file, match, repl)
-          rurl.run()
-          rtext.run()
-          
-      if self.verbose:
-        self.log.write("DONE-replace-from-url")
-        pass
+        rtext= replace_text(executor = self.executor,
+                            resources = self.resources,
+                            variables = self.variables,
+                            verbose=self.verbose)
+        match = "</Project>$"
+        repl = "<ItemGroup><AndroidResource Include=\""+dest+"\" /></ItemGroup>\n</Project>"
+
+        rurl.set_args(res, dest)
+        rtext.set_args(self.project_file, match, repl)
+        rurl.run()
+        rtext.run()
     else:
       raise InvalidCommandArgumentsError(str(errors))
 

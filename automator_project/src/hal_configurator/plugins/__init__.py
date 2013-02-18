@@ -1,4 +1,3 @@
-#from delete_file import DeleteFile 
 from replace_text import ReplaceText as replace_text
 from replace_from_url import ReplaceFromUrl as replace_from_url
 from add_android_resource import AddAndroidResource as add_android_resource
