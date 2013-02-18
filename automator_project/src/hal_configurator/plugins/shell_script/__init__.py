@@ -52,7 +52,7 @@ class ShellScript(OperationBase):
       p.poll() #returns None while subprocess is running
       line = stdout.readline()
       #time.sleep(0.1)
-      self.log.write("\t\t>>>%s"%line)
+      self.log.write("  >>>%s"%line)
       if (line == "" and p.returncode != None):
         break
     stdout.close()
