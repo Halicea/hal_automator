@@ -27,16 +27,15 @@ class ReplaceFromUrl(OperationBase):
     is_valid, errors = self.validate_args()
     if is_valid:
       if self.verbose:
-        print "START-replace-from-url"
-        print "\tdestination", os.path.abspath(self.destination)
-        print "\tsource", self.resource
+        self.log.write("START-replace-from-url")
+        self.log.write("\tdestination %s"% os.path.abspath(self.destination))
+        self.log.write("\tsource %s"% self.resource)
       f = urllib2.urlopen(self.resource)
       fh = open(self.destination, 'wb')
       fh.write(f.read())
       fh.close()
       if self.verbose:
-        print "DONE-replace-from-url"
-        pass
+        self.log.write("DONE-replace-from-url")
     else:
       raise InvalidCommandArgumentsError(str(errors))
     

@@ -96,7 +96,7 @@
         <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="ltv_content">
           <property name="sizeConstraint">
-           <enum>QLayout::SetMinimumSize</enum>
+           <enum>QLayout::SetMaximumSize</enum>
           </property>
          </layout>
         </widget>

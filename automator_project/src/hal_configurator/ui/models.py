@@ -34,7 +34,8 @@ class ResourcesListModel(QtCore.QAbstractListModel):
     self.beginRemoveRows(QtCore.QModelIndex(), index, index)
     to_remove = os.path.join(self.root_dir, self.resources[index]["url"])
     print "To Remove", to_remove
-    os.remove(os.path.join(self.root_dir, self.resources[index]["url"]))
+    if(os.path.exists(os.path.join(self.root_dir, self.resources[index]["url"]))):
+      os.remove(os.path.join(self.root_dir, self.resources[index]["url"]))
     del self.resources[index]
     self.endRemoveRows()    
   
@@ -132,3 +133,15 @@ class ObjectWrapper(QtCore.QObject):
       
     changed = QtCore.Signal()
     name = QtCore.Property(unicode, _name, notify=changed)
+
+
+class SimpleStringListModel(QtCore.QAbstractListModel):
+  def __init__(self, data):
+    super(SimpleStringListModel, self).__init__()
+    self.__data__ = data
+
+  def rowCount(self, *args, **kwargs):
+    return len(self.__data__)
+
+  def data(self, index, parent):
+    return str(self.__data__[index.row()])

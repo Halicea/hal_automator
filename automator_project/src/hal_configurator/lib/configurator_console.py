@@ -16,7 +16,7 @@ def main():
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
     config_loader.append_vars(*custom_vars)
-    
+
   builder = AppPreBuilder(config_loader, executor)
   builder.apply()
   
@@ -57,7 +57,7 @@ def get_loader_executor():
     if "-v" in sys.argv:
       verbose = True
     print "Executing configurator on:", os.path.abspath('./')  
-    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose)
+    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose, log=lambda x:sys.stdout.write(x))
     return ldr, exc
   else:
     print '''

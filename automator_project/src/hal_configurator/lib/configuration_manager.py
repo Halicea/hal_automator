@@ -36,4 +36,3 @@ class ConfigurationManager(object):
   
   def _decompress_config(self, zip_path):
     raise NotImplementedError()
-  

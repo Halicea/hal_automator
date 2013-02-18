@@ -12,16 +12,15 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
     
   def bindUi(self):
     self.la_name.setText(self.op["Code"])
-    if self.op.has_key("Type"):
-      self.la_description.setText(self.op["Type"])
+    if self.op.has_key("Description"):
+      self.la_description.setText(self.op["Description"])
     else:
-      self.la_description.setText("No Type is set!")
+      self.la_description.setText("No Description is set!")
       #self.la_description.setStyle("color:red;")
     arguments = self.ltv_content
     for arg in self.op["Arguments"].keys():
       la = arg
       val = self.op["Arguments"][arg]
-     
       item = QtGui.QFrame(self)
       layout = QtGui.QHBoxLayout(item)
       layout.setContentsMargins(0, 0, 0, 0)
@@ -47,8 +46,7 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
   def get_dict(self):
     d = {}
     d["Code"]=self.op["Code"]
-    if self.op.has_key("Type"):
-      d["Type"]=self.op["Type"]
+    d["Description"]=self.la_description.text()
     args = d["Arguments"] = {}
     for l in self.items:
       key = l.children()[1]

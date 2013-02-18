@@ -37,10 +37,10 @@ class AddIosResource(OperationBase):
     is_valid, errors = self.validate_args()
     if is_valid:
       if self.verbose:
-        print "START-add-ios-resource"
-        print "\tdestination", os.path.abspath(self.destination_format)
-        print "\tsource", self.resource_format
-        print "\titerator", self.iterator_array
+        self.log.write( "START-add-ios-resource")
+        self.log.write( "\tdestination %s"% os.path.abspath(self.destination_format))
+        self.log.write( "\tsource %s"% self.resource_format)
+        self.log.write( "\titerator %s"% self.iterator_array)
         for k in self.iterator_array:
           res = self.resource_format%k
           dest = self.destination_format%k
@@ -63,7 +63,7 @@ class AddIosResource(OperationBase):
           rtext.run()
           
       if self.verbose:
-        print "DONE-ios-resource"
+        self.log.write("DONE-ios-resource")
         pass
     else:
       raise InvalidCommandArgumentsError(str(errors))

@@ -62,6 +62,8 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
         dest = self.model["url"]
       else:
         dest = './Resources/'+''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(15))
+      if not os.path.exists(os.path.dirname(os.path.join(self.root_dir, dest))):
+        os.makedirs(os.path.dirname(os.path.join(self.root_dir, dest)))
       shutil.copy(self.edited_resource["url"], os.path.join(self.root_dir, dest))
       self.edited_resource["url"]=dest
     self.done(1)

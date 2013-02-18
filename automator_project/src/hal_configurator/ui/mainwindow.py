@@ -4,12 +4,22 @@ Created on Nov 21, 2012
 @author: kostamihajlov
 '''
 import os
+import multiprocessing
+
 from PySide import QtGui, QtCore
+
 from gen.mainwindow import Ui_MainWindow
 from configwindow import ConfigWindow
-from hal_configurator.lib.config_loaders import FileConfigLoader
+from hal_configurator.ui.config_runner_thread import ConfigRunnerThread
+from hal_configurator.ui.logers import ZmqChainedLoger
+from hal_configurator.ui.message_subscriber import MessageSubsriberThread
+from hal_configurator.ui.models import SimpleStringListModel
 from regex_tool import RegexTool
 from global_vars import GlobalVars
+from hal_configurator.lib.command_executor import CommandExecutor
+from hal_configurator.lib.app_prebuilder import AppPreBuilder
+from hal_configurator.lib.config_loaders import FileConfigLoader
+port = 1234
 
 config_path = '/Users/kostamihajlov/MyProjects/PrintStandClient/src/Configs'
 solution_dir = "/Users/kostamihajlov/MyProjects/PrintStandClient/src/{PlatformType}/Mediawire.PrintStand.Mobile.Presentation"
@@ -19,6 +29,7 @@ config_runner_script = os.path.join(fpath, 'lib', 'configurator_console.py')
 regex_shown = False
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
+
   def __init__(self, *args, **kwargs):
     self.fullScreen = False
     super(MainWindow, self).__init__(*args, **kwargs)
@@ -31,7 +42,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     self.build_step = 0
     self.working_dir = None
     self.regex_tool = None
-    
+    self.config = None
+
   def bind_controls(self):
     self.btn_build.clicked.connect(self.on_build_clicked)
     self.cmb_brands.currentIndexChanged.connect(self.on_brand_changed)
@@ -41,14 +53,15 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     self.cmb_platforms.setModel(SimpleStringListModel(self.get_platforms_for_brand(None)))
     self.cmb_platforms.currentIndexChanged.connect(self.on_platform_changed)
     self.btn_configure.clicked.connect(self.on_configure_clicked)
-    self.btn_show_config.clicked.connect(self.show_config_clicked)
+    self.btn_show_config.clicked.connect(self.on_show_config_clicked)
     self.btn_install_on_device.clicked.connect(self.on_install_clicked)
     self.btn_reset_scm.clicked.connect(self.on_scm_reset_clicked)
     self.btn_sign.clicked.connect(self.on_sign_app_clicked)
-    
-    self.actionRegex_Tool.triggered.connect(self.toggle_regex_tool)
-  
-  def toggle_regex_tool(self):
+    self.actionRegex_Tool.triggered.connect(self.on_toggle_regex_tool)
+
+  ###### Event Handlers #######
+
+  def on_toggle_regex_tool(self):
     global regex_shown
     if not self.regex_tool:
       self.regex_tool = RegexTool()
@@ -57,62 +70,71 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
     else:
       self.regex_tool.show()
     regex_shown = not regex_shown
-    
-  def get_available_brands(self):
-    brands =  [d for d in os.listdir(config_path) if os.path.isdir(os.path.join(config_path, d))]
-    brands.insert(0, "--Select Brand--")
-    return brands
-  
-  def on_install_clicked(self):
-    self.run_external_proc("make install", os.path.dirname(self.working_dir))
-  
+
   def on_scm_reset_clicked(self):
     def state_changed(state):
       if state== QtCore.QProcess.ProcessState.NotRunning:
         self.run_external_proc("git clean -f", os.path.dirname(self.working_dir))
     self.run_external_proc("git reset --hard HEAD", os.path.dirname(self.working_dir), state_changed)
-  
-  def on_sign_app_clicked(self):
-    self.run_external_proc("make sign", os.path.dirname(self.working_dir))
-    
-  def show_config_clicked(self):
+
+  def on_show_config_clicked(self):
     if self.working_dir:
       self.config = FileConfigLoader(self.get_config_path()).load_config()
-      self.cfg = ConfigWindow(self.config)
+      self.cfg = ConfigWindow(self.get_config_path(), self.working_dir)
       self.cfg.cw.set_save_path(self.get_config_path())
       self.cfg.show()
-      
-  def get_platforms_for_brand(self, brand):
-    plats = []
-    if brand:
-      bpath = os.path.join(config_path, brand)
-      if os.path.exists(bpath):
-        plats =  [d for d in os.listdir(bpath) if os.path.isdir(os.path.join(bpath, d))]
-    plats.insert(0, "--Select Platform--")
-    return plats
-  
+
   def on_brand_changed(self):
     brand = self.cmb_brands.currentText()
     self.cmb_platforms.setModel(SimpleStringListModel(self.get_platforms_for_brand(brand)))
-    
+
   def on_platform_changed(self):
     ind = self.cmb_platforms.currentIndex()
     if ind>0:
       self.working_dir  = solution_dir.replace('{PlatformType}', solution_for_platform[self.cmb_platforms.currentText()])
+      self.config = FileConfigLoader(self.get_config_path()).load_config()
     else:
       self.working_dir = None
-    print self.working_dir
-    
+
   def on_configure_clicked(self):
-    self.run_external_proc(self.get_configure_command(), self.working_dir)
-    
+    executor = CommandExecutor(
+      resources=self.config["Resources"],
+      resources_root="file://"+os.path.dirname(self.get_config_path()),
+      verbose=self.cb_verbose.isChecked(),
+      debug_mode=self.cb_verbose.isChecked(),
+      log=ZmqChainedLoger(port)
+    )
+
+    config_loader = FileConfigLoader(self.get_config_path())
+    builder = AppPreBuilder(config_loader, executor)
+    builder.set_execution_dir(self.working_dir)
+
+    self.worker = ConfigRunnerThread(builder)
+    self.set_message_receiver()
+    self.worker.start()
+    self.worker.finished.connect(self.on_worker_finished)
+
+  def on_worker_finished(self):
+    self.worker.builder = None
+    del self.worker
+    self.messages_thread.terminate()
+    del self.messages_thread
+
+  def set_message_receiver(self):
+    self.messages_thread = MessageSubsriberThread(port)
+    self.messages_thread.on_message_received.connect(self.on_message_received)
+    self.messages_thread.start(QtCore.QThread.TimeCriticalPriority)
+
+  def on_message_received(self, message):
+    self.txt_output.append("%s" % message)
+
   def on_build_clicked(self):
     if self.working_dir:
       if self.is_repo_clean():
         self.building = not self.building
         if self.building:
           self.start_build("make build", os.path.dirname(self.working_dir))
-          self.btn_build.setText("Cancel") 
+          self.btn_build.setText("Cancel")
           self.freeze_buttons(True)
         else:
           self.cancel_build()
@@ -122,21 +144,36 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
         print "repo is not commited"
     else:
       print "no working dir set"
-      
+
+  def on_sign_app_clicked(self):
+    self.run_external_proc("make sign", os.path.dirname(self.working_dir))
+
+  def on_install_clicked(self):
+    self.run_external_proc("make install", os.path.dirname(self.working_dir))
+
+  ######End Event Handlers #######
+
   def get_config_path(self):
     vars = GlobalVars.get_instance()
     vars.current_config_path=os.path.join(config_path, self.cmb_brands.currentText(), self.cmb_platforms.currentText(),"bc.json")      
     return vars.current_config_path
   
     #self.pb_build_progress.setHidden(not self.building)
-  def get_configure_command(self):
-    runner = config_runner_script
-    runner_config= self.get_config_path()
-    cmd =  "python "+runner+" -from fs "+runner_config
-    if self.cb_verbose.isChecked():
-      cmd+=" -v"
-    return cmd
-  
+
+  def get_available_brands(self):
+    brands =  [d for d in os.listdir(config_path) if os.path.isdir(os.path.join(config_path, d))]
+    brands.insert(0, "--Select Brand--")
+    return brands
+
+  def get_platforms_for_brand(self, brand):
+    plats = []
+    if brand:
+      bpath = os.path.join(config_path, brand)
+      if os.path.exists(bpath):
+        plats =  [d for d in os.listdir(bpath) if os.path.isdir(os.path.join(bpath, d))]
+    plats.insert(0, "--Select Platform--")
+    return plats
+
   def is_repo_clean(self):
     #self.start_build("git status", self.working_dir)
     return True
@@ -202,20 +239,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
   def freeze_buttons(self, freeze):
     self.cmb_brands.setDisabled(freeze)
     self.cmb_platforms.setDisabled(freeze)
-    #self.cb_verbose.setDisabled(freeze)
-  
-class SimpleStringListModel(QtCore.QAbstractListModel):
-  
-  def __init__(self, data):
-    super(SimpleStringListModel, self).__init__()
-    self.__data__ = data
+    self.cb_verbose.setDisabled(freeze)
+    self.btn_configure.setDisabled(freeze)
+    self.btn_install_on_device.setDisabled(freeze)
+    self.btn_reset_scm.setDisabled(freeze)
 
-  def rowCount(self, *args, **kwargs):
-    return len(self.__data__)
-
-  def data(self, index, parent):
-    return str(self.__data__[index.row()])
-
-
-    
-    

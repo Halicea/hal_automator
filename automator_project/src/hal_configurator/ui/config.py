@@ -40,6 +40,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     
     self.lt_variables.addWidget(self.variables_widget)
     self.lt_resources.addWidget(self.resources_widget)
+    self.splitter.setSizes([0.3, self.splitter.width()])
   
   def bind_controls(self):
     self.resources_widget.setModel(ResourcesListModel(self.get_config()["Resources"]))
@@ -48,7 +49,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.setup_bundles()
 
   def setup_bundles(self):
-    self.la_name.setText(self.get_config()["PublisherId"])
+    self.txt_name.setText(self.get_config()["PublisherId"])
     bundles = self.tlbx_bundles
     bundles.removeItem(0)
     bundles.removeItem(0)
@@ -86,7 +87,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       print "Saving cancelled"
 
   def get_dict(self):
-    d = {"PublisherId": self.la_name.text()}
+    d = {"PublisherId": self.txt_name.text()}
     d["Content"] = {}
     bundles = d["Content"]["OperationBundles"]=[]
     for bw in self.bundles:
@@ -96,5 +97,4 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     if self.__config__["Content"].has_key("Reference"):
       d["Content"]["Reference"] = self.__config__["Content"]["Reference"]
     return d
-  
 

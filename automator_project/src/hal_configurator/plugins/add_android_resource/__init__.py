@@ -33,10 +33,10 @@ class AddAndroidResource(OperationBase):
     is_valid, errors = self.validate_args()
     if is_valid:
       if self.verbose:
-        print "START-add-android-resource"
-        print "\tdestination", os.path.abspath(self.destination_format)
-        print "\tsource", self.resource_format
-        print "\titerator", self.iterator_array
+        self.log.write("START-add-android-resource")
+        self.log.write("\tdestination %s"%os.path.abspath(self.destination_format))
+        self.log.write("\tsource %s" % self.resource_format)
+        self.log.write("\titerator %s" % self.iterator_array)
         for k in self.iterator_array:
           res = self.resource_format%k
           dest = self.destination_format%k
@@ -60,7 +60,7 @@ class AddAndroidResource(OperationBase):
           rtext.run()
           
       if self.verbose:
-        print "DONE-replace-from-url"
+        self.log.write("DONE-replace-from-url")
         pass
     else:
       raise InvalidCommandArgumentsError(str(errors))

@@ -1,7 +1,11 @@
+import sys
 from hal_configurator.lib.var_substitutor import VarSubstitutor
 
+class DebugSettings(object):
+  def __init__(self, set_breakpoint=True):
+    self.breakpoint = set_breakpoint
+    
 class OperationBase(object):
-  
   def __init__(self, *args, **kwargs):
     self.kwargs = {}
     if kwargs.has_key('verbose'):
@@ -12,7 +16,9 @@ class OperationBase(object):
     self.resources = kwargs['resources']
     self.variables = kwargs['variables']
     self.value_substitutor = VarSubstitutor(self.variables, self.resources, self.executor.resources_root)
+    self.log = kwargs.has_key("log") and kwargs["log"] or sys.stdout
     self.result = ''
+    
     
   def get_result(self):
     return self.result

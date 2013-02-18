@@ -61,26 +61,26 @@ class ReplaceText(OperationBase):
   def __file_replace__(self, fname, pat, s_after):
     # first, see if the pattern is even in the file.
     if self.verbose:
-      print "START-file-text-replace"
-      print "\tfile: "+fname
+      self.log.write("START-file-text-replace")
+      self.log.write("\tfile: %s"%fname)
     matchset = None
     with open(fname) as f:
       matchset = re.findall(pat, f.read())
       if not matchset:
         if self.verbose:
-          print '\tnothing to replace with', str(pat), "with", s_after
-          print "END-file-text-replace"
+          self.log.write('\tnothing to replace %s with %s'%(str(pat), s_after))
+          self.log.write("END-file-text-replace")
         return # pattern does not occur in file so we are done.
       else:
         self.result.append(fname)
         if self.verbose:
-          print "\tfound "+str(len(matchset))+" textblocks to replace:"
+          self.log.write("\tfound "+str(len(matchset))+" textblocks to replace:")
           for k in matchset:
-            print "\t\t item:"+str(k)
+            self.log.write("\t\t item:"+str(k))
        
     # pattern is in the file, so perform replace operation.
     if self.verbose:
-      print "\tstarting replacement", str(pat), "with", s_after
+      self.log.write("\tstarting replacement %s with %s"%(str(pat), s_after))
     
     with codecs.open( fname, "r", "utf-8" ) as f:
       out_fname = fname + ".tmp"
@@ -90,7 +90,7 @@ class ReplaceText(OperationBase):
       out.close()
       os.rename(out_fname, fname)
       if self.verbose:
-        print "END-file-text-replace"
+        self.log.write("END-file-text-replace")
 
 def test_replace():
   f = open("test.txt", "w")

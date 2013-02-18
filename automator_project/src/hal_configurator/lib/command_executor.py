@@ -3,13 +3,16 @@ import urllib2
 import glob
 import re
 import codecs
+import sys
 import hal_configurator.plugins as plugins
 
 class CommandExecutor(object):
-  def __init__(self, resources, resources_root="",verbose=True):
+  def __init__(self, resources, resources_root="",verbose=True, debug_mode = False, log = lambda x:sys.stdout):
     self.verbose = verbose
     self.resources_root = resources_root
     self.resources = resources
+    self.debug_mode = debug_mode
+    self.log = log
 
   def replace_vars(self, bundle_vars, dictionary):
     new_vars = dictionary.copy()
@@ -48,18 +51,28 @@ class CommandExecutor(object):
     for k in bundle_res:
       if not ("://" in k["url"]):
         k["url"] = self.resources_root+"/"+k["url"]
+
+    continue_execution = self.check_debug_settings(command_bundle)
     
-    for comm in command_bundle["Operations"]:
-      self.execute_command(comm, bundle_vars, bundle_res)
+    if continue_execution:  
+      for comm in command_bundle["Operations"]:
+        self.execute_command(comm, bundle_vars, bundle_res)
     
+      
   def execute_command(self, command, bundle_vars, bundle_res):
-    vars = self.replace_vars(bundle_vars, command["Arguments"])
-    vars = self.replace_resources(bundle_res, vars)
-    
-    
-    cmd  = command["Code"]
-    plugin_cls = plugins.__dict__[cmd]
-    
-    plugin = plugin_cls(executor = self, variables = bundle_vars, resources = bundle_res,  verbose=True)
-    plugin.set_args(**vars)
-    plugin.run()
+    if self.check_debug_settings(command):
+      cmd  = command["Code"]
+      plugin_cls = plugins.__dict__[cmd]
+      plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
+      vars = self.replace_vars(bundle_vars, command["Arguments"])
+      vars = self.replace_resources(bundle_res, vars)
+      plugin.set_args(**vars)
+      plugin.run()
+  
+  def check_debug_settings(self, obj):
+    continue_execution = True
+    if self.debug_mode:
+      if obj.has_key("DebugSettings"):
+        if obj["DebugSettings"].has_key("Break"):
+          continue_execution = not obj["DebugSettings"]["Break"]
+    return continue_execution
