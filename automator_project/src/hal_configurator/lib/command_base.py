@@ -6,6 +6,7 @@ class DebugSettings(object):
     self.breakpoint = set_breakpoint
     
 class OperationBase(object):
+  code = "shell_script"
   def __init__(self, *args, **kwargs):
     self.kwargs = {}
     if kwargs.has_key('verbose'):

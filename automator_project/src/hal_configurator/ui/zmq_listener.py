@@ -18,5 +18,5 @@ class ZeroMQ_Listener(QtCore.QObject):
   def loop(self):
     while self.running:
       msg = self.socket.recv()
-      print msg
+      #print msg
       self.on_message_recieved.emit(unicode(msg))

@@ -9,7 +9,8 @@ class ZmqChainedLoger(object):
     self.message_sender = context.socket(zmq.PUB)
     self.is_binded=False
     self.port = port
-
+  def fileno(self):
+    return 1
   def write(self, text, type="i"):
     try:
       if not self.is_binded:
@@ -28,3 +29,6 @@ class ZmqChainedLoger(object):
 class ConsoleLoger(object):
   def write(self, message, t="i"):
     print message
+
+  def fileno(self):
+    return 1
