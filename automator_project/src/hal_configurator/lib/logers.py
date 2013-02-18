@@ -24,3 +24,7 @@ class ZmqChainedLoger(object):
     print "Loger binded, sleeping 2 more seconds..."
     time.sleep(2)
     print "continuing execution"
+
+class ConsoleLoger(object):
+  def write(self, message, t="i"):
+    print message

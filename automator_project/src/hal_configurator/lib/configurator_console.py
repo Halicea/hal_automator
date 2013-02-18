@@ -5,7 +5,9 @@ import os
 import json
 from hal_configurator.lib.command_executor import CommandExecutor
 from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoader
-from hal_configurator.lib.app_prebuilder import AppPreBuilder   
+from hal_configurator.lib.app_prebuilder import AppPreBuilder
+from hal_configurator.lib.logers import ConsoleLoger
+
 svcUrl = "http://localhost:3000"
 
 def main():
@@ -18,6 +20,9 @@ def main():
     config_loader.append_vars(*custom_vars)
 
   builder = AppPreBuilder(config_loader, executor)
+
+  if "-dir" in sys.argv:
+    builder.set_execution_dir(sys.argv[sys.argv.index("-dir") + 1])
   builder.apply()
   
 def get_additional_bundles():
@@ -56,8 +61,8 @@ def get_loader_executor():
     verbose=False
     if "-v" in sys.argv:
       verbose = True
-    print "Executing configurator on:", os.path.abspath('./')  
-    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose, log=lambda x:sys.stdout.write(x))
+    print "Executing configurator on:", os.path.abspath('./')
+    exc = CommandExecutor(resources=config["Resources"], resources_root=base_path, verbose=verbose, log=ConsoleLoger())
     return ldr, exc
   else:
     print '''
@@ -88,4 +93,3 @@ if __name__ == '__main__':
   else:
     main()
   print "Done"
-  

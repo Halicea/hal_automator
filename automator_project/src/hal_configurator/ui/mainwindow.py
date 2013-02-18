@@ -4,14 +4,13 @@ Created on Nov 21, 2012
 @author: kostamihajlov
 '''
 import os
-import multiprocessing
 
 from PySide import QtGui, QtCore
 
 from gen.mainwindow import Ui_MainWindow
 from configwindow import ConfigWindow
 from hal_configurator.ui.config_runner_thread import ConfigRunnerThread
-from hal_configurator.ui.logers import ZmqChainedLoger
+from hal_configurator.lib.logers import ZmqChainedLoger
 from hal_configurator.ui.message_subscriber import MessageSubsriberThread
 from hal_configurator.ui.models import SimpleStringListModel
 from regex_tool import RegexTool
