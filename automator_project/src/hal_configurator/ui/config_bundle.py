@@ -52,6 +52,7 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
       print "removing"
       self.ops.remove(self.op_to_delete)
     self.op_to_delete.deleteLater();
+
   
   def on_delete_rejected(self):
     self.op_to_delete = None

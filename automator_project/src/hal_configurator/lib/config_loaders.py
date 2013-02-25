@@ -28,6 +28,14 @@ class ConfigLoader(object):
       variables.remove(k)
     variables.extend(self.custom_vars)
     return config
+  def verify_required_vars(self, config):
+    variables = config["Variables"]
+    required = config["RequiredVariables"]
+    for rv in required:
+      v = [x for x in variables if x["name"] == rv["name"]]
+      if not v:
+        variables.insert(0, rv)
+    return  config
 
   def append_bundles(self, *bundles):
     self.custom_bundles.extend(bundles)
@@ -39,7 +47,7 @@ class ConfigLoader(object):
     cfg = self.load_custom_bundles(cfg)
     cfg = self.load_custom_vars(cfg)
     cfg = self.fix_bundle_separator_chars(cfg)
-    
+    cfg = self.verify_required_vars(cfg)
     return cfg
   def fix_bundle_separator_chars(self, config):
     if os.path.sep!='/':
@@ -73,6 +81,7 @@ class FileConfigLoader(ConfigLoader):
     global last_config_loaded
     print os.path.abspath(self.fileName)                        
     cfg =  json.load(open(self.fileName, 'r'))
+
     
     if cfg["Content"].has_key("Reference"):
       content_path = os.path.join(os.path.dirname(self.fileName), cfg["Content"]["Reference"])
@@ -80,6 +89,14 @@ class FileConfigLoader(ConfigLoader):
       content["Reference"]=cfg["Content"]["Reference"]
       cfg["Content"] = content
 
+    if "RequiredVariables" in cfg:
+      if cfg["RequiredVariables"].has_key("Reference"):
+        content_path = os.path.join(os.path.dirname(self.fileName), cfg["RequiredVariables"]["Reference"])
+        content = json.load(open(content_path, "r"))
+        cfg["RequiredVariables-Reference"] = cfg["RequiredVariables"]
+        cfg["RequiredVariables"] = content
+    else:
+      cfg["RequiredVariables"] = {}
     cfg = self.load_customizations(cfg)
     cfg = self.fix_resource_separator_chars(cfg)
     last_config_loaded = cfg

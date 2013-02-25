@@ -83,11 +83,18 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
         rf.close()
       f.write(json.dumps(d, sort_keys = True, indent = 2))
       f.close()
+
     else:
       print "Saving cancelled"
 
   def get_dict(self):
     d = {"PublisherId": self.txt_name.text()}
+    #d["_id"] = self.__config__["_id"]
+    if "RequiredVariables-Reference" in self.__config__:
+      d["RequiredVariables"] = self.__config__["RequiredVariables-Reference"]
+    else:
+      d["RequiredVariables"] = self.__config__["RequiredVariables"]
+
     d["Content"] = {}
     bundles = d["Content"]["OperationBundles"]=[]
     for bw in self.bundles:
