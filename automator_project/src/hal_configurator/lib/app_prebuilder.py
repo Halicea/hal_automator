@@ -5,6 +5,7 @@ class AppPreBuilder(object):
     self.loader = config_loader
     self.executor = executor
     self.config = None
+    self._execution_dir = None
     #self.resources_root = resources_root
     
   def get_config(self):
