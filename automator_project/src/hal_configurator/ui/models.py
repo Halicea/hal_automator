@@ -5,11 +5,11 @@ from global_vars import GlobalVars
 import hal_configurator.plugins as plugins
 class ResourcesListModel(QtCore.QAbstractListModel):
   
-  def __init__(self, resources, *args, **kwargs):
+  def __init__(self, resources, root_dir,  *args, **kwargs):
     super(ResourcesListModel, self).__init__(*args, **kwargs)
     self.resources = resources  
     self.setSupportedDragActions(QtCore.Qt.MoveAction)
-    self.root_dir = os.path.dirname(GlobalVars.get_instance().current_config_path)
+    self.root_dir = root_dir
   
   def rowCount(self, parent):
     return len(self.resources)

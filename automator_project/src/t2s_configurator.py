@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 import sys, os
+from hal_configurator.ui.config_manager import ConfigManager
 
 from hal_configurator.ui.tool_set import ToolSet
 sys.path.append(os.path.abspath(__file__))
@@ -15,7 +16,8 @@ except Exception, ex:
   
 def main():
   app = QtGui.QApplication(sys.argv)
-  mw = MainWindow()
+  #mw = MainWindow()
+  mw = ConfigManager();
   mw.show()
   app.setWindowIcon(QtGui.QIcon())
   sys.exit(app.exec_())

@@ -11,11 +11,11 @@ from confirm_dialog import ConfirmDialog
 from resource_dialog import ResourceDialog
 import shutil
 class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
-  def __init__(self,*args, **kwargs):
+  def __init__(self, root_dir, *args, **kwargs):
     super(ResourcesWindow, self).__init__(*args, **kwargs)
     self.setupUi(self)
     self.show()
-    self.root_dir = os.path.dirname(GlobalVars.get_instance().current_config_path)
+    self.root_dir = root_dir
 
   def setModel(self, model):
     self.data_model = model
@@ -71,6 +71,3 @@ class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
     
   def on_remove_rejected(self):
     print "remove cancelled"
-    
-  
-    

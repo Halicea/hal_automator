@@ -18,13 +18,16 @@ class ConfigWidget(QtGui.QWidget):
 
 class ConfigForm(ConfigWidget, Ui_ConfigForm):
   
-  def __init__(self, config, *args, **kwargs):
+  def __init__(self, config, root_dir, *args, **kwargs):
     super(ConfigForm, self).__init__(*args, **kwargs)
     self.setupUi()
     self.__config__ = config
+    self.root_dir = root_dir
+    self.save_path = root_dir
     self.bundles =[]
     self.bind_controls()
-    self.save_path = None
+
+
     
     #pprint(self.get_dict())
   def set_save_path(self, path):
@@ -32,18 +35,20 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     
   def setupUi(self):
     super(ConfigForm, self).setupUi(self)
-    self.variables_widget = VariablesWindow(self)
-    self.variables_widget.lv_items.set_object_format("application/x-variable")
-    
-    self.resources_widget = ResourcesWindow(self)
-    self.resources_widget.lv_resources.set_object_format("application/x-resource")
-    
-    self.lt_variables.addWidget(self.variables_widget)
-    self.lt_resources.addWidget(self.resources_widget)
-    self.splitter.setSizes([0.3, self.splitter.width()])
+
   
   def bind_controls(self):
-    self.resources_widget.setModel(ResourcesListModel(self.get_config()["Resources"]))
+    self.variables_widget = VariablesWindow(self)
+    self.variables_widget.lv_items.set_object_format("application/x-variable")
+
+    self.resources_widget = ResourcesWindow(self.root_dir, self)
+    self.resources_widget.lv_resources.set_object_format("application/x-resource")
+
+    self.lt_variables.addWidget(self.variables_widget)
+    self.lt_resources.addWidget(self.resources_widget)
+    #self.splitter.setSizes([0.3, self.splitter.width()])
+
+    self.resources_widget.setModel(ResourcesListModel(self.get_config()["Resources"], self.root_dir))
     self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"]))
     self.btn_save.clicked.connect(self.save_config)
     self.setup_bundles()

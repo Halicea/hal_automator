@@ -1,4 +1,4 @@
-
+import os
 from PySide import QtGui
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from gen.configwindow import Ui_ConfigWindow
@@ -19,7 +19,8 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     
   def setupUi(self):
     super(ConfigWindow, self).setupUi(self)
-    self.cw = ConfigForm(self.config, self)
+    self.setWindowTitle(os.path.basename((os.path.dirname(os.path.dirname(self.config_path)))))
+    self.cw = ConfigForm(self.config, self.config_path)
     self.ltv_content.addWidget(self.cw)
     self.tool = QtGui.QListView(self)
     self.tool.setModel(ToolsListModel(plugins.__all__, False))

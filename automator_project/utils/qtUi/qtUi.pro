@@ -30,7 +30,8 @@ FORMS    += mainwindow.ui \
     regex_tool.ui \
     resource_dialog.ui \
     console_output.ui \
-    tool_set.ui
+    tool_set.ui \
+    config_manager.ui
 
 RESOURCES += \
     images.qrc
