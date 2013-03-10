@@ -10,7 +10,7 @@ setup(
   include_package_data=True,
   package_dir={"":"src"},
   packages= find_packages('src'),
-  scripts=["src/t2s_configurator.py"],
+  scripts=["src/hal_automator.py"],
   long_description = read("README.rst"),
   requires=['PySide', 'requests', 'pyzmq']
 )

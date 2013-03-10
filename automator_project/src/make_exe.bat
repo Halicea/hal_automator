@@ -1,1 +1,0 @@
-python C:\pyinstaller\pyinstaller.py --windowed --icon=favicon.ico t2s_configurator.py

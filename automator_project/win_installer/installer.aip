@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <DOCUMENT Type="Advanced Installer" CreateVersion="9.9" version="9.9" Modules="simple" RootPath="." Language="en" Id="{9616CD9B-9F55-4132-9135-27124CD4DE6C}">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiValidationComponent">
+    <ROW Table="File" Column="Sequence" MinValue="1" MaxValue="32767" Description="Sequence with respect to the media images; order must track cabinet order." Options="0" ColumnType="2" ColumnIndex="7" ColumnSize="2" MsiKey="File#Sequence"/>
+    <ROW Table="Media" Column="LastSequence" MinValue="0" MaxValue="32767" Description="File sequence number for the last file for this media." Options="0" ColumnType="2" ColumnIndex="1" ColumnSize="2" MsiKey="Media#LastSequence"/>
+  </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
     <ROW Property="AI_PRODUCTNAME_ARP" Value="[|ProductName]"/>
     <ROW Property="AI_UNINSTALLER" Value="msiexec.exe"/>
-    <ROW Property="ALLUSERS" Value="1"/>
-    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ALLUSERS" Value="1" MultiBuildValue="DefaultBuild:2"/>
+    <ROW Property="ARPCOMMENTS" Value="Installer for [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="contact@halicea.com"/>
+    <ROW Property="ARPHELPTELEPHONE" Value="+38971765848"/>
+    <ROW Property="ARPNOREPAIR" Value="1"/>
+    <ROW Property="ARPPRODUCTICON" Value="favicon_1.exe" Type="8"/>
+    <ROW Property="ARPSIZE" Value="27300"/>
     <ROW Property="ARPSYSTEMCOMPONENT" Value="1"/>
-    <ROW Property="MSIFASTINSTALL" MultiBuildValue="DefaultBuild:2"/>
-    <ROW Property="Manufacturer" Value="Mediawire"/>
-    <ROW Property="ProductCode" Value="1033:{E425AEE4-8F76-4E6D-8604-651F91B6276F} " Type="16"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://www.halicea.com/products/hal_automator"/>
+    <ROW Property="ARPURLUPDATEINFO" Value="http://www.halicea.com/products/hal_automator/download"/>
+    <ROW Property="Manufacturer" Value="Halicea"/>
+    <ROW Property="ProductCode" Value="1033:{1B21E28D-CA29-4168-B01C-A4CAE67D99E6} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
-    <ROW Property="ProductName" Value="Branded App Configurator"/>
-    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="ProductName" Value="Hal Automator"/>
+    <ROW Property="ProductVersion" Value="1.1.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{7A40C23B-13D8-4D5A-AFFD-C88BFC7F3D9A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -20,75 +30,91 @@
   <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
     <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
     <ROW Directory="DesktopFolder" Directory_Parent="TARGETDIR" DefaultDir="Deskto~1|DesktopFolder" IsPseudoRoot="1"/>
+    <ROW Directory="HalAutomator_Dir" Directory_Parent="ProgramMenuFolder" DefaultDir="HalAut~1|Hal Automator"/>
+    <ROW Directory="ProgramMenuFolder" Directory_Parent="TARGETDIR" DefaultDir="Progra~1|ProgramMenuFolder" IsPseudoRoot="1"/>
     <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
     <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
     <ROW Directory="include_Dir" Directory_Parent="APPDIR" DefaultDir="include"/>
+    <ROW Directory="plugins_Dir" Directory_Parent="APPDIR" DefaultDir="plugins"/>
     <ROW Directory="zmq_Dir" Directory_Parent="APPDIR" DefaultDir="zmq"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
     <ROW Component="AI_CustomARPName" ComponentId="{DA10139F-B173-4EAE-833A-1B075E043672}" Directory_="APPDIR" Attributes="4" KeyPath="DisplayName" Options="1"/>
+    <ROW Component="HalAutomator" ComponentId="{33111870-5D0B-4CE0-8D79-A4A3691C4C25}" Directory_="HalAutomator_Dir" Attributes="0"/>
     <ROW Component="ProductInformation" ComponentId="{3FDBD224-F9E5-40CE-BE55-C4F3205B9D64}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
-    <ROW Component="QtCore4.dll" ComponentId="{64C52A73-C62F-4CD0-972E-3169E33F9AE9}" Directory_="APPDIR" Attributes="0" KeyPath="QtCore4.dll"/>
-    <ROW Component="QtGui4.dll" ComponentId="{98DE3EA1-5E2B-42AD-9BD0-BAA5DA38652F}" Directory_="APPDIR" Attributes="0" KeyPath="QtGui4.dll"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{D873A64F-8D74-47F8-9433-F7803C6E7C1C}" Directory_="SHORTCUTDIR" Attributes="0"/>
-    <ROW Component="_ctypes.pyd" ComponentId="{E2B1A4AC-6A61-488E-A2E2-87FEE9833E80}" Directory_="APPDIR" Attributes="0" KeyPath="_ctypes.pyd" Type="0"/>
-    <ROW Component="libzmq.dll" ComponentId="{E507DD41-7CED-4CE4-8666-D36BA03DA925}" Directory_="zmq_Dir" Attributes="0" KeyPath="libzmq.dll"/>
-    <ROW Component="msvcm90.dll" ComponentId="{0C8FB7A2-126B-4713-B950-3174772077D0}" Directory_="APPDIR" Attributes="0" KeyPath="msvcm90.dll"/>
-    <ROW Component="msvcp90.dll" ComponentId="{9B4AD369-0836-46E8-8128-E8D4420DDA90}" Directory_="APPDIR" Attributes="0" KeyPath="msvcp90.dll"/>
-    <ROW Component="msvcr90.dll" ComponentId="{E930A1C6-BEA9-4ACC-8D47-86AD927B50C3}" Directory_="APPDIR" Attributes="0" KeyPath="msvcr90.dll"/>
-    <ROW Component="pyconfig.h" ComponentId="{0FBA79A5-E24A-41A1-8C78-2AB7948B3DB9}" Directory_="include_Dir" Attributes="0" KeyPath="pyconfig.h" Type="0"/>
-    <ROW Component="pysidepython2.7.dll" ComponentId="{50700CD9-2278-4E65-A1FF-60835C93FBC9}" Directory_="APPDIR" Attributes="0" KeyPath="pysidepython2.7.dll"/>
-    <ROW Component="python27.dll" ComponentId="{0D148457-263D-4355-B68E-C7C76959F013}" Directory_="APPDIR" Attributes="0" KeyPath="python27.dll"/>
-    <ROW Component="pywintypes27.dll" ComponentId="{41F96D8C-2175-4CFC-BC5A-6F1EEE48DF67}" Directory_="APPDIR" Attributes="0" KeyPath="pywintypes27.dll"/>
-    <ROW Component="shibokenpython2.7.dll" ComponentId="{465BCB5C-4635-4BEC-A3FB-319FC9858922}" Directory_="APPDIR" Attributes="0" KeyPath="shibokenpython2.7.dll"/>
-    <ROW Component="t2s_configurator.exe" ComponentId="{422A541F-505A-45F1-BD15-171028FF2929}" Directory_="APPDIR" Attributes="0" KeyPath="t2s_configurator.exe"/>
+    <ROW Component="QtCore4.dll" ComponentId="{46EADF7A-7FC8-4AC7-B9CC-36BD78024FBF}" Directory_="APPDIR" Attributes="0" KeyPath="QtCore4.dll"/>
+    <ROW Component="QtGui4.dll" ComponentId="{0F54B76D-D8AF-4E1A-B09E-0620DC5BACF4}" Directory_="APPDIR" Attributes="0" KeyPath="QtGui4.dll"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{419AD2C3-FC7A-4C8F-939A-E59C18CF5441}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="_ctypes.pyd" ComponentId="{A130CF55-ABAF-46C2-A2E3-48CB2705AC1C}" Directory_="APPDIR" Attributes="0" KeyPath="_ctypes.pyd" Type="0"/>
+    <ROW Component="add_android_resource.py" ComponentId="{4B92A731-E455-4D75-92E5-267AE71A9D3B}" Directory_="plugins_Dir" Attributes="0" KeyPath="add_android_resource.py" Type="0"/>
+    <ROW Component="hal_automator.exe" ComponentId="{D91C7988-FC6E-4976-BC24-0FB93F514C9C}" Directory_="APPDIR" Attributes="0" KeyPath="hal_automator.exe"/>
+    <ROW Component="libzmq.dll" ComponentId="{A7E16E95-E574-4912-84CC-53EDE456567D}" Directory_="zmq_Dir" Attributes="0" KeyPath="libzmq.dll"/>
+    <ROW Component="msvcm90.dll" ComponentId="{D49C85CF-51FC-4A1B-A59A-C3FFEADD494B}" Directory_="APPDIR" Attributes="0" KeyPath="msvcm90.dll"/>
+    <ROW Component="msvcp90.dll" ComponentId="{54D6876A-5D76-4212-8302-889EF21B52B7}" Directory_="APPDIR" Attributes="0" KeyPath="msvcp90.dll"/>
+    <ROW Component="msvcr90.dll" ComponentId="{719BFD6C-86FC-4914-A2F3-1597C07A401C}" Directory_="APPDIR" Attributes="0" KeyPath="msvcr90.dll"/>
+    <ROW Component="pyconfig.h" ComponentId="{341ED3B4-DB95-4CEA-867B-3E516F41F307}" Directory_="include_Dir" Attributes="0" KeyPath="pyconfig.h" Type="0"/>
+    <ROW Component="pysidepython2.7.dll" ComponentId="{2A8C551E-B77A-4EE5-AD04-DD4CA21E112C}" Directory_="APPDIR" Attributes="0" KeyPath="pysidepython2.7.dll"/>
+    <ROW Component="python27.dll" ComponentId="{68D36F7E-D063-4E60-BDA6-39E612DCBA9E}" Directory_="APPDIR" Attributes="0" KeyPath="python27.dll"/>
+    <ROW Component="pywintypes27.dll" ComponentId="{C578C4FC-3B92-4AC9-806C-027DD9D14329}" Directory_="APPDIR" Attributes="0" KeyPath="pywintypes27.dll"/>
+    <ROW Component="shibokenpython2.7.dll" ComponentId="{A5AA728B-2211-4AAC-BE08-A7BF493AD8DF}" Directory_="APPDIR" Attributes="0" KeyPath="shibokenpython2.7.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
-    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName ProductInformation QtCore4.dll QtGui4.dll SHORTCUTDIR _ctypes.pyd libzmq.dll msvcm90.dll msvcp90.dll msvcr90.dll pyconfig.h pysidepython2.7.dll python27.dll pywintypes27.dll shibokenpython2.7.dll t2s_configurator.exe"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0" Components="AI_CustomARPName HalAutomator ProductInformation QtCore4.dll QtGui4.dll SHORTCUTDIR _ctypes.pyd add_android_resource.py hal_automator.exe libzmq.dll msvcm90.dll msvcp90.dll msvcr90.dll pyconfig.h pysidepython2.7.dll python27.dll pywintypes27.dll shibokenpython2.7.dll"/>
     <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
-    <ROW File="Microsoft.VC90.CRT.manifest" Component_="_ctypes.pyd" FileName="Micros~1.man|Microsoft.VC90.CRT.manifest" Attributes="0" SourcePath="..\src\dist\t2s_configurator\Microsoft.VC90.CRT.manifest" SelfReg="false" NextFile="msvcm90.dll"/>
-    <ROW File="PySide.QtCore.pyd" Component_="_ctypes.pyd" FileName="PySide~1.pyd|PySide.QtCore.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\PySide.QtCore.pyd" SelfReg="false" NextFile="PySide.QtGui.pyd"/>
-    <ROW File="PySide.QtGui.pyd" Component_="_ctypes.pyd" FileName="PySide~2.pyd|PySide.QtGui.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\PySide.QtGui.pyd" SelfReg="false" NextFile="pysidepython2.7.dll"/>
-    <ROW File="QtCore4.dll" Component_="QtCore4.dll" FileName="QtCore4.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\QtCore4.dll" SelfReg="false" NextFile="QtGui4.dll"/>
-    <ROW File="QtGui4.dll" Component_="QtGui4.dll" FileName="QtGui4.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\QtGui4.dll" SelfReg="false" NextFile="select.pyd"/>
-    <ROW File="_ctypes.pyd" Component_="_ctypes.pyd" FileName="_ctypes.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\_ctypes.pyd" SelfReg="false" NextFile="_hashlib.pyd"/>
-    <ROW File="_hashlib.pyd" Component_="_ctypes.pyd" FileName="_hashlib.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\_hashlib.pyd" SelfReg="false" NextFile="_multiprocessing.pyd"/>
-    <ROW File="_multiprocessing.pyd" Component_="_ctypes.pyd" FileName="_multi~1.pyd|_multiprocessing.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\_multiprocessing.pyd" SelfReg="false" NextFile="_socket.pyd"/>
-    <ROW File="_socket.pyd" Component_="_ctypes.pyd" FileName="_socket.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\_socket.pyd" SelfReg="false" NextFile="_ssl.pyd"/>
-    <ROW File="_ssl.pyd" Component_="_ctypes.pyd" FileName="_ssl.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\_ssl.pyd" SelfReg="false" NextFile="bz2.pyd"/>
-    <ROW File="bz2.pyd" Component_="_ctypes.pyd" FileName="bz2.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\bz2.pyd" SelfReg="false" NextFile="config.conf"/>
-    <ROW File="config.conf" Component_="_ctypes.pyd" FileName="config~1.con|config.conf" Attributes="0" SourcePath="..\src\dist\t2s_configurator\config.conf" SelfReg="false" NextFile="Microsoft.VC90.CRT.manifest"/>
-    <ROW File="libzmq.dll" Component_="libzmq.dll" FileName="libzmq.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq\libzmq.dll" SelfReg="false"/>
-    <ROW File="msvcm90.dll" Component_="msvcm90.dll" FileName="msvcm90.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\msvcm90.dll" SelfReg="false" NextFile="msvcp90.dll"/>
-    <ROW File="msvcp90.dll" Component_="msvcp90.dll" FileName="msvcp90.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\msvcp90.dll" SelfReg="false" NextFile="msvcr90.dll"/>
-    <ROW File="msvcr90.dll" Component_="msvcr90.dll" FileName="msvcr90.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\msvcr90.dll" SelfReg="false" NextFile="pyexpat.pyd"/>
-    <ROW File="pyconfig.h" Component_="pyconfig.h" FileName="pyconfig.h" Attributes="0" SourcePath="..\src\dist\t2s_configurator\include\pyconfig.h" SelfReg="false" NextFile="libzmq.dll"/>
-    <ROW File="pyexpat.pyd" Component_="_ctypes.pyd" FileName="pyexpat.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\pyexpat.pyd" SelfReg="false" NextFile="PySide.QtCore.pyd"/>
-    <ROW File="pysidepython2.7.dll" Component_="pysidepython2.7.dll" FileName="pyside~1.dll|pyside-python2.7.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\pyside-python2.7.dll" SelfReg="false" NextFile="python27.dll"/>
-    <ROW File="python27.dll" Component_="python27.dll" FileName="python27.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\python27.dll" SelfReg="false" NextFile="pywintypes27.dll"/>
-    <ROW File="pywintypes27.dll" Component_="pywintypes27.dll" FileName="pywint~1.dll|pywintypes27.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\pywintypes27.dll" SelfReg="false" NextFile="QtCore4.dll"/>
-    <ROW File="select.pyd" Component_="_ctypes.pyd" FileName="select.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\select.pyd" SelfReg="false" NextFile="shibokenpython2.7.dll"/>
-    <ROW File="shibokenpython2.7.dll" Component_="shibokenpython2.7.dll" FileName="shibok~1.dll|shiboken-python2.7.dll" Attributes="0" SourcePath="..\src\dist\t2s_configurator\shiboken-python2.7.dll" SelfReg="false" NextFile="t2s_configurator.exe"/>
-    <ROW File="t2s_configurator.exe" Component_="t2s_configurator.exe" FileName="t2s_co~1.exe|t2s_configurator.exe" Attributes="512" SourcePath="..\src\dist\t2s_configurator\t2s_configurator.exe" SelfReg="false" NextFile="t2s_configurator.exe.manifest" DigSign="true"/>
-    <ROW File="t2s_configurator.exe.manifest" Component_="_ctypes.pyd" FileName="t2s_co~1.man|t2s_configurator.exe.manifest" Attributes="0" SourcePath="..\src\dist\t2s_configurator\t2s_configurator.exe.manifest" SelfReg="false" NextFile="unicodedata.pyd"/>
-    <ROW File="unicodedata.pyd" Component_="_ctypes.pyd" FileName="unicod~1.pyd|unicodedata.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\unicodedata.pyd" SelfReg="false" NextFile="win32api.pyd"/>
-    <ROW File="win32api.pyd" Component_="_ctypes.pyd" FileName="win32api.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\win32api.pyd" SelfReg="false" NextFile="win32evtlog.pyd"/>
-    <ROW File="win32evtlog.pyd" Component_="_ctypes.pyd" FileName="win32e~1.pyd|win32evtlog.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\win32evtlog.pyd" SelfReg="false" NextFile="win32pipe.pyd"/>
-    <ROW File="win32pipe.pyd" Component_="_ctypes.pyd" FileName="win32p~1.pyd|win32pipe.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\win32pipe.pyd" SelfReg="false" NextFile="win32wnet.pyd"/>
-    <ROW File="win32wnet.pyd" Component_="_ctypes.pyd" FileName="win32w~1.pyd|win32wnet.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\win32wnet.pyd" SelfReg="false" NextFile="zmq.core._poll.pyd"/>
-    <ROW File="zmq.core._poll.pyd" Component_="_ctypes.pyd" FileName="zmqcor~1.pyd|zmq.core._poll.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core._poll.pyd" SelfReg="false" NextFile="zmq.core._version.pyd"/>
-    <ROW File="zmq.core._version.pyd" Component_="_ctypes.pyd" FileName="zmqcor~2.pyd|zmq.core._version.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core._version.pyd" SelfReg="false" NextFile="zmq.core.constants.pyd"/>
-    <ROW File="zmq.core.constants.pyd" Component_="_ctypes.pyd" FileName="zmqcor~3.pyd|zmq.core.constants.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.constants.pyd" SelfReg="false" NextFile="zmq.core.context.pyd"/>
-    <ROW File="zmq.core.context.pyd" Component_="_ctypes.pyd" FileName="zmqcor~4.pyd|zmq.core.context.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.context.pyd" SelfReg="false" NextFile="zmq.core.device.pyd"/>
-    <ROW File="zmq.core.device.pyd" Component_="_ctypes.pyd" FileName="zmqcor~5.pyd|zmq.core.device.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.device.pyd" SelfReg="false" NextFile="zmq.core.error.pyd"/>
-    <ROW File="zmq.core.error.pyd" Component_="_ctypes.pyd" FileName="zmqcor~6.pyd|zmq.core.error.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.error.pyd" SelfReg="false" NextFile="zmq.core.message.pyd"/>
-    <ROW File="zmq.core.message.pyd" Component_="_ctypes.pyd" FileName="zmqcor~7.pyd|zmq.core.message.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.message.pyd" SelfReg="false" NextFile="zmq.core.socket.pyd"/>
-    <ROW File="zmq.core.socket.pyd" Component_="_ctypes.pyd" FileName="zmqcor~8.pyd|zmq.core.socket.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.socket.pyd" SelfReg="false" NextFile="zmq.core.stopwatch.pyd"/>
-    <ROW File="zmq.core.stopwatch.pyd" Component_="_ctypes.pyd" FileName="zmqcor~9.pyd|zmq.core.stopwatch.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.core.stopwatch.pyd" SelfReg="false" NextFile="zmq.devices.monitoredqueue.pyd"/>
-    <ROW File="zmq.devices.monitoredqueue.pyd" Component_="_ctypes.pyd" FileName="zmqdev~1.pyd|zmq.devices.monitoredqueue.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.devices.monitoredqueue.pyd" SelfReg="false" NextFile="zmq.utils.initthreads.pyd"/>
-    <ROW File="zmq.utils.initthreads.pyd" Component_="_ctypes.pyd" FileName="zmquti~1.pyd|zmq.utils.initthreads.pyd" Attributes="0" SourcePath="..\src\dist\t2s_configurator\zmq.utils.initthreads.pyd" SelfReg="false" NextFile="pyconfig.h"/>
+    <ROW File="Microsoft.VC90.CRT.manifest" Component_="_ctypes.pyd" FileName="Micros~1.man|Microsoft.VC90.CRT.manifest" Attributes="0" SourcePath="..\builds\windows\Microsoft.VC90.CRT.manifest" SelfReg="false" NextFile="msvcm90.dll"/>
+    <ROW File="PySide.QtCore.pyd" Component_="_ctypes.pyd" FileName="PySide~1.pyd|PySide.QtCore.pyd" Attributes="0" SourcePath="..\builds\windows\PySide.QtCore.pyd" SelfReg="false" NextFile="PySide.QtGui.pyd"/>
+    <ROW File="PySide.QtGui.pyd" Component_="_ctypes.pyd" FileName="PySide~2.pyd|PySide.QtGui.pyd" Attributes="0" SourcePath="..\builds\windows\PySide.QtGui.pyd" SelfReg="false" NextFile="pysidepython2.7.dll"/>
+    <ROW File="QtCore4.dll" Component_="QtCore4.dll" FileName="QtCore4.dll" Attributes="0" SourcePath="..\builds\windows\QtCore4.dll" SelfReg="false" NextFile="QtGui4.dll"/>
+    <ROW File="QtGui4.dll" Component_="QtGui4.dll" FileName="QtGui4.dll" Attributes="0" SourcePath="..\builds\windows\QtGui4.dll" SelfReg="false" NextFile="select.pyd"/>
+    <ROW File="_ctypes.pyd" Component_="_ctypes.pyd" FileName="_ctypes.pyd" Attributes="0" SourcePath="..\builds\windows\_ctypes.pyd" SelfReg="false" NextFile="_hashlib.pyd"/>
+    <ROW File="_hashlib.pyd" Component_="_ctypes.pyd" FileName="_hashlib.pyd" Attributes="0" SourcePath="..\builds\windows\_hashlib.pyd" SelfReg="false" NextFile="_multiprocessing.pyd"/>
+    <ROW File="_multiprocessing.pyd" Component_="_ctypes.pyd" FileName="_multi~1.pyd|_multiprocessing.pyd" Attributes="0" SourcePath="..\builds\windows\_multiprocessing.pyd" SelfReg="false" NextFile="_socket.pyd"/>
+    <ROW File="_socket.pyd" Component_="_ctypes.pyd" FileName="_socket.pyd" Attributes="0" SourcePath="..\builds\windows\_socket.pyd" SelfReg="false" NextFile="_ssl.pyd"/>
+    <ROW File="_ssl.pyd" Component_="_ctypes.pyd" FileName="_ssl.pyd" Attributes="0" SourcePath="..\builds\windows\_ssl.pyd" SelfReg="false" NextFile="bz2.pyd"/>
+    <ROW File="add_android_resource.py" Component_="add_android_resource.py" FileName="add_an~1.py|add_android_resource.py" Attributes="0" SourcePath="..\builds\windows\plugins\add_android_resource.py" SelfReg="false" NextFile="add_android_resource.pyc"/>
+    <ROW File="add_android_resource.pyc" Component_="add_android_resource.py" FileName="add_an~1.pyc|add_android_resource.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\add_android_resource.pyc" SelfReg="false" NextFile="config_reference.py"/>
+    <ROW File="bz2.pyd" Component_="_ctypes.pyd" FileName="bz2.pyd" Attributes="0" SourcePath="..\builds\windows\bz2.pyd" SelfReg="false" NextFile="hal_automator.exe"/>
+    <ROW File="config_reference.py" Component_="add_android_resource.py" FileName="config~1.py|config_reference.py" Attributes="0" SourcePath="..\builds\windows\plugins\config_reference.py" SelfReg="false" NextFile="config_reference.pyc"/>
+    <ROW File="config_reference.pyc" Component_="add_android_resource.py" FileName="config~1.pyc|config_reference.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\config_reference.pyc" SelfReg="false" NextFile="delete_file.py"/>
+    <ROW File="delete_file.py" Component_="add_android_resource.py" FileName="delete~1.py|delete_file.py" Attributes="0" SourcePath="..\builds\windows\plugins\delete_file.py" SelfReg="false" NextFile="delete_file.pyc"/>
+    <ROW File="delete_file.pyc" Component_="add_android_resource.py" FileName="delete~1.pyc|delete_file.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\delete_file.pyc" SelfReg="false" NextFile="replace_from_url.py"/>
+    <ROW File="hal_automator.exe" Component_="hal_automator.exe" FileName="hal_au~1.exe|hal_automator.exe" Attributes="512" SourcePath="..\builds\windows\hal_automator.exe" SelfReg="false" NextFile="hal_automator.exe.manifest" DigSign="true"/>
+    <ROW File="hal_automator.exe.manifest" Component_="_ctypes.pyd" FileName="hal_au~1.man|hal_automator.exe.manifest" Attributes="0" SourcePath="..\builds\windows\hal_automator.exe.manifest" SelfReg="false" NextFile="Microsoft.VC90.CRT.manifest"/>
+    <ROW File="libzmq.dll" Component_="libzmq.dll" FileName="libzmq.dll" Attributes="0" SourcePath="..\builds\windows\zmq\libzmq.dll" SelfReg="false" NextFile="add_android_resource.py"/>
+    <ROW File="msvcm90.dll" Component_="msvcm90.dll" FileName="msvcm90.dll" Attributes="0" SourcePath="..\builds\windows\msvcm90.dll" SelfReg="false" NextFile="msvcp90.dll"/>
+    <ROW File="msvcp90.dll" Component_="msvcp90.dll" FileName="msvcp90.dll" Attributes="0" SourcePath="..\builds\windows\msvcp90.dll" SelfReg="false" NextFile="msvcr90.dll"/>
+    <ROW File="msvcr90.dll" Component_="msvcr90.dll" FileName="msvcr90.dll" Attributes="0" SourcePath="..\builds\windows\msvcr90.dll" SelfReg="false" NextFile="pyexpat.pyd"/>
+    <ROW File="pyconfig.h" Component_="pyconfig.h" FileName="pyconfig.h" Attributes="0" SourcePath="..\builds\windows\include\pyconfig.h" SelfReg="false"/>
+    <ROW File="pyexpat.pyd" Component_="_ctypes.pyd" FileName="pyexpat.pyd" Attributes="0" SourcePath="..\builds\windows\pyexpat.pyd" SelfReg="false" NextFile="PySide.QtCore.pyd"/>
+    <ROW File="pysidepython2.7.dll" Component_="pysidepython2.7.dll" FileName="pyside~1.dll|pyside-python2.7.dll" Attributes="0" SourcePath="..\builds\windows\pyside-python2.7.dll" SelfReg="false" NextFile="python27.dll"/>
+    <ROW File="python27.dll" Component_="python27.dll" FileName="python27.dll" Attributes="0" SourcePath="..\builds\windows\python27.dll" SelfReg="false" NextFile="pywintypes27.dll"/>
+    <ROW File="pywintypes27.dll" Component_="pywintypes27.dll" FileName="pywint~1.dll|pywintypes27.dll" Attributes="0" SourcePath="..\builds\windows\pywintypes27.dll" SelfReg="false" NextFile="QtCore4.dll"/>
+    <ROW File="replace_from_url.py" Component_="add_android_resource.py" FileName="replac~1.py|replace_from_url.py" Attributes="0" SourcePath="..\builds\windows\plugins\replace_from_url.py" SelfReg="false" NextFile="replace_from_url.pyc"/>
+    <ROW File="replace_from_url.pyc" Component_="add_android_resource.py" FileName="replac~1.pyc|replace_from_url.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\replace_from_url.pyc" SelfReg="false" NextFile="replace_text.py"/>
+    <ROW File="replace_text.py" Component_="add_android_resource.py" FileName="replac~2.py|replace_text.py" Attributes="0" SourcePath="..\builds\windows\plugins\replace_text.py" SelfReg="false" NextFile="replace_text.pyc"/>
+    <ROW File="replace_text.pyc" Component_="add_android_resource.py" FileName="replac~2.pyc|replace_text.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\replace_text.pyc" SelfReg="false" NextFile="shell_script.py"/>
+    <ROW File="select.pyd" Component_="_ctypes.pyd" FileName="select.pyd" Attributes="0" SourcePath="..\builds\windows\select.pyd" SelfReg="false" NextFile="shibokenpython2.7.dll"/>
+    <ROW File="shell_script.py" Component_="add_android_resource.py" FileName="shell_~1.py|shell_script.py" Attributes="0" SourcePath="..\builds\windows\plugins\shell_script.py" SelfReg="false" NextFile="shell_script.pyc"/>
+    <ROW File="shell_script.pyc" Component_="add_android_resource.py" FileName="shell_~1.pyc|shell_script.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\shell_script.pyc" SelfReg="false" NextFile="pyconfig.h"/>
+    <ROW File="shibokenpython2.7.dll" Component_="shibokenpython2.7.dll" FileName="shibok~1.dll|shiboken-python2.7.dll" Attributes="0" SourcePath="..\builds\windows\shiboken-python2.7.dll" SelfReg="false" NextFile="unicodedata.pyd"/>
+    <ROW File="unicodedata.pyd" Component_="_ctypes.pyd" FileName="unicod~1.pyd|unicodedata.pyd" Attributes="0" SourcePath="..\builds\windows\unicodedata.pyd" SelfReg="false" NextFile="win32api.pyd"/>
+    <ROW File="win32api.pyd" Component_="_ctypes.pyd" FileName="win32api.pyd" Attributes="0" SourcePath="..\builds\windows\win32api.pyd" SelfReg="false" NextFile="win32evtlog.pyd"/>
+    <ROW File="win32evtlog.pyd" Component_="_ctypes.pyd" FileName="win32e~1.pyd|win32evtlog.pyd" Attributes="0" SourcePath="..\builds\windows\win32evtlog.pyd" SelfReg="false" NextFile="win32pipe.pyd"/>
+    <ROW File="win32pipe.pyd" Component_="_ctypes.pyd" FileName="win32p~1.pyd|win32pipe.pyd" Attributes="0" SourcePath="..\builds\windows\win32pipe.pyd" SelfReg="false" NextFile="win32wnet.pyd"/>
+    <ROW File="win32wnet.pyd" Component_="_ctypes.pyd" FileName="win32w~1.pyd|win32wnet.pyd" Attributes="0" SourcePath="..\builds\windows\win32wnet.pyd" SelfReg="false" NextFile="zmq.core._poll.pyd"/>
+    <ROW File="zmq.core._poll.pyd" Component_="_ctypes.pyd" FileName="zmqcor~1.pyd|zmq.core._poll.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core._poll.pyd" SelfReg="false" NextFile="zmq.core._version.pyd"/>
+    <ROW File="zmq.core._version.pyd" Component_="_ctypes.pyd" FileName="zmqcor~2.pyd|zmq.core._version.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core._version.pyd" SelfReg="false" NextFile="zmq.core.constants.pyd"/>
+    <ROW File="zmq.core.constants.pyd" Component_="_ctypes.pyd" FileName="zmqcor~3.pyd|zmq.core.constants.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.constants.pyd" SelfReg="false" NextFile="zmq.core.context.pyd"/>
+    <ROW File="zmq.core.context.pyd" Component_="_ctypes.pyd" FileName="zmqcor~4.pyd|zmq.core.context.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.context.pyd" SelfReg="false" NextFile="zmq.core.device.pyd"/>
+    <ROW File="zmq.core.device.pyd" Component_="_ctypes.pyd" FileName="zmqcor~5.pyd|zmq.core.device.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.device.pyd" SelfReg="false" NextFile="zmq.core.error.pyd"/>
+    <ROW File="zmq.core.error.pyd" Component_="_ctypes.pyd" FileName="zmqcor~6.pyd|zmq.core.error.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.error.pyd" SelfReg="false" NextFile="zmq.core.message.pyd"/>
+    <ROW File="zmq.core.message.pyd" Component_="_ctypes.pyd" FileName="zmqcor~7.pyd|zmq.core.message.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.message.pyd" SelfReg="false" NextFile="zmq.core.socket.pyd"/>
+    <ROW File="zmq.core.socket.pyd" Component_="_ctypes.pyd" FileName="zmqcor~8.pyd|zmq.core.socket.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.socket.pyd" SelfReg="false" NextFile="zmq.core.stopwatch.pyd"/>
+    <ROW File="zmq.core.stopwatch.pyd" Component_="_ctypes.pyd" FileName="zmqcor~9.pyd|zmq.core.stopwatch.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.core.stopwatch.pyd" SelfReg="false" NextFile="zmq.devices.monitoredqueue.pyd"/>
+    <ROW File="zmq.devices.monitoredqueue.pyd" Component_="_ctypes.pyd" FileName="zmqdev~1.pyd|zmq.devices.monitoredqueue.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.devices.monitoredqueue.pyd" SelfReg="false" NextFile="zmq.utils.initthreads.pyd"/>
+    <ROW File="zmq.utils.initthreads.pyd" Component_="_ctypes.pyd" FileName="zmquti~1.pyd|zmq.utils.initthreads.pyd" Attributes="0" SourcePath="..\builds\windows\zmq.utils.initthreads.pyd" SelfReg="false" NextFile="libzmq.dll"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
     <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="0" Languages="en" InstallationType="4" UseLargeSchema="true"/>
@@ -143,6 +169,7 @@
     <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="HalAutomator_Dir" Component_="HalAutomator"/>
     <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
@@ -153,11 +180,15 @@
     <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
     <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Type="1" Source="aicustact.dll" Target="GetLocalizedCredentials"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Type="1" Source="aicustact.dll" Target="MixedAllUsersInstallLocation"/>
     <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
     <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
     <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
     <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
     <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="favicon_1.exe" SourcePath="..\favicon.ico" Index="0"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
     <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
@@ -167,11 +198,13 @@
     <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Sequence="52"/>
     <ROW Action="AI_GetArpIconPath" Sequence="51"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="748"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
     <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
     <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
     <ROW Action="AI_ResolveLocalizedCredentials" Sequence="51"/>
+    <ROW Action="AI_SETMIXINSTLOCATION" Sequence="748"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
     <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
@@ -182,9 +215,12 @@
     <ROW Registry="DisplayIcon" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayIcon" Value="[ARP_ICON_PATH]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayName" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayName" Value="[AI_PRODUCTNAME_ARP]" Component_="AI_CustomARPName"/>
     <ROW Registry="DisplayVersion" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="DisplayVersion" Value="[ProductVersion]" Component_="AI_CustomARPName"/>
+    <ROW Registry="EstimatedSize" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="EstimatedSize" Value="#27300" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpLink" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpLink" Value="[ARPHELPLINK]" Component_="AI_CustomARPName"/>
     <ROW Registry="HelpTelephone" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="HelpTelephone" Value="[ARPHELPTELEPHONE]" Component_="AI_CustomARPName"/>
     <ROW Registry="InstallLocation" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="InstallLocation" Value="[APPDIR]" Component_="AI_CustomARPName"/>
+    <ROW Registry="ModifyPath" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="ModifyPath" Value="[AI_UNINSTALLER] /I [ProductCode]" Component_="AI_CustomARPName"/>
+    <ROW Registry="NoRepair" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="NoRepair" Value="#1" Component_="AI_CustomARPName"/>
     <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
     <ROW Registry="Publisher" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="Publisher" Value="[Manufacturer]" Component_="AI_CustomARPName"/>
     <ROW Registry="URLInfoAbout" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="URLInfoAbout" Value="[ARPURLINFOABOUT]" Component_="AI_CustomARPName"/>
@@ -196,8 +232,9 @@
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="HalAutomator" Directory_="SHORTCUTDIR" Name="HalAut~3|Hal Automator" Component_="t2s_configurator.exe" Target="[#t2s_configurator.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
-    <ROW Shortcut="HalAutomator1" Directory_="DesktopFolder" Name="HalAut~2|Hal Automator" Component_="t2s_configurator.exe" Target="[#t2s_configurator.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="HalAutomator" Directory_="HalAutomator_Dir" Name="HalAut~1|Hal Automator" Component_="QtGui4.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
+    <ROW Shortcut="HalAutomator_1" Directory_="DesktopFolder" Name="HalAut~1|Hal Automator" Component_="python27.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
+    <ROW Shortcut="HalAutomator_2" Directory_="SHORTCUTDIR" Name="HalAut~1|Hal Automator" Component_="python27.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>
