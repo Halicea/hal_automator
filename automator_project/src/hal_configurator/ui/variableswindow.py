@@ -7,6 +7,7 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
   def __init__(self, *args, **kwargs):
     super(VariablesWindow, self).__init__(*args, **kwargs)
     self.setupUi(self)
+    self.lv_items.installEventFilter(self)
   
   def setModel(self, data_model):
     self.data_model = data_model
@@ -14,7 +15,16 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
     self.lv_items.doubleClicked.connect(self.__on_variable_edit)
     self.btn_add.clicked.connect(self.__on_add_clicked)
     self.btn_delete.clicked.connect(self.__on_remove_clicked)
-  
+
+  def eventFilter(self, sender, event):
+    if event.type() == QtCore.QEvent.KeyPress and event.matches(QtGui.QKeySequence.InsertParagraphSeparator) and sender == self.lv_items:
+      self.__on_variable_edit()
+    elif event.type() == QtCore.QEvent.KeyPress and event.matches(QtGui.QKeySequence.Delete) and sender == self.lv_items:
+      self.__on_remove_clicked()
+    elif event.type() == QtCore.QEvent.KeyPress and event.matches(QtGui.QKeySequence.New) and sender == self.lv_items:
+      self.__on_add_clicked()
+    else:
+      return super(VariablesWindow, self).eventFilter(sender, event)
   def __on_add_clicked(self):
     self.edit_index = None
     self.new_dlg = Dialog()

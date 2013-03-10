@@ -1,9 +1,16 @@
 import time
 import zmq
-__author__ = 'kostamihajlov'
+__author__ = 'Costa Halicea'
 
+class LoggerBase(object):
+  def write(self):
+    raise NotImplementedError()
+  def close(self):
+    raise NotImplementedError()
+  def fileno(self):
+    return 1
 
-class ZmqChainedLoger(object):
+class ZmqChainedLoger(LoggerBase):
   def __init__(self, port):
     context = zmq.Context()
     self.message_sender = context.socket(zmq.PUB)
@@ -31,9 +38,13 @@ class ZmqChainedLoger(object):
     time.sleep(2)
     print "continuing execution"
 
-class ConsoleLoger(object):
+class ConsoleLoger(LoggerBase):
+  # noinspection PyBroadException
   def write(self, message, t="i"):
-    print message
+    try:
+      print message
+    except:
+      pass
 
   #needed for pushing the stdout and stderr into the log
   def fileno(self):
@@ -42,7 +53,7 @@ class ConsoleLoger(object):
   def close(self):
     pass
 
-class FileLoger(object):
+class FileLoger(LoggerBase):
   def __init__(self, f):
     self.f = open(f, "a")
 
@@ -55,7 +66,7 @@ class FileLoger(object):
   def fileno(self):
     return 1
 
-class CompositeLoger(object):
+class CompositeLoger(LoggerBase):
   def __init__(self, *logers):
     self.logers = logers
 

@@ -16,7 +16,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui \
-    config.ui \
     config_operation.ui \
     config_bundle.ui \
     resourceswindow.ui \
@@ -31,7 +30,8 @@ FORMS    += mainwindow.ui \
     resource_dialog.ui \
     console_output.ui \
     tool_set.ui \
-    config_manager.ui
+    config_manager.ui \
+    config_widget.ui
 
 RESOURCES += \
     images.qrc

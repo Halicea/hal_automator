@@ -6,6 +6,7 @@ Prebuild Configuration Loaders
 '''
 import json
 import os
+import urllib
 from branded_apps_service import BrandedAppService as BAS
 last_config_loaded = None
 
@@ -13,6 +14,8 @@ class ConfigLoader(object):
   def __init__(self, *args, **kwargs):
     self.custom_bundles = []
     self.custom_vars = []
+    self.resources_root_url = None
+
   
   def loadConfig(self):
     raise NotImplementedError("abstract class accessed")
@@ -46,17 +49,18 @@ class ConfigLoader(object):
   def load_customizations(self, cfg):
     cfg = self.load_custom_bundles(cfg)
     cfg = self.load_custom_vars(cfg)
-    cfg = self.fix_bundle_separator_chars(cfg)
+    #cfg = self.fix_bundle_separator_chars(cfg)
     cfg = self.verify_required_vars(cfg)
     return cfg
-  def fix_bundle_separator_chars(self, config):
-    if os.path.sep!='/':
-      for b in config["Content"]["OperationBundles"]:
-        for op in b["Operations"]:
-          for key in op["Arguments"].keys():
-            if "Destination" in key or "File" in key:
-              op["Arguments"][key]  = op["Arguments"][key].replace('/', os.pathsep)
-    return config
+
+  # def fix_bundle_separator_chars(self, config):
+  #   if os.path.sep!='/':
+  #     for b in config["Content"]["OperationBundles"]:
+  #       for op in b["Operations"]:
+  #         for key in op["Arguments"].keys():
+  #           if "Destination" in key or "File" in key:
+  #             op["Arguments"][key]  = op["Arguments"][key].replace('/', os.sep)
+  #   return config
   
 class SvcConfigLoader(ConfigLoader):
   def __init__(self, svcUrl, configId):
@@ -74,40 +78,40 @@ class SvcConfigLoader(ConfigLoader):
 class FileConfigLoader(ConfigLoader):
   def __init__(self, fileName):
     super(FileConfigLoader, self).__init__()
-    self.fileName = fileName
-    self.workingPath = os.path.dirname(self.fileName)
-    
+    self.config_file = fileName
+    self.resources_root = os.path.dirname(self.config_file)
+    self.resource_root_url = urllib.pathname2url(self.resources_root)
+
   def load_config(self):
     global last_config_loaded
-    print os.path.abspath(self.fileName)                        
-    cfg =  json.load(open(self.fileName, 'r'))
+    print os.path.abspath(self.config_file)
+    cfg =  json.load(open(self.config_file, 'r'))
 
     
     if cfg["Content"].has_key("Reference"):
-      content_path = os.path.join(os.path.dirname(self.fileName), cfg["Content"]["Reference"])
+      content_path = os.path.join(os.path.dirname(self.config_file), cfg["Content"]["Reference"])
       content = json.load(open(content_path , "r"))
-      content["Reference"]=cfg["Content"]["Reference"]
+      content["Reference"] = cfg["Content"]["Reference"]
       cfg["Content"] = content
 
     if "RequiredVariables" in cfg:
       if cfg["RequiredVariables"].has_key("Reference"):
-        content_path = os.path.join(os.path.dirname(self.fileName), cfg["RequiredVariables"]["Reference"])
+        content_path = os.path.join(os.path.dirname(self.config_file), cfg["RequiredVariables"]["Reference"])
         content = json.load(open(content_path, "r"))
         cfg["RequiredVariables-Reference"] = cfg["RequiredVariables"]
         cfg["RequiredVariables"] = content
     else:
       cfg["RequiredVariables"] = {}
     cfg = self.load_customizations(cfg)
-    cfg = self.fix_resource_separator_chars(cfg)
+    #cfg = self.fix_resource_separator_chars(cfg)
     last_config_loaded = cfg
     return cfg
   
   def fix_resource_separator_chars(self, config):
     if os.path.sep!='/':
       for k in config["Resources"]:
-        k["url"]=k["url"].replace('/', os.pathsep)
+        k["url"]=k["url"].replace('/', os.sep)
     return config
-
                  
       
         

@@ -11,6 +11,7 @@ from hal_configurator.ui.global_vars import GlobalVars
 class ResourcesList(DragableList):
   def __init__(self, *args, **kwargs):
     super(ResourcesList, self).__init__(*args, **kwargs)
+    self.resource_root = "/"
   def set_resource_root(self, resource_root):
     self.resource_root = resource_root
     
@@ -18,8 +19,7 @@ class ResourcesList(DragableList):
     pixmap = QtGui.QPixmap()
     resource = self.model().data(index, "object")
     try:
-      root_dir = os.path.dirname(GlobalVars.get_instance().current_config_path)
-      img_path = os.path.join(root_dir,resource["url"])
+      img_path = os.path.join(self.resource_root,resource["url"])
       if not pixmap.load(img_path):
         super(ResourcesList, self).get_pixmap(index)
     except Exception, ex:

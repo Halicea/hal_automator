@@ -16,12 +16,13 @@ from hal_configurator.ui.models import SimpleStringListModel
 from regex_tool import RegexTool
 from global_vars import GlobalVars
 from hal_configurator.lib.command_executor import CommandExecutor
-from hal_configurator.lib.app_prebuilder import AppPreBuilder
+from hal_configurator.lib.app_prebuilder import AppConfigurator
 from hal_configurator.lib.config_loaders import FileConfigLoader
+from hal_configurator.lib.app_config import config
 port = 1234
+config_path = config.config_path
+solution_dir = config.solution_dir
 
-config_path = '/Users/kostamihajlov/MyProjects/PrintStandClient/src/Configs'
-solution_dir = "/Users/kostamihajlov/MyProjects/PrintStandClient/src/{PlatformType}/Mediawire.PrintStand.Mobile.Presentation"
 solution_for_platform = {"Android":"MonoDroid", "IOS":"MonoTouch"}
 fpath = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 config_runner_script = os.path.join(fpath, 'lib', 'configurator_console.py')
@@ -79,7 +80,7 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
   def on_show_config_clicked(self):
     if self.working_dir:
       self.config = FileConfigLoader(self.get_config_path()).load_config()
-      self.cfg = ConfigWindow(self.get_config_path(), self.working_dir)
+      self.cfg = ConfigWindow(self, self.get_config_path(), self.working_dir)
       self.cfg.cw.set_save_path(self.get_config_path())
       self.cfg.show()
 
@@ -96,18 +97,17 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
       self.working_dir = None
 
   def on_configure_clicked(self):
-    executor = CommandExecutor(
-      resources=self.config["Resources"],
-      resources_root="file://"+os.path.dirname(self.get_config_path()),
-      verbose=self.cb_verbose.isChecked(),
-      debug_mode=self.cb_verbose.isChecked(),
-      log=ZmqChainedLoger(port)
-    )
-
+    root_url = os.path.dirname(self.get_config_path())
     config_loader = FileConfigLoader(self.get_config_path())
-    builder = AppPreBuilder(config_loader, executor)
-    builder.set_execution_dir(self.working_dir)
+    builder = AppConfigurator(config_loader,
+                            ZmqChainedLoger(port),
+                            verbose=self.cb_verbose.isChecked(),
+                            debug_mode=self.cb_verbose.isChecked())
 
+
+
+
+    builder.set_execution_dir(self.working_dir)
     self.worker = ConfigRunnerThread(builder)
     self.set_message_receiver()
     self.worker.start()

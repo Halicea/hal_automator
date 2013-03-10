@@ -20,14 +20,25 @@ class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
   def setModel(self, model):
     self.data_model = model
     self.lv_resources.setModel(self.data_model)
+    self.lv_resources.set_resource_root(self.root_dir)
     self.lv_resources.doubleClicked.connect(self.__on_resource_edit)
+    self.lv_resources.installEventFilter(self)
+
     #self.lv_resources.key
     self.btn_add.clicked.connect(self.on_add_clicked)
     self.btn_delete.clicked.connect(self.on_remove_clicked)
-  
-  def __on_resource_edit(self, index):
+
+  def eventFilter(self, sender, event):
+    if event.type() == QtCore.QEvent.KeyPress and \
+       event.matches(QtGui.QKeySequence.InsertParagraphSeparator) and \
+       sender == self.lv_resources:
+      self.__on_resource_edit()
+    else:
+      return super(ResourcesWindow, self).eventFilter(sender, event)
+
+  def __on_resource_edit(self):
     self.edit_index = self.lv_resources.currentIndex()
-    self.new_dlg = ResourceDialog()
+    self.new_dlg = ResourceDialog(self.root_dir)
     obj = self.data_model.data(self.edit_index, QtCore.Qt.EditRole)
     self.new_dlg.setModel(obj)    
     self.new_dlg.show()
@@ -36,13 +47,13 @@ class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
     
   def on_add_clicked(self):
     self.edit_index = None
-    self.new_dlg = ResourceDialog()
+    self.new_dlg = ResourceDialog(self.root_dir)
     self.new_dlg.show()
     self.new_dlg.accepted.connect(self.__on_add_accepted)
     self.new_dlg.rejected.connect(self.__on_add_rejected) 
     #seld.data_model
     pass
-  
+
   def __on_add_accepted(self):
     new_res = self.new_dlg.get_dict()
     if new_res:

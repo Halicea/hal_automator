@@ -8,13 +8,13 @@ import shutil
 import random
 import string
 class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
-  def __init__(self, *args, **kwargs):
+  def __init__(self, root_dir, *args, **kwargs):
     super(ResourceDialog, self).__init__(*args, **kwargs)
     self.edited_resource = None
     self.model = None
     self.setupUi()
     self.bindUi()
-    self.root_dir = os.path.dirname(GlobalVars.get_instance().current_config_path)
+    self.root_dir = root_dir
     self.model = {
                   "rid":None,
                   "url":None
@@ -22,7 +22,7 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
 
   def setupUi(self):
     super(ResourceDialog, self).setupUi(self)
-  
+
   def setModel(self, model):
     self.model = model
     self.txtName.setText(self.model["rid"])
@@ -97,3 +97,5 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
   def get_dict(self):
     if self.edited_resource:
       return self.edited_resource
+
+

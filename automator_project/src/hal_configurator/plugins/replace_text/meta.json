@@ -1,9 +1,0 @@
-{
-	"Description":"Replaces Text in all files that are matching with provided urls",
-	"Icon":"",
-	"Arguments":{
-		"Resource":"str",
-		"Destination":"str",
-	},
-	"Output":"None"
-}

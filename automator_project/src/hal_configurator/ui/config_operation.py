@@ -9,7 +9,7 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
     self.op = op
     self.items =[]
     self.bindUi()
-    
+
   def bindUi(self):
     self.la_name.setText(self.op["Code"])
     if self.op.has_key("Description"):

@@ -1,0 +1,1 @@
+python t2s_configurator.py -admin

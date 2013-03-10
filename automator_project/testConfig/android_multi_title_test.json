@@ -1,0 +1,19 @@
+{
+  "OperationBundles": [
+    {
+      "Name": "ImageResources", 
+      "Operations": [
+        {
+          "Arguments": {
+            "DestinationFormat": "Resources/Drawable/banner_%s.png", 
+            "IteratorArray": "{{titles}}", 
+            "ProjectFile": "Mediawire.PrintStand.Mobile.Presentation.csproj", 
+            "ResourceFormat": "{#banner_XL_mdpi_%s.png#}"
+          }, 
+          "Code": "add_android_resource", 
+          "Type": "AddAndroidResource"
+        }
+      ]
+    }
+  ]
+}

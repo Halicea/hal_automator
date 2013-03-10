@@ -11,5 +11,6 @@ setup(
   package_dir={"":"src"},
   packages= find_packages('src'),
   scripts=["src/t2s_configurator.py"],
-  long_description = read("README.rst")
+  long_description = read("README.rst"),
+  requires=['PySide', 'requests', 'pyzmq']
 )

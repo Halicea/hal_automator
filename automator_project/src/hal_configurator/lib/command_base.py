@@ -1,35 +1,44 @@
 import sys
-from hal_configurator.lib.var_substitutor import VarSubstitutor
+
 
 class DebugSettings(object):
   def __init__(self, set_breakpoint=True):
     self.breakpoint = set_breakpoint
     
 class OperationBase(object):
-  code = "shell_script"
-  def __init__(self, *args, **kwargs):
+  def __init__(self, executor, resources, variables, log=sys.stdout, verbose= False, *args, **kwargs):
+    """
+    :param args:
+    :param kwargs:
+    :param verbose: if True the output will be verbose
+    :type verbose:bool
+    :param executor: Executor of the command
+    :type executor: CommandExecutor
+    :param resources: resources available for the command
+    :type resources:dict
+    :param variables: variables available for the command
+    :type variables: dict
+    :param log: The Logger for the operation
+    :type log: LoggerBase
+    """
     self.kwargs = {}
-    if kwargs.has_key('verbose'):
-      self.verbose = kwargs['verbose']
-    else:
-      self.verbose = False
-    self.executor = kwargs["executor"]
-    self.resources = kwargs['resources']
-    self.variables = kwargs['variables']
+    self.executor = executor
+    self.resources = resources
+    self.variables = variables
     self.value_substitutor = VarSubstitutor(self.variables, self.resources, self.executor.resources_root)
-    self.log = kwargs.has_key("log") and kwargs["log"] or sys.stdout
+    self.log = log
+    self.verbose = verbose
     self.description = ""
     self.result = ''
     
   def real_run(self):
-    sign = "(%s)->%s"%(self.description, self.code)
+    sign = "(%s)->%s"%(self.description, self.get_code())
     if self.verbose:
       self.log.write("START %s" % sign)
       for k in self.get_arg_descriptors():
         self.log.write("\tp: %s:%s" % (k.name, self.kwargs[k.name]))
     self.run()
     if self.verbose: self.log.write("END %s"%sign)
-
 
   def get_result(self):
     return self.result
@@ -58,7 +67,7 @@ class OperationBase(object):
   
   @classmethod
   def get_code(cls):
-    return cls.code
+    return  str(cls.__module__)
   
   @classmethod
   def get_arg_descriptors(cls):
@@ -100,7 +109,7 @@ ArgumentTypes = {
 }
 
 class ArgumentDescriptor(object):
-  def __init__(self, name, description, argument_type, validator=None):
+  def __init__(self, name, description, argument_type, validator=None, is_optional=False, default_value_lambda=None):
     self.name = name
     self.argument_type = argument_type
     self.description = description
@@ -108,7 +117,9 @@ class ArgumentDescriptor(object):
       self.validator = validator
     else:
       self.validator = self.default_validator
-  
+    self.is_optional = is_optional
+    self.default_value_lambda = default_value_lambda
+
   def default_validator(self, value):
     if ArgumentTypes.has_key(self.argument_type):
       return ArgumentTypes[self.argument_type](value)
@@ -116,3 +127,7 @@ class ArgumentDescriptor(object):
   
   def validate_argument(self, argument):
     return self.validator(argument)
+
+
+from hal_configurator.lib.var_substitutor import VarSubstitutor
+from hal_configurator.lib.command_executor import CommandExecutor

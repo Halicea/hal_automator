@@ -1,18 +1,21 @@
 from PySide import QtGui, QtCore
 from gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
-from uiutils import layout_widgets
 from confirm_dialog import ConfirmDialog
-import hal_configurator.plugins as pl
-import hal_configurator.lib.operation_factory as op_factory
-
+from hal_configurator.lib.plugin_loader import get_plugins
+from hal_configurator.lib.app_config import config
 from models import ToolsListModel
+
 class OpChooserDialog(QtGui.QDialog):
     def __init__(self, parent=None):
         super(OpChooserDialog, self).__init__(parent)
         self.setWindowTitle("Choose Operation Type")
         self.cmb = QtGui.QComboBox(self)
-        self.cmb.setModel(ToolsListModel(pl.__all__))
+        self.plugins = []
+        plugin_dirs = config.plugin_dirs
+        for d in plugin_dirs:
+          self.plugins.extend(get_plugins(d))
+        self.cmb.setModel(ToolsListModel(self.plugins))
 
 class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
   def __init__(self, bundle, *args, **kwargs):
@@ -30,7 +33,6 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     self.btn_add_operation.clicked.connect(self.add_clicked)
     
   def bindUi(self):
-    #self.la_name.setText(self.bundle["Name"])
     for op in self.bundle["Operations"]:
       self.add_operation(op)
   
@@ -51,14 +53,14 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     if len(l)>0:
       print "removing"
       self.ops.remove(self.op_to_delete)
-    self.op_to_delete.deleteLater();
+    self.op_to_delete.deleteLater()
 
   
   def on_delete_rejected(self):
     self.op_to_delete = None
     
   def delete_clicked(self):
-    self.op_to_delete = self.sender().parent().parent();
+    self.op_to_delete = self.sender().parent().parent()
     self.delete_confirmation.show()
 
   def add_operation(self, op):

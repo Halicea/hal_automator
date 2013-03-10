@@ -1,8 +1,6 @@
-from PySide import QtCore, QtGui
-import hal_configurator.lib.operation_factory as fact
 import os
-from global_vars import GlobalVars
-import hal_configurator.plugins as plugins
+from PySide import QtCore
+
 class ResourcesListModel(QtCore.QAbstractListModel):
   
   def __init__(self, resources, root_dir,  *args, **kwargs):
@@ -115,14 +113,9 @@ class ToolsListModel(QtCore.QAbstractListModel):
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
       return self.tools[index.row()]
-      #plugin_cls = plugins.__dict__[tool]
-      #b.setText(plugin_cls.get_name())
-      #return b
     elif role == QtCore.Qt.UserRole:
-      return plugins.__dict__[self.tools[index.row()]]
-      #return fact.new_operation(self.tools[index.row()])
+      return __import__(self.tools[index.row()]).__plugin__
     return None
-  
 class ObjectWrapper(QtCore.QObject):
     def __init__(self, thing):
         QtCore.QObject.__init__(self)
