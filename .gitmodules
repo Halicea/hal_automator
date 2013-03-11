@@ -1,0 +1,3 @@
+[submodule "automator_project/plugins"]
+	path = automator_project/plugins
+	url = /Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins
