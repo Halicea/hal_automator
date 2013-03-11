@@ -1,3 +1,4 @@
+__author__='Costa Halicea'
 import os
 import urllib
 from hal_configurator.lib.command_executor import CommandExecutor
@@ -6,7 +7,8 @@ from hal_configurator.lib.command_executor import CommandExecutor
 class AppConfigurator(object):
   def __init__(self, config_loader, logger ,executor=None, verbose=True, debug_mode=True):
     """
-
+    The root execution class, using the apply method it runs certain configuration
+    against specified execution directory
     :param config_loader:
     :type config_loader ConfigLoader
     :param logger: LoggerBase
@@ -30,6 +32,10 @@ class AppConfigurator(object):
       self.executors.append(self.executor)
 
   def release_executor(self, executor):
+    """
+    removes the execution from the builders executors list
+    :param executor:
+    """
     self.executors.remove(executor)
 
   def get_config(self):
@@ -56,7 +62,7 @@ class AppConfigurator(object):
 
   def apply_parametrized(self, config, working_dir=None, **executor_kwargs):
     """
-
+    Runs a configuration but with a custom configuration and possible against a custom working directory
     :param config:
     :type config: dict
     :param working_dir:
@@ -92,6 +98,17 @@ class AppConfigurator(object):
         _executor.execute_bundle(bundle, global_vars, global_resources)
 
   def create_executor(self, config = None, logger=None, resources_root=None):
+    """
+    Creates new Executor for specific config
+    :param config:
+    :type config: dict
+    :param logger:
+    :type logger: LoggerBase
+    :param resources_root:
+    :type resources_root: str
+    :return: constructs a Command executor
+    :rtype: CommandExecutor
+    """
     _config = config or self.config
     _log = logger or self.logger
     _resources_root = resources_root or self.config_loader.resource_root_url

@@ -1,5 +1,6 @@
 import os
-from config import Config, Sequence
+from config import Config
+
 __author__ = 'Costa Halicea'
 __d = os.path.dirname(
         os.path.dirname(
