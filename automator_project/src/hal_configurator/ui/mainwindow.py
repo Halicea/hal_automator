@@ -80,7 +80,8 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
   def on_show_config_clicked(self):
     if self.working_dir:
       self.config = FileConfigLoader(self.get_config_path()).load_config()
-      self.cfg = ConfigWindow(self, self.get_config_path(), self.working_dir)
+      self.cfg = ConfigWindow(self)
+      self.cfg.set_configuration(self.get_config_path(), self.working_dir)
       self.cfg.cw.set_save_path(self.get_config_path())
       self.cfg.show()
 

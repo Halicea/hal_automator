@@ -1,0 +1,14 @@
+{
+  "PublisherId": "",
+  "Content": {
+    "OperationBundles": [
+      {
+        "Name": "Config",
+        "Operations": []
+      }
+    ]
+  },
+  "RequiredVariables": {},
+  "Variables":[],
+  "Resources": []
+}

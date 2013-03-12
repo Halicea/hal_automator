@@ -7,8 +7,11 @@ Prebuild Configuration Loaders
 import json
 import os
 import urllib
+from app_config import config
+import shutil
 from branded_apps_service import BrandedAppService as BAS
 last_config_loaded = None
+
 
 class ConfigLoader(object):
   def __init__(self, *args, **kwargs):
@@ -73,7 +76,6 @@ class SvcConfigLoader(ConfigLoader):
     cfg = self.__svc__.config(self.config_id)
     last_config_loaded = cfg
     return cfg
-      
 
 class FileConfigLoader(ConfigLoader):
   def __init__(self, fileName):
@@ -113,6 +115,13 @@ class FileConfigLoader(ConfigLoader):
         k["url"]=k["url"].replace('/', os.sep)
     return config
                  
-      
+  @classmethod
+  def new(cls, fileName):
+    p = os.path.abspath(config.empty_template_path)
+    if os.path.exists(p):
+      shutil.copy(p, fileName)
+      return cls(fileName)
+    return None
+
         
 

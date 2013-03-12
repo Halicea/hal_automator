@@ -16,7 +16,6 @@ SOURCES += main.cpp\
 HEADERS  += mainwindow.h
 
 FORMS    += mainwindow.ui \
-    config_operation.ui \
     config_bundle.ui \
     resourceswindow.ui \
     variableswindow.ui \
@@ -31,7 +30,9 @@ FORMS    += mainwindow.ui \
     console_output.ui \
     tool_set.ui \
     config_manager.ui \
-    config_widget.ui
+    config_widget.ui \
+    config_operation.ui \
+    config_operation_old.ui
 
 RESOURCES += \
     images.qrc

@@ -55,7 +55,11 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
       self.ops.remove(self.op_to_delete)
     self.op_to_delete.deleteLater()
 
-  
+  def remove_operation(self, op):
+    self.ops.remove(op)
+    op.deleteLater()
+
+
   def on_delete_rejected(self):
     self.op_to_delete = None
     
@@ -64,8 +68,8 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     self.delete_confirmation.show()
 
   def add_operation(self, op):
-    op = OperationWidget(op, self)
-    op.btn_delete.clicked.connect(self.delete_clicked)
+    op = OperationWidget(self, op, self)
+    #op.btn_delete.clicked.connect(self.delete_clicked)
     self.ops.append(op)
     self.ltv_operations.addWidget(op)
   
