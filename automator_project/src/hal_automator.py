@@ -13,11 +13,14 @@ try:
   from PySide import QtGui, QtCore, QtCore
   from PySide.QtGui import  QCloseEvent
   from hal_configurator.ui.mainwindow import MainWindow
+
 except Exception, ex:
   print ex
   print "No Qt Installed"
   print "Continuing in ConsoleMode"
-  
+  # - Hispanic
+  # - Upload JPM
+
 def main(isAdmin):
   """
   Main Application Runner
@@ -31,8 +34,6 @@ def main(isAdmin):
   mw.show()
   app.setWindowIcon(QtGui.QIcon())
   sys.exit(app.exec_())
-
-
 
 if __name__ == "__main__":
   if len(sys.argv)==1 :

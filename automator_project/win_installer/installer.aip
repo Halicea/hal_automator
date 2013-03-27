@@ -18,10 +18,10 @@
     <ROW Property="ARPURLINFOABOUT" Value="http://www.halicea.com/products/hal_automator"/>
     <ROW Property="ARPURLUPDATEINFO" Value="http://www.halicea.com/products/hal_automator/download"/>
     <ROW Property="Manufacturer" Value="Halicea"/>
-    <ROW Property="ProductCode" Value="1033:{1B21E28D-CA29-4168-B01C-A4CAE67D99E6} " Type="16"/>
+    <ROW Property="ProductCode" Value="1033:{FC247904-B7E5-4CF9-B43C-2508B021006F} " Type="16"/>
     <ROW Property="ProductLanguage" Value="1033"/>
     <ROW Property="ProductName" Value="Hal Automator"/>
-    <ROW Property="ProductVersion" Value="1.1.0" Type="32"/>
+    <ROW Property="ProductVersion" Value="1.2.0" Type="32"/>
     <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
     <ROW Property="UpgradeCode" Value="{7A40C23B-13D8-4D5A-AFFD-C88BFC7F3D9A}"/>
     <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
@@ -44,7 +44,7 @@
     <ROW Component="ProductInformation" ComponentId="{3FDBD224-F9E5-40CE-BE55-C4F3205B9D64}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
     <ROW Component="QtCore4.dll" ComponentId="{46EADF7A-7FC8-4AC7-B9CC-36BD78024FBF}" Directory_="APPDIR" Attributes="0" KeyPath="QtCore4.dll"/>
     <ROW Component="QtGui4.dll" ComponentId="{0F54B76D-D8AF-4E1A-B09E-0620DC5BACF4}" Directory_="APPDIR" Attributes="0" KeyPath="QtGui4.dll"/>
-    <ROW Component="SHORTCUTDIR" ComponentId="{419AD2C3-FC7A-4C8F-939A-E59C18CF5441}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{9B3B19A5-AA27-4BA8-A1FC-E6AFD3D1754A}" Directory_="SHORTCUTDIR" Attributes="0"/>
     <ROW Component="_ctypes.pyd" ComponentId="{A130CF55-ABAF-46C2-A2E3-48CB2705AC1C}" Directory_="APPDIR" Attributes="0" KeyPath="_ctypes.pyd" Type="0"/>
     <ROW Component="add_android_resource.py" ComponentId="{4B92A731-E455-4D75-92E5-267AE71A9D3B}" Directory_="plugins_Dir" Attributes="0" KeyPath="add_android_resource.py" Type="0"/>
     <ROW Component="hal_automator.exe" ComponentId="{D91C7988-FC6E-4976-BC24-0FB93F514C9C}" Directory_="APPDIR" Attributes="0" KeyPath="hal_automator.exe"/>
@@ -76,17 +76,19 @@
     <ROW File="add_android_resource.py" Component_="add_android_resource.py" FileName="add_an~1.py|add_android_resource.py" Attributes="0" SourcePath="..\builds\windows\plugins\add_android_resource.py" SelfReg="false" NextFile="add_android_resource.pyc"/>
     <ROW File="add_android_resource.pyc" Component_="add_android_resource.py" FileName="add_an~1.pyc|add_android_resource.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\add_android_resource.pyc" SelfReg="false" NextFile="config_reference.py"/>
     <ROW File="bz2.pyd" Component_="_ctypes.pyd" FileName="bz2.pyd" Attributes="0" SourcePath="..\builds\windows\bz2.pyd" SelfReg="false" NextFile="hal_automator.exe"/>
+    <ROW File="config.conf" Component_="_ctypes.pyd" FileName="config~1.con|config.conf" Attributes="0" SourcePath="..\builds\windows\config.conf" SelfReg="false" NextFile="empty_bc.json"/>
     <ROW File="config_reference.py" Component_="add_android_resource.py" FileName="config~1.py|config_reference.py" Attributes="0" SourcePath="..\builds\windows\plugins\config_reference.py" SelfReg="false" NextFile="config_reference.pyc"/>
     <ROW File="config_reference.pyc" Component_="add_android_resource.py" FileName="config~1.pyc|config_reference.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\config_reference.pyc" SelfReg="false" NextFile="delete_file.py"/>
     <ROW File="delete_file.py" Component_="add_android_resource.py" FileName="delete~1.py|delete_file.py" Attributes="0" SourcePath="..\builds\windows\plugins\delete_file.py" SelfReg="false" NextFile="delete_file.pyc"/>
     <ROW File="delete_file.pyc" Component_="add_android_resource.py" FileName="delete~1.pyc|delete_file.pyc" Attributes="0" SourcePath="..\builds\windows\plugins\delete_file.pyc" SelfReg="false" NextFile="replace_from_url.py"/>
+    <ROW File="empty_bc.json" Component_="_ctypes.pyd" FileName="empty_~1.jso|empty_bc.json" Attributes="0" SourcePath="..\builds\windows\empty_bc.json" SelfReg="false"/>
     <ROW File="hal_automator.exe" Component_="hal_automator.exe" FileName="hal_au~1.exe|hal_automator.exe" Attributes="512" SourcePath="..\builds\windows\hal_automator.exe" SelfReg="false" NextFile="hal_automator.exe.manifest" DigSign="true"/>
     <ROW File="hal_automator.exe.manifest" Component_="_ctypes.pyd" FileName="hal_au~1.man|hal_automator.exe.manifest" Attributes="0" SourcePath="..\builds\windows\hal_automator.exe.manifest" SelfReg="false" NextFile="Microsoft.VC90.CRT.manifest"/>
     <ROW File="libzmq.dll" Component_="libzmq.dll" FileName="libzmq.dll" Attributes="0" SourcePath="..\builds\windows\zmq\libzmq.dll" SelfReg="false" NextFile="add_android_resource.py"/>
     <ROW File="msvcm90.dll" Component_="msvcm90.dll" FileName="msvcm90.dll" Attributes="0" SourcePath="..\builds\windows\msvcm90.dll" SelfReg="false" NextFile="msvcp90.dll"/>
     <ROW File="msvcp90.dll" Component_="msvcp90.dll" FileName="msvcp90.dll" Attributes="0" SourcePath="..\builds\windows\msvcp90.dll" SelfReg="false" NextFile="msvcr90.dll"/>
     <ROW File="msvcr90.dll" Component_="msvcr90.dll" FileName="msvcr90.dll" Attributes="0" SourcePath="..\builds\windows\msvcr90.dll" SelfReg="false" NextFile="pyexpat.pyd"/>
-    <ROW File="pyconfig.h" Component_="pyconfig.h" FileName="pyconfig.h" Attributes="0" SourcePath="..\builds\windows\include\pyconfig.h" SelfReg="false"/>
+    <ROW File="pyconfig.h" Component_="pyconfig.h" FileName="pyconfig.h" Attributes="0" SourcePath="..\builds\windows\include\pyconfig.h" SelfReg="false" NextFile="config.conf"/>
     <ROW File="pyexpat.pyd" Component_="_ctypes.pyd" FileName="pyexpat.pyd" Attributes="0" SourcePath="..\builds\windows\pyexpat.pyd" SelfReg="false" NextFile="PySide.QtCore.pyd"/>
     <ROW File="pysidepython2.7.dll" Component_="pysidepython2.7.dll" FileName="pyside~1.dll|pyside-python2.7.dll" Attributes="0" SourcePath="..\builds\windows\pyside-python2.7.dll" SelfReg="false" NextFile="python27.dll"/>
     <ROW File="python27.dll" Component_="python27.dll" FileName="python27.dll" Attributes="0" SourcePath="..\builds\windows\python27.dll" SelfReg="false" NextFile="pywintypes27.dll"/>
@@ -232,9 +234,9 @@
     <ROW Registry="VersionMinor" Root="-1" Key="Software\Microsoft\Windows\CurrentVersion\Uninstall\[ProductName] [ProductVersion]" Name="VersionMinor" Value="#0" Component_="AI_CustomARPName"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
-    <ROW Shortcut="HalAutomator" Directory_="HalAutomator_Dir" Name="HalAut~1|Hal Automator" Component_="QtGui4.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
-    <ROW Shortcut="HalAutomator_1" Directory_="DesktopFolder" Name="HalAut~1|Hal Automator" Component_="python27.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
-    <ROW Shortcut="HalAutomator_2" Directory_="SHORTCUTDIR" Name="HalAut~1|Hal Automator" Component_="python27.dll" Target="[HalAutomator_Dir]" Hotkey="0" Icon_="favicon_1.exe" IconIndex="0" ShowCmd="3"/>
+    <ROW Shortcut="HalAutomator" Directory_="HalAutomator_Dir" Name="HalAut~1|Hal Automator" Component_="hal_automator.exe" Target="[#hal_automator.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="HalAutomator_1" Directory_="DesktopFolder" Name="HalAut~1|Hal Automator" Component_="hal_automator.exe" Target="[#hal_automator.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
+    <ROW Shortcut="HalAutomator_2" Directory_="SHORTCUTDIR" Name="HalAut~1|Hal Automator" Component_="hal_automator.exe" Target="[#hal_automator.exe]" Hotkey="0" IconIndex="0" ShowCmd="1" WkDir="APPDIR"/>
   </COMPONENT>
   <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
     <ATTRIBUTE name="UsedTheme" value="classic"/>

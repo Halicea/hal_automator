@@ -81,15 +81,13 @@ class FileConfigLoader(ConfigLoader):
   def __init__(self, fileName):
     super(FileConfigLoader, self).__init__()
     self.config_file = fileName
-    self.resources_root = os.path.dirname(self.config_file)
+    self.resources_root = os.path.abspath(os.path.dirname(self.config_file))
     self.resource_root_url = urllib.pathname2url(self.resources_root)
 
   def load_config(self):
     global last_config_loaded
     print os.path.abspath(self.config_file)
     cfg =  json.load(open(self.config_file, 'r'))
-
-    
     if cfg["Content"].has_key("Reference"):
       content_path = os.path.join(os.path.dirname(self.config_file), cfg["Content"]["Reference"])
       content = json.load(open(content_path , "r"))
@@ -108,7 +106,6 @@ class FileConfigLoader(ConfigLoader):
     #cfg = self.fix_resource_separator_chars(cfg)
     last_config_loaded = cfg
     return cfg
-  
   def fix_resource_separator_chars(self, config):
     if os.path.sep!='/':
       for k in config["Resources"]:
@@ -122,6 +119,3 @@ class FileConfigLoader(ConfigLoader):
       shutil.copy(p, fileName)
       return cls(fileName)
     return None
-
-        
-
