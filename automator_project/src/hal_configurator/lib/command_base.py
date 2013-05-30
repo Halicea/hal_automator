@@ -105,7 +105,8 @@ ArgumentTypes = {
   "number": lambda x: is_number(x), 
   "date": lambda x: True,
   "file": lambda x: True,
-  "list": lambda x:True
+  "list": lambda x:True,
+  "OperationBundle": lambda x:True
 }
 
 class ArgumentDescriptor(object):

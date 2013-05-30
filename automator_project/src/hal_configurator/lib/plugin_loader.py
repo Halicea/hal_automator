@@ -70,3 +70,9 @@ def load_plugins_from_directory_list(plugin_dirs):
   for plugin_dir in plugin_dirs:
     plugin_list = get_plugins(plugin_dir)
     init_plugin_system({'plugin_path': plugin_dir, 'plugins': plugin_list})
+
+def get_plugin_cls(command):
+  cmd  = command["Code"]
+  plugin_module = __import__(cmd)
+  plugin_cls = plugin_module.__plugin__
+  return plugin_cls

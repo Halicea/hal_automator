@@ -19,7 +19,6 @@ class ConfigLoader(object):
     self.custom_vars = []
     self.resources_root_url = None
 
-  
   def loadConfig(self):
     raise NotImplementedError("abstract class accessed")
   

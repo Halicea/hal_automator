@@ -1,4 +1,5 @@
 import sys
+import plugin_loader  
 class CommandExecutor(object):
   def __init__(self, parent, resources, resources_root="",verbose=True, debug_mode = False, log = lambda x:sys.stdout):
     """
@@ -66,11 +67,23 @@ class CommandExecutor(object):
       for comm in command_bundle["Operations"]:
         self.execute_command(comm, bundle_vars, bundle_res)
 
+  def execute_bundle_within_current_scope(self, bundle):
+    builder = self.parent
+    config = {
+               "PublisherId": builder.config["PublisherId"], 
+               "RequiredVariables": builder.config["RequiredVariables"],
+               "Variables": builder.config["Variables"],
+               "Resources": builder.config["Resources"],
+               "Content":{
+                "OperationBundles":[bundle]
+               }
+             }
+    builder.apply_parametrized(config)
+    
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
       cmd  = command["Code"]
-      plugin_module = __import__(cmd)
-      plugin_cls = plugin_module.__plugin__
+      plugin_cls = plugin_loader.get_plugin_cls(command)
       plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
       vars = self.replace_vars(bundle_vars, command["Arguments"])
       vars = self.replace_resources(bundle_res, vars)

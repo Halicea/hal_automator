@@ -1,7 +1,7 @@
 from PySide import  QtGui
 from gen.config_operation import Ui_OperationWidget
 from custom_widgets.dropable_line_edit import DropableLineEdit
-
+from hal_configurator.lib import plugin_loader
 class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
   def __init__(self, bundle_widget,op, *args, **kwargs):
     """
@@ -14,6 +14,8 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
     """
     super(OperationWidget, self).__init__(*args, **kwargs)
     self.op = op
+    c = plugin_loader.get_plugin_cls(self.op)
+    self.descriptors = c.get_arg_descriptors()
     self.bundle_widget = bundle_widget
     self.items =[]
     self.setupUi()
@@ -32,8 +34,10 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
       self.la_description.setText("No Description is set!")
       #self.la_description.setStyle("color:red;")
     arguments = self.ltv_content
-    for arg in self.op["Arguments"].keys():
-      la = arg
+    
+    for desc in self.descriptors:
+      arg = desc.name
+      la = desc.name
       val = self.op["Arguments"][arg]
       item = QtGui.QFrame(self)
       layout = QtGui.QHBoxLayout(item)
@@ -44,14 +48,18 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
       arg_label = QtGui.QLabel(item)
       arg_label.setMinimumWidth(100)
       arg_box = DropableLineEdit(item)
-      if "Resource" in arg:
-        arg_box.set_object_format("application/x-resource")
+      if desc.argument_type == "OperationsBundle":
+        from config_bundle import BundleWidget
+        arg_box = BundleWidget(val, item)
       else:
-        arg_box.set_object_format("application/x-variable")
+        if "Resource" in arg:
+          arg_box.set_object_format("application/x-resource")
+        else:
+          arg_box.set_object_format("application/x-variable")
+        arg_box.setText(val)
       layout.addWidget(arg_label)
       layout.addWidget(arg_box)
-      arg_label.setText(la)
-      arg_box.setText(val)
+      arg_label.setText(la)  
 
   def closeEvent(self, *args, **kwargs):
     self.bundle_widget.remove_operation(self)
@@ -64,10 +72,13 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
     for l in self.items:
       key = l.children()[1]
       value = l.children()[2]
-      args[key.text()]=value.text()
+      desc = [x for x in self.descriptors if x.name == key.text()][0]
+      if desc.argument_type == 'OperationsBundle':
+        value = l.children()[3]
+        args[key.text()]=value.get_dict()
+      else:
+        args[key.text()]=value.text()
     return d
-    
-      
-      
+
     
 
