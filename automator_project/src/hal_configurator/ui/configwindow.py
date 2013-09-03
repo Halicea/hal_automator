@@ -40,13 +40,17 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.setupUi()
 
 
+
   def set_plugins(self):
     self.plugins =[]
     for d in config.plugin_dirs:
       self.plugins.extend(get_plugins(d))
 
   def setupUi(self):
+
     super(ConfigWindow, self).setupUi(self)
+    title="Configurator Version:%s"%(app_config.get_version())
+    self.setWindowTitle(title)
     self.cbChooseWorkingDir.clicked.connect(self.chose_working_dir)
     self.tool = QtGui.QListView(self)
     self.lv_tools.addWidget(self.tool)
@@ -58,6 +62,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
 
   def bindUi(self):
     title = os.path.basename((os.path.dirname(os.path.dirname(self.config_path))))
+    title +="     -- Configurator Version:%s"%(app_config.get_version())
     self.setWindowTitle(title)
     self.txtWorkingDir.setText(self.working_dir)
     if self.cw:

@@ -35,6 +35,9 @@ def set_working_dir(path):
 def get_last_dir():
   return config.last_dir
 
+def get_version():
+  return config.version
+
 def set_last_dir(d):
   config.last_dir = "'"+d+"'"
   save()

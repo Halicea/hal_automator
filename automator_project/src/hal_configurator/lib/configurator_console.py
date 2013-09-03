@@ -7,10 +7,12 @@ from hal_configurator.lib.command_executor import CommandExecutor
 from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoader
 from hal_configurator.lib.app_prebuilder import AppConfigurator
 from hal_configurator.lib.logers import ConsoleLoger, FileLoger, CompositeLoger
-
+import hal_configurator.lib.app_config as app_config
 svcUrl = "http://localhost:3000"
 
 def main():
+  print "Starting Configurator"
+  print "Version", app_config.get_version()
   config_loader = get_config_loader()
   custom_bundles = get_additional_bundles()
   custom_vars = get_additional_vars(sys.argv)

@@ -29,7 +29,6 @@ config_runner_script = os.path.join(fpath, 'lib', 'configurator_console.py')
 regex_shown = False
 
 class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
-
   def __init__(self, *args, **kwargs):
     self.fullScreen = False
     super(MainWindow, self).__init__(*args, **kwargs)
