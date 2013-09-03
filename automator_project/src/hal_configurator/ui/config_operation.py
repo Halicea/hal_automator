@@ -1,5 +1,5 @@
 from PySide import  QtGui
-from gen.config_operation import Ui_OperationWidget
+from hal_configurator.ui.gen.config_operation import Ui_OperationWidget
 from custom_widgets.dropable_line_edit import DropableLineEdit
 from hal_configurator.lib import plugin_loader
 

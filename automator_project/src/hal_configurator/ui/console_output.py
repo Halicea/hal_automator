@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.console_output import Ui_ConsoleOutput
+from hal_configurator.ui.gen.console_output import Ui_ConsoleOutput
 
 class ConsoleOutput(QtGui.QWidget, Ui_ConsoleOutput):
   def __init__(self, *args, **kwargs):

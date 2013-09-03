@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.regex_tool import Ui_RegexTool
+from hal_configurator.ui.gen.regex_tool import Ui_RegexTool
 import re
 class RegexTool(QtGui.QWidget, Ui_RegexTool):
   def __init__(self, *args, **kwargs):

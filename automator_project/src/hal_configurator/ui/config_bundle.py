@@ -1,5 +1,5 @@
 from PySide import QtGui, QtCore
-from gen.config_bundle import Ui_BundleWidget
+from hal_configurator.ui.gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
 from confirm_dialog import ConfirmDialog
 from hal_configurator.lib.plugin_loader import get_plugins

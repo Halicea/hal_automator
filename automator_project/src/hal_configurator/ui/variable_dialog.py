@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.variable_dialog import Ui_Dialog
+from hal_configurator.ui.gen.variable_dialog import Ui_Dialog
 from hal_configurator.ui.models import SimpleStringListModel
 
 

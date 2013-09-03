@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.resource_viewer import Ui_ResourceViewer
+from hal_configurator.ui.gen.resource_viewer import Ui_ResourceViewer
 
 class ResourceViewer(QtGui.QWidget, Ui_ResourceViewer):
   def __init__(self, *args, **kwargs):

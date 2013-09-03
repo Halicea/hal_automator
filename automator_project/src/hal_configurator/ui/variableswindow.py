@@ -1,5 +1,5 @@
 from PySide import QtGui, QtCore
-from gen.variableswindow import Ui_VariablesWindow
+from hal_configurator.ui.gen.variableswindow import Ui_VariablesWindow
 from confirm_dialog import ConfirmDialog
 from variable_dialog import VariableDialog
 

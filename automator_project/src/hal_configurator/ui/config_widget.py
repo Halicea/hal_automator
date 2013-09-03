@@ -1,6 +1,6 @@
 import shutil
 from PySide import QtGui, QtCore
-from gen.config import Ui_ConfigForm
+from hal_configurator.ui.gen.config import Ui_ConfigForm
 from config_bundle import BundleWidget
 from resourceswindow import ResourcesWindow
 from variableswindow import VariablesWindow

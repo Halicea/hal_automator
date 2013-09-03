@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.config_chooser import Ui_ConfigChooserWidget
+from hal_configurator.ui.gen.config_chooser import Ui_ConfigChooserWidget
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from hal_configurator.ui.configwindow import ConfigWindow
 

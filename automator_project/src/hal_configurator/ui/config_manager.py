@@ -1,6 +1,6 @@
 import os
 from PySide import QtGui, QtCore
-from gen.config_manager import Ui_ConfigManager
+from hal_configurator.ui.gen.config_manager import Ui_ConfigManager
 from PySide.QtCore import QDir, QEvent
 from PySide.QtGui import QFileSystemModel
 

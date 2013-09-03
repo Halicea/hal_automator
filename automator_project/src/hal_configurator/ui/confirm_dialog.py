@@ -1,6 +1,6 @@
 
 from PySide import QtGui, QtCore
-from gen.confirm_dialog import Ui_ConfirmDialog
+from hal_configurator.ui.gen.confirm_dialog import Ui_ConfirmDialog
 
 class ConfirmDialog(QtGui.QDialog, Ui_ConfirmDialog):
 

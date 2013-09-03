@@ -4,7 +4,7 @@ Created on Nov 23, 2012
 @author: kostamihajlov
 '''
 import os
-from gen.resourceswindow import Ui_ResourcesWindow
+from hal_configurator.ui.gen.resourceswindow import Ui_ResourcesWindow
 from PySide import QtCore, QtGui
 from global_vars import GlobalVars
 from confirm_dialog import ConfirmDialog

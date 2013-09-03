@@ -7,7 +7,7 @@ from hal_configurator.lib import app_config
 from hal_configurator.ui.console_output import ConsoleOutput
 from hal_configurator.lib.app_prebuilder import AppConfigurator
 from hal_configurator.lib.config_loaders import FileConfigLoader
-from gen.configwindow import Ui_ConfigWindow
+from hal_configurator.ui.gen.configwindow import Ui_ConfigWindow
 from config_widget import ConfigForm
 from hal_configurator.lib.logers import ZmqChainedLoger
 from hal_configurator.ui.config_runner_thread import ConfigRunnerThread

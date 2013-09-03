@@ -1,6 +1,6 @@
 
 from PySide import QtGui
-from gen.resource_dialog import Ui_ResourceDialog
+from hal_configurator.ui.gen.resource_dialog import Ui_ResourceDialog
 import os
 from global_vars import GlobalVars
 from confirm_dialog import ConfirmDialog

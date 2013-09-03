@@ -7,7 +7,7 @@ import os
 
 from PySide import QtGui, QtCore
 
-from gen.mainwindow import Ui_MainWindow
+from hal_configurator.ui.gen.mainwindow import Ui_MainWindow
 from configwindow import ConfigWindow
 from hal_configurator.ui.config_runner_thread import ConfigRunnerThread
 from hal_configurator.lib.logers import ZmqChainedLoger
