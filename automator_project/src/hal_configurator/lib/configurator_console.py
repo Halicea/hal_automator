@@ -13,7 +13,7 @@ svcUrl = "http://localhost:3000"
 def main():
   config_loader = get_config_loader()
   custom_bundles = get_additional_bundles()
-  custom_vars = get_additional_vars()
+  custom_vars = get_additional_vars(sys.argv)
   if custom_bundles:
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
@@ -29,17 +29,25 @@ def get_additional_bundles():
     ind = sys.argv.index("-custom-bundle")+1
     bundlestring = sys.argv[ind]
     custom_bundle = json.loads(bundlestring)
-    
   return custom_bundle
 
-def get_additional_vars():
+def get_additional_vars(args):
   custom_vars =[]
-  if "-custom-vars" in sys.argv:
-    ind = sys.argv.index("-custom-vars")+1
-    vars_string = sys.argv[ind]
-    custom_vars = json.loads(vars_string)
-    if not isinstance(custom_vars, list):
-      custom_vars = [custom_vars]
+  if "-custom-vars" in args:
+    ind = args.index("-custom-vars")+1
+    vars_string = args[ind]
+    custom_vars = []
+    for k in args[ind:]:
+      if '=' in k:
+        kar = k.split('=')
+        v = {"name":kar[0], "value":kar[1]}
+        custom_vars.append(v)
+      else:
+        break
+    print "Custom Variables:", custom_vars
+    # custom_vars = json.loads(vars_string)
+    # if not isinstance(custom_vars, list):
+    #   custom_vars = [custom_vars]
   return custom_vars
 
 
@@ -91,8 +99,10 @@ def __testRemote__():
   executor = CommandExecutor(verbose=True)
   builder = AppConfigurator(config_loader, executor)
   builder.apply()
-            
+
 if __name__ == '__main__':
+  if sys.argv[1]=="testVars":
+    get_additional_vars(sys.argv)
   if sys.argv[1]=="testLocal":
     __testLocal__()
   elif sys.argv[1]=="testRemote":

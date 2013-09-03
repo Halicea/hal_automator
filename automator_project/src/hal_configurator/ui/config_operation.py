@@ -2,6 +2,7 @@ from PySide import  QtGui
 from gen.config_operation import Ui_OperationWidget
 from custom_widgets.dropable_line_edit import DropableLineEdit
 from hal_configurator.lib import plugin_loader
+
 class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
   def __init__(self, bundle_widget,op, *args, **kwargs):
     """

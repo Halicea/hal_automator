@@ -38,7 +38,7 @@ def new_operation(code):
   if __op_templates.has_key(code):
     return copy.deepcopy(__op_templates[code])
   else:
-    raise NotImplementedError("Operation not supported")
+    raise NotImplementedError("Operation %s not supported"%code)
 
 def get_operation_codes():
   return __op_templates.keys()
