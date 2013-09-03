@@ -1,2 +1,3 @@
 automator_project/.project
 automator_project/.pydevproject
+automator_project/src/hal_configurator/ui/gen/*.pyc
