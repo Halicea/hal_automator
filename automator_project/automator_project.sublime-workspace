@@ -1,0 +1,1649 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"image",
+				"images"
+			],
+			[
+				"ima",
+				"images"
+			],
+			[
+				"get",
+				"get_format"
+			],
+			[
+				"resu",
+				"result_f"
+			],
+			[
+				"set_",
+				"set_to_context"
+			],
+			[
+				"auth",
+				"authCredentials"
+			],
+			[
+				"util",
+				"utils"
+			],
+			[
+				"purch",
+				"purchId"
+			],
+			[
+				"pur",
+				"purchId"
+			],
+			[
+				"Payment",
+				"PaymentModel"
+			],
+			[
+				"trans",
+				"transferedPurchases"
+			],
+			[
+				"Pay",
+				"PaymentModel"
+			],
+			[
+				"client",
+				"clientVersion"
+			],
+			[
+				"to",
+				"toBe"
+			],
+			[
+				"mess",
+				"messages"
+			],
+			[
+				"lo",
+				"login"
+			],
+			[
+				"for",
+				"forx	Range Comprehension (exclusive)"
+			],
+			[
+				"not",
+				"notcomplete"
+			],
+			[
+				"settin",
+				"settings_mediawire"
+			],
+			[
+				"RestRes",
+				"RestRequest"
+			],
+			[
+				"exten",
+				"extend(obj)	underscore.js"
+			],
+			[
+				"Paymen",
+				"PaymentModels"
+			],
+			[
+				"issu",
+				"issues_to_update"
+			],
+			[
+				"issue",
+				"issues_for_title"
+			],
+			[
+				"set",
+				"set_trace	(imported, function)"
+			],
+			[
+				"issues",
+				"issues_for_title"
+			],
+			[
+				"Item",
+				"ItemId"
+			],
+			[
+				"app",
+				"append	(builtin, function)"
+			],
+			[
+				"purchase",
+				"purchases"
+			],
+			[
+				"des",
+				"describe"
+			],
+			[
+				"in",
+				"util.inspect(obj, showHidden, depth, colors);"
+			],
+			[
+				"PaymentMode",
+				"PaymentModel"
+			],
+			[
+				"PaymenMode",
+				"PaymentModels"
+			],
+			[
+				"Platform",
+				"PlatformType"
+			],
+			[
+				"ng-",
+				"ng-app	AngularJS"
+			],
+			[
+				"purcha",
+				"purchase"
+			],
+			[
+				"ng-cli",
+				"ng-cli=  (attribute)"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"title",
+				"titlesService"
+			],
+			[
+				"succes",
+				"success(fn)	angular.js"
+			],
+			[
+				"login",
+				"loginService"
+			],
+			[
+				"fil",
+				"filter:filter"
+			],
+			[
+				"ng-su",
+				"ng-su=  (attribute)"
+			],
+			[
+				"ng-s",
+				"ng-src	AngularJS"
+			],
+			[
+				"displa",
+				"display:   (property)"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"ng",
+				"ng-bind	AngularJS"
+			],
+			[
+				"Payme",
+				"PaymentModels"
+			],
+			[
+				"plugin",
+				"plugin_loader"
+			],
+			[
+				"Convert",
+				"ConvertImageToFormat"
+			],
+			[
+				"file",
+				"filepath"
+			],
+			[
+				"publisher",
+				"publishers"
+			],
+			[
+				"Publisher",
+				"Publisher"
+			],
+			[
+				"payment",
+				"paymentModels"
+			],
+			[
+				"payme",
+				"paymentModels"
+			],
+			[
+				"paymentM",
+				"paymentModelSchema"
+			],
+			[
+				"chec",
+				"checkbox"
+			],
+			[
+				"progre",
+				"progress"
+			],
+			[
+				"Optimiz",
+				"Optimization"
+			],
+			[
+				"pull-",
+				"pull-left"
+			],
+			[
+				"pull",
+				"pull-left"
+			],
+			[
+				"console",
+				"console.log();"
+			],
+			[
+				"controller",
+				"controllers"
+			],
+			[
+				"Branded",
+				"BrandedApp"
+			],
+			[
+				"PlatformStat",
+				"PlatformStatus"
+			],
+			[
+				"check",
+				"checked"
+			],
+			[
+				"Publication",
+				"Publications"
+			],
+			[
+				"btn-",
+				"btn-group"
+			],
+			[
+				"chck",
+				"checked"
+			],
+			[
+				"Date",
+				"DateModified"
+			],
+			[
+				"time",
+				"timestampsPlugin"
+			],
+			[
+				"subsc",
+				"subscriptionSchema"
+			],
+			[
+				"tim",
+				"timestampsPlugin"
+			],
+			[
+				"fin",
+				"find"
+			],
+			[
+				"Is",
+				"IsActive"
+			],
+			[
+				"data",
+				"data_dict"
+			],
+			[
+				"App",
+				"AppPlatformStatus"
+			],
+			[
+				"Platfo",
+				"PlatformsStatus"
+			],
+			[
+				"pla",
+				"appPlatformStatusSchema"
+			],
+			[
+				"Publi",
+				"Published"
+			],
+			[
+				"Platfor",
+				"PlatformCode"
+			],
+			[
+				"produc",
+				"Products"
+			],
+			[
+				"pro",
+				"productSchema"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"find",
+				"findOne"
+			],
+			[
+				"inx",
+				"index_block"
+			],
+			[
+				"search",
+				"searchby"
+			],
+			[
+				"mixin",
+				"mixins"
+			],
+			[
+				"items",
+				"items_container"
+			],
+			[
+				"sea",
+				"searchInAttr"
+			],
+			[
+				"ta",
+				"target"
+			],
+			[
+				"modal",
+				"modalId"
+			],
+			[
+				"moda",
+				"modalId"
+			],
+			[
+				"btn",
+				"btnNew"
+			],
+			[
+				"configuration",
+				"configurationSchema"
+			],
+			[
+				"cate",
+				"Category"
+			],
+			[
+				"spla",
+				"splash18"
+			],
+			[
+				"con",
+				"contact"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Hal Automator",
+	"command_palette":
+	{
+		"height": 129.0,
+		"selected_items":
+		[
+			[
+				"Build: ",
+				"Build: Run"
+			],
+			[
+				"python",
+				"SublimeREPL: Python"
+			],
+			[
+				"form",
+				"Format: Javascript"
+			],
+			[
+				"mark",
+				"Set Syntax: Markdown"
+			],
+			[
+				"js",
+				"Coffee: Display JavaScript"
+			],
+			[
+				"for",
+				"Format: Javascript"
+			],
+			[
+				"coff",
+				"Format: CoffeeScript"
+			],
+			[
+				"shel",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"chec",
+				"Coffee: Check Syntax"
+			],
+			[
+				"che",
+				"Coffee: Check Syntax"
+			],
+			[
+				"ch",
+				"Coffee: Check Syntax"
+			],
+			[
+				"check",
+				"Coffee: Check Syntax"
+			],
+			[
+				"coffe",
+				"Coffee: Display JavaScript"
+			],
+			[
+				"run",
+				"Coffee: Run Script"
+			],
+			[
+				"cofee",
+				"Set Syntax: CoffeeScript"
+			],
+			[
+				"cof si",
+				"Coffee: Display JavaScript"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"ip",
+				"Package Control: Install Package"
+			],
+			[
+				"git",
+				"Git: Diff Tool All"
+			],
+			[
+				"nodejs",
+				"Nodejs::Build Completions"
+			],
+			[
+				"shell",
+				"SublimeREPL: Shell"
+			],
+			[
+				"arch",
+				"Tasks: Archive"
+			],
+			[
+				"task",
+				"Tasks: New document"
+			],
+			[
+				"min",
+				"Minify Javascript"
+			],
+			[
+				"mini",
+				"Minify Javascript"
+			],
+			[
+				"pdb",
+				"SublimeREPL: Python - PDB current file"
+			],
+			[
+				"py de",
+				"SublimeREPL: Python - PDB current file"
+			],
+			[
+				"user",
+				"Preferences: Settings - User"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"ena pa",
+				"Package Control: Enable Package"
+			],
+			[
+				"lp",
+				"Package Control: List Packages"
+			],
+			[
+				"gist",
+				"Gist: Open Gist in Browser"
+			],
+			[
+				"fet",
+				"Fetch: File"
+			],
+			[
+				"dis pa",
+				"Package Control: Disable Package"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			],
+			[
+				"tasks",
+				"Tasks: Open URL"
+			],
+			[
+				"Task",
+				"Tasks: Complete"
+			],
+			[
+				"ip ",
+				"Package Control: Install Package"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"i",
+				"Package Control: Install Package"
+			],
+			[
+				"dele",
+				"File: Delete"
+			],
+			[
+				"doc",
+				"Rope: Show Documentation"
+			],
+			[
+				"rope doc",
+				"Rope: Show Documentation"
+			],
+			[
+				"pi",
+				"Package Control: Install Package"
+			],
+			[
+				"proje",
+				"Project: Save As"
+			],
+			[
+				"proj",
+				"Project: Edit"
+			],
+			[
+				"rena",
+				"File: Rename"
+			],
+			[
+				"fetch",
+				"Fetch: Manage"
+			],
+			[
+				"jade",
+				"HTML2Jade: Convert file"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"p di",
+				"Package Control: Disable Package"
+			],
+			[
+				"jasmin",
+				"Jasmine: Switch between code and spec"
+			],
+			[
+				"jasmi",
+				"Jasmine: Switch between code and spec"
+			],
+			[
+				"bash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"them",
+				"Themr: List themes"
+			],
+			[
+				"the",
+				"Themr: List themes"
+			],
+			[
+				"nt",
+				"Themr: Next theme"
+			],
+			[
+				"i p ",
+				"Package Control: Install Package"
+			],
+			[
+				"l t",
+				"Themr: List themes"
+			],
+			[
+				"i p",
+				"Package Control: Install Package"
+			],
+			[
+				"canc",
+				"Build: Cancel"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"cance",
+				"Build: Cancel"
+			],
+			[
+				"buil",
+				"Build: Build"
+			],
+			[
+				"cancel",
+				"Build: Cancel"
+			],
+			[
+				"py ru",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"pyth",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"py",
+				"SublimeREPL: Python - IPython"
+			],
+			[
+				"py run",
+				"SublimeREPL: Python - RUN current file"
+			],
+			[
+				"g a",
+				"Git: Add..."
+			],
+			[
+				"gi ad ",
+				"Git: Add..."
+			],
+			[
+				"git com",
+				"Git: Commit"
+			],
+			[
+				"dif",
+				"Git: Diff Current File"
+			],
+			[
+				"",
+				"Snippet: #!/usr/bin/env"
+			],
+			[
+				"term",
+				"Open in terminal"
+			],
+			[
+				" i p",
+				"Package Control: Install Package"
+			],
+			[
+				" ip",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"i t",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"repl py",
+				"SublimeREPL: Python - IPython"
+			],
+			[
+				"gi s",
+				"Git: Status"
+			],
+			[
+				"git p",
+				"Git: Pull"
+			],
+			[
+				"git lo",
+				"Git: Log All"
+			],
+			[
+				"deb",
+				"Nodejs::Build Completions"
+			],
+			[
+				"node",
+				"Nodejs::Debug::Run::Current File"
+			],
+			[
+				"npm",
+				"Nodejs::NPM::List"
+			],
+			[
+				"create",
+				"Snippet: Snippet: HTTP Create Server"
+			],
+			[
+				"diff",
+				"Set Syntax: Diff"
+			],
+			[
+				"lowe",
+				"Convert Case: Lower Case"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"Insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"rest",
+				"Preferences: Key Bindings - Default"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"clea",
+				"Convert Case: Lower Case"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 435.0
+	},
+	"console":
+	{
+		"height": 383.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": true
+	},
+	"file_history":
+	[
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_automator.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/Makefile",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/configwindow.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/automator_project.sublime-project",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/setup.py",
+		"/Users/kostamihajlov/Desktop/orig_translations/english_ios.txt",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/PrintstandProtal.sublime-project",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/config.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/post_processing/postprocessing_tool.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/batch_runner.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/job_definitions.py",
+		"/Users/kostamihajlov/Documents/Mediawire.TODO",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/postprocessing_server.sublime-project",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_products.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/test/spec/test_products.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/urls.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/app.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/lib/auth.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/config.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_issues.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/config.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_purchases.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/lib/produceProducts.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/make-docs.sh",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/api.html",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/node_modules/express-api-docs/make-api-docs.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/node_modules/express/lib/router/methods.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/docs/Routes.md",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/version_support.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/tests-runner.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/purchase.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_auth.coffee",
+		"/Users/kostamihajlov/Desktop/test.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/config.coffee",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_helpers.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/node_modules/request-json/main.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/test_purchases.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/spec/jasmine.async.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/printstand_server.sublime-project",
+		"/Users/kostamihajlov/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/docs/README.md",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/tests/specs/test_purchases.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/docs/DPS_Failiure.2013.09.13.md",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/lib/statistics.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/lib/crud_service.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/test.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/test/some_package/inside_another/ok.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/test.js",
+		"/Users/kostamihajlov/Library/Application Support/Sublime Text 2/Packages/User/Fetch.sublime-settings",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/views/index.html",
+		"/Users/kostamihajlov/TestProjects/yeo_test/app/scripts/controllers/main.js",
+		"/Users/kostamihajlov/TestProjects/yeo_test/app/.buildignore",
+		"/Users/kostamihajlov/TestProjects/yeo_test/bower.json",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/issues.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/js/controllers/PublicationCtrl.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/PublicationDetails.html",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/js/services/titlesService.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/PubList.html",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/js/app.js",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/ios_single_title.json",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/models/products.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public/Titles.html",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/controllers/EditPublicationCtrl.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/services/titlesService.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/filters.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/NewPublication.html",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/PublicationDetails.html",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/services/TitlesService.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/controllers/LoginCtrl.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/Login.html",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/controllers/PublicationCtrl.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/services.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/directives.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/controllers/PublicationController.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/index.html",
+		"/Users/kostamihajlov/TestProjects/angular_training/app/js/app.js",
+		"/Users/kostamihajlov/TestProjects/angular_training/scripts/web-server.js",
+		"/Users/kostamihajlov/MyProjects/ECP/wordpress/wp-includes/js/jquery/ui/jquery.ui.effect-highlight.min.js",
+		"/Users/kostamihajlov/MyProjects/ECP/wordpress/wp-config.php",
+		"/Users/kostamihajlov/MyProjects/ECP/wordpress/wp-content/languages/mk_MK.mo",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/lib/validators.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/statistics.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/integration_tests/prinstand_integration_tests.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/.idea/jsLibraryMappings.xml",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/app_configurations.js",
+		"/Users/kostamihajlov/Desktop/niko.txt",
+		"/Users/kostamihajlov/MyProjects/PrintStandClient/src/MonoTouch/Mediawire.PrintStand.Mobile.Presentation.MonoTouch/mk.lproj/Localizable.strings",
+		"/Users/kostamihajlov/Desktop/file_remove.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/utils.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/sync_server/printstand/pubpit_importer.py",
+		"/Users/kostamihajlov/Desktop/makedonski.xml",
+		"/Users/kostamihajlov/MyProjects/MediawireBoxing.git/AldenTestCode/annotator_web/static/js/bootbox.js",
+		"/Users/kostamihajlov/DevApps/wordpress/wp-content/themes/evolve/searchform.php",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/.git/config",
+		"/Users/kostamihajlov/Desktop/svadba.txt",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/Themes/iOS/LightGrey/bc.json",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/ios_required_variables.json",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/Baseball/IOS/bc.json",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/ios_multi_title.json",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/Themes/iOS/LightGrey/genResData.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/lib/models.js",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/publications.js",
+		"/Users/kostamihajlov/MyProjects/MediawireBoxing.git/BoxingClient.py",
+		"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/routes/svc/products.js",
+		"/Users/kostamihajlov/Library/Application Support/Sublime Text 2/Packages/Nodejs/Nodejs.sublime-settings",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/products.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/branded_apps.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/lib/middleware.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/lib/models.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/views/titles/products.jade",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/titles.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/roles.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/paymentModels.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/test_jenkins.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/urls.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/server.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/config.json",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/titles.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/users.js",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/node_modules/mongoose/package.json",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/replace_text.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/config_operation.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/lib/command_base.py",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/views/issues/issues_list.jade",
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/package.json",
+		"/Users/kostamihajlov/Desktop/diffed/infiles",
+		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/ActiveLethbridge/Android/bc.json",
+		"/Users/kostamihajlov/Desktop/diffed/activelethbridge"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"~/Desktop/stav/dump.sql",
+			"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service",
+			"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public",
+			"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins",
+			"/Users/kostamihajlov/MyProjects/hal_automator/automator_project",
+			"/Users/kostamihajlov/MyProjects/ECP/wordpress/wp-content/plugins/jetpack/modules/contact-form",
+			"transslated.xml",
+			"-/Users/kostamihajlov/MyProjects/PrintstandPortal/node_modules",
+			"node_modules",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\" ",
+			"\"\\n",
+			"\" ",
+			"SingleIssue",
+			"SingleI",
+			"generate_thumbnails_from_pdf",
+			"GenerateThumbs",
+			"createIssuePaymentModelFromTitle",
+			"createIssueProduct",
+			"home",
+			"POST",
+			"GET",
+			"branded_apps",
+			"brandedApps",
+			"brand",
+			"analyzeFile",
+			"@purchId",
+			"->",
+			"=>",
+			"pid",
+			"conso",
+			"\", \"",
+			"\"",
+			"transa",
+			"\"_id\" : ObjectId",
+			"PaymentModel",
+			"purcha",
+			"console",
+			"user",
+			"JsonClient",
+			"post",
+			"token",
+			"console.lo",
+			"console",
+			"util",
+			"headers",
+			"    ",
+			"login",
+			"options",
+			"set_issue_payment_model",
+			"find_one",
+			"popula",
+			"set_issue_payment_model",
+			"set_issue_payment_model(issue, t, pm)",
+			"populateProducts",
+			"__test_all_issues__",
+			"__test_all_titles__",
+			"__test_all_issues__",
+			"issues",
+			"__create_new_product__",
+			"i ",
+			"form",
+			"    \n",
+			"t ",
+			"var t",
+			"server",
+			"options",
+			"async",
+			"save_new",
+			"createIssuePaymentModelFromTitle",
+			"TYPE=MyISAM",
+			"-- *",
+			"bytransactions",
+			"view",
+			"byTra",
+			"find issue with id:",
+			"createIssuePaymentModelFromTitle",
+			"createIssueProduct",
+			"console.lo",
+			"saving the issue activity",
+			"saving the issue",
+			"createIssuePaymentModelFromTitle",
+			"var quer",
+			"_id =",
+			"_id ==",
+			"createIssuePaymentModelFromTitle",
+			"save_new",
+			": function",
+			"login",
+			"2",
+			"trFilter",
+			"Price",
+			"IsPublished",
+			"Title",
+			"shutil",
+			"Operation not supported",
+			"validateConsumedItemData",
+			"validateAutoLoginData",
+			"login",
+			"submit_button_text",
+			"Submit",
+			"Message Sent",
+			" \n",
+			"validateUser",
+			"produ",
+			"mobileRedirectMiddleware",
+			"websi",
+			"String",
+			"popUp",
+			"show",
+			"per",
+			"scri",
+			"connect",
+			"db_connect",
+			"mongoose.connect",
+			"mongojs.connect",
+			"mongo",
+			"issue.Settings",
+			"getFileName",
+			"uploadFileLocaly",
+			"save",
+			"i",
+			"realIds",
+			"$or",
+			"ImageResource",
+			"index",
+			"coll",
+			"product",
+			"defaultP",
+			"ReplaceFromUrl",
+			"operation",
+			"destination",
+			"Destination",
+			"generationTime",
+			"progress",
+			"generationTime",
+			"length",
+			"\""
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"ENGINE=MyISAM",
+			"  ",
+			""
+		],
+		"reverse": true,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		},
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.80109456735,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 344.0
+	},
+	"output.find_results":
+	{
+		"height": 199.0
+	},
+	"output.git":
+	{
+		"height": 179.0
+	},
+	"output.rope_python_documentation":
+	{
+		"height": 110.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"prodpr",
+				"printstand/produce_products.py"
+			],
+			[
+				"method",
+				"node_modules/express/lib/router/methods.js"
+			],
+			[
+				"api",
+				"public/api.html"
+			],
+			[
+				"make-",
+				"node_modules/express-api-docs/make-api-docs.js"
+			],
+			[
+				"purcha",
+				"routes/svc/purchase.js"
+			],
+			[
+				"auth.",
+				"tests/lib/auth.coffee"
+			],
+			[
+				"urls",
+				"urls.js"
+			],
+			[
+				"filt",
+				"app/js/filters.js"
+			],
+			[
+				"wpconf",
+				"wordpress/wp-config.php"
+			],
+			[
+				"prod",
+				"models/products.js"
+			],
+			[
+				"vipro",
+				"views/titles/products_list.jade"
+			],
+			[
+				"modpro",
+				"models/products.js"
+			],
+			[
+				"produ",
+				"controllers/products.js"
+			],
+			[
+				"modtit",
+				"models/titles.js"
+			],
+			[
+				"tit",
+				"controllers/titles.js"
+			],
+			[
+				"modpay",
+				"models/paymentModels.js"
+			],
+			[
+				"paymen",
+				"controllers/payment_models.js"
+			],
+			[
+				"",
+				"models/brandedApps.js"
+			],
+			[
+				"conbr",
+				"controllers/branded_apps.js"
+			],
+			[
+				"users",
+				"controllers/users.js"
+			],
+			[
+				"title",
+				"controllers/titles.js"
+			],
+			[
+				"titles",
+				"controllers/titles.js"
+			],
+			[
+				"server",
+				"server.js"
+			],
+			[
+				"test",
+				"controllers/test_jenkins.js"
+			],
+			[
+				"config",
+				"config.json"
+			],
+			[
+				"brande",
+				"controllers/branded_apps.js"
+			],
+			[
+				"paym",
+				"models/paymentModels.js"
+			],
+			[
+				"produc",
+				"models/products.js"
+			],
+			[
+				"comma",
+				"src/hal_configurator/lib/command_base.py"
+			],
+			[
+				"pl",
+				"plugins/replace_text.py"
+			],
+			[
+				"comm",
+				"src/hal_configurator/lib/command_base.py"
+			],
+			[
+				"ope",
+				"src/hal_configurator/ui/config_operation.py"
+			],
+			[
+				"opwi",
+				"src/hal_configurator/ui/custom_widgets/operation_widget.py"
+			],
+			[
+				"libop",
+				"src/hal_configurator/lib/command_base.py"
+			],
+			[
+				"plop",
+				"plugins/operations_bundle.py"
+			],
+			[
+				"oper",
+				"src/hal_configurator/ui/config_operation.py"
+			],
+			[
+				"url",
+				"urls.js"
+			],
+			[
+				"pro",
+				"controllers/products.js"
+			],
+			[
+				"issue",
+				"controllers/issues.js"
+			],
+			[
+				"issinde",
+				"views/issues/index_block.jade"
+			],
+			[
+				"issues",
+				"controllers/issues.js"
+			],
+			[
+				"branded",
+				"controllers/branded_apps.js"
+			],
+			[
+				"bra",
+				"controllers/branded_apps.js"
+			],
+			[
+				"brama",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"mode",
+				"lib/models.js"
+			],
+			[
+				"bredit",
+				"views/branded_apps/edit_partial.jade"
+			],
+			[
+				"bred",
+				"views/branded_apps/edit.jade"
+			],
+			[
+				"veco",
+				"views/test/veco.jade"
+			],
+			[
+				"util",
+				"lib/utils.js"
+			],
+			[
+				"tiin",
+				"views/titles/index.jade"
+			],
+			[
+				"ur",
+				"urls.js"
+			],
+			[
+				"model",
+				"lib/models.js"
+			],
+			[
+				"titman",
+				"views/titles/manage.jade"
+			],
+			[
+				"braman",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"braeditpa",
+				"views/branded_apps/edit_partial.jade"
+			],
+			[
+				"braed",
+				"views/branded_apps/edit.jade"
+			],
+			[
+				"brman",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"braedit",
+				"views/branded_apps/edit_partial.jade"
+			],
+			[
+				"manla",
+				"views/manage_layout.jade"
+			],
+			[
+				"models",
+				"lib/models.js"
+			],
+			[
+				"braview",
+				"views/branded_apps/view.jade"
+			],
+			[
+				"bran",
+				"controllers/branded_apps.js"
+			],
+			[
+				"titmanage",
+				"views/titles/manage.jade"
+			],
+			[
+				"titmana",
+				"views/titles/manage.jade"
+			],
+			[
+				"man",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"brin",
+				"views/branded_apps/index_block.jade"
+			],
+			[
+				"braded",
+				"controllers/branded_apps.js"
+			],
+			[
+				"lay",
+				"views/layout.jade"
+			],
+			[
+				"branman",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"index_",
+				"views/titles/index_block.jade"
+			],
+			[
+				"pubin",
+				"views/publishers/index_block.jade"
+			],
+			[
+				"publ",
+				"controllers/publishers.js"
+			],
+			[
+				"publi",
+				"controllers/publishers.js"
+			],
+			[
+				"edit_mi",
+				"views/mixins/edit_mixin.jade"
+			],
+			[
+				"brinde",
+				"views/branded_apps/index.jade"
+			],
+			[
+				"inde",
+				"views/titles/index.jade"
+			],
+			[
+				"index_mi",
+				"views/mixins/index_mixins.jade"
+			],
+			[
+				"titin",
+				"views/titles/index.jade"
+			],
+			[
+				"titblo",
+				"views/titles/index_block.jade"
+			],
+			[
+				"brvi",
+				"views/branded_apps/view.jade"
+			],
+			[
+				"layou",
+				"views/layout.jade"
+			],
+			[
+				"mana",
+				"views/manage_layout.jade"
+			],
+			[
+				"view",
+				"views/branded_apps/view.jade"
+			],
+			[
+				"edit",
+				"views/branded_apps/edit_partial.jade"
+			],
+			[
+				"managela",
+				"views/manage_layout.jade"
+			],
+			[
+				"branma",
+				"views/branded_apps/manage.jade"
+			],
+			[
+				"issindex",
+				"views/issues/index_block.jade"
+			],
+			[
+				"editpa",
+				"views/titles/edit_partial.jade"
+			],
+			[
+				"titvi",
+				"views/titles/view.jade"
+			],
+			[
+				"titedi",
+				"views/titles/edit.jade"
+			],
+			[
+				"titleedi",
+				"views/titles/edit_partial.jade"
+			],
+			[
+				"vie",
+				"views/titles/view.jade"
+			],
+			[
+				"titeditp",
+				"views/titles/edit_partial.jade"
+			],
+			[
+				"tinde",
+				"views/titles/index.jade"
+			],
+			[
+				"titindex",
+				"views/titles/index_block.jade"
+			],
+			[
+				"br",
+				"controllers/branded_apps.js"
+			],
+			[
+				"brade",
+				"controllers/branded_apps.js"
+			],
+			[
+				"titinde",
+				"views/titles/index_block.jade"
+			],
+			[
+				"tiinde",
+				"views/titles/index_block.jade"
+			],
+			[
+				"tedit",
+				"views/titles/edit.jade"
+			],
+			[
+				"tvie",
+				"views/titles/view.jade"
+			],
+			[
+				"pview",
+				"views/publishers/view.jade"
+			],
+			[
+				"pinde",
+				"views/publishers/index.jade"
+			],
+			[
+				"mo",
+				"lib/models.js"
+			],
+			[
+				"tim",
+				"lib/timestampsPlugin.js"
+			],
+			[
+				"lib/",
+				"lib/utils.js"
+			],
+			[
+				"edit_",
+				"views/branded_apps/edit_partial.jade"
+			],
+			[
+				"titl",
+				"controllers/titles.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 293.0,
+	"status_bar_visible": true
+}

@@ -1,19 +1,17 @@
 #!/usr/bin/env python
 import sys
 import os
+
 from hal_configurator.lib.app_config import config
 from hal_configurator.lib.plugin_loader import load_plugins_from_directory_list
-from hal_configurator.ui.configwindow import ConfigWindow
 
 load_plugins_from_directory_list(config.plugin_dirs)
 sys.path.append(os.path.abspath(__file__))
 import hal_configurator.lib.configurator_console as console
-from hal_configurator.ui.config_manager import ConfigManager
-try:
-  from PySide import QtGui, QtCore, QtCore
-  from PySide.QtGui import  QCloseEvent
-  from hal_configurator.ui.mainwindow import MainWindow
 
+try:
+  from PySide import QtGui
+  from hal_configurator.ui.configwindow import ConfigWindow
 except Exception, ex:
   print ex
   print "No Qt Installed"
@@ -28,8 +26,6 @@ def main(isAdmin):
   :type : isAdmin: bool
   """
   app = QtGui.QApplication(sys.argv)
-  #"windows", "motif", "cde", "plastique", "windowsxp", or "macintosh"
-  #app.setStyle("macintosh")
   mw = ConfigWindow(None)
   mw.show()
   app.setWindowIcon(QtGui.QIcon())
@@ -42,5 +38,3 @@ if __name__ == "__main__":
     main(True)
   else:
     console.main()
-
-

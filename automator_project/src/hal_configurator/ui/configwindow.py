@@ -120,7 +120,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
 
   def open_config(self):
     cur_dir = app_config.get_config_history()[-1]
-    params = {"caption":"Choose Configuration","filter":"bc.json"}
+    params = {"caption":"Choose Configuration","filter":"Config Files(*.json *.halc)"}
     if cur_dir:
       params["dir"] = app_config.get_config_history()[-1]
     f = QtGui.QFileDialog.getOpenFileName(**params)

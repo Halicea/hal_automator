@@ -2,6 +2,7 @@
 Created on Jan 27, 2013
 @author: Costa Halicea
 '''
+
 class DynamicObject:
   '''The recursive class for building and representing objects with.'''
   def __init__(self, obj):

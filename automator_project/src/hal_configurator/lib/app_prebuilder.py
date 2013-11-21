@@ -2,7 +2,6 @@ from copy import deepcopy
 
 __author__='Costa Halicea'
 import os
-import urllib
 import re
 from hal_configurator.lib.command_executor import CommandExecutor
 

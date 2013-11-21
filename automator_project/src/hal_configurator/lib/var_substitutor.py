@@ -10,7 +10,6 @@ class VarSubstitutor(object):
       if "{{"+k["name"]+"}}" in string:
         string = string.replace("{{"+k["name"]+"}}", k["value"])
     return string
-  
   def substitute_resources(self, string):
     for k in self.resources:
       if "{#"+k["rid"]+"#}" in string:

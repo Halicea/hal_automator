@@ -1,0 +1,24 @@
+{
+	"folders":
+	[
+		{
+			"path": "./"
+		}
+	],
+	"build_systems":[
+		{
+			"name":"Hal Automator",
+			"cmd":["make", "run"],
+			"variants":[
+				{
+					"name":"Run",
+					"cmd":["make", "run"]
+				},
+			  {
+					"name":"Debug",
+					"cmd":["make", "debug"]
+				}	
+			]
+		}
+	]
+}
