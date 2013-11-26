@@ -1,6 +1,5 @@
 import sys
 
-
 class DebugSettings(object):
   def __init__(self, set_breakpoint=True):
     self.breakpoint = set_breakpoint
@@ -67,7 +66,8 @@ class OperationBase(object):
   
   @classmethod
   def get_code(cls):
-    return  str(cls.__module__)
+    from hal_configurator.lib.plugin_loader import get_command_for_plugin
+    return get_command_for_plugin(cls)
   
   @classmethod
   def get_arg_descriptors(cls):

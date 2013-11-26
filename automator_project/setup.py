@@ -12,5 +12,5 @@ setup(
   packages= find_packages('src'),
   scripts=["src/hal_automator.py"],
   long_description = read("README.rst"),
-  requires=['requests', 'pyzmq', 'config']
+  requires=['requests', 'pyzmq', 'config', 'pil', 'pyside']
 )

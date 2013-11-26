@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"hal",
+				"hal_configurator"
+			],
+			[
+				"__plugi",
+				"__plugins_list__	(global, instance)"
+			],
+			[
+				"getm",
+				"get_module_and_class_from_cmd(cmd)	(global, function)"
+			],
+			[
+				"plugin",
+				"plugin_list"
+			],
+			[
 				"image",
 				"images"
 			],
@@ -194,10 +210,6 @@
 			[
 				"Payme",
 				"PaymentModels"
-			],
-			[
-				"plugin",
-				"plugin_loader"
 			],
 			[
 				"Convert",
@@ -403,9 +415,21 @@
 	"build_system": "Hal Automator",
 	"command_palette":
 	{
-		"height": 129.0,
+		"height": 57.0,
 		"selected_items":
 		[
+			[
+				"Build: run",
+				"Build: Run"
+			],
+			[
+				"Build: ru",
+				"Build: Run"
+			],
+			[
+				"Build: r",
+				"Build: Run"
+			],
 			[
 				"Build: ",
 				"Build: Run"
@@ -820,10 +844,26 @@
 	},
 	"file_history":
 	[
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/gen/config_operation.py",
 		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_automator.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/automator_project.sublime-project",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/config_operation.ui",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/add_android_resource.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/lib/plugin_loader.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/tool_set.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/models.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/.project",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/__init__.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/__init__.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/delete_file.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/shell_script.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/install_ios_certificate.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/remove_provisioning_profile.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/add_ios_provisioning_profile.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/config_reference.py",
+		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/win_installer/installer-cache/part2/output-info.ini",
 		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/Makefile",
 		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/configwindow.py",
-		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/automator_project.sublime-project",
 		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/setup.py",
 		"/Users/kostamihajlov/Desktop/orig_translations/english_ios.txt",
 		"/Users/kostamihajlov/MyProjects/PrintstandPortal/PrintstandProtal.sublime-project",
@@ -931,23 +971,7 @@
 		"/Users/kostamihajlov/MyProjects/PrintstandPortal/lib/models.js",
 		"/Users/kostamihajlov/MyProjects/PrintstandPortal/views/titles/products.jade",
 		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/titles.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/roles.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/paymentModels.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/test_jenkins.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/urls.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/server.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/config.json",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/titles.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/controllers/users.js",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/node_modules/mongoose/package.json",
-		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/plugins/replace_text.py",
-		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/ui/config_operation.py",
-		"/Users/kostamihajlov/MyProjects/hal_automator/automator_project/src/hal_configurator/lib/command_base.py",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/views/issues/issues_list.jade",
-		"/Users/kostamihajlov/MyProjects/PrintstandPortal/package.json",
-		"/Users/kostamihajlov/Desktop/diffed/infiles",
-		"/Users/kostamihajlov/MyProjects/MediawireConfigurations/ActiveLethbridge/Android/bc.json",
-		"/Users/kostamihajlov/Desktop/diffed/activelethbridge"
+		"/Users/kostamihajlov/MyProjects/PrintstandPortal/models/roles.js"
 	],
 	"find":
 	{
@@ -958,6 +982,7 @@
 		"height": 0.0,
 		"where_history":
 		[
+			"",
 			"~/Desktop/stav/dump.sql",
 			"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service",
 			"/Users/kostamihajlov/MyProjects/PrintStandServer/src/service/public",
@@ -975,6 +1000,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"get_plugins_list",
+			"get_all",
+			"__all__",
+			"backgroud",
+			"plugins",
+			"ToolsListModel",
+			"__plugin__",
+			"plugin",
+			"get_plugin_cl",
+			"__plugin__",
+			"command",
 			"\" ",
 			"\"\\n",
 			"\" ",
@@ -1091,18 +1127,7 @@
 			"$or",
 			"ImageResource",
 			"index",
-			"coll",
-			"product",
-			"defaultP",
-			"ReplaceFromUrl",
-			"operation",
-			"destination",
-			"Destination",
-			"generationTime",
-			"progress",
-			"generationTime",
-			"length",
-			"\""
+			"coll"
 		],
 		"highlight": true,
 		"in_selection": false,

@@ -14,15 +14,15 @@ def get_plugins(plugin_dir):
   #check to see if a plugins directory exists and add any found plugins
   # (even if they're zipped)
   if os.path.exists(plugin_dir):
-    plugins = os.listdir(plugin_dir)
+    plugins = [x for x in os.listdir(plugin_dir) if not x.startswith('.') and (x.endswith('.py') or os.path.isdir(os.path.join(plugin_dir, x)))]
     pattern = ".py$"
     for plugin in plugins:
       plugin_path = os.path.join(plugin_dir, plugin)
-      if os.path.splitext(plugin)[1] == ".zip":
-        sys.path.append(plugin_path)
-        (plugin, ext) = os.path.splitext(plugin) # Get rid of the .zip extension
-        registered_plugins.append(plugin)
-      elif plugin != "__init__.py":
+#      if os.path.splitext(plugin)[1] == ".zip":
+#        sys.path.append(plugin_path)
+#        (plugin, ext) = os.path.splitext(plugin) # Get rid of the .zip extension
+#        registered_plugins.append(plugin)
+      if plugin != "__init__.py":
         if re.search(pattern, plugin):
           (shortname, ext) = os.path.splitext(plugin)
           registered_plugins.append(shortname)
@@ -30,10 +30,9 @@ def get_plugins(plugin_dir):
         plugins = os.listdir(plugin_path)
         for plugin in plugins:
           if plugin != "__init__.py":
-            if re.search(pattern, plugin):
-              (shortname, ext) = os.path.splitext(plugin)
-              sys.path.append(plugin_path)
-              registered_plugins.append(shortname)
+            (shortname, ext) = os.path.splitext(plugin)
+            sys.path.append(plugin_path)
+            registered_plugins.append(shortname)
   return registered_plugins
 
 def init_plugin_system(cfg):
@@ -60,7 +59,7 @@ def load_plugins(plugins):
     if plugin not in OperationBase.__subclasses__():
       # This takes care of importing zipped plugins:
       __import__(plugin, None, None, [plugin])
-
+__plugins_list__ = []
 def load_plugins_from_directory_list(plugin_dirs):
   """
   Loads all the plugins found in a specific directory
@@ -70,9 +69,49 @@ def load_plugins_from_directory_list(plugin_dirs):
   for plugin_dir in plugin_dirs:
     plugin_list = get_plugins(plugin_dir)
     init_plugin_system({'plugin_path': plugin_dir, 'plugins': plugin_list})
+    for p in plugin_list:
+      module=get_plugin_module(p)
+      if hasattr(module, '__plugins__'):
+        for plugClass in module.__plugins__:
+          __plugins_list__.append('%s.%s'%(p, plugClass.__name__))
+      if hasattr(module,'__plugin__'):
+        __plugins_list__.append(p)
+
+def get_plugins_list():
+  return list(set(__plugins_list__))
 
 def get_plugin_cls(command):
-  cmd  = command["Code"]
-  plugin_module = __import__(cmd)
-  plugin_cls = plugin_module.__plugin__
+  cmd  = isinstance(command, (str, unicode)) and command or command["Code"]
+  module, claz = get_module_and_class_names_from_cmd(cmd)
+  plugin_module = __import__(module)
+  plugin_cls = None
+  if claz:
+    plugin_cls = eval('plugin_module.%s'%claz)
+  else:
+    plugin_cls = plugin_module.__plugin__
   return plugin_cls
+
+
+def get_plugin_module(command):
+  cmd  = isinstance(command, str) and  command or command["Code"]
+  module, claz =  get_module_and_class_names_from_cmd(cmd)
+  return __import__(module)
+
+def get_module_and_class_names_from_cmd(cmd):
+  if '.' in cmd:
+    a = cmd.split('.')
+    return a[0], a[1]
+  else:
+    return cmd, None
+
+def get_command_for_plugin(plugin_cls):
+  module = plugin_cls.__module__
+  cls_name = plugin_cls.__name__
+  matched = filter(lambda x:x.startswith(module), get_plugins_list())
+  if len(matched)==1 and matched[0] == module:
+    return matched[0]
+  elif len(matched)>1:
+    final = filter(lambda x:x.endswith(cls_name), matched)
+    if len(final)>0:
+      return final[0]
+  return None

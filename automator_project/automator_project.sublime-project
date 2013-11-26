@@ -12,7 +12,7 @@
 			"variants":[
 				{
 					"name":"Run",
-					"cmd":["make", "run"]
+					"cmd":["/usr/local/bin/python", "./src/hal_automator.py"]
 				},
 			  {
 					"name":"Debug",

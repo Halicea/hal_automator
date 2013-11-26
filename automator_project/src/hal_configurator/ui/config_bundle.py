@@ -2,7 +2,7 @@ from PySide import QtGui, QtCore
 from hal_configurator.ui.gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
 from confirm_dialog import ConfirmDialog
-from hal_configurator.lib.plugin_loader import get_plugins
+from hal_configurator.lib.plugin_loader import get_plugins_list
 from hal_configurator.lib.app_config import config
 from models import ToolsListModel
 
@@ -11,11 +11,12 @@ class OpChooserDialog(QtGui.QDialog):
         super(OpChooserDialog, self).__init__(parent)
         self.setWindowTitle("Choose Operation Type")
         self.cmb = QtGui.QComboBox(self)
-        self.plugins = []
-        plugin_dirs = config.plugin_dirs
-        for d in plugin_dirs:
-          self.plugins.extend(get_plugins(d))
-        self.cmb.setModel(ToolsListModel(self.plugins))
+#        self.plugins = []
+#        plugin_dirs = config.plugin_dirs
+#        for d in plugin_dirs:
+#          self.plugins.extend(get_plugins(d))
+#        self.cmb.setModel(ToolsListModel(self.plugins))
+        self.cmb.setModel(ToolsListModel(sorted(get_plugins_list())))
 
 class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
   def __init__(self, bundle, *args, **kwargs):

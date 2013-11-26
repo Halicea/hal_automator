@@ -15,8 +15,8 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
     """
     super(OperationWidget, self).__init__(*args, **kwargs)
     self.op = op
-    c = plugin_loader.get_plugin_cls(self.op)
-    self.descriptors = c.get_arg_descriptors()
+    self.plugin_class = plugin_loader.get_plugin_cls(self.op['Code'])
+    self.descriptors = self.plugin_class.get_arg_descriptors()
     self.bundle_widget = bundle_widget
     self.items =[]
     self.setupUi()
@@ -27,7 +27,7 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
     super(OperationWidget,self).setupUi(self)
 
   def bindUi(self):
-    self.setWindowTitle(self.op["Code"])
+    self.setWindowTitle(self.plugin_class.get_name())
     #self.la_name.setText(self.op["Code"])
     if self.op.has_key("Description"):
       self.la_description.setText(self.op["Description"])
