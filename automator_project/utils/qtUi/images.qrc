@@ -3,5 +3,8 @@
         <file>images/Button-Add-icon.png</file>
         <file>images/HAL-9000-icon.png</file>
         <file>images/Button-Delete-icon.png</file>
+        <file>images/package.png</file>
+        <file>images/select_bundles.png</file>
+        <file>images/debug.png</file>
     </qresource>
 </RCC>

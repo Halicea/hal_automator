@@ -1,9 +1,8 @@
 from PySide import QtGui, QtCore
-from hal_configurator.ui.gen.config_bundle import Ui_BundleWidget
 from config_operation import OperationWidget
 from confirm_dialog import ConfirmDialog
 from hal_configurator.lib.plugin_loader import get_plugins_list
-from hal_configurator.lib.app_config import config
+from hal_configurator.ui.gen.config_bundle import Ui_BundleWidget
 from models import ToolsListModel
 
 class OpChooserDialog(QtGui.QDialog):

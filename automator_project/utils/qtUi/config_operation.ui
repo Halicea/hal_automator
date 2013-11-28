@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+   <sizepolicy hsizetype="Preferred" vsizetype="MinimumExpanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <property name="styleSheet">
-   <string notr="true">backgroud:qlineargradient(spread:pad, x1:1, y1:0.136364, x2:0.064, y2:0.732545, stop:0 rgba(132, 132, 132, 255), stop:1 rgba(255, 255, 255, 255))</string>
+   <string notr="true"/>
   </property>
   <property name="features">
    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable|QDockWidget::DockWidgetVerticalTitleBar</set>
@@ -33,7 +33,7 @@
     </sizepolicy>
    </property>
    <property name="styleSheet">
-    <string notr="true">background:qlineargradient(spread:pad, x1:0.69, y1:1, x2:0.374438, y2:0.096, stop:0 rgba(132, 132, 132, 255), stop:1 rgba(255, 255, 255, 255))</string>
+    <string notr="true"/>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
@@ -72,8 +72,7 @@
           <bool>false</bool>
          </property>
          <property name="styleSheet">
-          <string notr="true">background:qlineargradient(spread:pad, x1:1, y1:0.136364, x2:0.064, y2:0.732545, stop:0 rgba(132, 132, 132, 255), stop:1 rgba(255, 255, 255, 255));
-border-color:light-gray;</string>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -86,7 +85,7 @@ border-color:light-gray;</string>
        <number>0</number>
       </property>
       <property name="sizeConstraint">
-       <enum>QLayout::SetMaximumSize</enum>
+       <enum>QLayout::SetDefaultConstraint</enum>
       </property>
       <property name="topMargin">
        <number>0</number>

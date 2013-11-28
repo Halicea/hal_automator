@@ -1,7 +1,7 @@
-from PySide import  QtGui
-from hal_configurator.ui.gen.config_operation import Ui_OperationWidget
+from PySide import QtGui
 from custom_widgets.dropable_line_edit import DropableLineEdit
 from hal_configurator.lib import plugin_loader
+from hal_configurator.ui.gen.config_operation import Ui_OperationWidget
 
 class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
   def __init__(self, bundle_widget,op, *args, **kwargs):
@@ -33,9 +33,7 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
       self.la_description.setText(self.op["Description"])
     else:
       self.la_description.setText("No Description is set!")
-      #self.la_description.setStyle("color:red;")
-    arguments = self.ltv_content
-    
+      
     for desc in self.descriptors:
       arg = desc.name
       la = desc.name

@@ -1,7 +1,7 @@
 import os
 from PySide import QtGui, QtCore
 from hal_configurator.ui.gen.config_manager import Ui_ConfigManager
-from PySide.QtCore import QDir, QEvent
+from PySide.QtCore import QDir
 from PySide.QtGui import QFileSystemModel
 
 from hal_configurator.ui.configwindow import ConfigWindow
@@ -44,7 +44,7 @@ class ConfigManager(QtGui.QMainWindow, Ui_ConfigManager):
 
   @QtCore.Slot()
   def publish_clicked(self):
-    index = self.treeView.currentIndex()
+#    index = self.treeView.currentIndex()
     pass
 
   def open_config(self, config_path):

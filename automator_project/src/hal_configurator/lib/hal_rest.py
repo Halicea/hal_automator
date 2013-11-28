@@ -5,10 +5,9 @@ prinstand_integration_tests.py
 Created by Kosta Mihajlov on 2012-07-19.
 Copyright (c) 2012 Halicea.Co. All rights reserved.
 """
-import requests    
-import json 
-import datetime  
-import random                                                                                                   
+import datetime
+import json
+import requests
 verbose = True
 address = None
 def run_tests(title, test_address, tests_dict):
@@ -31,10 +30,10 @@ def set_address(add):
   global address
   address = add
 
-def execute_request(token, selector, headers={}, method="GET", data="", file=None):
+def execute_request(token, selector, headers={}, method="GET", data="", attachment=None):
   req = method=="POST" and requests.post or requests.get   
   print address
-  res = req(address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  file and {'file':file} or None) 
+  res = req(address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  attachment and {'attachment':attachment} or None) 
   if verbose:
     print
     print "Request"
@@ -74,10 +73,10 @@ class HalRest(object):
     self.verbose = verbose
     self.address = address 
     
-  def execute_request(self, token, selector, headers={}, method="GET", data="", file=None):
+  def execute_request(self, token, selector, headers={}, method="GET", data="", attachment=None):
     req = method=="POST" and requests.post or requests.get   
     #print self.address
-    res = req(self.address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  file and {'file':file} or None) 
+    res = req(self.address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  attachment and {'attachment':attachment} or None) 
     if self.verbose:
       print
       print "Request"

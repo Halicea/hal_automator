@@ -5,7 +5,7 @@ import os
 import json
 from hal_configurator.lib.command_executor import CommandExecutor
 from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoader
-from hal_configurator.lib.app_prebuilder import AppConfigurator
+from hal_configurator.lib.app_configurator import AppConfigurator
 from hal_configurator.lib.logers import ConsoleLoger, FileLoger, CompositeLoger
 import hal_configurator.lib.app_config as app_config
 svcUrl = "http://localhost:3000"
@@ -21,9 +21,20 @@ def main():
   if custom_vars:
     config_loader.append_vars(*custom_vars)
   builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
+  
   if "-dir" in sys.argv:
     builder.set_execution_dir(sys.argv[sys.argv.index("-dir") + 1])
+  
+  builder.exclude_bundles(get_excluded_bundles())
   builder.apply()
+
+def get_excluded_bundles():
+  if "-excluded-bundles" in sys.argv:
+    ind = sys.argv.index("-excluded-bundles")+1
+    excbundlestring = sys.argv[ind]
+    excluded_bundles = json.loads(excbundlestring)
+    return excluded_bundles
+  return []
   
 def get_additional_bundles():
   custom_bundle = []
@@ -37,7 +48,6 @@ def get_additional_vars(args):
   custom_vars =[]
   if "-custom-vars" in args:
     ind = args.index("-custom-vars")+1
-    vars_string = args[ind]
     custom_vars = []
     for k in args[ind:]:
       if '=' in k:
@@ -47,9 +57,6 @@ def get_additional_vars(args):
       else:
         break
     print "Custom Variables:", custom_vars
-    # custom_vars = json.loads(vars_string)
-    # if not isinstance(custom_vars, list):
-    #   custom_vars = [custom_vars]
   return custom_vars
 
 
@@ -70,16 +77,11 @@ def is_verbose():
 
 def get_config_loader():
   if sys.argv[1]=='-from':
-    config = None
     ldr = None
-    base_path = ""
     if sys.argv[2]== 'fs':
       ldr = FileConfigLoader(sys.argv[3])
-      res_dir = os.path.abspath(os.path.dirname(sys.argv[3]))
-      base_path ="file://"+res_dir
     elif sys.argv[2]=='svc':
       ldr =  SvcConfigLoader(svcUrl, sys.argv[3])
-      base_path = os.path.join(svcUrl,"config", sys.argv[3])
     return ldr
   else:
     print '''

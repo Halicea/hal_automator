@@ -24,13 +24,13 @@ def get_plugins(plugin_dir):
 #        registered_plugins.append(plugin)
       if plugin != "__init__.py":
         if re.search(pattern, plugin):
-          (shortname, ext) = os.path.splitext(plugin)
+          (shortname, ext) = os.path.splitext(plugin) #@UnusedVariable
           registered_plugins.append(shortname)
       if os.path.isdir(plugin_path):
         plugins = os.listdir(plugin_path)
         for plugin in plugins:
           if plugin != "__init__.py":
-            (shortname, ext) = os.path.splitext(plugin)
+            (shortname, ext) = os.path.splitext(plugin) #@UnusedVariable
             sys.path.append(plugin_path)
             registered_plugins.append(shortname)
   return registered_plugins
@@ -56,7 +56,7 @@ def load_plugins(plugins):
   """
   for plugin in plugins:
     __import__(plugin, None, None, [''])
-    if plugin not in OperationBase.__subclasses__():
+    if plugin not in OperationBase.__subclasses__(): #@UndefinedVariable
       # This takes care of importing zipped plugins:
       __import__(plugin, None, None, [plugin])
 __plugins_list__ = []
@@ -94,7 +94,7 @@ def get_plugin_cls(command):
 
 def get_plugin_module(command):
   cmd  = isinstance(command, str) and  command or command["Code"]
-  module, claz =  get_module_and_class_names_from_cmd(cmd)
+  module, claz =  get_module_and_class_names_from_cmd(cmd) #@UnusedVariable
   return __import__(module)
 
 def get_module_and_class_names_from_cmd(cmd):

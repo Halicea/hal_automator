@@ -7,7 +7,7 @@ from hal_configurator.lib.command_executor import CommandExecutor
 
 
 class AppConfigurator(object):
-  def __init__(self, config_loader, logger ,executor=None, verbose=True, debug_mode=True):
+  def __init__(self, config_loader, logger ,executor=None, verbose=True, debug_mode=True, **kwargs):
     """
     The root execution class, using the apply method it runs certain configuration
     against specified execution directory
@@ -29,10 +29,13 @@ class AppConfigurator(object):
     self.config = None
     self._execution_dir = None
     self.executors = []
+    self.excluded_bundles = 'excluded_bundles' in kwargs and kwargs['excluded_bundles'] or []
+    self.excluded_operations = 'excluded_operations' in kwargs and kwargs['excluded_operations'] or []
     self.old_dir = None
     if self.executor:
       self.executor.parent = self
       self.executors.append(self.executor)
+    
 
   def release_executor(self, executor):
     """
@@ -91,7 +94,16 @@ class AppConfigurator(object):
 
   def set_execution_dir(self, execution_dir):
     self._execution_dir = execution_dir
-
+    
+  def exclude_bundles(self, bundles):
+    map(self.exclude_bundle, bundles)
+    
+  def exclude_bundle(self, bundle):
+    if isinstance(bundle, dict):
+      self.excluded_bundles.append(bundle['Name'])
+    else:
+      self.excluded_bundles.append(bundle)
+    
   def synthesized_value(self, kvar, global_vars):
     search_pattern ="\{\{\w+\}\}"
     if "{{" in kvar["value"] and "}}" in kvar["value"]:
@@ -105,8 +117,11 @@ class AppConfigurator(object):
     else:
       return kvar["value"]
 
-  def configure(self, cnf, executor, selector=True):
+  def configure(self, cnf, executor, selector=True, excluded_bundles =None, excluded_operations=None):
     _executor = executor or self.executor
+    _excluded_bundles =  excluded_bundles or self.excluded_bundles
+    _excluded_operations = excluded_operations or self.excluded_operations
+    
     global_vars=[]
     if cnf.has_key("Variables"):
       global_vars = deepcopy(cnf["Variables"])
@@ -119,7 +134,12 @@ class AppConfigurator(object):
 
     if selector is True:
       for bundle in cnf["Content"]["OperationBundles"]:
-        _executor.execute_bundle(bundle, global_vars, global_resources)
+        if not bundle['Name'] in _excluded_bundles:
+          _executor.execute_bundle(bundle, global_vars, global_resources, _excluded_operations)
+        else:
+          self.logger.write("="*20)
+          self.logger.write('SKIPPED %s'%bundle['Name'])
+          self.logger.write("="*20)
 
   def create_executor(self, config = None, logger=None, resources_root=None):
     """

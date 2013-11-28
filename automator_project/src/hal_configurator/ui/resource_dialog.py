@@ -2,7 +2,6 @@
 from PySide import QtGui
 from hal_configurator.ui.gen.resource_dialog import Ui_ResourceDialog
 import os
-from global_vars import GlobalVars
 from confirm_dialog import ConfirmDialog
 import shutil
 import random
@@ -61,7 +60,7 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
       if self.model["url"]:
         dest = self.model["url"]
       else:
-        dest = './Resources/'+''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(15))
+        dest = './Resources/'+''.join(random.choice(string.ascii_uppercase + string.digits) for x in range(15)) #@UnusedVariable
       if not os.path.exists(os.path.dirname(os.path.join(self.root_dir, dest))):
         os.makedirs(os.path.dirname(os.path.join(self.root_dir, dest)))
       shutil.copy(self.edited_resource["url"], os.path.join(self.root_dir, dest))

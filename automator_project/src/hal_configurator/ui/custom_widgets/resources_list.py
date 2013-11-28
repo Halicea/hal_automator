@@ -6,7 +6,6 @@ Created on Dec 23, 2012
 from dragable_list import DragableList
 from PySide import QtGui
 import os
-from hal_configurator.ui.global_vars import GlobalVars
 
 class ResourcesList(DragableList):
   def __init__(self, *args, **kwargs):

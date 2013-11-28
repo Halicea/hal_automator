@@ -10,8 +10,8 @@ class ZeroMQ_Listener(QtCore.QObject):
     # Socket to talk to server
     context = zmq.Context()
     print "Listening for messages"
-    self.socket = context.socket(zmq.SUB)
-    self.socket.setsockopt(zmq.SUBSCRIBE, '')
+    self.socket = context.socket(zmq.SUB) #@UndefinedVariable
+    self.socket.setsockopt(zmq.SUBSCRIBE, '') #@UndefinedVariable
     self.socket.connect(address)
     self.running = True
 

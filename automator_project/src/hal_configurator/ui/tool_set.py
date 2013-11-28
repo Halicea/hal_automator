@@ -1,7 +1,6 @@
 
 from PySide import QtGui
 from hal_configurator.ui.gen.tool_set import Ui_ToolSet
-import hal_configurator.plugins as plugins
 from hal_configurator.lib.plugin_loader import get_plugins_list
 from models import ToolsListModel
 

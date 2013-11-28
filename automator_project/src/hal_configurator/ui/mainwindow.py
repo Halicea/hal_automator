@@ -15,8 +15,7 @@ from hal_configurator.ui.message_subscriber import MessageSubsriberThread
 from hal_configurator.ui.models import SimpleStringListModel
 from regex_tool import RegexTool
 from global_vars import GlobalVars
-from hal_configurator.lib.command_executor import CommandExecutor
-from hal_configurator.lib.app_prebuilder import AppConfigurator
+from hal_configurator.lib.app_configurator import AppConfigurator
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from hal_configurator.lib.app_config import config
 port = 1234
@@ -97,7 +96,6 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
       self.working_dir = None
 
   def on_configure_clicked(self):
-    root_url = os.path.dirname(self.get_config_path())
     config_loader = FileConfigLoader(self.get_config_path())
     builder = AppConfigurator(config_loader,
                             ZmqChainedLoger(port),
@@ -153,9 +151,9 @@ class MainWindow(QtGui.QMainWindow, Ui_MainWindow):
   ######End Event Handlers #######
 
   def get_config_path(self):
-    vars = GlobalVars.get_instance()
-    vars.current_config_path=os.path.join(config_path, self.cmb_brands.currentText(), self.cmb_platforms.currentText(),"bc.json")      
-    return vars.current_config_path
+    global_vars = GlobalVars.get_instance()
+    global_vars.current_config_path=os.path.join(config_path, self.cmb_brands.currentText(), self.cmb_platforms.currentText(),"bc.json")      
+    return global_vars.current_config_path
   
     #self.pb_build_progress.setHidden(not self.building)
 

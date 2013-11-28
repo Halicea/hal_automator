@@ -32,7 +32,8 @@ FORMS    += mainwindow.ui \
     config_manager.ui \
     config_widget.ui \
     config_operation.ui \
-    config_operation_old.ui
+    config_operation_old.ui \
+    bundle_selector.ui
 
 RESOURCES += \
     images.qrc

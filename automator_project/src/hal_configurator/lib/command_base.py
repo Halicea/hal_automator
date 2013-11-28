@@ -51,7 +51,6 @@ class OperationBase(object):
             "Type":self.get_name(), 
             "Arguments":dict([(x.name, self.kwargs.has_key(x.name) and self.kwargs[x.name] or "") for x in self.get_arg_descriptors()])
            }
-
   @classmethod
   def get_empty_dict(cls):
     return{
@@ -131,4 +130,3 @@ class ArgumentDescriptor(object):
 
 
 from hal_configurator.lib.var_substitutor import VarSubstitutor
-from hal_configurator.lib.command_executor import CommandExecutor

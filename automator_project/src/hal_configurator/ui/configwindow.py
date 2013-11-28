@@ -1,25 +1,24 @@
-import os
-
 from PySide import QtGui, QtCore
 from PySide.QtCore import QThread
-
-from hal_configurator.lib import app_config
-from hal_configurator.ui.console_output import ConsoleOutput
-from hal_configurator.lib.app_prebuilder import AppConfigurator
-from hal_configurator.lib.config_loaders import FileConfigLoader
-from hal_configurator.ui.gen.configwindow import Ui_ConfigWindow
 from config_widget import ConfigForm
+from hal_configurator.lib import app_config
+from hal_configurator.lib.app_config import config
+from hal_configurator.lib.app_configurator import AppConfigurator
+from hal_configurator.lib.config_loaders import FileConfigLoader
 from hal_configurator.lib.logers import ZmqChainedLoger
+from hal_configurator.lib.plugin_loader import get_plugins
+from hal_configurator.ui.bundle_selector import BundleSelector
 from hal_configurator.ui.config_runner_thread import ConfigRunnerThread
+from hal_configurator.ui.console_output import ConsoleOutput
+from hal_configurator.ui.gen.configwindow import Ui_ConfigWindow
 from hal_configurator.ui.message_subscriber import MessageSubsriberThread
 from hal_configurator.ui.models import ToolsListModel
-from hal_configurator.lib.app_config import config
-from hal_configurator.lib.plugin_loader import get_plugins
+import os
+
+
+
 
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
-
-  def __init__(self, *args, **kwargs):
-    super(ConfigWindow, self).__init__(*args, **kwargs)
 
   def set_configuration(self, config_path, working_dir):
     self.config_path = config_path
@@ -30,16 +29,39 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.configuration = FileConfigLoader(self.config_path).load_config()
     self.bindUi()
 
+  def set_bundles_model(self, ):
+    self.bundlesModel.clear() 
+    for bundle in self.configuration['Content']['OperationBundles']:
+      dataItem = QtGui.QStandardItem(bundle['Name'])
+      dataItem.setCheckable(True)
+      dataItem.setCheckState(QtCore.Qt.CheckState.Checked)
+      
+      self.bundlesModel.appendRow(dataItem)
+      
+  def get_excluded_bundles(self):
+    i = 0
+    skippedBundles = [] 
+    while self.bundlesModel.item(i):
+      dataItem = self.bundlesModel.item(i)
+      if not dataItem.checkState():
+        skippedBundles.append(dataItem.text())
+      i += 1
+    return skippedBundles
+  
   def __init__(self, main_window, *args, **kwargs):
     super(ConfigWindow, self).__init__(*args, **kwargs)
     self.working_dir = None
     self.main_window = main_window or self
     self.working_dir_choser = None
     self.cw = None
+    self.bundlesModel = QtGui.QStandardItemModel() 
+    
     self.set_plugins()
+    
     self.setupUi()
-
-
+    
+    
+  
 
   def set_plugins(self):
     self.plugins =[]
@@ -74,6 +96,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.tool.setModel(ToolsListModel(self.plugins, False))
     self.menubar.setWindowTitle(title)
     self.build_output = None
+    self.set_bundles_model()
 
   def chose_working_dir(self):
     """
@@ -85,12 +108,20 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       self.working_dir = res
       self.txtWorkingDir.setText(res)
 
+
+  def show_bundle_selector(self):
+    self.bundleSelectorWidget = BundleSelector(self.bundlesModel)
+    self.bundleSelectorWidget.show()
+    
+  
+  
   def set_menu_bar(self):
     self.actionRun.triggered.connect(self.on_run_click)
     self.actionClone.triggered.connect(self.clone_config)
     self.actionClose.triggered.connect(self.close)
     self.actionOpen.triggered.connect(self.open_config)
     self.actionNew.triggered.connect(self.create_new_config)
+    self.actionEnable_Disable_Bundles.triggered.connect(self.show_bundle_selector)
 
   def create_new_config(self):
     cur_dir = app_config.get_config_history()[-1]
@@ -141,6 +172,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     config_loader = FileConfigLoader(self.config_path)
     builder = AppConfigurator(config_loader, ZmqChainedLoger(1234))
     builder.set_execution_dir(self.working_dir)
+    builder.exclude_bundles(self.get_excluded_bundles())
     self.worker = ConfigRunnerThread(builder)
     self.set_message_receiver()
     self.worker.start()

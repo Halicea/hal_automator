@@ -1,7 +1,7 @@
 import os
 from PySide import QtCore
 from hal_configurator.lib.plugin_loader import get_plugin_cls
-from string import index
+
 class ResourcesListModel(QtCore.QAbstractListModel):
   
   def __init__(self, resources, root_dir,  *args, **kwargs):
@@ -118,6 +118,8 @@ class ToolsListModel(QtCore.QAbstractListModel):
     elif role == QtCore.Qt.UserRole:
       return get_plugin_cls(command)
     return None
+
+  
 class ObjectWrapper(QtCore.QObject):
     def __init__(self, thing):
         QtCore.QObject.__init__(self)

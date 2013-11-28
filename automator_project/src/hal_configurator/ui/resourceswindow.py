@@ -3,13 +3,12 @@ Created on Nov 23, 2012
 
 @author: kostamihajlov
 '''
-import os
-from hal_configurator.ui.gen.resourceswindow import Ui_ResourcesWindow
+
 from PySide import QtCore, QtGui
-from global_vars import GlobalVars
 from confirm_dialog import ConfirmDialog
+from hal_configurator.ui.gen.resourceswindow import Ui_ResourcesWindow
 from resource_dialog import ResourceDialog
-import shutil
+
 class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
   def __init__(self, root_dir, *args, **kwargs):
     super(ResourcesWindow, self).__init__(*args, **kwargs)

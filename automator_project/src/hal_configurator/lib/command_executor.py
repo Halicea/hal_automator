@@ -41,7 +41,7 @@ class CommandExecutor(object):
           new_vars[key] = new_vars[key].replace(token, r["url"])
     return new_vars
 
-  def execute_bundle(self, command_bundle, global_vars, global_resources):
+  def execute_bundle(self, command_bundle, global_vars, global_resources, excluded_operations):
     bundle_vars = []
     if command_bundle.has_key("Variables"):
       bundle_vars = command_bundle["Variables"]
@@ -64,8 +64,13 @@ class CommandExecutor(object):
     continue_execution = self.check_debug_settings(command_bundle)
 
     if continue_execution:
+      self.log.write("="*20)
+      self.log.write(command_bundle["Name"])
+      self.log.write("="*20)
       for comm in command_bundle["Operations"]:
         self.execute_command(comm, bundle_vars, bundle_res)
+      self.log.write("=END= "+command_bundle["Name"]+" =END=")
+    
 
   def execute_bundle_within_current_scope(self, bundle):
     builder = self.parent
@@ -82,14 +87,14 @@ class CommandExecutor(object):
     
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
-      cmd  = command["Code"]
+      cmd  = command["Code"] #@UnusedVariable
       plugin_cls = plugin_loader.get_plugin_cls(command)
       plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
-      vars = self.replace_vars(bundle_vars, command["Arguments"])
-      vars = self.replace_resources(bundle_res, vars)
+      repl_vars = self.replace_vars(bundle_vars, command["Arguments"])
+      repl_vars = self.replace_resources(bundle_res, repl_vars)
       if "Description" in command:
         plugin.description = command["Description"]
-      plugin.set_args(**vars)
+      plugin.set_args(**repl_vars)
       plugin.real_run()
   
   def check_debug_settings(self, obj):

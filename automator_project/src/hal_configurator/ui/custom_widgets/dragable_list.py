@@ -5,7 +5,6 @@ Created on Nov 25, 2012
 '''
 from PySide import QtGui, QtCore
 import cPickle
-import pickle
 
 class DragableList(QtGui.QListView):
   def ___init__(self, parent=None):

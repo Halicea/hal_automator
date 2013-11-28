@@ -1,10 +1,11 @@
 import time
 import zmq
+import traceback
 __author__ = 'Costa Halicea'
 
 class LoggerBase(object):
-  def write(self):
-    raise NotImplementedError()
+  def write(self, message):
+    print  message
   def close(self):
     raise NotImplementedError()
   def fileno(self):
@@ -13,21 +14,22 @@ class LoggerBase(object):
 class ZmqChainedLoger(LoggerBase):
   def __init__(self, port):
     context = zmq.Context()
-    self.message_sender = context.socket(zmq.PUB)
+    self.message_sender = context.socket(zmq.PUB) #@UndefinedVariable
     self.is_binded=False
     self.port = port
   #needed for pushing the stdout and stderr into the log
   def fileno(self):
     return 1
 
-  def write(self, text, type="i"):
+  def write(self, text, logtype="i"):
     try:
       if not self.is_binded:
         self._bind_socket()
         self.is_binded = True
       self.message_sender.send_unicode(text)
-    except Exception, ex:
-      print "Exception:", str(ex)
+    except:
+      print text
+      print "Exception:", traceback.print_exc()
 
   def close(self):
     self.message_sender.close()

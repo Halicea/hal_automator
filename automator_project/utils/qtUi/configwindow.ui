@@ -138,13 +138,21 @@
       <string>Recent Configs</string>
      </property>
     </widget>
+    <widget class="QMenu" name="menuWorkspace">
+     <property name="title">
+      <string>Workspace</string>
+     </property>
+     <addaction name="actionSwitch_Workspace"/>
+     <addaction name="actionSync"/>
+     <addaction name="actionReset"/>
+    </widget>
     <addaction name="actionNew"/>
     <addaction name="actionOpen"/>
     <addaction name="menuRecent"/>
     <addaction name="actionSave"/>
     <addaction name="actionSave_As"/>
     <addaction name="actionClone"/>
-    <addaction name="actionRun"/>
+    <addaction name="menuWorkspace"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -161,9 +169,20 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuRun">
+    <property name="title">
+     <string>Project</string>
+    </property>
+    <addaction name="actionRun"/>
+    <addaction name="actionDebug"/>
+    <addaction name="actionPackage"/>
+    <addaction name="separator"/>
+    <addaction name="actionEnable_Disable_Bundles"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuRun"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -244,6 +263,53 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionEnable_Disable_Bundles">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/select_bundles.png</normaloff>:/buttons/images/select_bundles.png</iconset>
+   </property>
+   <property name="text">
+    <string>Enable/Disable Bundles</string>
+   </property>
+  </action>
+  <action name="actionRun_2">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionDebug">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/debug.png</normaloff>:/buttons/images/debug.png</iconset>
+   </property>
+   <property name="text">
+    <string>Debug</string>
+   </property>
+  </action>
+  <action name="actionPackage">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/package.png</normaloff>:/buttons/images/package.png</iconset>
+   </property>
+   <property name="text">
+    <string>Package</string>
+   </property>
+  </action>
+  <action name="actionSwitch_Workspace">
+   <property name="text">
+    <string>Switch Workspace</string>
+   </property>
+  </action>
+  <action name="actionSync">
+   <property name="text">
+    <string>Sync</string>
+   </property>
+  </action>
+  <action name="actionReset">
+   <property name="text">
+    <string>Reset</string>
    </property>
   </action>
  </widget>
