@@ -4,8 +4,8 @@ def read(fname):
   return open(os.path.join(os.path.dirname(__file__), fname)).read()
 setup(
   name='hal_configurator',
-  version = "1.0",
-  author="Halicea.Co",
+  version = "1.3.0",
+  author="Halicea",
   author_email="costa@halicea.com",
   include_package_data=True,
   package_dir={"":"src"},

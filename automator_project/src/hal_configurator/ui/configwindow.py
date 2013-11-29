@@ -165,6 +165,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       a.setText(k)
       self.historyActions.append(a)
       self.menuRecent.addAction(a)
+      
   def open_recent(self, *args, **kwargs):
     app_config.add_config_to_history(self.sender().text())
     self.set_configuration(self.sender().text(), self.working_dir)

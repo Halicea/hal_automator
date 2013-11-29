@@ -50,7 +50,6 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"]))
     self.btn_save.clicked.connect(self.save_config)
     self.btn_save.clicked.connect(lambda x: self.save_config(True))
-
     self.setup_bundles()
 
   def setup_bundles(self):
@@ -67,7 +66,6 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     
   def get_config(self):
     return self.__config__
-  
 
             
   @QtCore.Slot()
@@ -78,11 +76,12 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       sp,  _ = QtGui.QFileDialog.getSaveFileName(self, 'Choose destination file', sp)
     if sp:
       if is_new and self.save_path!=sp:
-        copytree(self.root_dir, os.path.dirname(sp))
+        if not is_cloning_empty:
+          copytree(self.root_dir, os.path.dirname(sp))
         self.save_path = sp
       print "saving file on "+self.save_path
       f = open(self.save_path,"w")
-      d = self.get_dict()
+      d = copy.deepcopy(self.get_dict())
       if is_cloning_empty:
         rvars = self.get_config()['RequiredVariables']
         for v in d['Variables']:
