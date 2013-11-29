@@ -157,8 +157,10 @@ class ConfigurationValidator(object):
     result = ValidationResult()
     if os.path.exists(working_dir):
       if not os.path.isdir(working_dir):
+        result.is_valid = False
         result.errors.append(MSG_WORKING_DIR_IS_FILE % working_dir)
     else:
+      result.is_valid = False
       result.errors.append(os.path.abspath(os.getcwd()))
       result.errors.append(MSG_WORKING_DIR_NOT_EXISTS % working_dir)
     return result

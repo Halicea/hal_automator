@@ -21,14 +21,16 @@ def main():
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
     config_loader.append_vars(*custom_vars)
+  
+  builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
+  execution_dir = None
+  if "-dir" in sys.argv:
+    execution_dir = sys.argv[sys.argv.index("-dir") + 1]
+    builder.set_execution_dir(execution_dir)
   validator = ConfigurationValidator(config_loader.config_file)
-  validation_result = validator.validate(config_loader.load_config())
-  if validation_result.is_valid:
-    builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
-    
-    if "-dir" in sys.argv:
-      builder.set_execution_dir(sys.argv[sys.argv.index("-dir") + 1])
-    
+  validation_result = validator.validate(config_loader.load_config(), execution_dir)
+  
+  if validation_result.is_valid:  
     builder.exclude_bundles(get_excluded_bundles())
     builder.apply()
   else:
