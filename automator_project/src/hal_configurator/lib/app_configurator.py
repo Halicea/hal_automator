@@ -1,5 +1,6 @@
 from copy import deepcopy
 from hal_configurator.lib.config_validator import ConfigurationValidator
+import sys
 
 __author__='Costa Halicea'
 import os
@@ -67,6 +68,8 @@ class AppConfigurator(object):
     self.executor.log.write(repr(validation_result))
     if validation_result.is_valid:      
       self.configure(cnf, self.executor)
+    else:
+      sys.exit(1)
     
     self.executor.log.close()
     print "finished execution"
@@ -92,8 +95,13 @@ class AppConfigurator(object):
     executor = self.create_executor(config=config, **executor_kwargs)
     validation_result = self.validator.validate(self.config, wd)
     executor.log.write(repr(validation_result))
-    if validation_result.is_valid:
+
+    if validation_result.is_valid:      
       self.configure(config, executor)
+    else:
+      self.executor.log.close()
+      sys.exit(1)
+      
     self.executor.log.close()
     print "finished execution"
     os.chdir(old_dir)
