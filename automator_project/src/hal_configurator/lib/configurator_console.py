@@ -8,6 +8,7 @@ from hal_configurator.lib.config_loaders import FileConfigLoader, SvcConfigLoade
 from hal_configurator.lib.app_configurator import AppConfigurator
 from hal_configurator.lib.logers import ConsoleLoger, FileLoger, CompositeLoger
 import hal_configurator.lib.app_config as app_config
+from hal_configurator.lib.config_validator import ConfigurationValidator
 svcUrl = "http://localhost:3000"
 
 def main():
@@ -20,13 +21,19 @@ def main():
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
     config_loader.append_vars(*custom_vars)
-  builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
-  
-  if "-dir" in sys.argv:
-    builder.set_execution_dir(sys.argv[sys.argv.index("-dir") + 1])
-  
-  builder.exclude_bundles(get_excluded_bundles())
-  builder.apply()
+  validator = ConfigurationValidator(config_loader.config_file)
+  validation_result = validator.validate(config_loader.load_config())
+  if validation_result.is_valid:
+    builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
+    
+    if "-dir" in sys.argv:
+      builder.set_execution_dir(sys.argv[sys.argv.index("-dir") + 1])
+    
+    builder.exclude_bundles(get_excluded_bundles())
+    builder.apply()
+  else:
+    print str(validation_result)
+    sys.exit(1)
 
 def get_excluded_bundles():
   if "-excluded-bundles" in sys.argv:
