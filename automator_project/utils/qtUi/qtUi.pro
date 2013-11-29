@@ -33,11 +33,13 @@ FORMS    += mainwindow.ui \
     config_widget.ui \
     config_operation.ui \
     config_operation_old.ui \
-    bundle_selector.ui
+    bundle_selector.ui \
+    qmltest.ui
 
 RESOURCES += \
     images.qrc
 
 OTHER_FILES += \
     images/Button-Add-icon.png \
-    images/HAL-9000-icon.png
+    images/HAL-9000-icon.png \
+    config_content.qml

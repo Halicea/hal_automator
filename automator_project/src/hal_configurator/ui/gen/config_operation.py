@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/config_operation.ui'
 #
-# Created: Thu Nov 28 03:52:24 2013
+# Created: Thu Nov 28 22:51:08 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -13,11 +13,12 @@ class Ui_OperationWidget(object):
     def setupUi(self, OperationWidget):
         OperationWidget.setObjectName("OperationWidget")
         OperationWidget.resize(400, 145)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(OperationWidget.sizePolicy().hasHeightForWidth())
         OperationWidget.setSizePolicy(sizePolicy)
+        OperationWidget.setAcceptDrops(False)
         OperationWidget.setStyleSheet("")
         OperationWidget.setFeatures(QtGui.QDockWidget.DockWidgetClosable|QtGui.QDockWidget.DockWidgetMovable|QtGui.QDockWidget.DockWidgetVerticalTitleBar)
         self.dockWidgetContents = QtGui.QWidget()

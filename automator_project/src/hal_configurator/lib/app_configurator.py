@@ -1,4 +1,5 @@
 from copy import deepcopy
+from hal_configurator.lib.config_validator import ConfigurationValidator
 
 __author__='Costa Halicea'
 import os
@@ -32,6 +33,7 @@ class AppConfigurator(object):
     self.excluded_bundles = 'excluded_bundles' in kwargs and kwargs['excluded_bundles'] or []
     self.excluded_operations = 'excluded_operations' in kwargs and kwargs['excluded_operations'] or []
     self.old_dir = None
+    self.validator = ConfigurationValidator(self.config_loader.config_file)
     if self.executor:
       self.executor.parent = self
       self.executors.append(self.executor)
@@ -61,7 +63,11 @@ class AppConfigurator(object):
     cnf = self.get_config()
     if self.executor is None:
       self.executor = self.create_executor()
-    self.configure(cnf, self.executor)
+    validation_result = self.validator.validate(self.config, self.get_execution_dir())
+    self.executor.log.write(repr(validation_result))
+    if validation_result.is_valid:      
+      self.configure(cnf, self.executor)
+    
     self.executor.log.close()
     print "finished execution"
     os.chdir(self.old_dir)
@@ -84,7 +90,10 @@ class AppConfigurator(object):
     wd = os.path.abspath(wd)
     os.chdir(wd)
     executor = self.create_executor(config=config, **executor_kwargs)
-    self.configure(config, executor)
+    validation_result = self.validator.validate(self.config, wd)
+    executor.log.write(repr(validation_result))
+    if validation_result.is_valid:
+      self.configure(config, executor)
     self.executor.log.close()
     print "finished execution"
     os.chdir(old_dir)

@@ -173,16 +173,31 @@
     <property name="title">
      <string>Project</string>
     </property>
+    <addaction name="actionEnable_Disable_Bundles"/>
+    <addaction name="actionVallidate"/>
+    <addaction name="separator"/>
     <addaction name="actionRun"/>
     <addaction name="actionDebug"/>
     <addaction name="actionPackage"/>
-    <addaction name="separator"/>
-    <addaction name="actionEnable_Disable_Bundles"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionRegex"/>
+   </widget>
+   <widget class="QMenu" name="menuTest">
+    <property name="title">
+     <string>Test</string>
+    </property>
+    <addaction name="actionDeclarative_View"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menuHelp"/>
    <addaction name="menuRun"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuHelp"/>
+   <addaction name="menuTest"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionSave">
@@ -194,6 +209,10 @@
    </property>
   </action>
   <action name="actionRun">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/debug.png</normaloff>:/buttons/images/debug.png</iconset>
+   </property>
    <property name="text">
     <string>Run</string>
    </property>
@@ -273,6 +292,9 @@
    <property name="text">
     <string>Enable/Disable Bundles</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
+   </property>
   </action>
   <action name="actionRun_2">
    <property name="text">
@@ -287,6 +309,9 @@
    <property name="text">
     <string>Debug</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
   </action>
   <action name="actionPackage">
    <property name="icon">
@@ -295,6 +320,9 @@
    </property>
    <property name="text">
     <string>Package</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
    </property>
   </action>
   <action name="actionSwitch_Workspace">
@@ -310,6 +338,28 @@
   <action name="actionReset">
    <property name="text">
     <string>Reset</string>
+   </property>
+  </action>
+  <action name="actionVallidate">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/buttons/images/select_bundles.png</normaloff>:/buttons/images/select_bundles.png</iconset>
+   </property>
+   <property name="text">
+    <string>Vallidate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+V</string>
+   </property>
+  </action>
+  <action name="actionRegex">
+   <property name="text">
+    <string>Regex</string>
+   </property>
+  </action>
+  <action name="actionDeclarative_View">
+   <property name="text">
+    <string>Declarative View</string>
    </property>
   </action>
  </widget>

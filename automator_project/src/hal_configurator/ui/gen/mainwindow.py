@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/mainwindow.ui'
 #
-# Created: Thu Nov 28 03:52:25 2013
+# Created: Thu Nov 28 22:51:09 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -94,6 +94,8 @@ class Ui_MainWindow(object):
         self.menuTools.setObjectName("menuTools")
         self.menuHelp = QtGui.QMenu(self.menuBar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuTest = QtGui.QMenu(self.menuBar)
+        self.menuTest.setObjectName("menuTest")
         MainWindow.setMenuBar(self.menuBar)
         self.mainToolBar = QtGui.QToolBar(MainWindow)
         self.mainToolBar.setObjectName("mainToolBar")
@@ -119,6 +121,8 @@ class Ui_MainWindow(object):
         self.actionConfig_Editor.setIcon(icon)
         self.actionConfig_Editor.setShortcutContext(QtCore.Qt.WindowShortcut)
         self.actionConfig_Editor.setObjectName("actionConfig_Editor")
+        self.actionDeclarative_View = QtGui.QAction(MainWindow)
+        self.actionDeclarative_View.setObjectName("actionDeclarative_View")
         self.menuFile.addAction(self.actionClose)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.actionSaveAs)
@@ -126,9 +130,11 @@ class Ui_MainWindow(object):
         self.menuTools.addAction(self.actionRegex_Tool)
         self.menuTools.addAction(self.actionConfig_Editor)
         self.menuHelp.addAction(self.actionAbout)
+        self.menuTest.addAction(self.actionDeclarative_View)
         self.menuBar.addAction(self.menuFile.menuAction())
         self.menuBar.addAction(self.menuTools.menuAction())
         self.menuBar.addAction(self.menuHelp.menuAction())
+        self.menuBar.addAction(self.menuTest.menuAction())
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -146,6 +152,7 @@ class Ui_MainWindow(object):
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuTools.setTitle(QtGui.QApplication.translate("MainWindow", "Tools", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuTest.setTitle(QtGui.QApplication.translate("MainWindow", "Test", None, QtGui.QApplication.UnicodeUTF8))
         self.actionClose.setText(QtGui.QApplication.translate("MainWindow", "Close", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAbout.setText(QtGui.QApplication.translate("MainWindow", "About", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRegex_Tool.setText(QtGui.QApplication.translate("MainWindow", "Regex Tool", None, QtGui.QApplication.UnicodeUTF8))
@@ -156,5 +163,6 @@ class Ui_MainWindow(object):
         self.actionCloneTo.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+C", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfig_Editor.setText(QtGui.QApplication.translate("MainWindow", "Config Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfig_Editor.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+E", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionDeclarative_View.setText(QtGui.QApplication.translate("MainWindow", "Declarative View", None, QtGui.QApplication.UnicodeUTF8))
 
 import images_rc

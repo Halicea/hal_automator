@@ -33,6 +33,7 @@ class ConfigLoader(object):
       variables.remove(k)
     variables.extend(self.custom_vars)
     return config
+  
   def verify_required_vars(self, config):
     variables = config["Variables"]
     required = config["RequiredVariables"]
@@ -40,6 +41,16 @@ class ConfigLoader(object):
       v = [x for x in variables if x["name"] == rv["name"]]
       if not v:
         variables.insert(0, rv)
+      else:
+        if len(v)==1:
+          v = v[0]
+        else:
+          raise Exception('Variable %s is defined % times, it should be only once.'%(rv['name'], len(v)))
+        for key in rv:
+          if key!='name' and key!='value':
+            if rv[key]!=None and rv[key]!='':
+              v[key] = rv[key]
+        v['is_from_req'] = True
     return  config
 
   def append_bundles(self, *bundles):

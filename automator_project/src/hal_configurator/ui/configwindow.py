@@ -14,6 +14,8 @@ from hal_configurator.ui.gen.configwindow import Ui_ConfigWindow
 from hal_configurator.ui.message_subscriber import MessageSubsriberThread
 from hal_configurator.ui.models import ToolsListModel
 import os
+from hal_configurator.lib.config_validator import ConfigurationValidator
+from hal_configurator.ui.regex_tool import RegexTool
 
 
 
@@ -54,10 +56,8 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.main_window = main_window or self
     self.working_dir_choser = None
     self.cw = None
-    self.bundlesModel = QtGui.QStandardItemModel() 
-    
+    self.bundlesModel = QtGui.QStandardItemModel()
     self.set_plugins()
-    
     self.setupUi()
     
     
@@ -115,6 +115,23 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     
   
   
+  def validate_configuration(self):
+    validator = ConfigurationValidator(self.config_path)
+    result = validator.validate(self.configuration)
+    title = result.is_valid and 'Valid Configuration' or 'Invalid Configurration'
+    message = 'Errors:\n'+'\n'.join(['\t'+x for x in result.errors])
+    message+= '\nWarnings:\n'+'\n'.join(['\t'+x for x in result.warnings])
+    message+= '\nSuggestions:\n'+'\n'.join(['\t'+x for x in result.suggestions])
+    msgBox = QtGui.QMessageBox()
+    msgBox.setText(title)
+    msgBox.setInformativeText(message)
+    msgBox.exec_()
+  
+  
+  def open_regex_tool(self):
+    self.rtool = RegexTool()
+    self.rtool.show()
+  
   def set_menu_bar(self):
     self.actionRun.triggered.connect(self.on_run_click)
     self.actionClone.triggered.connect(self.clone_config)
@@ -122,6 +139,9 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.actionOpen.triggered.connect(self.open_config)
     self.actionNew.triggered.connect(self.create_new_config)
     self.actionEnable_Disable_Bundles.triggered.connect(self.show_bundle_selector)
+    self.actionVallidate.triggered.connect(self.validate_configuration)
+    self.actionRegex.triggered.connect(self.open_regex_tool)
+    
 
   def create_new_config(self):
     cur_dir = app_config.get_config_history()[-1]
@@ -193,4 +213,5 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.build_output.txt_output.append("%s" % message)
 
   def clone_config(self):
-    print "just cloned"
+    self.cw.save_config(is_new=True, is_cloning_empty=True)
+      

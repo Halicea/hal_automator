@@ -34,9 +34,11 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
     if self.edited_resource:
       resource_path = self.edited_resource["url"]
     else:
-      resource_path = os.path.join(self.root_dir, self.model["url"])
-    item  = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(resource_path))
-    self.scene.addItem(item)
+      if self.model["url"]:
+        resource_path = os.path.join(self.root_dir, self.model["url"])
+    if resource_path:
+      item  = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(resource_path))
+      self.scene.addItem(item)
     
   def bindUi(self):
     self.txtName.textEdited.connect(self.ridEdited)
@@ -55,7 +57,7 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
       self.done(0)
   
   def on_confirmed(self):
-    if self.edited_resource and self.edited_resource["url"][0]!='.':
+    if self.edited_resource and self.edited_resource["url"] and self.edited_resource["url"][0]!='.':
       dest=None
       if self.model["url"]:
         dest = self.model["url"]

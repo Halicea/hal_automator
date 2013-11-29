@@ -1,4 +1,3 @@
-import shutil
 from PySide import QtGui, QtCore
 from hal_configurator.ui.gen.config import Ui_ConfigForm
 from config_bundle import BundleWidget
@@ -8,6 +7,7 @@ from models import ResourcesListModel, VariablesListModel
 import os
 import json
 import copy
+from hal_configurator.lib import copytree
 
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):
@@ -67,25 +67,37 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     
   def get_config(self):
     return self.__config__
+  
 
+            
   @QtCore.Slot()
-  def save_config(self, is_new=False):
+  def save_config(self, is_new=False, is_cloning_empty=False):
     sp  = self.save_path
+    old_path = self.save_path
     if self.save_path == None or is_new:
       sp,  _ = QtGui.QFileDialog.getSaveFileName(self, 'Choose destination file', sp)
     if sp:
       if is_new and self.save_path!=sp:
-        shutil.copy(self.root_dir, os.path.dirname(sp))
+        copytree(self.root_dir, os.path.dirname(sp))
         self.save_path = sp
-      print "saved file on "+self.save_path
+      print "saving file on "+self.save_path
       f = open(self.save_path,"w")
       d = self.get_dict()
-      
+      if is_cloning_empty:
+        rvars = self.get_config()['RequiredVariables']
+        for v in d['Variables']:
+          found = [rv for rv in rvars if rv['name']==v['name']]
+          if found:
+            v['value'] = found[0]['value']
+          else:
+            v['value'] = None
       if d["Content"].has_key("Reference"):
         print "writing the referenced file"
         p = d["Content"]["Reference"]
         content = copy.deepcopy(d["Content"])
-        d["Content"]={"Reference":p}
+        ref_location = os.path.abspath(os.path.join(os.path.dirname(old_path), p))
+        current_location = os.path.abspath(os.path.dirname(sp))
+        d["Content"]={"Reference":os.path.relpath(ref_location, current_location) }
         del content["Reference"]
         ref_file = os.path.join(os.path.dirname(sp), p)
         rf = open(ref_file,"w")
@@ -95,6 +107,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       f.close()
     else:
       print "Saving cancelled"
+    self.save_path = old_path
 
   def get_dict(self):
     d = {"PublisherId": self.txt_name.text()}
