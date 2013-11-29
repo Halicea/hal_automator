@@ -69,8 +69,10 @@ class AppConfigurator(object):
     if validation_result.is_valid:      
       self.configure(cnf, self.executor)
     else:
-      sys.exit(1)
-    
+      os.chdir(self.old_dir)
+      self.executor.log.close()
+      raise Exception('Inavlid Configuration cannot continue with the build')
+      
     self.executor.log.close()
     print "finished execution"
     os.chdir(self.old_dir)
