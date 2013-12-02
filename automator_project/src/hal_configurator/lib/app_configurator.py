@@ -38,7 +38,7 @@ class AppConfigurator(object):
     if self.executor:
       self.executor.parent = self
       self.executors.append(self.executor)
-    
+
 
   def release_executor(self, executor):
     """
@@ -60,19 +60,20 @@ class AppConfigurator(object):
   def apply(self):
     print "started execution"
     self.old_dir = os.getcwd()
-    os.chdir(self.get_execution_dir())
+    exec_dir = os.path.abspath(self.get_execution_dir())
     cnf = self.get_config()
     if self.executor is None:
       self.executor = self.create_executor()
-    validation_result = self.validator.validate(self.config, self.get_execution_dir())
+    validation_result = self.validator.validate(self.config, exec_dir)
     self.executor.log.write(repr(validation_result))
-    if validation_result.is_valid:      
+    if validation_result.is_valid:
+      os.chdir(exec_dir)
       self.configure(cnf, self.executor)
     else:
       os.chdir(self.old_dir)
       self.executor.log.close()
       raise Exception('Inavlid Configuration cannot continue with the build')
-      
+
     self.executor.log.close()
     print "finished execution"
     os.chdir(self.old_dir)
@@ -98,13 +99,13 @@ class AppConfigurator(object):
     validation_result = self.validator.validate(self.config, wd)
     executor.log.write(repr(validation_result))
 
-    if validation_result.is_valid:      
+    if validation_result.is_valid:
       self.configure(config, executor)
     else:
       os.chdir(self.old_dir)
       self.executor.log.close()
       raise Exception('Inavlid Configuration cannot continue with the build')
-      
+
     self.executor.log.close()
     print "finished execution"
     os.chdir(old_dir)
@@ -114,16 +115,16 @@ class AppConfigurator(object):
 
   def set_execution_dir(self, execution_dir):
     self._execution_dir = execution_dir
-    
+
   def exclude_bundles(self, bundles):
     map(self.exclude_bundle, bundles)
-    
+
   def exclude_bundle(self, bundle):
     if isinstance(bundle, dict):
       self.excluded_bundles.append(bundle['Name'])
     else:
       self.excluded_bundles.append(bundle)
-    
+
   def synthesized_value(self, kvar, global_vars):
     search_pattern ="\{\{\w+\}\}"
     if "{{" in kvar["value"] and "}}" in kvar["value"]:
@@ -141,7 +142,7 @@ class AppConfigurator(object):
     _executor = executor or self.executor
     _excluded_bundles =  excluded_bundles or self.excluded_bundles
     _excluded_operations = excluded_operations or self.excluded_operations
-    
+
     global_vars=[]
     if cnf.has_key("Variables"):
       global_vars = deepcopy(cnf["Variables"])
