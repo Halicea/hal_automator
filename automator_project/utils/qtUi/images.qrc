@@ -6,5 +6,7 @@
         <file>images/package.png</file>
         <file>images/select_bundles.png</file>
         <file>images/debug.png</file>
+        <file>images/sync.png</file>
+        <file>images/reset.png</file>
     </qresource>
 </RCC>

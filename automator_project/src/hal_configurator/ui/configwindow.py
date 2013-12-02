@@ -69,11 +69,8 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     title="Configurator Version:%s"%(app_config.get_version())
     self.setWindowTitle(title)
     self.cbChooseWorkingDir.clicked.connect(self.chose_working_dir)
-
-
-
     self.splitter.setSizes([self.splitter.height(), 0])
-    self.splitter_2.setSizes([self.splitter_2.width(), 0])
+
     self.btnRun.clicked.connect(self.on_run_click)
     self.set_menu_bar()
     self.set_recent_config_actions()
@@ -100,6 +97,10 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.cw = ConfigForm(self.configuration, self.config_path, parent=self, details_parent = self.tool)
     if self.workspace.mode!='admin':
       self.cw.tlbx_bundles.hide()
+      self.widget.hide()
+      self.splitter_2.setSizes([self.splitter_2.width()/3.0, 2*self.splitter_2.width()/3.0])
+    else:
+      self.splitter_2.setSizes([self.splitter_2.width(), self.splitter_2.width()])
 
     self.ltv_content.addWidget(self.cw)
 

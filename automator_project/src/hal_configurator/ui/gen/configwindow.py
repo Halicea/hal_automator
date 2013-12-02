@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/configwindow.ui'
 #
-# Created: Mon Dec  2 14:58:39 2013
+# Created: Mon Dec  2 18:06:28 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -87,7 +87,7 @@ class Ui_ConfigWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.detailsContainer = QtGui.QWidget()
-        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 330, 428))
+        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 648, 428))
         self.detailsContainer.setObjectName("detailsContainer")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -163,8 +163,14 @@ class Ui_ConfigWindow(object):
         self.actionSwitch_Workspace = QtGui.QAction(ConfigWindow)
         self.actionSwitch_Workspace.setObjectName("actionSwitch_Workspace")
         self.actionSync = QtGui.QAction(ConfigWindow)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/buttons/images/sync.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSync.setIcon(icon4)
         self.actionSync.setObjectName("actionSync")
         self.actionReset = QtGui.QAction(ConfigWindow)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/buttons/images/reset.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionReset.setIcon(icon5)
         self.actionReset.setObjectName("actionReset")
         self.actionVallidate = QtGui.QAction(ConfigWindow)
         self.actionVallidate.setIcon(icon2)
@@ -173,9 +179,10 @@ class Ui_ConfigWindow(object):
         self.actionRegex.setObjectName("actionRegex")
         self.actionDeclarative_View = QtGui.QAction(ConfigWindow)
         self.actionDeclarative_View.setObjectName("actionDeclarative_View")
-        self.menuWorkspace.addAction(self.actionSwitch_Workspace)
         self.menuWorkspace.addAction(self.actionSync)
         self.menuWorkspace.addAction(self.actionReset)
+        self.menuWorkspace.addSeparator()
+        self.menuWorkspace.addAction(self.actionSwitch_Workspace)
         self.menuFile.addAction(self.actionNew)
         self.menuFile.addAction(self.actionOpen)
         self.menuFile.addAction(self.menuRecent.menuAction())
@@ -214,6 +221,8 @@ class Ui_ConfigWindow(object):
         self.btnReset.setText(QtGui.QApplication.translate("ConfigWindow", "Reset", None, QtGui.QApplication.UnicodeUTF8))
         self.cbStepThruBundles.setText(QtGui.QApplication.translate("ConfigWindow", "Step Thru Bundles", None, QtGui.QApplication.UnicodeUTF8))
         self.cbStepThruOps.setText(QtGui.QApplication.translate("ConfigWindow", "Step Thru Ops", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setAccessibleName(QtGui.QApplication.translate("ConfigWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setAccessibleDescription(QtGui.QApplication.translate("ConfigWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("ConfigWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuRecent.setTitle(QtGui.QApplication.translate("ConfigWindow", "Recent Configs", None, QtGui.QApplication.UnicodeUTF8))
         self.menuWorkspace.setTitle(QtGui.QApplication.translate("ConfigWindow", "Workspace", None, QtGui.QApplication.UnicodeUTF8))
@@ -251,7 +260,9 @@ class Ui_ConfigWindow(object):
         self.actionPackage.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+Shift+P", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSwitch_Workspace.setText(QtGui.QApplication.translate("ConfigWindow", "Switch Workspace", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSync.setText(QtGui.QApplication.translate("ConfigWindow", "Sync", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSync.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+1", None, QtGui.QApplication.UnicodeUTF8))
         self.actionReset.setText(QtGui.QApplication.translate("ConfigWindow", "Reset", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionReset.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+0", None, QtGui.QApplication.UnicodeUTF8))
         self.actionVallidate.setText(QtGui.QApplication.translate("ConfigWindow", "Vallidate", None, QtGui.QApplication.UnicodeUTF8))
         self.actionVallidate.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+Shift+V", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRegex.setText(QtGui.QApplication.translate("ConfigWindow", "Regex", None, QtGui.QApplication.UnicodeUTF8))
