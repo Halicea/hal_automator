@@ -12,35 +12,44 @@ from hal_configurator.lib import copytree
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):
     super(ConfigWidget, self).__init__(*args, **kwargs)
-  
+
   def get_config(self):
     raise NotImplementedError("Abstract method is not implemented")
 
 
+
+
+
 class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
-  def __init__(self, config, config_path, *args, **kwargs):
+  def __init__(self, config, config_path, parent=None, details_parent = None, *args, **kwargs):
     super(ConfigForm, self).__init__(*args, **kwargs)
     self.setupUi()
     self.__config__ = config
     self.root_dir = os.path.dirname(config_path)
     self.save_path = config_path
+    self.details_parent = details_parent or None
     self.bundles =[]
+    self.parent = parent
     self.bind_controls()
 
     #pprint(self.get_dict())
   def set_save_path(self, path):
     self.save_path = path
-    
+
   def setupUi(self):
     super(ConfigForm, self).setupUi(self)
 
-  
+
   def bind_controls(self):
     self.variables_widget = VariablesWindow(self)
+    if self.details_parent:
+      self.variables_widget.setDetailsContainer(self.details_parent)
     self.variables_widget.lv_items.set_object_format("application/x-variable")
 
     self.resources_widget = ResourcesWindow(self.root_dir, self)
+    if self.details_parent:
+      self.resources_widget.setDetailsContainer(self.details_parent)
     self.resources_widget.lv_resources.set_object_format("application/x-resource")
 
     self.lt_variables.addWidget(self.variables_widget)
@@ -59,21 +68,41 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     bundles.removeItem(0)
     for bundle in self.get_config()["Content"]["OperationBundles"]:
       self.add_bundle(bundle)
-    
+
   def add_bundle(self, bundle):
     self.bundles.append(BundleWidget(bundle, self))
     self.tlbx_bundles.addItem(self.bundles[-1], bundle["Name"])
-    
+
   def get_config(self):
     return self.__config__
 
-            
+  @QtCore.Slot()
+  def ensure_in_workspace(self, current):
+    root = self.parent.workspace.workspacedir
+    wd = os.path.realpath(root)
+    cd = os.path.realpath(current)
+    in_workspace = False
+    if cd:
+      in_workspace = cd.startswith(wd)
+
+    if not in_workspace:
+      print 'not in workspace', current
+      self.dlg.setDirectory(wd)
+    else:
+      print 'in workspace'
   @QtCore.Slot()
   def save_config(self, is_new=False, is_cloning_empty=False):
     sp  = self.save_path
     old_path = self.save_path
     if self.save_path == None or is_new:
-      sp,  _ = QtGui.QFileDialog.getSaveFileName(self, 'Choose destination file', sp)
+      self.dlg = QtGui.QFileDialog(self, 'Choose where to save the project')
+
+      self.dlg.setAcceptMode(QtGui.QFileDialog.AcceptSave)
+      self.dlg.currentChanged.connect(self.ensure_in_workspace)
+      if self.dlg.exec_() == QtGui.QFileDialog.Rejected:
+        return
+      sp = self.dlg.selectedFiles()[0]
+      self.dlg = None
     if sp:
       if is_new and self.save_path!=sp:
         if not is_cloning_empty:

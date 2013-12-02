@@ -1,12 +1,15 @@
 
-from PySide import QtGui
+from PySide import QtGui, QtCore
 from hal_configurator.ui.gen.resource_dialog import Ui_ResourceDialog
 import os
 from confirm_dialog import ConfirmDialog
 import shutil
 import random
 import string
-class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
+
+class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
+  accepted = QtCore.Signal()
+  rejected = QtCore.Signal()
   def __init__(self, root_dir, *args, **kwargs):
     super(ResourceDialog, self).__init__(*args, **kwargs)
     self.edited_resource = None
@@ -18,7 +21,10 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
                   "rid":None,
                   "url":None
                   }
-
+  def show(self):
+    if self.parent():
+      self.parent().children()[0].addWidget(self)
+    super(ResourceDialog, self).show()
   def setupUi(self):
     super(ResourceDialog, self).setupUi(self)
 
@@ -26,7 +32,7 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
     self.model = model
     self.txtName.setText(self.model["rid"])
     self.display_resource()
-  
+
   def display_resource(self):
     self.scene = QtGui.QGraphicsScene()
     self.gvView.setScene(self.scene)
@@ -39,13 +45,13 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
     if resource_path:
       item  = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(resource_path))
       self.scene.addItem(item)
-    
+
   def bindUi(self):
     self.txtName.textEdited.connect(self.ridEdited)
     self.btnChange.clicked.connect(self.change_clicked)
     self.btnSave.clicked.connect(self.save_clicked)
     self.btnCancel.clicked.connect(self.cancel_clicked)
-  
+
   def save_clicked(self):
     print 'save clicked'
     if self.edited_resource:
@@ -55,7 +61,7 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
       self.cd.show()
     else:
       self.done(0)
-  
+
   def on_confirmed(self):
     if self.edited_resource and self.edited_resource["url"] and self.edited_resource["url"][0]!='.':
       dest=None
@@ -68,33 +74,39 @@ class ResourceDialog(QtGui.QDialog, Ui_ResourceDialog):
       shutil.copy(self.edited_resource["url"], os.path.join(self.root_dir, dest))
       self.edited_resource["url"]=dest
     self.done(1)
-    
+
 
   def on_rejected(self):
-    pass  
-  
+    pass
+
   def cancel_clicked(self):
     print 'edit canceled'
     self.done(0)
-  
+  def done(self, value):
+    if value:
+      self.accepted.emit()
+    else:
+      self.rejected.emit()
+    self.close()
+
   def change_clicked(self):
     self.fo_di = QtGui.QFileDialog()
     self.fo_di.fileSelected.connect(self.file_selected)
     self.fo_di.show()
-  
+
   def ridEdited(self, text):
     if not self.edited_resource:
       self.edited_resource = self.model.copy()
     self.edited_resource["rid"] = text
-      
+
   def file_selected(self, f):
     if not self.edited_resource:
       self.edited_resource = self.model.copy()
-      
+
     self.edited_resource["url"] = f
     self.display_resource()
     print "file_accepted"
-     
+
   def get_dict(self):
     if self.edited_resource:
       return self.edited_resource

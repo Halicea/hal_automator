@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resource_dialog.ui'
 #
-# Created: Thu Nov 28 22:51:09 2013
+# Created: Mon Dec  2 14:58:39 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,6 +25,7 @@ class Ui_ResourceDialog(object):
         self.horizontalLayout_2.addWidget(self.txtName)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.gvView = QtGui.QGraphicsView(ResourceDialog)
+        self.gvView.setMinimumSize(QtCore.QSize(200, 200))
         self.gvView.setAutoFillBackground(True)
         brush = QtGui.QBrush(QtGui.QColor(0, 122, 0))
         brush.setStyle(QtCore.Qt.SolidPattern)
@@ -34,17 +35,17 @@ class Ui_ResourceDialog(object):
         self.verticalLayout.addWidget(self.gvView)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.btnSave = QtGui.QPushButton(ResourceDialog)
-        self.btnSave.setObjectName("btnSave")
-        self.horizontalLayout.addWidget(self.btnSave)
-        self.btnCancel = QtGui.QPushButton(ResourceDialog)
-        self.btnCancel.setObjectName("btnCancel")
-        self.horizontalLayout.addWidget(self.btnCancel)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
         self.btnChange = QtGui.QPushButton(ResourceDialog)
         self.btnChange.setObjectName("btnChange")
         self.horizontalLayout.addWidget(self.btnChange)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.btnCancel = QtGui.QPushButton(ResourceDialog)
+        self.btnCancel.setObjectName("btnCancel")
+        self.horizontalLayout.addWidget(self.btnCancel)
+        self.btnSave = QtGui.QPushButton(ResourceDialog)
+        self.btnSave.setObjectName("btnSave")
+        self.horizontalLayout.addWidget(self.btnSave)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(ResourceDialog)
@@ -53,7 +54,7 @@ class Ui_ResourceDialog(object):
     def retranslateUi(self, ResourceDialog):
         ResourceDialog.setWindowTitle(QtGui.QApplication.translate("ResourceDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("ResourceDialog", "Name", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnSave.setText(QtGui.QApplication.translate("ResourceDialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
-        self.btnCancel.setText(QtGui.QApplication.translate("ResourceDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.btnChange.setText(QtGui.QApplication.translate("ResourceDialog", "Change", None, QtGui.QApplication.UnicodeUTF8))
+        self.btnCancel.setText(QtGui.QApplication.translate("ResourceDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.btnSave.setText(QtGui.QApplication.translate("ResourceDialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
 

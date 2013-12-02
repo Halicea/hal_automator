@@ -1,5 +1,8 @@
 import os
 from config import Config
+import codecs
+import json
+from hal_configurator.lib.workspace_manager import Workspace
 
 __author__ = 'Costa Halicea'
 __d = os.path.dirname(
@@ -8,6 +11,7 @@ __d = os.path.dirname(
 
 config_path = os.path.join(__d, 'config.conf')
 config = Config(open(config_path, 'r'))
+
 
 def add_config_to_history(path):
   ch = get_config_history()
@@ -24,6 +28,20 @@ def add_config_to_history(path):
 
 def get_config_history():
   return [k.path for k in config.config_history if k.path]
+
+def get_current_workspace():
+  if not Workspace.current:
+    Workspace.set(config.current_workspace)
+  return Workspace.current
+
+
+
+def set_current_workspace(path):
+
+  if not Workspace.current or Workspace.current.workspacedir!=path:  # @UndefinedVariable
+    Workspace.set(path)
+    config.current_workspace = "'%s'"%path
+    save()
 
 def get_working_dir():
   return config.working_dir_history[0].path

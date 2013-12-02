@@ -13,7 +13,7 @@ class ResourcesList(DragableList):
     self.resource_root = "/"
   def set_resource_root(self, resource_root):
     self.resource_root = resource_root
-    
+
   def get_pixmap(self,index):
     pixmap = QtGui.QPixmap()
     resource = self.model().data(index, "object")
@@ -24,4 +24,3 @@ class ResourcesList(DragableList):
     except Exception, ex:
       print ex.message
     return pixmap
-  

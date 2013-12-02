@@ -45,7 +45,7 @@ def main():
         fcmd = rcc_cmd%(dst, src)
         call(fcmd, shell=True)
   print "importing", os.path.abspath(ui_root)
-  
+
   sys.path.append(os.path.abspath(ui_root))
   for ai in additional_imports:
     sys.path.append(os.path.abspath(ai))
@@ -62,7 +62,7 @@ def main():
         if name.startswith("Ui_"):
           class_name = name
       if class_name:
-        f = open(dst, "w")  
+        f = open(dst, "w")
         s = ui_class_template%{"module_name":c, "class_name":class_name, "class_name_new":class_name[3:]}
         f.write(s)
         f.close()

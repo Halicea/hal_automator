@@ -1,5 +1,5 @@
 import sys
-import plugin_loader  
+import plugin_loader
 class CommandExecutor(object):
   def __init__(self, parent, resources, resources_root="",verbose=True, debug_mode = False, log = lambda x:sys.stdout):
     """
@@ -31,7 +31,7 @@ class CommandExecutor(object):
         if token in new_vars[key]:
           new_vars[key] = new_vars[key].replace(token, v["value"])
     return new_vars
-  
+
   def replace_resources(self, bundle_res, dictionary):
     new_vars = dictionary.copy()
     for key in new_vars.keys():
@@ -70,12 +70,12 @@ class CommandExecutor(object):
       for comm in command_bundle["Operations"]:
         self.execute_command(comm, bundle_vars, bundle_res)
       self.log.write("=END= "+command_bundle["Name"]+" =END=")
-    
+
 
   def execute_bundle_within_current_scope(self, bundle):
     builder = self.parent
     config = {
-               "PublisherId": builder.config["PublisherId"], 
+               "PublisherId": builder.config["PublisherId"],
                "RequiredVariables": builder.config["RequiredVariables"],
                "Variables": builder.config["Variables"],
                "Resources": builder.config["Resources"],
@@ -84,7 +84,7 @@ class CommandExecutor(object):
                }
              }
     builder.apply_parametrized(config)
-    
+
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
       cmd  = command["Code"] #@UnusedVariable
@@ -96,7 +96,7 @@ class CommandExecutor(object):
         plugin.description = command["Description"]
       plugin.set_args(**repl_vars)
       plugin.real_run()
-  
+
   def check_debug_settings(self, obj):
     continue_execution = True
     if self.debug_mode:
@@ -104,3 +104,4 @@ class CommandExecutor(object):
         if obj["DebugSettings"].has_key("Break"):
           continue_execution = not obj["DebugSettings"]["Break"]
     return continue_execution
+

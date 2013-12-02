@@ -24,7 +24,6 @@ FORMS    += mainwindow.ui \
     configwindow.ui \
     resource_viewer.ui \
     confirm_dialog.ui \
-    variable_dialog.ui \
     regex_tool.ui \
     resource_dialog.ui \
     console_output.ui \
@@ -34,7 +33,9 @@ FORMS    += mainwindow.ui \
     config_operation.ui \
     config_operation_old.ui \
     bundle_selector.ui \
-    qmltest.ui
+    qmltest.ui \
+    variable_dialog.ui \
+    variable_dialog_old.ui
 
 RESOURCES += \
     images.qrc

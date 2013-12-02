@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/configwindow.ui'
 #
-# Created: Thu Nov 28 22:51:09 2013
+# Created: Mon Dec  2 14:58:39 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,9 +47,15 @@ class Ui_ConfigWindow(object):
         self.btnReset.setObjectName("btnReset")
         self.horizontalLayout.addWidget(self.btnReset)
         self.cbStepThruBundles = QtGui.QCheckBox(self.widget)
+        self.cbStepThruBundles.setEnabled(False)
+        self.cbStepThruBundles.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.cbStepThruBundles.setStyleSheet("")
         self.cbStepThruBundles.setObjectName("cbStepThruBundles")
         self.horizontalLayout.addWidget(self.cbStepThruBundles)
         self.cbStepThruOps = QtGui.QCheckBox(self.widget)
+        self.cbStepThruOps.setEnabled(False)
+        self.cbStepThruOps.setMaximumSize(QtCore.QSize(0, 16777215))
+        self.cbStepThruOps.setStyleSheet("")
         self.cbStepThruOps.setObjectName("cbStepThruOps")
         self.horizontalLayout.addWidget(self.cbStepThruOps)
         self.horizontalLayout_2.addLayout(self.horizontalLayout)
@@ -77,6 +83,20 @@ class Ui_ConfigWindow(object):
         self.lv_tools.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.lv_tools.setContentsMargins(0, 0, 0, 0)
         self.lv_tools.setObjectName("lv_tools")
+        self.scrollArea = QtGui.QScrollArea(self.verticalLayoutWidget)
+        self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setObjectName("scrollArea")
+        self.detailsContainer = QtGui.QWidget()
+        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 330, 428))
+        self.detailsContainer.setObjectName("detailsContainer")
+        self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
+        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.verticalLayout = QtGui.QVBoxLayout()
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.verticalLayout_3.addLayout(self.verticalLayout)
+        self.scrollArea.setWidget(self.detailsContainer)
+        self.lv_tools.addWidget(self.scrollArea)
         self.verticalLayout_2.addWidget(self.splitter_3)
         ConfigWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar()
@@ -189,6 +209,7 @@ class Ui_ConfigWindow(object):
     def retranslateUi(self, ConfigWindow):
         ConfigWindow.setWindowTitle(QtGui.QApplication.translate("ConfigWindow", "Configuration Editor", None, QtGui.QApplication.UnicodeUTF8))
         self.cbChooseWorkingDir.setText(QtGui.QApplication.translate("ConfigWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
+        self.txtWorkingDir.setPlaceholderText(QtGui.QApplication.translate("ConfigWindow", "Working Directory", None, QtGui.QApplication.UnicodeUTF8))
         self.btnRun.setText(QtGui.QApplication.translate("ConfigWindow", "Run", None, QtGui.QApplication.UnicodeUTF8))
         self.btnReset.setText(QtGui.QApplication.translate("ConfigWindow", "Reset", None, QtGui.QApplication.UnicodeUTF8))
         self.cbStepThruBundles.setText(QtGui.QApplication.translate("ConfigWindow", "Step Thru Bundles", None, QtGui.QApplication.UnicodeUTF8))

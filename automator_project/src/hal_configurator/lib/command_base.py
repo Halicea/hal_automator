@@ -3,7 +3,7 @@ import sys
 class DebugSettings(object):
   def __init__(self, set_breakpoint=True):
     self.breakpoint = set_breakpoint
-    
+
 class OperationBase(object):
   def __init__(self, executor, resources, variables, log=sys.stdout, verbose= False, *args, **kwargs):
     """
@@ -29,7 +29,7 @@ class OperationBase(object):
     self.verbose = verbose
     self.description = ""
     self.result = ''
-    
+
   def real_run(self):
     sign = "(%s)->%s"%(self.description, self.get_code())
     if self.verbose:
@@ -41,37 +41,37 @@ class OperationBase(object):
 
   def get_result(self):
     return self.result
-  
+
   def set_args(self, **kwargs):
     self.kwargs = kwargs
-  
+
   def get_dict(self):
     return {
             "Code":self.get_code(),
-            "Type":self.get_name(), 
+            "Type":self.get_name(),
             "Arguments":dict([(x.name, self.kwargs.has_key(x.name) and self.kwargs[x.name] or "") for x in self.get_arg_descriptors()])
            }
   @classmethod
   def get_empty_dict(cls):
     return{
             "Code":cls.get_code(),
-            "Type":cls.get_name(), 
+            "Type":cls.get_name(),
             "Arguments":dict([(x.name, "") for x in cls.get_arg_descriptors()])
            }
 
   @classmethod
   def get_name(cls):
     return cls.__name__
-  
+
   @classmethod
   def get_code(cls):
     from hal_configurator.lib.plugin_loader import get_command_for_plugin
     return get_command_for_plugin(cls)
-  
+
   @classmethod
   def get_arg_descriptors(cls):
     raise NotImplementedError("Method get_arg_descriptors is not implemented")
-  
+
   def validate_args(self):
     errors = []
     descriptors = self.get_arg_descriptors()
@@ -84,10 +84,10 @@ class OperationBase(object):
       return False, errors
     else:
       return True, errors
-  
+
   def run(self):
     raise NotImplementedError("Method get_arg_descriptors is not implemented")
-  
+
 class InvalidCommandArgumentsError(Exception):
   def __init__(self, message=None):
     super(InvalidCommandArgumentsError, self).__init__(message)
@@ -98,10 +98,10 @@ def is_number(s):
     return True
   except ValueError:
     return False
-      
+
 ArgumentTypes = {
-  "text": lambda x: True, 
-  "number": lambda x: is_number(x), 
+  "text": lambda x: True,
+  "number": lambda x: is_number(x),
   "date": lambda x: True,
   "file": lambda x: True,
   "list": lambda x:True,
@@ -124,7 +124,7 @@ class ArgumentDescriptor(object):
     if ArgumentTypes.has_key(self.argument_type):
       return ArgumentTypes[self.argument_type](value)
     return False, "Incompatible Type"
-  
+
   def validate_argument(self, argument):
     return self.validator(argument)
 
