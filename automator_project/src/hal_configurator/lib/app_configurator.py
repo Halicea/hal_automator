@@ -1,6 +1,6 @@
 from copy import deepcopy
 from hal_configurator.lib.config_validator import ConfigurationValidator
-import sys
+
 
 __author__='Costa Halicea'
 import os

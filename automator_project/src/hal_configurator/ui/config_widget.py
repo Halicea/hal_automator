@@ -8,6 +8,7 @@ import os
 import json
 import copy
 from hal_configurator.lib.workspace_manager import Workspace
+from shutil import copytree
 
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):

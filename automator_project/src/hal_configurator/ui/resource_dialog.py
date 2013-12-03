@@ -47,7 +47,6 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
       item  = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(resource_path))
       self.scene.addItem(item)
 
-
   def export_resource(self):
     flt = None
     ext = ''

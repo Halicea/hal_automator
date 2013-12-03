@@ -12,7 +12,7 @@ from hal_configurator.ui.config_runner_thread import ConfigRunnerThread
 from hal_configurator.ui.console_output import ConsoleOutput
 from hal_configurator.ui.gen.configwindow import Ui_ConfigWindow
 from hal_configurator.ui.message_subscriber import MessageSubsriberThread
-from hal_configurator.ui.models import ToolsListModel
+from hal_configurator.ui.models import ToolsListModel  # @UnusedImport
 import os
 from hal_configurator.lib.config_validator import ConfigurationValidator
 from hal_configurator.ui.regex_tool import RegexTool
