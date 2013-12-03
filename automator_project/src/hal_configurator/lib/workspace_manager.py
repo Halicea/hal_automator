@@ -4,7 +4,8 @@ import traceback
 import subprocess
 base_settings = {
                  'branch':'master',
-                 'user':'costa'
+                 'user':'user',
+                 'mode':'moderator'
                 }
 class Workspace(object):
   current = None

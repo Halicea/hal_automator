@@ -7,7 +7,7 @@ from models import ResourcesListModel, VariablesListModel
 import os
 import json
 import copy
-from hal_configurator.lib import copytree
+from hal_configurator.lib.workspace_manager import Workspace
 
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):
@@ -57,6 +57,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
     self.resources_widget.setModel(ResourcesListModel(self.get_config()["Resources"], self.root_dir))
     self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"]))
+    self.variables_widget.setMode(Workspace.current.mode)  # @UndefinedVariable
     self.btn_save.clicked.connect(self.save_config)
     self.btn_save.clicked.connect(lambda x: self.save_config(True))
     self.setup_bundles()
@@ -90,6 +91,22 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       self.dlg.setDirectory(wd)
     else:
       print 'in workspace'
+
+
+  def cleanup_required_vars(self, d, required_vars):
+    rvars = self.get_config()['RequiredVariables']
+    for v in d['Variables']:
+      found = [rv for rv in rvars if rv['name']==v['name']]
+      if found:
+        if found[0].has_key('editable') and not found[0]['editable']:
+          d['Variables'].remove(v)
+        elif found[0]['value'] == v['value']:
+          d['Variables'].remove(v)
+
+
+
+
+
   @QtCore.Slot()
   def save_config(self, is_new=False, is_cloning_empty=False):
     sp  = self.save_path
@@ -111,14 +128,16 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       print "saving file on "+self.save_path
       f = open(self.save_path,"w")
       d = copy.deepcopy(self.get_dict())
+      rvars = self.get_config()['RequiredVariables']
+      self.cleanup_required_vars(d, rvars)
       if is_cloning_empty:
-        rvars = self.get_config()['RequiredVariables']
         for v in d['Variables']:
           found = [rv for rv in rvars if rv['name']==v['name']]
           if found:
             v['value'] = found[0]['value']
           else:
             v['value'] = None
+
       if d["Content"].has_key("Reference"):
         print "writing the referenced file"
         p = d["Content"]["Reference"]

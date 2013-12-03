@@ -11,6 +11,11 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
     self.lv_items.installEventFilter(self)
     self.details_parent = None
 
+  def setMode(self, mode):
+    if not mode in ['admin', 'moderator']:
+      self.btn_add.hide()
+      self.btn_delete.hide()
+
   def setModel(self, data_model):
     self.data_model = data_model
     self.lv_items.setModel(data_model)
@@ -31,6 +36,7 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
       self.__on_add_clicked()
     else:
       return super(VariablesWindow, self).eventFilter(sender, event)
+
   def __on_add_clicked(self):
     self.edit_index = None
     parent = self.details_parent or QtGui.QDialog()

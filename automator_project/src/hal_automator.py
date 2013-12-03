@@ -20,7 +20,6 @@ if ui_enabled:
   from hal_configurator.ui.configwindow import ConfigWindow
 
 
-
 def main(isAdmin):
   """
   Main Application Runner
