@@ -25,6 +25,7 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
     if self.parent():
       self.parent().children()[0].addWidget(self)
     super(ResourceDialog, self).show()
+
   def setupUi(self):
     super(ResourceDialog, self).setupUi(self)
 
@@ -46,11 +47,29 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
       item  = QtGui.QGraphicsPixmapItem(QtGui.QPixmap(resource_path))
       self.scene.addItem(item)
 
+
+  def export_resource(self):
+    flt = None
+    ext = ''
+    resource_path = os.path.join(self.root_dir, self.model["url"])
+    if self.model.has_key('extension') and self.model['extension']:
+      flt = self.model['extension']
+      ext = self.model['extension']
+    fd, s = QtGui.QFileDialog.getSaveFileName(self, "Where to export the resource", self.model['rid']+ext, flt)  # @UnusedVariable
+    if fd:
+      shutil.copy(resource_path, fd)
+      msgBox = QtGui.QMessageBox()
+      msgBox.setText("Resource succesfully exported")
+      msgBox.setInformativeText("Resource %s is successfuly exported"%self.model['rid'])
+      msgBox.exec_()
+
+
   def bindUi(self):
     self.txtName.textEdited.connect(self.ridEdited)
     self.btnChange.clicked.connect(self.change_clicked)
     self.btnSave.clicked.connect(self.save_clicked)
     self.btnCancel.clicked.connect(self.cancel_clicked)
+    self.btnExport.clicked.connect(self.export_resource)
 
   def save_clicked(self):
     print 'save clicked'

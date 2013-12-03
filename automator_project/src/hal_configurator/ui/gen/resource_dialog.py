@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resource_dialog.ui'
 #
-# Created: Mon Dec  2 18:06:29 2013
+# Created: Tue Dec  3 19:53:59 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,6 +23,9 @@ class Ui_ResourceDialog(object):
         self.txtName = QtGui.QLineEdit(ResourceDialog)
         self.txtName.setObjectName("txtName")
         self.horizontalLayout_2.addWidget(self.txtName)
+        self.btnExport = QtGui.QToolButton(ResourceDialog)
+        self.btnExport.setObjectName("btnExport")
+        self.horizontalLayout_2.addWidget(self.btnExport)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.gvView = QtGui.QGraphicsView(ResourceDialog)
         self.gvView.setMinimumSize(QtCore.QSize(200, 200))
@@ -54,6 +57,7 @@ class Ui_ResourceDialog(object):
     def retranslateUi(self, ResourceDialog):
         ResourceDialog.setWindowTitle(QtGui.QApplication.translate("ResourceDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("ResourceDialog", "Name", None, QtGui.QApplication.UnicodeUTF8))
+        self.btnExport.setText(QtGui.QApplication.translate("ResourceDialog", "Export", None, QtGui.QApplication.UnicodeUTF8))
         self.btnChange.setText(QtGui.QApplication.translate("ResourceDialog", "Change", None, QtGui.QApplication.UnicodeUTF8))
         self.btnCancel.setText(QtGui.QApplication.translate("ResourceDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.btnSave.setText(QtGui.QApplication.translate("ResourceDialog", "Save", None, QtGui.QApplication.UnicodeUTF8))

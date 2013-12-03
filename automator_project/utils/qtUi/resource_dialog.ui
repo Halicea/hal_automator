@@ -26,6 +26,13 @@
      <item>
       <widget class="QLineEdit" name="txtName"/>
      </item>
+     <item>
+      <widget class="QToolButton" name="btnExport">
+       <property name="text">
+        <string>Export</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item>
