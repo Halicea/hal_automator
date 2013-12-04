@@ -108,7 +108,7 @@ def get_command_for_plugin(plugin_cls):
   module = plugin_cls.__module__
   cls_name = plugin_cls.__name__
   matched = filter(lambda x:x.startswith(module), get_plugins_list())
-  if len(matched)==1 and matched[0] == module:
+  if len(matched)==1:
     return matched[0]
   elif len(matched)>1:
     final = filter(lambda x:x.endswith(cls_name), matched)

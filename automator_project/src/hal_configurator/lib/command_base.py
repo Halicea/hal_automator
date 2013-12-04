@@ -1,4 +1,6 @@
 import sys
+import traceback
+
 
 class DebugSettings(object):
   def __init__(self, set_breakpoint=True):
@@ -36,8 +38,14 @@ class OperationBase(object):
       self.log.write("START %s" % sign)
       for k in self.get_arg_descriptors():
         self.log.write("\tp: %s:%s" % (k.name, self.kwargs[k.name]))
-    self.run()
-    if self.verbose: self.log.write("END %s"%sign)
+    try:
+      self.run()
+    except:
+      tb = traceback.format_exc()
+      self.log.write("Error:%s"%repr(tb))
+      raise
+    finally:
+      if self.verbose: self.log.write("END %s"%sign)
 
   def get_result(self):
     return self.result

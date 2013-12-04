@@ -35,7 +35,8 @@ FORMS    += mainwindow.ui \
     bundle_selector.ui \
     qmltest.ui \
     variable_dialog.ui \
-    variable_dialog_old.ui
+    execution_progress.ui \
+    bundle_execution_progress.ui
 
 RESOURCES += \
     images.qrc

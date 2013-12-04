@@ -3,7 +3,7 @@ from PySide import QtGui, QtCore
 from PySide.QtCore import Qt
 from hal_configurator.ui.gen.variable_dialog import Ui_Form
 from hal_configurator.ui.models import SimpleStringListModel
-
+from hal_configurator.lib.workspace_manager import Workspace
 
 class Communicator(QtCore.QObject):
   speak = QtCore.Signal()
@@ -23,7 +23,11 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.bindUi()
 
   def setupUi(self):
+
     super(VariableDialog, self).setupUi(self)
+    if Workspace.current.mode !='admin':  # @UndefinedVariable
+      self.txtDisplay.setEnabled(False)
+      self.adminPanel.hide()
 
   def show(self):
     if isinstance(self.parent(), QtGui.QDialog):

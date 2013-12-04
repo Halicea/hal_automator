@@ -41,7 +41,7 @@ class CommandExecutor(object):
           new_vars[key] = new_vars[key].replace(token, r["url"])
     return new_vars
 
-  def execute_bundle(self, command_bundle, global_vars, global_resources, excluded_operations):
+  def execute_bundle(self, command_bundle, global_vars, global_resources, operations_filter):
     bundle_vars = []
     if command_bundle.has_key("Variables"):
       bundle_vars = command_bundle["Variables"]

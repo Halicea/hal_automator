@@ -26,6 +26,7 @@ class Workspace(object):
 
   def set_loger(self, loger):
     self.loger = loger
+
   @property
   def mode(self):
     return self.settings.has_key('mode') and self.settings['mode'] or 'admin'

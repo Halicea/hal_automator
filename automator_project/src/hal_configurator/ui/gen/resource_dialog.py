@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resource_dialog.ui'
 #
-# Created: Tue Dec  3 19:53:59 2013
+# Created: Wed Dec  4 11:56:02 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -50,6 +50,11 @@ class Ui_ResourceDialog(object):
         self.btnSave.setObjectName("btnSave")
         self.horizontalLayout.addWidget(self.btnSave)
         self.verticalLayout.addLayout(self.horizontalLayout)
+        self.line = QtGui.QFrame(ResourceDialog)
+        self.line.setFrameShape(QtGui.QFrame.HLine)
+        self.line.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.verticalLayout.addWidget(self.line)
 
         self.retranslateUi(ResourceDialog)
         QtCore.QMetaObject.connectSlotsByName(ResourceDialog)

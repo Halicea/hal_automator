@@ -6,6 +6,31 @@ __author__='Costa Halicea'
 import os
 import re
 from hal_configurator.lib.command_executor import CommandExecutor
+class ConfigBuildFilter(object):
+  def __init__(self, included = [], excluded= []):
+    self.included = included
+    self.excluded = excluded
+
+  def allowed(self, name):
+    if self.included and self.excluded:
+      if name in self.included:
+        return True
+      if name in self.excluded:
+        return False
+      return True
+    elif self.included:
+      return name in self.included
+    elif self.excluded:
+      return not name in self.excluded
+    else:
+      return True
+
+  def extend_from_dict(self, d):
+    if d.has_key('excluded'):
+      self.excluded.extend(d['excluded'])
+    if d.has_key('included'):
+      self.included.extend(d['included'])
+    return self
 
 
 class AppConfigurator(object):
@@ -31,8 +56,8 @@ class AppConfigurator(object):
     self.config = None
     self._execution_dir = None
     self.executors = []
-    self.excluded_bundles = 'excluded_bundles' in kwargs and kwargs['excluded_bundles'] or []
-    self.excluded_operations = 'excluded_operations' in kwargs and kwargs['excluded_operations'] or []
+    self.bundles_filter = 'bundles_filter' in kwargs and kwargs['bundles_filter'] or ConfigBuildFilter()
+    self.operations_filter = 'operations_filter' in kwargs and kwargs['operations_filter'] or ConfigBuildFilter()
     self.old_dir = None
     self.validator = ConfigurationValidator(self.config_loader.config_file)
     if self.executor:
@@ -64,7 +89,7 @@ class AppConfigurator(object):
     cnf = self.get_config()
     if self.executor is None:
       self.executor = self.create_executor()
-    validation_result = self.validator.validate(self.config, exec_dir)
+    validation_result = self.validator.validate(self.get_config(), exec_dir)
     self.executor.log.write(repr(validation_result))
     if validation_result.is_valid:
       os.chdir(exec_dir)
@@ -119,11 +144,20 @@ class AppConfigurator(object):
   def exclude_bundles(self, bundles):
     map(self.exclude_bundle, bundles)
 
+  def include_bundles(self, bundles):
+    map(self.include_bundle, bundles)
+
+  def include_bundle(self, bundle):
+    if isinstance(bundle, dict):
+      self.bundles_filter.included.append(bundle['Name'])
+    else:
+      self.bundles_filter.included.append(bundle)
+
   def exclude_bundle(self, bundle):
     if isinstance(bundle, dict):
-      self.excluded_bundles.append(bundle['Name'])
+      self.bundles_filter.excluded.append(bundle['Name'])
     else:
-      self.excluded_bundles.append(bundle)
+      self.bundles_filter.excluded.append(bundle)
 
   def synthesized_value(self, kvar, global_vars):
     search_pattern ="\{\{\w+\}\}"
@@ -138,10 +172,10 @@ class AppConfigurator(object):
     else:
       return kvar["value"]
 
-  def configure(self, cnf, executor, selector=True, excluded_bundles =None, excluded_operations=None):
+  def configure(self, cnf, executor, selector=True, bundles_filter =None, operations_filter=None):
     _executor = executor or self.executor
-    _excluded_bundles =  excluded_bundles or self.excluded_bundles
-    _excluded_operations = excluded_operations or self.excluded_operations
+    _bundles_filter = bundles_filter or self.bundles_filter
+    _operations_filter = operations_filter or self.operations_filter
 
     global_vars=[]
     if cnf.has_key("Variables"):
@@ -155,12 +189,13 @@ class AppConfigurator(object):
 
     if selector is True:
       for bundle in cnf["Content"]["OperationBundles"]:
-        if not bundle['Name'] in _excluded_bundles:
-          _executor.execute_bundle(bundle, global_vars, global_resources, _excluded_operations)
+        if _bundles_filter.allowed(bundle['Name']):
+          _executor.execute_bundle(bundle, global_vars, global_resources, _operations_filter)
         else:
           self.logger.write("="*20)
           self.logger.write('SKIPPED %s'%bundle['Name'])
           self.logger.write("="*20)
+
 
   def create_executor(self, config = None, logger=None, resources_root=None):
     """

@@ -53,7 +53,7 @@ class VariablesListModel(QtCore.QAbstractListModel):
     super(VariablesListModel, self).__init__(*args, **kwargs)
     if visibility_settings:
       self.show_admin_vars = visibility_settings.show_admin_vars
-      self.show_not_editable = visibility_settings.show_not_editable
+      self.show_not_editable = visibility_settings.show_not_editable_vars
     else:
       self.show_admin_vars = True
       self.show_not_editable = False

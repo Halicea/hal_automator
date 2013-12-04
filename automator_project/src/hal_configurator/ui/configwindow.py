@@ -3,7 +3,8 @@ from PySide.QtCore import QThread
 from config_widget import ConfigForm
 from hal_configurator.lib import app_config
 from hal_configurator.lib.app_config import config
-from hal_configurator.lib.app_configurator import AppConfigurator
+from hal_configurator.lib.app_configurator import AppConfigurator,\
+  ConfigBuildFilter
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from hal_configurator.lib.logers import ZmqChainedLoger
 from hal_configurator.lib.plugin_loader import get_plugins
@@ -16,6 +17,8 @@ from hal_configurator.ui.models import ToolsListModel  # @UnusedImport
 import os
 from hal_configurator.lib.config_validator import ConfigurationValidator
 from hal_configurator.ui.regex_tool import RegexTool
+from hal_configurator.lib.workspace_manager import Workspace
+import copy
 
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
 
@@ -25,27 +28,42 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       self.working_dir = working_dir
     else:
       self.working_dir = app_config.get_working_dir()
-    self.configuration = FileConfigLoader(self.config_path).load_config()
+    self.loader = FileConfigLoader(self.config_path)
+    self.configuration = self.loader.load_config()
     self.bindUi()
+
+
+  def get_mode_config_for_key(self, work_mode, key):
+    if self.configuration.has_key('Builds'):
+      if self.configuration['Builds'].has_key(work_mode):
+        bc = self.configuration['Builds'][work_mode]
+        if bc.has_key(key):
+          return copy.deepcopy(bc[key])
+    return {}
+
 
   def set_bundles_model(self, ):
     self.bundlesModel.clear()
+    work_mode = Workspace.current.mode  # @UndefinedVariable
+    bundle_filter = ConfigBuildFilter()
+    d = self.get_mode_config_for_key(work_mode, 'bundles')
+    bundle_filter.extend_from_dict(d)
     for bundle in self.configuration['Content']['OperationBundles']:
       dataItem = QtGui.QStandardItem(bundle['Name'])
       dataItem.setCheckable(True)
-      dataItem.setCheckState(QtCore.Qt.CheckState.Checked)
-
+      check_state = bundle_filter.allowed(bundle['Name']) and QtCore.Qt.CheckState.Checked or QtCore.Qt.CheckState.Unchecked
+      dataItem.setCheckState(check_state)
       self.bundlesModel.appendRow(dataItem)
 
-  def get_excluded_bundles(self):
+  def get_included_bundles(self):
     i = 0
-    skippedBundles = []
+    includedBundles = []
     while self.bundlesModel.item(i):
       dataItem = self.bundlesModel.item(i)
-      if not dataItem.checkState():
-        skippedBundles.append(dataItem.text())
+      if dataItem.checkState():
+        includedBundles.append(dataItem.text())
       i += 1
-    return skippedBundles
+    return includedBundles
 
   def __init__(self, main_window, *args, **kwargs):
     super(ConfigWindow, self).__init__(*args, **kwargs)
@@ -94,7 +112,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     if self.cw:
       self.ltv_content.removeWidget(self.cw)
       self.cw.close()
-    self.cw = ConfigForm(self.configuration, self.config_path, parent=self, details_parent = self.tool)
+    self.cw = ConfigForm(self.loader, parent=self, details_parent = self.tool)
     if self.workspace.mode!='admin':
       self.cw.tlbx_bundles.hide()
       self.widget.hide()
@@ -258,11 +276,12 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     config_loader = FileConfigLoader(self.config_path)
     builder = AppConfigurator(config_loader, ZmqChainedLoger(1234))
     builder.set_execution_dir(self.working_dir)
-    builder.exclude_bundles(self.get_excluded_bundles())
-    self.worker = ConfigRunnerThread(builder)
+    builder.include_bundles(self.get_included_bundles())
     self.set_message_receiver()
-    self.worker.start()
-    self.worker.finished.connect(self.on_worker_finished)
+    builder.apply()
+#     self.worker = ConfigRunnerThread(builder)
+#     self.worker.start()
+#     self.worker.finished.connect(self.on_worker_finished)
 
   def on_worker_finished(self):
     self.worker.builder = None

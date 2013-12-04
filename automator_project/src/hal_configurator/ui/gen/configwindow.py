@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/configwindow.ui'
 #
-# Created: Tue Dec  3 19:53:58 2013
+# Created: Wed Dec  4 11:56:02 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -90,11 +90,12 @@ class Ui_ConfigWindow(object):
         self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 648, 428))
         self.detailsContainer.setObjectName("detailsContainer")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
         self.verticalLayout_3.addLayout(self.verticalLayout)
+        spacerItem = QtGui.QSpacerItem(20, 389, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.verticalLayout_3.addItem(spacerItem)
         self.scrollArea.setWidget(self.detailsContainer)
         self.lv_tools.addWidget(self.scrollArea)
         self.verticalLayout_2.addWidget(self.splitter_3)
@@ -153,9 +154,11 @@ class Ui_ConfigWindow(object):
         self.actionRun_2 = QtGui.QAction(ConfigWindow)
         self.actionRun_2.setObjectName("actionRun_2")
         self.actionDebug = QtGui.QAction(ConfigWindow)
+        self.actionDebug.setEnabled(False)
         self.actionDebug.setIcon(icon1)
         self.actionDebug.setObjectName("actionDebug")
         self.actionPackage = QtGui.QAction(ConfigWindow)
+        self.actionPackage.setEnabled(False)
         icon3 = QtGui.QIcon()
         icon3.addPixmap(QtGui.QPixmap(":/buttons/images/package.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionPackage.setIcon(icon3)
@@ -178,7 +181,11 @@ class Ui_ConfigWindow(object):
         self.actionRegex = QtGui.QAction(ConfigWindow)
         self.actionRegex.setObjectName("actionRegex")
         self.actionDeclarative_View = QtGui.QAction(ConfigWindow)
+        self.actionDeclarative_View.setEnabled(False)
         self.actionDeclarative_View.setObjectName("actionDeclarative_View")
+        self.actionRemote_Build = QtGui.QAction(ConfigWindow)
+        self.actionRemote_Build.setIcon(icon1)
+        self.actionRemote_Build.setObjectName("actionRemote_Build")
         self.menuWorkspace.addAction(self.actionSync)
         self.menuWorkspace.addAction(self.actionReset)
         self.menuWorkspace.addSeparator()
@@ -199,6 +206,7 @@ class Ui_ConfigWindow(object):
         self.menuRun.addAction(self.actionVallidate)
         self.menuRun.addSeparator()
         self.menuRun.addAction(self.actionRun)
+        self.menuRun.addAction(self.actionRemote_Build)
         self.menuRun.addAction(self.actionDebug)
         self.menuRun.addAction(self.actionPackage)
         self.menuTools.addAction(self.actionRegex)
@@ -267,5 +275,6 @@ class Ui_ConfigWindow(object):
         self.actionVallidate.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+Shift+V", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRegex.setText(QtGui.QApplication.translate("ConfigWindow", "Regex", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDeclarative_View.setText(QtGui.QApplication.translate("ConfigWindow", "Declarative View", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionRemote_Build.setText(QtGui.QApplication.translate("ConfigWindow", "Remote Build", None, QtGui.QApplication.UnicodeUTF8))
 
 import images_rc

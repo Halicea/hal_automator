@@ -9,6 +9,7 @@ import json
 import copy
 from hal_configurator.lib.workspace_manager import Workspace
 from shutil import copytree
+from hal_configurator.ui.uiutils import UIVisibilitySettings
 
 class ConfigWidget(QtGui.QWidget):
   def __init__(self, *args, **kwargs):
@@ -23,12 +24,13 @@ class ConfigWidget(QtGui.QWidget):
 
 class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
-  def __init__(self, config, config_path, parent=None, details_parent = None, *args, **kwargs):
+  def __init__(self, config_loader, parent=None, details_parent = None, *args, **kwargs):
     super(ConfigForm, self).__init__(*args, **kwargs)
     self.setupUi()
-    self.__config__ = config
-    self.root_dir = os.path.dirname(config_path)
-    self.save_path = config_path
+    self.config_loader = config_loader
+    self.__config__ = self.config_loader.load_config()
+    self.root_dir = os.path.dirname(self.config_loader.config_file)
+    self.save_path = self.config_loader.config_file
     self.details_parent = details_parent or None
     self.bundles =[]
     self.parent = parent
@@ -55,9 +57,9 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
     self.lt_variables.addWidget(self.variables_widget)
     self.lt_resources.addWidget(self.resources_widget)
-
+    visibility_settings = UIVisibilitySettings.settings_for_mode(Workspace.current.mode)  # @UndefinedVariable
     self.resources_widget.setModel(ResourcesListModel(self.get_config()["Resources"], self.root_dir))
-    self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"]))
+    self.variables_widget.setModel(VariablesListModel(self.get_config()["Variables"], visibility_settings))
     self.variables_widget.setMode(Workspace.current.mode)  # @UndefinedVariable
     self.btn_save.clicked.connect(self.save_config)
     self.btn_save.clicked.connect(lambda x: self.save_config(True))
@@ -94,20 +96,26 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       print 'in workspace'
 
 
-  def cleanup_required_vars(self, d, required_vars):
-    rvars = self.get_config()['RequiredVariables']
-    for v in d['Variables']:
-      found = [rv for rv in rvars if rv['name']==v['name']]
-      if found:
-        if found[0].has_key('editable') and not found[0]['editable']:
-          d['Variables'].remove(v)
-        elif found[0]['value'] == v['value']:
-          d['Variables'].remove(v)
-
-
-
-
-
+  def sanitize_vars(self, d, clean_required_vars = True, wipe_var_values=False):
+    rvars = d['RequiredVariables']
+    if clean_required_vars:
+      to_remove = []
+      for v in d['Variables']:
+        found = [rv for rv in rvars if rv['name']==v['name']]
+        if found:
+          if found[0].has_key('editable') and not found[0]['editable']:
+            to_remove.append(v)
+          elif found[0]['value'] == v['value']:
+            to_remove.append(v)
+      for v in to_remove:
+        d['Variables'].remove(v)
+    if wipe_var_values:
+      for v in d['Variables']:
+        found = [rv for rv in rvars if rv['name']==v['name']]
+        if found:
+          v['value'] = found[0]['value']
+        else:
+          v['value'] = None
   @QtCore.Slot()
   def save_config(self, is_new=False, is_cloning_empty=False):
     sp  = self.save_path
@@ -127,51 +135,21 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
           copytree(self.root_dir, os.path.dirname(sp))
         self.save_path = sp
       print "saving file on "+self.save_path
-      f = open(self.save_path,"w")
       d = copy.deepcopy(self.get_dict())
-      rvars = self.get_config()['RequiredVariables']
-      self.cleanup_required_vars(d, rvars)
-      if is_cloning_empty:
-        for v in d['Variables']:
-          found = [rv for rv in rvars if rv['name']==v['name']]
-          if found:
-            v['value'] = found[0]['value']
-          else:
-            v['value'] = None
-
-      if d["Content"].has_key("Reference"):
-        print "writing the referenced file"
-        p = d["Content"]["Reference"]
-        content = copy.deepcopy(d["Content"])
-        ref_location = os.path.abspath(os.path.join(os.path.dirname(old_path), p))
-        current_location = os.path.abspath(os.path.dirname(sp))
-        d["Content"]={"Reference":os.path.relpath(ref_location, current_location) }
-        del content["Reference"]
-        ref_file = os.path.join(os.path.dirname(sp), p)
-        rf = open(ref_file,"w")
-        rf.write(json.dumps(content, sort_keys = True, indent = 2))
-        rf.close()
-      f.write(json.dumps(d, sort_keys = True, indent = 2))
-      f.close()
+      self.sanitize_vars(d, clean_required_vars=True, wipe_var_values=is_cloning_empty)
+      save_references = Workspace.current.mode=='admin'  # @UndefinedVariable
+      self.config_loader.save_config(d, save_references)
     else:
       print "Saving cancelled"
     self.save_path = old_path
 
   def get_dict(self):
-    d = {"PublisherId": self.txt_name.text()}
-    #d["_id"] = self.__config__["_id"]
-    if "RequiredVariables-Reference" in self.__config__:
-      d["RequiredVariables"] = self.__config__["RequiredVariables-Reference"]
-    else:
-      d["RequiredVariables"] = self.__config__["RequiredVariables"]
-
-    d["Content"] = {}
+    d = copy.deepcopy(self.__config__)
+    d["PublisherId"]= self.txt_name.text()
     bundles = d["Content"]["OperationBundles"]=[]
     for bw in self.bundles:
       bundles.append(bw.get_dict())
-    d["Resources"]= self.resources_widget.data_model.resources
-    d["Variables"]=self.variables_widget.data_model.resources
-    if self.__config__["Content"].has_key("Reference"):
-      d["Content"]["Reference"] = self.__config__["Content"]["Reference"]
+    d["Resources"]= copy.deepcopy(self.resources_widget.data_model.resources)
+    d["Variables"]=copy.deepcopy(self.variables_widget.data_model.resources)
     return d
 

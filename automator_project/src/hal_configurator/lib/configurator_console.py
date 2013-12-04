@@ -9,19 +9,22 @@ from hal_configurator.lib.app_configurator import AppConfigurator
 from hal_configurator.lib.logers import ConsoleLoger, FileLoger, CompositeLoger
 import hal_configurator.lib.app_config as app_config
 from hal_configurator.lib.config_validator import ConfigurationValidator
+from hal_configurator.lib.workspace_manager import Workspace
 svcUrl = "http://localhost:3000"
+
 
 def main():
   print "Starting Configurator"
   print "Version", app_config.get_version()
   config_loader = get_config_loader()
+  Workspace.set(os.path.dirname(config_loader.config_file))
   custom_bundles = get_additional_bundles()
   custom_vars = get_additional_vars(sys.argv)
   if custom_bundles:
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
     config_loader.append_vars(*custom_vars)
-  
+
   builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
   execution_dir = None
   if "-dir" in sys.argv:
@@ -29,9 +32,10 @@ def main():
     builder.set_execution_dir(execution_dir)
   validator = ConfigurationValidator(config_loader.config_file)
   validation_result = validator.validate(config_loader.load_config(), execution_dir)
-  
-  if validation_result.is_valid:  
+
+  if validation_result.is_valid:
     builder.exclude_bundles(get_excluded_bundles())
+    builder.include_bundles(get_included_bundles())
     builder.apply()
   else:
     print str(validation_result)
@@ -44,7 +48,13 @@ def get_excluded_bundles():
     excluded_bundles = json.loads(excbundlestring)
     return excluded_bundles
   return []
-  
+def get_included_bundles():
+  if "-included-bundles" in sys.argv:
+    ind = sys.argv.index("--included-bundles")+1
+    incbundlestring = sys.argv[ind]
+    included_bundles = json.loads(incbundlestring)
+    return included_bundles
+  return []
 def get_additional_bundles():
   custom_bundle = []
   if "-custom-bundle" in sys.argv:

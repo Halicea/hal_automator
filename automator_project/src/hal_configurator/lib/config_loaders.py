@@ -80,6 +80,7 @@ class SvcConfigLoader(ConfigLoader):
     return cfg
 
 class FileConfigLoader(ConfigLoader):
+  available_references = ["Content", "RequiredVariables", "Builds"]
   def __init__(self, fileName):
     super(FileConfigLoader, self).__init__()
     self.config_file = fileName
@@ -90,24 +91,63 @@ class FileConfigLoader(ConfigLoader):
     global last_config_loaded
     print os.path.abspath(self.config_file)
     cfg =  json.load(open(self.config_file, 'r'))
-    if cfg["Content"].has_key("Reference"):
-      content_path = os.path.join(os.path.dirname(self.config_file), cfg["Content"]["Reference"])
-      content = json.load(open(content_path , "r"))
-      content["Reference"] = cfg["Content"]["Reference"]
-      cfg["Content"] = content
-
-    if "RequiredVariables" in cfg:
-      if cfg["RequiredVariables"].has_key("Reference"):
-        content_path = os.path.join(os.path.dirname(self.config_file), cfg["RequiredVariables"]["Reference"])
-        content = json.load(open(content_path, "r"))
-        cfg["RequiredVariables-Reference"] = cfg["RequiredVariables"]
-        cfg["RequiredVariables"] = content
-    else:
-      cfg["RequiredVariables"] = {}
+    for ref in FileConfigLoader.available_references:
+      try:
+        self.__load_reference__(cfg, ref)
+      except Exception, ex:
+        print ex.message
+        print "Cannot load reference", ref
+        raise ex
     cfg = self.load_customizations(cfg)
-    #cfg = self.fix_resource_separator_chars(cfg)
     last_config_loaded = cfg
     return cfg
+
+  def __load_reference__(self, cfg, key, forced_reference_key = None):
+    if cfg.has_key(key):
+      if cfg[key].has_key("Reference"):
+        content_path = os.path.join(os.path.dirname(self.config_file), cfg[key]["Reference"])
+        content = json.load(open(content_path , "r"))
+        if forced_reference_key:
+          cfg[forced_reference_key] =  cfg[key]["Reference"]
+        else:
+          cfg[key+"-Reference"] = cfg[key]["Reference"]
+        cfg[key] = content
+    else:
+      cfg[key] = {}
+
+  def save_config(self, cfg, save_references=False):
+    for ref in FileConfigLoader.available_references:
+      content, ref_path = self.__pop_reference__(cfg, ref)
+      if save_references and content and ref_path:
+        self.__save_dictionary__(content, ref_path)
+    self.__save_dictionary__(cfg, self.config_file)
+
+  def __save_dictionary__(self, content, filepath):
+    f = open(filepath, 'w')
+    f.write(json.dumps(content, sort_keys = True, indent = 2))
+    f.close()
+
+
+
+  def __pop_reference__(self, cfg, key, forced_reference_key = None):
+    ref_path = None
+    content = {}
+    if forced_reference_key:
+      if cfg.has_key(forced_reference_key):
+        ref_path = cfg[forced_reference_key]
+        del cfg[forced_reference_key]
+    else:
+      if cfg.has_key(key+"-Reference"):
+        ref_path = cfg[key+"-Reference"]
+        del cfg[key+"-Reference"]
+    if ref_path:
+      content = cfg[key]
+      cfg[key]={"Reference":ref_path}
+      return content, os.path.join(os.path.dirname(self.config_file), ref_path)
+    else:
+      return None, None
+
+
 
   #TODO: Implement a save method for the config
 
