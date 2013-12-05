@@ -37,8 +37,10 @@ def main():
     builder.exclude_bundles(get_excluded_bundles())
     builder.include_bundles(get_included_bundles())
     builder.apply()
+    builder.logger.close()
   else:
-    print str(validation_result)
+    builder.logger.write(str(validation_result))
+    builder.logger.close()
     sys.exit(1)
 
 def get_excluded_bundles():

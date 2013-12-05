@@ -10,6 +10,7 @@ import urllib
 from app_config import config
 import shutil
 from branded_apps_service import BrandedAppService as BAS
+import copy
 last_config_loaded = None
 
 class ConfigLoader(object):
@@ -39,7 +40,7 @@ class ConfigLoader(object):
     for rv in required:
       v = [x for x in variables if x["name"] == rv["name"]]
       if not v:
-        variables.insert(0, rv)
+        variables.insert(0, copy.deepcopy(rv))
       else:
         if len(v)==1:
           v = v[0]
@@ -48,9 +49,9 @@ class ConfigLoader(object):
         for key in rv:
           if key!='name' and key!='value':
             if rv[key]!=None and rv[key]!='':
-              v[key] = rv[key]
+              v[key] = copy.deepcopy(rv[key])
         if rv.has_key('editable') and not rv['editable']:
-          v['value'] = rv['value']
+          v['value'] = copy.deepcopy(rv['value'])
         v['is_from_req'] = True
     return  config
 

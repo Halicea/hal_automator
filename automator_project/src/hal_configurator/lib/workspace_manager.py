@@ -5,10 +5,11 @@ import subprocess
 base_settings = {
                  'branch':'master',
                  'user':'user',
-                 'mode':'moderator'
+                 'mode':'admin'
                 }
 class Workspace(object):
   current = None
+  registered_bundles = []
   @staticmethod
   def set(workspacedir):
     if os.path.exists(workspacedir):
@@ -84,6 +85,9 @@ class Workspace(object):
       print ss
     finally:
       os.chdir(old_cwd)
+
+
+
 
 
 

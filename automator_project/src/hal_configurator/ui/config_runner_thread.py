@@ -10,4 +10,9 @@ class ConfigRunnerThread(QtCore.QThread):
 
   def run(self):
     print "running..."
-    self.builder.apply()
+    try:
+      self.builder.apply()
+    except:
+      raise
+    finally:
+      self.builder.logger.close()

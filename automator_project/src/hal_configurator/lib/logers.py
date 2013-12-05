@@ -15,20 +15,14 @@ class ZmqChainedLoger(LoggerBase):
   message_sender = None
   is_binded=False
   def __init__(self, port):
-    context = zmq.Context()
-    if not ZmqChainedLoger.message_sender:
-      ZmqChainedLoger.message_sender = context.socket(zmq.PUB) #@UndefinedVariable
-
     self.port = port
-  #needed for pushing the stdout and stderr into the log
+
   def fileno(self):
     return 1
 
   def write(self, text, logtype="i"):
     try:
-      if not ZmqChainedLoger.is_binded or ZmqChainedLoger.message_sender.closed:
-        self._bind_socket()
-        ZmqChainedLoger.is_binded = True
+      self.ensure_socket()
       ZmqChainedLoger.message_sender.send_unicode(text)
     except:
       print text
@@ -36,12 +30,20 @@ class ZmqChainedLoger(LoggerBase):
 
   def close(self):
     ZmqChainedLoger.message_sender.close()
+    ZmqChainedLoger.message_sender = None
+    ZmqChainedLoger.is_binded = False
 
-  def _bind_socket(self):
-    ZmqChainedLoger.message_sender.bind("tcp://*:%s"%self.port)
-    print "Loger binded, sleeping 2 more seconds..."
-    time.sleep(2)
-    print "continuing execution"
+  def ensure_socket(self):
+    if not ZmqChainedLoger.message_sender:
+      context = zmq.Context()
+      ZmqChainedLoger.message_sender = context.socket(zmq.PUB) #@UndefinedVariable
+    if not ZmqChainedLoger.is_binded or ZmqChainedLoger.message_sender.closed:
+      ZmqChainedLoger.message_sender.bind("tcp://*:%s"%self.port)
+      print "Loger binded, sleeping 2 more seconds..."
+      time.sleep(2)
+      print "continuing execution"
+      ZmqChainedLoger.is_binded = True
+
 class SocketIOLogger(LoggerBase):
   def __init__(self, address):
     self.is_connected = False

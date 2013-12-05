@@ -278,16 +278,14 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     builder.set_execution_dir(self.working_dir)
     builder.include_bundles(self.get_included_bundles())
     self.set_message_receiver()
-    builder.apply()
-#     self.worker = ConfigRunnerThread(builder)
-#     self.worker.start()
-#     self.worker.finished.connect(self.on_worker_finished)
+    #builder.apply()
+    self.worker = ConfigRunnerThread(builder)
+    self.worker.start()
+    self.worker.finished.connect(self.on_worker_finished)
 
   def on_worker_finished(self):
     self.worker.builder = None
     del self.worker
-    self.messages_thread.terminate()
-    del self.messages_thread
 
   def set_message_receiver(self):
     if not self.messages_thread:

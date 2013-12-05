@@ -1,5 +1,6 @@
 import sys
 import traceback
+from hal_configurator.lib.workspace_manager import Workspace
 
 
 class DebugSettings(object):
@@ -95,6 +96,10 @@ class OperationBase(object):
 
   def run(self):
     raise NotImplementedError("Method get_arg_descriptors is not implemented")
+
+  @staticmethod
+  def register_bundle(bundle_name):
+    Workspace.registered_bundles.append(bundle_name)  # @UndefinedVariable
 
 class InvalidCommandArgumentsError(Exception):
   def __init__(self, message=None):

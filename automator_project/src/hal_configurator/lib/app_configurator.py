@@ -1,5 +1,6 @@
 from copy import deepcopy
 from hal_configurator.lib.config_validator import ConfigurationValidator
+from hal_configurator.lib.workspace_manager import Workspace
 
 
 __author__='Costa Halicea'
@@ -19,7 +20,7 @@ class ConfigBuildFilter(object):
         return False
       return True
     elif self.included:
-      return name in self.included
+      return name in self.included or name in Workspace.registered_bundles
     elif self.excluded:
       return not name in self.excluded
     else:
@@ -96,10 +97,10 @@ class AppConfigurator(object):
       self.configure(cnf, self.executor)
     else:
       os.chdir(self.old_dir)
-      self.executor.log.close()
+      #self.executor.log.close()
       raise Exception('Inavlid Configuration cannot continue with the build')
 
-    self.executor.log.close()
+    #self.executor.log.close()
     print "finished execution"
     os.chdir(self.old_dir)
 
@@ -128,10 +129,7 @@ class AppConfigurator(object):
       self.configure(config, executor)
     else:
       os.chdir(self.old_dir)
-      self.executor.log.close()
-      raise Exception('Inavlid Configuration cannot continue with the build')
-
-    self.executor.log.close()
+      raise Exception('Invalid Configuration cannot continue with the build')
     print "finished execution"
     os.chdir(old_dir)
 
