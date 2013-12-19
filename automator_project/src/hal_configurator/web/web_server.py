@@ -2,10 +2,11 @@ from flask import Flask, request
 import os
 import json
 from hal_configurator.lib.config_loaders import FileConfigLoader
-
+from attributes import crossdomain
 app = Flask(__name__)
 
 @app.route("/config/<identifier>/<platform>/<name>")
+@crossdomain(origin="*")
 def return_json(identifier,platform, name):
   filepath = os.path.join(identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
@@ -13,6 +14,7 @@ def return_json(identifier,platform, name):
   return json.dumps(conf)
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
+@crossdomain(origin="*")
 def save_json(identifier,platform, name):
   print "saved"
   filepath = os.path.join(identifier,platform,name)
@@ -27,7 +29,7 @@ def save_json(identifier,platform, name):
     return False
 
 def run_server():
-  app.run(host="0.0.0.0", port="5001",debug=True)
+  app.run(host="0.0.0.0", port=5001,debug=True)
 
 if __name__ == '__main__':
   run_server()
