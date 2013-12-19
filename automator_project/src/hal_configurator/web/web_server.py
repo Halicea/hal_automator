@@ -30,4 +30,4 @@ def run_server():
   app.run()
 
 if __name__ == '__main__':
-  run_server()
+  run_server(host="0.0.0.0", port="5001",debug=True)
