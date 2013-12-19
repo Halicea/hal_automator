@@ -4,10 +4,10 @@ import json
 from hal_configurator.lib.config_loaders import FileConfigLoader
 
 app = Flask(__name__)
-
+workspace_path = '/home/costa.halicea/MediawireConfigurations'
 @app.route("/config/<identifier>/<platform>/<name>")
 def return_json(identifier,platform, name):
-  filepath = os.path.join(identifier,platform,name)
+  filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.load_config()
   return json.dumps(conf)
@@ -15,7 +15,7 @@ def return_json(identifier,platform, name):
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 def save_json(identifier,platform, name):
   print "saved"
-  filepath = os.path.join(identifier,platform,name)
+  filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   try:
     #Here you should not load the config, why would you save it?
@@ -27,7 +27,7 @@ def save_json(identifier,platform, name):
     return False
 
 def run_server():
-  app.run(host="0.0.0.0", port="5001",debug=True)
+  app.run(host="0.0.0.0", port=5001,debug=True)
 
 if __name__ == '__main__':
   run_server()
