@@ -11,8 +11,15 @@ else:
   print 'No Configuration Loadeed, Continuing...'
 
 sys.path.append(os.path.abspath(__file__))
-import hal_configurator.lib.configurator_console as console
-import hal_configurator.web.web_server
+try:
+  import hal_configurator.lib.configurator_console as console
+except:
+  print 'Not configured for executor, only web server mode is possible'
+try:
+  import hal_configurator.web.web_server
+except:
+  print 'Not Configured for web mode'
+
 ui_enabled= True
 try:
   from PySide import QtGui
