@@ -13,6 +13,7 @@ __d = os.path.dirname(
           os.path.dirname(__file__)))
 
 config_path = os.path.join(__d, 'config.conf')
+config = None
 try:
   config = Config(open(config_path, 'r'))
 except:
