@@ -27,7 +27,6 @@ except Exception, ex:
   ui_enabled = False
   print ex
   print "No Qt Installed"
-  print "Continuing in ConsoleMode"
 if ui_enabled:
   from hal_configurator.ui.configwindow import ConfigWindow
 
@@ -51,5 +50,4 @@ if __name__ == "__main__":
   elif sys.argv[1] =='-admin':
     main(True)
   elif sys.argv[1]=='-web':
-
-    console.main()
+    web_server.run_server()
