@@ -8,6 +8,7 @@ from hal_configurator.lib.plugin_loader import load_plugins_from_directory_list
 load_plugins_from_directory_list(config.plugin_dirs)
 sys.path.append(os.path.abspath(__file__))
 import hal_configurator.lib.configurator_console as console
+import hal_configurator.web.web_server
 ui_enabled= True
 try:
   from PySide import QtGui
@@ -38,5 +39,6 @@ if __name__ == "__main__":
     main(False)
   elif sys.argv[1] =='-admin':
     main(True)
-  else:
+  elif sys.argv[1]=='-web':
+
     console.main()

@@ -2,7 +2,10 @@ import os
 from config import Config
 import codecs
 import json
-from hal_configurator.lib.workspace_manager import Workspace
+try:
+  from hal_configurator.lib.workspace_manager import Workspace
+except:
+  pass
 
 __author__ = 'Costa Halicea'
 __d = os.path.dirname(
