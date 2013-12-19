@@ -16,7 +16,7 @@ try:
 except:
   print 'Not configured for executor, only web server mode is possible'
 try:
-  import hal_configurator.web.web_server
+  import hal_configurator.web.web_server as web_server
 except:
   print 'Not Configured for web mode'
 
