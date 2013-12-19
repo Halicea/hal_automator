@@ -5,7 +5,11 @@ import os
 from hal_configurator.lib.app_config import config
 from hal_configurator.lib.plugin_loader import load_plugins_from_directory_list
 
-load_plugins_from_directory_list(config.plugin_dirs)
+if config:
+  load_plugins_from_directory_list(config.plugin_dirs)
+else:
+  print 'No Configuration Loadeed, Continuing...'
+
 sys.path.append(os.path.abspath(__file__))
 import hal_configurator.lib.configurator_console as console
 import hal_configurator.web.web_server
