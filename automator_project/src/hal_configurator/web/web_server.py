@@ -1,4 +1,4 @@
-from flask import Flask, request  # @UnusedImport
+from flask import Flask, request, Response # @UnusedImport
 import os
 import json
 from hal_configurator.lib.config_loaders import FileConfigLoader
@@ -11,7 +11,7 @@ def return_json(identifier,platform, name):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.load_config()
-  return json.dumps(conf)
+  return Response(response=json.dumps(conf), status=200, mimetype="application/json")
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 @crossdomain(origin="*")
