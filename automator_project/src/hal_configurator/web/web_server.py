@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request  # @UnusedImport
 import os
 import json
 from hal_configurator.lib.config_loaders import FileConfigLoader
@@ -25,7 +25,7 @@ def save_json(identifier,platform, name):
     #read about how post works.
     config_loader.save_config(config_loader.load_config())
     return True
-  except Exception, ex:
+  except Exception, ex:  # @UnusedVariable
     return False
 
 def run_server():
