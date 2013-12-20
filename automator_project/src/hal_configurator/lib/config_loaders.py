@@ -17,6 +17,7 @@ class ConfigLoader(object):
   def __init__(self, *args, **kwargs):
     self.custom_bundles = []
     self.custom_vars = []
+    self.custom_resources = []
     self.resources_root_url = None
 
   def loadConfig(self):
@@ -33,6 +34,18 @@ class ConfigLoader(object):
       variables.remove(k)
     variables.extend(self.custom_vars)
     return config
+
+  def load_custom_resources(self, config):
+    variables = config["Resources"]
+    existing_ones = [x for x in variables if len([y for y in self.custom_vars if y["rid"]==x["rid"]])>0]
+    for k in existing_ones:
+      variables.remove(k)
+    variables.extend(self.custom_resources)
+    return config
+
+  def validate(self):
+    """validates the last loaded configuration"""
+    raise NotImplementedError('this feature is not yet implemented')
 
   def verify_required_vars(self, config):
     variables = config["Variables"]
@@ -147,10 +160,6 @@ class FileConfigLoader(ConfigLoader):
       return content, os.path.join(os.path.dirname(self.config_file), ref_path)
     else:
       return None, None
-
-
-
-  #TODO: Implement a save method for the config
 
   def fix_resource_separator_chars(self, config):
     if os.path.sep!='/':

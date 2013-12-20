@@ -3,7 +3,10 @@ import os
 import json
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from attributes import crossdomain
-app = Flask(__name__)
+#setup the working directory to thisone 
+#
+os.chdir(os.path.dirname(__file__))
+app = Flask(__name__, static_folder='static', static_url_path='')
 workspace_path = '/home/costa.halicea/MediawireConfigurations'
 @app.route("/config/<identifier>/<platform>/<name>")
 @crossdomain(origin="*")

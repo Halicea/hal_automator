@@ -1,0 +1,59 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Todos</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script src="app.js"></script>
+  </head>
+<body>
+	<div ng-controller="JsonCtrl">
+    <table ng-repeat="data in config.Variables">
+		{{data.FacebookAppID}} 
+		<div>
+			<tr>
+				<td>{{data.admin_only}}</td>
+				<td>{{data.ApplicationTitle}}</td>
+				<td>{{data.FacebookAppID}}</td>
+			</tr>
+			<tr>
+				<td>{{data.services_url}}</td>
+				<td>{{data.thumb_format}}</td>
+				<td>{{data.pdf_format}}</td>
+			</tr>
+			<tr>
+				<td>{{data.IsNewstandApp}}</td>
+				<td>{{data.authentication}}</td>
+				<td>{{data.Debug}}</td>
+			</tr>
+			<tr>
+				<td>{{data.app_id}}</td>
+				<td>{{data.ShareSubject}}</td>
+				<td>{{data.BlogUrl}}</td>
+			</tr>
+			<tr>
+				<td>{{data.ProjectName}}</td>
+				<td>{{data.BannersDirectory}}</td>
+				<td>{{data.MCMServicesUrl}}</td>
+			</tr>
+			<tr>
+				<td>{{data.services_url_staging}}</td>
+				<td>{{data.BuildTarget}}</td>
+				<td>{{data.CertificatesPassword}}</td>
+			</tr>
+			<tr>
+				<td>{{data.DeployPath}}</td>
+				<td>{{data.JenkinsServerUrl}}</td>
+				<td>{{data.JenkinsUsername}}</td>
+			</tr>
+			<tr>
+				<td>{{data.BuildBranch}}</td>
+				<td>{{data.JenkinsPassword}}</td>
+				<td>{{data.JenkinsConfigurationName}}</td>
+			</tr>
+		</div>
+</table>
+</div>        
+</body>
+</html>
