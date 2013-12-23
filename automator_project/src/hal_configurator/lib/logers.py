@@ -29,7 +29,8 @@ class ZmqChainedLoger(LoggerBase):
       print "Exception:", traceback.print_exc()
 
   def close(self):
-    ZmqChainedLoger.message_sender.close()
+    if ZmqChainedLoger.message_sender:
+      ZmqChainedLoger.message_sender.close()
     ZmqChainedLoger.message_sender = None
     ZmqChainedLoger.is_binded = False
 

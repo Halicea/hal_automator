@@ -17,29 +17,29 @@ class ValidationResult(object):
     self.errors = []
     self.suggestions = []
     self.is_valid = True
-  
+
   def extend(self, result):
     self.warnings.extend(result.warnings)
     self.errors.extend(result.errors)
     self.suggestions.extend(result.suggestions)
-    self.is_valid =self.is_valid and result.is_valid 
+    self.is_valid =self.is_valid and result.is_valid
     return self
-  
+
   def __repr__(self):
     message = 'Errors:\n'+'\n'.join(['\tError: '+x for x in self.errors])
     message+= '\nWarnings:\n'+'\n'.join(['\tWarn: '+x for x in self.warnings])
     message+= '\nSuggestions:\n'+'\n'.join(['\tSuggestion: '+x for x in self.suggestions])
     return message
-  
+
   def __str__(self):
     return self.__repr__()
-    
+
 class ConfigurationValidator(object):
-  
+
   '''
   Validates if the required variables and all the resources are present in the configuration
   Validates if the working directory exists
-  Uses custom validators in the variables to validate the validity of their input 
+  Uses custom validators in the variables to validate the validity of their input
   '''
   def __init__(self, config_path):
     self.config_path = config_path
@@ -62,7 +62,7 @@ class ConfigurationValidator(object):
         result.is_valid = False
         result.errors.append(MSG_REQUIRED_BUT_NOT_FOUND % rv['name'])
     return result
-  
+
   def get_unused_vars(self, config):
     result = []
     s = str(config["Content"])
@@ -70,7 +70,7 @@ class ConfigurationValidator(object):
       if not "{{"+v['name']+"}}" in s:
         result.append(v)
     return result
-  
+
   def get_unused_resources(self, config):
     result = []
     s = str(config["Content"])
@@ -78,7 +78,7 @@ class ConfigurationValidator(object):
       if not "{#"+v['rid']+"#}" in s:
         result.append(v)
     return result
-  
+
   def get_suggestions(self, config):
     result = ValidationResult()
     var_suggested_keys=["display", "name", "type", "value", "admin_only", "required"]
@@ -91,26 +91,28 @@ class ConfigurationValidator(object):
         if not k in v:
           result.suggestions.append(MSG_SUGGEST_VAR_PROPERTY%('(in required)'+v['name'], k))
     return result
-          
+
   def get_undefined_vars(self, config):
+    reserved_vars = ['item', 'index']
     result = ValidationResult()
     undeclared_vars = []
     s = str(config["Content"])
     search_pattern ="\{\{\w+\}\}"
     used_vars = [k[2:-2] for k in re.findall(search_pattern, s)]
     for v in list(set(used_vars)):
-      found = False
-      for k in config["Variables"]:
-        if k['name']==v:
-          found=True
-      if not found:
-        undeclared_vars.append(v)
-        
+      if not v in reserved_vars:
+        found = False
+        for k in config["Variables"]:
+          if k['name']==v:
+            found=True
+        if not found:
+          undeclared_vars.append(v)
+
     for k in undeclared_vars:
       result.is_valid = False
       result.errors.append(MSG_UNDECLARED_VAR%k)
     return result
-  
+
   def get_undefined_resources(self, config):
     result = ValidationResult()
     undeclared_resources = []
@@ -124,12 +126,12 @@ class ConfigurationValidator(object):
           found=True
       if not found:
         undeclared_resources.append(v)
-        
+
     for k in undeclared_resources:
       result.is_valid = False
       result.errors.append(MSG_UNDECLARED_RES%k)
     return result
-    
+
   def get_unused_warnings(self, config):
     result = ValidationResult()
     v = self.get_unused_vars(config)
@@ -152,7 +154,7 @@ class ConfigurationValidator(object):
       else:
         result.errors.append(MSG_REQUIRED_BUT_EMPTY_RES%res['rid'])
     return result
-  
+
   def validate_working_dir(self, working_dir):
     result = ValidationResult()
     if os.path.exists(working_dir):
@@ -164,7 +166,7 @@ class ConfigurationValidator(object):
       result.errors.append(os.path.abspath(os.getcwd()))
       result.errors.append(MSG_WORKING_DIR_NOT_EXISTS % working_dir)
     return result
-    
+
   def validate(self, config, working_dir=None):
     result = self.v_required_vars(config)\
       .extend(self.v_resources(config))\
@@ -175,4 +177,4 @@ class ConfigurationValidator(object):
     if working_dir:
       result.extend(self.validate_working_dir(working_dir))
     return result
-  
+

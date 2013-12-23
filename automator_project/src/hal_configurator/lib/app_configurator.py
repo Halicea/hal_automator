@@ -91,7 +91,9 @@ class AppConfigurator(object):
     if self.executor is None:
       self.executor = self.create_executor()
     validation_result = self.validator.validate(self.get_config(), exec_dir)
-    self.executor.log.write(repr(validation_result))
+    if validation_result.errors or self.verbose:
+      self.executor.log.write(repr(validation_result))
+
     if validation_result.is_valid:
       os.chdir(exec_dir)
       self.configure(cnf, self.executor)
@@ -123,7 +125,8 @@ class AppConfigurator(object):
     os.chdir(wd)
     executor = self.create_executor(config=config, **executor_kwargs)
     validation_result = self.validator.validate(self.config, wd)
-    executor.log.write(repr(validation_result))
+    if validation_result.errors or self.verbose:
+      executor.log.write(repr(validation_result))
 
     if validation_result.is_valid:
       self.configure(config, executor)
@@ -190,9 +193,10 @@ class AppConfigurator(object):
         if _bundles_filter.allowed(bundle['Name']):
           _executor.execute_bundle(bundle, global_vars, global_resources, _operations_filter)
         else:
-          self.logger.write("="*20)
-          self.logger.write('SKIPPED %s'%bundle['Name'])
-          self.logger.write("="*20)
+          if self.verbose:
+            self.logger.write("="*20)
+            self.logger.write('SKIPPED %s'%bundle['Name'])
+            self.logger.write("="*20)
 
 
   def create_executor(self, config = None, logger=None, resources_root=None):

@@ -9,12 +9,12 @@ class ConsoleOutput(QtGui.QWidget, Ui_ConsoleOutput):
     self.bindUi()
 
   def setupUi(self):
-    super(ConsoleOutput, self).setupUi(self)  
-  
+    super(ConsoleOutput, self).setupUi(self)
+
   def bindUi(self):
     self.btn_clear.clicked.connect(self.clear_output)
 
   def clear_output(self):
     self.txt_output.clear()
 
-  
+

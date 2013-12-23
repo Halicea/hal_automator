@@ -8,17 +8,12 @@ except:
   pass
 
 __author__ = 'Costa Halicea'
-__d = os.path.dirname(
-        os.path.dirname(
-          os.path.dirname(__file__)))
-
-config_path = os.path.join(__d, 'config.conf')
+from hal_configurator.lib import config_path
 config = None
 try:
-  config = Config(open(config_path, 'r'))
+  config = Config(open(config_path(), 'r'))
 except:
   pass
-
 
 def add_config_to_history(path):
   ch = get_config_history()
@@ -41,10 +36,7 @@ def get_current_workspace():
     Workspace.set(config.current_workspace)
   return Workspace.current
 
-
-
 def set_current_workspace(path):
-
   if not Workspace.current or Workspace.current.workspacedir!=path:  # @UndefinedVariable
     Workspace.set(path)
     config.current_workspace = "'%s'"%path
@@ -67,7 +59,19 @@ def set_last_dir(d):
   config.last_dir = "'"+d+"'"
   save()
 
+def is_verbose():
+  try:
+    return config.verbose == True
+  except AttributeError, e:
+    config.verbose = False
+    save()
+    return config.verbose
+
+def set_verbose(value):
+  config.verbose = value
+  save()
+
 def save():
-  s = open(config_path, 'w')
+  s = open(config_path(), 'w')
   config.save(s)
   s.close()

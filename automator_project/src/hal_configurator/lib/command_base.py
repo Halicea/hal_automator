@@ -27,6 +27,9 @@ class OperationBase(object):
     self.executor = executor
     self.resources = resources
     self.variables = variables
+    self.self_managed_variables = False
+    self.self_managed_resources = False
+
     self.value_substitutor = VarSubstitutor(self.variables, self.resources, self.executor.resources_root)
     self.log = log
     self.verbose = verbose

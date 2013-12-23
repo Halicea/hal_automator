@@ -19,7 +19,7 @@ try:
   import hal_configurator.web.web_server as web_server
 except:
   print 'Not Configured for web mode'
-
+print "Running in",os.path.abspath(__file__)
 ui_enabled= True
 try:
   from PySide import QtGui
@@ -37,7 +37,7 @@ def main(isAdmin):
   :type : isAdmin: bool
   """
   app = QtGui.QApplication(sys.argv)
-  # app.setStyle(QtGui.QWindowsStyle)
+  app.setStyle('windows')
   mw = ConfigWindow(None)
   mw.show()
   app.setWindowIcon(QtGui.QIcon())

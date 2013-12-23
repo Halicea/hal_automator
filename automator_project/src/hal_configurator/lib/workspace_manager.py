@@ -31,6 +31,10 @@ class Workspace(object):
   @property
   def mode(self):
     return self.settings.has_key('mode') and self.settings['mode'] or 'admin'
+  @mode.setter
+  def mode(self, value):
+    self.settings['mode'] = value
+    self.save()
 
   def __load_workspace_settings__(self):
     if os.path.exists(self.settings_file):

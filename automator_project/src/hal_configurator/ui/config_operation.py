@@ -33,11 +33,13 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
       self.la_description.setText(self.op["Description"])
     else:
       self.la_description.setText("No Description is set!")
-      
+
     for desc in self.descriptors:
       arg = desc.name
       la = desc.name
-      val = self.op["Arguments"][arg]
+      val=None
+      if arg in self.op["Arguments"]:
+        val = self.op["Arguments"][arg]
       item = QtGui.QFrame(self)
       layout = QtGui.QHBoxLayout(item)
       layout.setContentsMargins(0, 0, 0, 0)
@@ -58,11 +60,11 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
         arg_box.setText(val)
       layout.addWidget(arg_label)
       layout.addWidget(arg_box)
-      arg_label.setText(la)  
+      arg_label.setText(la)
 
   def closeEvent(self, *args, **kwargs):
     self.bundle_widget.remove_operation(self)
-      
+
   def get_dict(self):
     d = {}
     d["Code"]=self.op["Code"]
@@ -79,5 +81,5 @@ class OperationWidget(QtGui.QDockWidget, Ui_OperationWidget):
         args[key.text()]=value.text()
     return d
 
-    
+
 

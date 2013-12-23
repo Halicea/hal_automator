@@ -2,16 +2,19 @@
 
 
 var app = angular.module('myApp', []);
+app.config(function($httpProvider){
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+});
 
 app.controller('JsonCtrl', function($scope, $http, $log){
-    $scope.config = {};	    			
+    $scope.config = {};
     $http.get('http://staging.mediawiremobile.com:5001/config/FloridaDesign/IOS/bc.json'
     ).success(function(data, status) {
             $scope.config = data;
     }).error(function(a, b, c, d){
-		 $log.log(a)
-		 $log.log(b)
-		 $log.log(c)
-		 $log.log(d)
-	});    
+		 $log.log(a);
+		 $log.log(b);
+		 $log.log(c);
+		 $log.log(d);
+	});
 });

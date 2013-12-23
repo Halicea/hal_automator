@@ -21,6 +21,7 @@ class CommandExecutor(object):
     self.resources_root = resources_root
     self.resources = resources
     self.debug_mode = debug_mode
+    self.current_bundle = None
     self.log = log
 
   def replace_vars(self, bundle_vars, dictionary):
@@ -42,6 +43,8 @@ class CommandExecutor(object):
     return new_vars
 
   def execute_bundle(self, command_bundle, global_vars, global_resources, operations_filter):
+    self.current_bundle = command_bundle
+    self.operations_filter = operations_filter
     bundle_vars = []
     if command_bundle.has_key("Variables"):
       bundle_vars = command_bundle["Variables"]
@@ -60,38 +63,34 @@ class CommandExecutor(object):
     for k in bundle_res:
       if not ("://" in k["url"]):
         k["url"] = self.resources_root+"/"+k["url"]
-
+    self.bundle_vars = bundle_vars
+    self.bundle_res = bundle_res
     continue_execution = self.check_debug_settings(command_bundle)
 
     if continue_execution:
-      self.log.write("="*20)
-      self.log.write(command_bundle["Name"])
-      self.log.write("="*20)
+      if self.verbose:
+        self.log.write("="*20)
+        self.log.write(command_bundle["Name"])
+        self.log.write("="*20)
       for comm in command_bundle["Operations"]:
         self.execute_command(comm, bundle_vars, bundle_res)
-      self.log.write("=END= "+command_bundle["Name"]+" =END=")
+      if self.verbose:
+        self.log.write("=END= "+command_bundle["Name"]+" =END=")
 
 
   def execute_bundle_within_current_scope(self, bundle):
-    builder = self.parent
-    config = {
-               "PublisherId": builder.config["PublisherId"],
-               "RequiredVariables": builder.config["RequiredVariables"],
-               "Variables": builder.config["Variables"],
-               "Resources": builder.config["Resources"],
-               "Content":{
-                "OperationBundles":[bundle]
-               }
-             }
-    builder.apply_parametrized(config)
+    self.execute_bundle(bundle, self.bundle_vars, self.bundle_res, self.operations_filter)
 
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
       cmd  = command["Code"] #@UnusedVariable
       plugin_cls = plugin_loader.get_plugin_cls(command)
       plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
-      repl_vars = self.replace_vars(bundle_vars, command["Arguments"])
-      repl_vars = self.replace_resources(bundle_res, repl_vars)
+      repl_vars = command["Arguments"].copy()
+      if not plugin.self_managed_variables:
+        repl_vars = self.replace_vars(bundle_vars, command["Arguments"])
+      if not plugin.self_managed_resources:
+        repl_vars = self.replace_resources(bundle_res, repl_vars)
       if "Description" in command:
         plugin.description = command["Description"]
       plugin.set_args(**repl_vars)

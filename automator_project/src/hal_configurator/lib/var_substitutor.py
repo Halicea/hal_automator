@@ -19,6 +19,19 @@ class VarSubstitutor(object):
           string  = self.resources_root+"/"+string
     return string
 
+  def substitute_expressions(self, string):
+    result = string
+    while "{!" and "!}" in result:
+      index_start =string.index('{!')+2
+      index_end = string.index('!}',index_start)
+
+      to_eval = string[index_start:index_end]
+      result = result.replace('{!'+to_eval+'!}',str(eval(to_eval)))
+    return result
+
   def substitute(self, text):
-    t  = self.substitute_vars(text)
-    return self.substitute_resources(t)
+    t = self.substitute_vars(text)
+    t = self.substitute_resources(t)
+    t = self.substitute_expressions(t)
+    return t
+

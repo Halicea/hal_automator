@@ -22,6 +22,22 @@ import copy
 
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
 
+  def __init__(self, main_window, *args, **kwargs):
+    super(ConfigWindow, self).__init__(*args, **kwargs)
+    self.viewMode = 'admin'
+    self.debug = False
+    self.verbose = app_config.is_verbose()
+    self.config_path = None
+    self.working_dir = None
+    self.main_window = main_window or self
+    self.working_dir_choser = None
+    self.messages_thread = None
+    self.cw = None
+    self.bundlesModel = QtGui.QStandardItemModel()
+    self.set_plugins()
+    self.setupUi()
+    self.set_message_receiver()
+
   def set_configuration(self, config_path, working_dir):
     self.config_path = config_path
     if working_dir:
@@ -65,17 +81,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       i += 1
     return includedBundles
 
-  def __init__(self, main_window, *args, **kwargs):
-    super(ConfigWindow, self).__init__(*args, **kwargs)
-    self.working_dir = None
-    self.main_window = main_window or self
-    self.working_dir_choser = None
-    self.messages_thread = None
-    self.cw = None
-    self.bundlesModel = QtGui.QStandardItemModel()
-    self.set_plugins()
-    self.setupUi()
-    self.set_message_receiver()
+
 
   def set_plugins(self):
     self.plugins =[]
@@ -98,13 +104,15 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       self.switch_workspace()
     else:
       self.workspace.set_loger(ZmqChainedLoger(1234))
+    self.viewMode = self.workspace.mode
+    self.actionViewAsAdmin.setChecked(self.viewMode=='admin')
+    self.actionViewAsModerator.setChecked(self.viewMode=='moderator')
 
-    if self.workspace.mode !='admin':
+  def bindUi(self):
+    if self.viewMode !='admin':
       self.tool = self.detailsContainer
     else:
       self.tool = None
-
-  def bindUi(self):
     title = os.path.basename((os.path.dirname(os.path.dirname(self.config_path))))
     title +="     -- Configurator Version:%s"%(app_config.get_version())
     self.setWindowTitle(title)
@@ -113,7 +121,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       self.ltv_content.removeWidget(self.cw)
       self.cw.close()
     self.cw = ConfigForm(self.loader, parent=self, details_parent = self.tool)
-    if self.workspace.mode!='admin':
+    if self.viewMode!='admin':
       self.cw.tlbx_bundles.hide()
       self.widget.hide()
       self.splitter_2.setSizes([self.splitter_2.width()/3.0, 2*self.splitter_2.width()/3.0])
@@ -201,7 +209,19 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.th = thc(self.workspace)
     self.th.start()
 
+  def setViewMode(self, modeUsed=None):
+    newViewMode = None
+    if modeUsed=='moderator':
+      self.actionViewAsAdmin.setChecked(not self.actionViewAsModerator.isChecked())
+      newViewMode = self.actionViewAsModerator.isChecked() and 'moderator' or 'admin'
+    else:
+      self.actionViewAsModerator.setChecked(not self.actionViewAsAdmin.isChecked())
+      newViewMode = self.actionViewAsAdmin.isChecked() and 'admin' or 'moderator'
 
+    if newViewMode !=self.viewMode and self.config_path:
+      self.viewMode = newViewMode
+      self.workspace.mode = newViewMode
+      self.set_configuration(self.config_path, self.working_dir)
 
   def set_menu_bar(self):
     def save(is_new, is_cloning_empty):
@@ -209,7 +229,10 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         if self.cw:
           self.cw.save_config(is_new, is_cloning_empty)
       return fn
-
+    def viewModeSetter(mode):
+      def fn ():
+        return self.setViewMode(mode)
+      return fn
     self.actionRun.triggered.connect(self.on_run_click)
 
     self.actionClose.triggered.connect(self.close)
@@ -224,11 +247,22 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.actionSave.triggered.connect(save(False, False))
     self.actionSave_As.triggered.connect(save(True, False))
     self.actionClone.triggered.connect(save(True, True))
+    self.actionViewAsAdmin.triggered.connect(viewModeSetter('admin'))
+    self.actionViewAsModerator.triggered.connect(viewModeSetter('moderator'))
+    self.actionVerbose.triggered.connect(self.setVerbosity)
+    self.actionVerbose.setChecked(app_config.is_verbose())
+    self.actionDebug_2.triggered.connect(self.debugChanged)
 
+  def debugChanged(self):
+    self.debug = self.actionDebug.isChecked()
+
+  def setVerbosity(self):
+    app_config.set_verbose(self.actionVerbose.isChecked())
+    self.verbose = self.actionVerbose.isChecked()
 
   def create_new_config(self):
     cur_dir = app_config.get_config_history()[-1]
-    params = {"caption":"Choose Configuration","filter":"bc.json"}
+    params = {"caption":"Choose Configuration","filter":"bc.halc"}
     if cur_dir:
       params["dir"] = app_config.get_config_history()[-1]
     f = QtGui.QFileDialog.getSaveFileName(**params)
@@ -274,14 +308,16 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.build_output = ConsoleOutput()
     self.build_output.show()
     config_loader = FileConfigLoader(self.config_path)
-    builder = AppConfigurator(config_loader, ZmqChainedLoger(1234))
+    builder = AppConfigurator(config_loader, ZmqChainedLoger(1234), verbose=self.verbose)
     builder.set_execution_dir(self.working_dir)
     builder.include_bundles(self.get_included_bundles())
     self.set_message_receiver()
-    #builder.apply()
-    self.worker = ConfigRunnerThread(builder)
-    self.worker.start()
-    self.worker.finished.connect(self.on_worker_finished)
+    if self.debug:
+      builder.apply()
+    else:
+      self.worker = ConfigRunnerThread(builder)
+      self.worker.start()
+      self.worker.finished.connect(self.on_worker_finished)
 
   def on_worker_finished(self):
     self.worker.builder = None
