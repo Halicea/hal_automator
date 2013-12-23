@@ -1,0 +1,19 @@
+{
+  "name": "hal_configurator_web",
+  "version": "1.27.00",
+  "homepage": "https://github.com/Halicea/hal_automator",
+  "authors": [
+    "Halicea"
+  ],
+  "description": "web interface for hal configurator",
+  "main": "index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

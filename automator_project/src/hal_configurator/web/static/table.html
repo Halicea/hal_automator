@@ -8,15 +8,32 @@
   <script src="app.js"></script>
   </head>
 <body>
-	<div ng-controller="JsonCtrl">
-		<div ng-repeat="data in config.Variables">
-      <div ng-if="!data.admin_only">
-        <!-- <label>Admin only is {{data.admin_only}}</label> -->
-        <label>{{data.display}}</label>
-        <input value="{{data.value}}">
-        <button class="button">Save</button>
-      </div>
+
+
+    <div ng-controller="ConfigCtrl">
+
+        <select ng-model="configId" ng-change="reloadConfig(configId)">
+            <option ng-repeat="c in configurations">{{c}}</option>
+        </select>
+        <select ng-model="platform">
+            <option selected>IOS</option>
+            <option>Android</option>
+        </select>
+
+		<div ng-repeat="variable in config.Variables">
+          <div ng-if="!variable.admin_only" style="margin-top: 24px">
+            <!-- <label>Admin only is {{data.admin_only}}</label> -->
+            <label>{{data.display}}</label>
+            <input value="{{variable.value}}" name="input" id="input"/>
+            <button class="button" ng-click="save()">Save</button>
+          </div>
 		</div>
+        <div ng-repeat="res in config.Resources">
+            <div ng-if="res">
+                <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"></img>
+                <button class="button">Change</button>
+            </div>
+        </div>
   </div>
 </body>
 </html>

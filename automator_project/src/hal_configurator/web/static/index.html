@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+    <meta charset="utf-8">
+    <title>HomePage</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="angular-csp.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/bootstrap.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/dist/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="width: 500px;">
+    <ul ng-controller="ViewCtrl">
+        <li><a href="#/index">index</a></li>
+        <li><a href="#/table">table</a></li>
+    </ul>
+    <form action="" method="get">
+        Application name: <input type="text" name="appname" id="appname" />
+        <div style="margin-left: 120px;">
+            <input type="button" name="android" id="android" value="Android" />
+            <input type="button" name="ios" id="ios" value="iOS" />
+        </div>
+    </form>
+</div>
+<div ng-view></div>
+
+</body>
+</html>
