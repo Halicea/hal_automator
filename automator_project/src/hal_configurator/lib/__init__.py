@@ -13,8 +13,9 @@ def copytree(src, dst, symlinks=False, ignore=None):
 def config_path():
 
   current =  os.path.abspath(__file__)
-  current = os.path.dirname(os.path.dirname(current))
+  current = os.path.dirname(os.path.dirname(os.path.dirname(current)))
   res = os.path.join(current, 'config.conf')
+  print 'Trying:',res
   if not os.path.exists(res):
     if sys.platform =='darwin':
       print 'in Mac'

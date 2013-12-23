@@ -50,3 +50,5 @@ if __name__ == "__main__":
     main(True)
   elif sys.argv[1]=='-web':
     web_server.run_server()
+  else:
+    console.main()
