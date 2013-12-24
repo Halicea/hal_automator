@@ -11,6 +11,7 @@ app.controller('ConfigCtrl', function($scope, $http, $log){
     $scope.configuraitons = [];
     $scope.configId = 'FloridaDesign';
     $scope.platform = 'IOS';
+
     $http.get('/config').success(function(data){
         $scope.configurations = data;
     }).error(function(status, headers, response, config){
@@ -23,6 +24,32 @@ app.controller('ConfigCtrl', function($scope, $http, $log){
         }).error(function(status, headers, response, config){
             $log.warn(status, headers, response, config);
         });
+    };
+    $scope.showDialog = function () {
+        var msg = 'Hello World!';
+        var options = {
+            resolve: {
+                msg: function () { return msg; }
+            }
+        };
+        var dialog = $dialog.dialog(options);
+
+        dialog.open('table.html', 'DialogCtrl');
+    };
+
+    $scope.saveConfig = function() {
+        $http.post('/config/'+$scope.configId+'/'+$scope.platform+'/bc.json', $scope.config).success(function(data){
+            alert(data);
+        }).error(function(status, headers, response, cnf){
+                $log.warn(status, headers, response, cnf);
+                alert(status);
+        });
+    };
+    app.controller('DialogCtrl', function ($scope, dialog, msg) {
+        $scope.msg = msg;
+    });
+    $scope.cancelEdit = function() {
+        window.location = "/table.html";
     };
 });
     config(['$routeProvider', function($routeProvider) {

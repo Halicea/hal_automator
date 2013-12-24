@@ -30,13 +30,34 @@ def save_json(identifier,platform, name):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   try:
-    #Here you should not load the config, why would you save it?
-    #you should save the dictionary you will receive from the request body..
-    #read about how post works.
-    config_loader.save_config(config_loader.load_config())
-    return True
+    newconf = json.loads(request.data)
+    config_loader.save_config(newconf)
+    print 'all fine'
+    return Response(response="True", status=200)
   except Exception, ex:  # @UnusedVariable
-    return False
+    print ex.message
+    return Response(response="False", status=200)
+
+
+@app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["GET"])
+@crossdomain(origin="*")
+def get_var(identifier,platform, name, varname):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res= [x for x in conf["Variables"] if x["name"] == varname][0]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+@app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["POST"])
+@crossdomain(origin="*")
+def save_var(identifier,platform, name, res):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res= [x for x in conf["Variables"] if x["name"] == varname][0]
+  res["value"] = request.data
+  config_loader.save_config(conf)
+  return True
 
 @app.route('/config/<path:filename>')
 def base_static(filename):

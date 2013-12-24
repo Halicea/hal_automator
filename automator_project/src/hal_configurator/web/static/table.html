@@ -19,19 +19,28 @@
             <option selected>IOS</option>
             <option>Android</option>
         </select>
-
+        <form>
 		<div ng-repeat="variable in config.Variables">
           <div ng-if="!variable.admin_only" style="margin-top: 24px">
             <!-- <label>Admin only is {{data.admin_only}}</label> -->
-            <label>{{data.display}}</label>
-            <input value="{{variable.value}}" name="input" id="input"/>
-            <button class="button" ng-click="save()">Save</button>
+            <label>{{variable.display}}</label>
+             <div ng-switch="{{variable.type}}">
+                  <input ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
+                  <input ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
+                  <select ng-model="variable.type" ng-switch-when="select">
+                      <option>{{variable.options.mediawire}}</option>
+                      <option>{{variable.options.autologin}}</option>
+                  </select>
+             </div>
+              <button class="button" ng-click="saveConfig()">Save</button>
           </div>
 		</div>
+
+        </form>
         <div ng-repeat="res in config.Resources">
             <div ng-if="res">
                 <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"></img>
-                <button class="button">Change</button>
+                <input type="file" id="res" value=""/>
             </div>
         </div>
   </div>
