@@ -1,2 +1,4 @@
 automator_project/.project
 automator_project/.pydevproject
+*.pyc
+automator_project/src/hal_configurator/web/config.json
