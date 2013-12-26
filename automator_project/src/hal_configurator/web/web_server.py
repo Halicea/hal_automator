@@ -6,7 +6,7 @@ sys.path.append('../../');
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from attributes import crossdomain
 
-app_config = json.loads(open('config.json', r).read())
+app_config = json.loads(open('config.json', 'r').read())
 workspace_path = app_config['workspace_path']
 app = Flask(__name__, static_folder='./static', static_url_path='')
 #os.chdir(os.path.dirname(__file__))
