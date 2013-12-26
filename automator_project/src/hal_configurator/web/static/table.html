@@ -4,14 +4,11 @@
   <meta charset="utf-8">
   <title>Todos</title>
   <link rel="stylesheet" href="style.css"/>
-  <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
-  <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
-    <script src="/angular/angular.min.js"></script>
-    <script src="/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
     <script src="/app.js"></script>
-    <script src="/services/ConfigData.js"></script>
-
-
+    <script src="/services/configSvc.js"></script>
+    <script src="/controllers/configCtrl.js"></script>
   </head>
 <body>
 
@@ -20,9 +17,9 @@
         <select ng-model="configId" ng-change="reloadConfig(configId)">
             <option ng-repeat="c in configurations">{{c}}</option>
         </select>
-        <select ng-model="platform">
-            <option ng-change="reloadPlatform('IOS')" selected>IOS</option>
-            <option ng-change="reloadPlatform('Android')">Android</option>
+        <select ng-model="platform"  ng-change="reloadPlatform(platform)">
+            <option value="IOS" selected>IOS</option>
+            <option value="Android">Android</option>
         </select>
         <form>
       		<div ng-repeat="variable in config.Variables">
