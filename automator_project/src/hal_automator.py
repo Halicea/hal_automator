@@ -15,10 +15,7 @@ try:
   import hal_configurator.lib.configurator_console as console
 except:
   print 'Not configured for executor, only web server mode is possible'
-try:
-  import hal_configurator.web.web_server as web_server
-except:
-  print 'Not Configured for web mode'
+
 print "Running in",os.path.abspath(__file__)
 ui_enabled= True
 try:
@@ -49,6 +46,10 @@ if __name__ == "__main__":
   elif sys.argv[1] =='-admin':
     main(True)
   elif sys.argv[1]=='-web':
+    try:
+      import hal_configurator.web.web_server as web_server
+    except:
+      print 'Not Configured for web mode'
     web_server.run_server()
   else:
     console.main()

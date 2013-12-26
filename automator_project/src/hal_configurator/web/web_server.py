@@ -30,9 +30,6 @@ def save_json(identifier,platform, name):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   try:
-    #Here you should not load the config, why would you save it?
-    #you should save the dictionary you will receive from the request body..
-    #read about how post works.
     config_loader.save_config(config_loader.load_config())
     return True
   except Exception, ex:  # @UnusedVariable
