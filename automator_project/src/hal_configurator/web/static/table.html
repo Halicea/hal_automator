@@ -3,37 +3,66 @@
 <head>
   <meta charset="utf-8">
   <title>Todos</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/bootstrap.min.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/css/custom-theme/jquery-ui-1.9.2.custom.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/css/custom-theme/jquery.ui.1.10.0.ie.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/css/custom-theme/jquery.ui.1.9.2.ie.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/bootstrap-theme.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/bootstrap-theme.min.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/assets/css/font-awesome-ie7.min.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/assets/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="bootstrapJquery/assets/css/docs.min.css"/>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+  <script type="text/javascript" src="bower_components/underscore/underscore.js"></script>
   <script src="app.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js">
+  </script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js">
+  </script>
+  <script src="bootstrapJquery/js/jquery-1.8.3.min.js"></script>
+  <script src="bootstrapJquery/js/jquery-ui-1.9.2.custom.min.js"></script>
+  <script src="bootstrapJquery/assets/js/bootstrap.min.js"></script>
+  <script src="bootstrapJquery/assets/js/jquery-1.8.3.min.js"></script>
+  <script src="bootstrapJquery/assets/js/jquery-1.9.0.min.js"></script>
+  <script src="bootstrapJquery/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
   </head>
 <body>
 
-
+<div ng-view>
     <div ng-controller="ConfigCtrl">
-
         <select ng-model="configId" ng-change="reloadConfig(configId)">
             <option ng-repeat="c in configurations">{{c}}</option>
         </select>
         <select ng-model="platform">
-            <option selected>IOS</option>
-            <option>Android</option>
+            <option ng-change="reloadPlatform('IOS')" selected>IOS</option>
+            <option ng-change="reloadPlatform('Android')">Android</option>
         </select>
-
-		<div ng-repeat="variable in config.Variables">
-          <div ng-if="!variable.admin_only" style="margin-top: 24px">
-            <!-- <label>Admin only is {{data.admin_only}}</label> -->
-            <label>{{data.display}}</label>
-            <input value="{{variable.value}}" name="input" id="input"/>
-            <button class="button" ng-click="save()">Save</button>
-          </div>
-		</div>
+        <form>
+      		<div ng-repeat="variable in config.Variables">
+            <div ng-if="!variable.admin_only" style="margin-top: 24px">
+              <label>{{variable.display}}</label>
+                <div ng-switch="{{variable.type}}">
+                  <input ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
+                  <input ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
+                  <select ng-model="variable.type" ng-switch-when="select">
+                    <option>{{variable.options.mediawire}}</option>
+                    <option>{{variable.options.autologin}}</option>
+                  </select>
+                </div>
+                  <button class="button" ng-click="saveConfig()">Save</button>
+                </div>
+      		</div>
+        </form>
         <div ng-repeat="res in config.Resources">
-            <div ng-if="res">
-                <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"></img>
-                <button class="button">Change</button>
-            </div>
+          <div ng-if="res">
+            <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"></img>
+                <input type="file" id="res" value=""/>
+          </div>
         </div>
   </div>
+</div>
 </body>
 </html>

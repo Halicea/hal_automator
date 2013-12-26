@@ -6,7 +6,8 @@ sys.path.append('../../');
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from attributes import crossdomain
 
-workspace_path = '/Users/mkoffice01/MyProjects/MediawireConfigurations'
+app_config = json.loads(open('config.json', 'r').read())
+workspace_path = app_config['workspace_path']
 app = Flask(__name__, static_folder='./static', static_url_path='')
 #os.chdir(os.path.dirname(__file__))
 
@@ -30,10 +31,34 @@ def save_json(identifier,platform, name):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   try:
-    config_loader.save_config(config_loader.load_config())
-    return True
+    newconf = json.loads(request.data)
+    config_loader.save_config(newconf)
+    print 'all fine'
+    return Response(response="True", status=200)
   except Exception, ex:  # @UnusedVariable
-    return False
+    print ex.message
+    return Response(response="False", status=200)
+
+
+@app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["GET"])
+@crossdomain(origin="*")
+def get_var(identifier,platform, name, varname):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res= [x for x in conf["Variables"] if x["name"] == varname][0]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+@app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["POST"])
+@crossdomain(origin="*")
+def save_var(identifier,platform, name, res):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res= [x for x in conf["Variables"] if x["name"] == varname][0]
+  res["value"] = request.data
+  config_loader.save_config(conf)
+  return True
 
 @app.route('/config/<path:filename>')
 def base_static(filename):
