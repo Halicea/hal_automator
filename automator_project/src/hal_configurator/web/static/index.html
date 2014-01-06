@@ -7,23 +7,29 @@
     <script type="text/javascript" src="bower_components/angular/angular.js"></script>
     <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/services/configSvc.js"></script>
+    <script type="text/javascript" src="js/controllers/ConfigCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/EditConfigCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/NewConfigCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/HomePageCtrl.js"></script>
+    <script type="text/javascript" src="js/controllers/CertificatesResourcesCtrl.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div id="menu">
+        <div id="menu" style="margin-left: 17%;">
             <ul>
                 <li><a href="#HomePage">HomePage</a></li>
                 <li><a href="#NewConfig">New Config</a></li>
                 <li><a href="#EditConfig">Edit Config</a></li>
-                <li><a href="#Certificates">Certificates</a></li>
+                <li><a href="#CertificatesAndResources">Certificates & Resources</a></li>
             </ul>
         </div>
         <div class="col-md-9">
             <ng-view></ng-view>
         </div>
     </div>
-</div><!-- /.container -->
+</div>
 </body>
 </html>
 
