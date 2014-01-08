@@ -2,11 +2,12 @@ from flask import Flask, request, Response,send_from_directory # @UnusedImport
 import os
 import json
 import sys
-sys.path.append('../../');
+current_dir = os.path.dirname(__file__)
+sys.path.append(os.path.join('../../', current_dir))
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from attributes import crossdomain
 
-app_config = json.loads(open('config.json', 'r').read())
+app_config = json.loads(open(os.path.join(current_dir,'config.json'), 'r').read())
 workspace_path = app_config['workspace_path']
 app = Flask(__name__, static_folder='./static', static_url_path='')
 #os.chdir(os.path.dirname(__file__))
