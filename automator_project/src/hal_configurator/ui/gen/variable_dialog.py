@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/variable_dialog.ui'
 #
-# Created: Sun Dec 22 01:10:29 2013
+# Created: Mon Dec 30 16:50:07 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,6 +64,9 @@ class Ui_Form(object):
         self.cbRequired = QtGui.QCheckBox(self.adminPanel)
         self.cbRequired.setObjectName("cbRequired")
         self.horizontalLayout.addWidget(self.cbRequired)
+        self.cbGlobal = QtGui.QCheckBox(self.adminPanel)
+        self.cbGlobal.setObjectName("cbGlobal")
+        self.horizontalLayout.addWidget(self.cbGlobal)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout)
@@ -91,4 +94,5 @@ class Ui_Form(object):
         self.label.setText(QtGui.QApplication.translate("Form", "Name", None, QtGui.QApplication.UnicodeUTF8))
         self.cbAdminOnly.setText(QtGui.QApplication.translate("Form", "Admin Only", None, QtGui.QApplication.UnicodeUTF8))
         self.cbRequired.setText(QtGui.QApplication.translate("Form", "Required", None, QtGui.QApplication.UnicodeUTF8))
+        self.cbGlobal.setText(QtGui.QApplication.translate("Form", "Global", None, QtGui.QApplication.UnicodeUTF8))
 

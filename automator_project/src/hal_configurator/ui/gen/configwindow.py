@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/configwindow.ui'
 #
-# Created: Mon Dec 23 03:43:26 2013
+# Created: Mon Dec 30 16:50:07 2013
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
