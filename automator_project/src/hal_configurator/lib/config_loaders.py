@@ -141,8 +141,6 @@ class FileConfigLoader(ConfigLoader):
     f.write(json.dumps(content, sort_keys = True, indent = 2))
     f.close()
 
-
-
   def __pop_reference__(self, cfg, key, forced_reference_key = None):
     ref_path = None
     content = {}

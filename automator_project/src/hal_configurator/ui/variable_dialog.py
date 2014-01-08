@@ -34,13 +34,25 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
       self.parent().show()
     super(VariableDialog, self).show()
 
-  def checkstate_from_bool(self, value):
+  def checkstate_from_value(self, d, key, inverse = False):
+    value = None
+    if not key in d:
+      value = None
+    elif d[key]==True:
+      value = True
+    elif d[key]==False:
+      value = False
+
     if value == None:
       return Qt.CheckState.PartiallyChecked
-    if value:
-      return Qt.CheckState.Checked
     else:
-      return Qt.CheckState.Unchecked
+      if inverse:
+        value = not value
+      if value:
+        return Qt.CheckState.Checked
+      else:
+        return Qt.CheckState.Unchecked
+
   def checkstate_to_bool(self, value):
     if value == Qt.CheckState.Checked:
       return True
@@ -58,8 +70,9 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.txt_name.setText(self.model["name"])
     self.txt_value.setText(self.model["value"])
     self.txtDisplay.setText(self.model.has_key('display') and self.model['display'] or '')
-    self.cbAdminOnly.setCheckState(self.checkstate_from_bool(self.model.has_key('admin_only') and self.model['admin_only'] or None))
-    self.cbRequired.setCheckState(self.checkstate_from_bool(self.model.has_key('required') and self.model['required'] or None))
+    self.cbAdminOnly.setCheckState(self.checkstate_from_value(model,'admin_only'))
+    self.cbRequired.setCheckState(self.checkstate_from_value(model,'required'))
+    self.cbGlobal.setCheckState(self.checkstate_from_value(model, 'editable', inverse=True))
     self.cmbType.setCurrentIndex(self.types_model.index(t))
 
   def bindUi(self):
@@ -69,6 +82,7 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.cmbType.currentIndexChanged.connect(self.typeChanged)
     self.cbAdminOnly.clicked.connect(self.adminOnlyChanged)
     self.cbRequired.clicked.connect(self.requiredChanged)
+    self.cbGlobal.clicked.connect(self.editableChanged)
     self.txtDisplay.textChanged.connect(self.displayChanged)
     self.buttonBox.accepted.connect(self.__btn_accepted__)
     self.buttonBox.rejected.connect(self.__btn_rejected__)
@@ -105,4 +119,8 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
 
   def requiredChanged(self):
     self.model["required"]=self.checkstate_to_bool(self.cbRequired.checkState())
+
+  def editableChanged(self):
+    self.model['editable']=not self.checkstate_to_bool(self.cbGlobal.checkState())
+
 

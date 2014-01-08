@@ -103,6 +103,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QCheckBox" name="cbGlobal">
+          <property name="text">
+           <string>Global</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
