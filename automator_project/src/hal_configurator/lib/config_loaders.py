@@ -165,8 +165,8 @@ class FileConfigLoader(ConfigLoader):
         print ex.message
         print "Cannot load reference", ref
         raise ex
-    cfg = self.load_customizations(cfg)
     cfg = self.verify_required_vars(cfg)
+    cfg = self.load_customizations(cfg)
     last_config_loaded = cfg
     return cfg
 
