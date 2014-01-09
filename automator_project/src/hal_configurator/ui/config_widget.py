@@ -98,8 +98,6 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
   def extend_var(self, target, src, excluded_keys=[]):
     for k in src.keys():
       if not (k in excluded_keys):
-        if k == 'value':
-          print 'wrong here'
         if k in target:
           if src[k]!=None and src[k]!=target[k]:
             target[k] = src[k]
@@ -116,17 +114,19 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
         excluded_keys = ['is_from_req']
         if editable:
           excluded_keys.append('value')
+
         if found:
           self.extend_var(found[0], v, excluded_keys)
-        else:
+        elif v['required'] or not editable:
           rvars.append(self.extend_var({}, v, excluded_keys))
+
       to_del = []
       for rv in rvars:
-        found = [v for v in d['Variables'] if v['name']==rv['name'] and v['required']]
+        found = [v for v in d['Variables'] if v['name']==rv['name'] and (v['required'] or v['editable']==False or v['admin_only'])]
         if not found:
           to_del.append(rv)
       for k in to_del:
-        del rv[k]
+        rvars.remove(k)
 
     if clean_required_vars:
       to_remove = []
@@ -169,8 +169,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       print "saving file on "+self.save_path
       d = copy.deepcopy(self.get_dict())
       save_references = Workspace.current.mode=='admin'
-      self.sanitize_vars(d, clean_required_vars=True, update_global_vars=save_references,wipe_var_values=is_cloning_empty)
-        # @UndefinedVariable
+      self.sanitize_vars(d, clean_required_vars=True, update_global_vars=save_references,wipe_var_values=is_cloning_empty) # @UndefinedVariable
       self.config_loader.save_config(d, save_references)
     else:
       print "Saving cancelled"
