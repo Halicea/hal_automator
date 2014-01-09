@@ -106,7 +106,6 @@ class VariablesListModel(QtCore.QAbstractListModel):
     self.beginRemoveRows(QtCore.QModelIndex(), index, index)
     r = self.resources[index]
     self.resources.remove(r)
-    self.resources.remove(r)
     self.endRemoveRows()
 
   def setData(self, index, value):

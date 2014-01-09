@@ -110,6 +110,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     if update_global_vars:
       for v in d['Variables']:
         editable = True if not ('editable' in v) else v['editable']
+        required = False if not ('required' in v) else v['required']
         found = [rv for rv in rvars if rv['name']==v['name']]
         excluded_keys = ['is_from_req']
         if editable:
@@ -122,6 +123,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
       to_del = []
       for rv in rvars:
+
         found = [v for v in d['Variables'] if v['name']==rv['name'] and (v['required'] or v['editable']==False or v['admin_only'])]
         if not found:
           to_del.append(rv)
