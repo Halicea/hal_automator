@@ -23,6 +23,61 @@ class ConfigLoader(object):
   def loadConfig(self):
     raise NotImplementedError("abstract class accessed")
 
+  def extend_var(self, target, src, excluded_keys=[]):
+    for k in src.keys():
+      if not (k in excluded_keys):
+        if k in target:
+          if src[k]!=None and src[k]!=target[k]:
+            target[k] = src[k]
+        else:
+          target[k]= src[k]
+    return target
+
+  def __sanitize_vars_before_save__(self, d, clean_required_vars = True, update_global_vars=False, wipe_var_values=False):
+    rvars = d['RequiredVariables']
+    if update_global_vars:
+      for v in d['Variables']:
+        editable = True if not ('editable' in v) else v['editable']
+        required = False if not ('required' in v) else v['required']
+        found = [rv for rv in rvars if rv['name']==v['name']]
+        excluded_keys = ['is_from_req']
+        if editable:
+          excluded_keys.append('value')
+
+        if found:
+          self.extend_var(found[0], v, excluded_keys)
+        elif v['required'] or not editable:
+          rvars.append(self.extend_var({}, v, excluded_keys))
+
+      to_del = []
+      for rv in rvars:
+        found = [v for v in d['Variables'] if v['name']==rv['name'] and (v['required'] or v['editable']==False or v['admin_only'])]
+        if not found:
+          to_del.append(rv)
+      for k in to_del:
+        rvars.remove(k)
+
+    if clean_required_vars:
+      to_remove = []
+      for v in d['Variables']:
+        found = [rv for rv in rvars if rv['name']==v['name']]
+        if found:
+          if found[0].has_key('editable') and not found[0]['editable']:
+            to_remove.append(v)
+          elif found[0]['value'] == v['value']:
+            to_remove.append(v)
+      for v in to_remove:
+        d['Variables'].remove(v)
+
+    if wipe_var_values:
+      for v in d['Variables']:
+        found = [rv for rv in rvars if rv['name']==v['name']]
+        if found:
+          v['value'] = found[0]['value']
+        else:
+          v['value'] = None
+
+
   def load_custom_bundles(self, config):
     config["Content"]["OperationBundles"].extend(self.custom_bundles)
     return config
@@ -77,8 +132,6 @@ class ConfigLoader(object):
   def load_customizations(self, cfg):
     cfg = self.load_custom_bundles(cfg)
     cfg = self.load_custom_vars(cfg)
-    #cfg = self.fix_bundle_separator_chars(cfg)
-    cfg = self.verify_required_vars(cfg)
     return cfg
 
 class SvcConfigLoader(ConfigLoader):
@@ -113,6 +166,7 @@ class FileConfigLoader(ConfigLoader):
         print "Cannot load reference", ref
         raise ex
     cfg = self.load_customizations(cfg)
+    cfg = self.verify_required_vars(cfg)
     last_config_loaded = cfg
     return cfg
 
@@ -129,7 +183,9 @@ class FileConfigLoader(ConfigLoader):
     else:
       cfg[key] = {}
 
-  def save_config(self, cfg, save_references=False):
+  def save_config(self, cfg, save_references=False, is_new_config=False):
+    self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)
+
     for ref in FileConfigLoader.available_references:
       content, ref_path = self.__pop_reference__(cfg, ref)
       if save_references and content and ref_path:

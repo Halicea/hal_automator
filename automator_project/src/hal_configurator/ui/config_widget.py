@@ -18,10 +18,6 @@ class ConfigWidget(QtGui.QWidget):
   def get_config(self):
     raise NotImplementedError("Abstract method is not implemented")
 
-
-
-
-
 class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
   def __init__(self, config_loader, parent=None, details_parent = None, *args, **kwargs):
@@ -95,61 +91,6 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     else:
       print 'in workspace'
 
-  def extend_var(self, target, src, excluded_keys=[]):
-    for k in src.keys():
-      if not (k in excluded_keys):
-        if k in target:
-          if src[k]!=None and src[k]!=target[k]:
-            target[k] = src[k]
-        else:
-          target[k]= src[k]
-    return target
-
-  def sanitize_vars(self, d, clean_required_vars = True, update_global_vars=False, wipe_var_values=False):
-    rvars = d['RequiredVariables']
-    if update_global_vars:
-      for v in d['Variables']:
-        editable = True if not ('editable' in v) else v['editable']
-        required = False if not ('required' in v) else v['required']
-        found = [rv for rv in rvars if rv['name']==v['name']]
-        excluded_keys = ['is_from_req']
-        if editable:
-          excluded_keys.append('value')
-
-        if found:
-          self.extend_var(found[0], v, excluded_keys)
-        elif v['required'] or not editable:
-          rvars.append(self.extend_var({}, v, excluded_keys))
-
-      to_del = []
-      for rv in rvars:
-
-        found = [v for v in d['Variables'] if v['name']==rv['name'] and (v['required'] or v['editable']==False or v['admin_only'])]
-        if not found:
-          to_del.append(rv)
-      for k in to_del:
-        rvars.remove(k)
-
-    if clean_required_vars:
-      to_remove = []
-      for v in d['Variables']:
-        found = [rv for rv in rvars if rv['name']==v['name']]
-        if found:
-          if found[0].has_key('editable') and not found[0]['editable']:
-            to_remove.append(v)
-          elif found[0]['value'] == v['value']:
-            to_remove.append(v)
-      for v in to_remove:
-        d['Variables'].remove(v)
-
-    if wipe_var_values:
-      for v in d['Variables']:
-        found = [rv for rv in rvars if rv['name']==v['name']]
-        if found:
-          v['value'] = found[0]['value']
-        else:
-          v['value'] = None
-
   @QtCore.Slot()
   def save_config(self, is_new=False, is_cloning_empty=False):
     sp  = self.save_path
@@ -171,8 +112,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       print "saving file on "+self.save_path
       d = copy.deepcopy(self.get_dict())
       save_references = Workspace.current.mode=='admin'
-      self.sanitize_vars(d, clean_required_vars=True, update_global_vars=save_references,wipe_var_values=is_cloning_empty) # @UndefinedVariable
-      self.config_loader.save_config(d, save_references)
+      self.config_loader.save_config(d, save_references, is_cloning_empty)
     else:
       print "Saving cancelled"
     self.save_path = old_path
