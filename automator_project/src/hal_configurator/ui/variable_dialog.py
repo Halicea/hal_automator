@@ -74,6 +74,8 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.cbRequired.setCheckState(self.checkstate_from_value(model,'required'))
     self.cbGlobal.setCheckState(self.checkstate_from_value(model, 'editable', inverse=True))
     self.cmbType.setCurrentIndex(self.types_model.index(t))
+    self.txtGroup.setText(self.model.has_key('group') and self.model['group'] or '')
+    self.txtHelpText.setText(self.model.has_key('helptext') and self.model['helptext'] or '')
 
   def bindUi(self):
     self.cmbType.setModel(SimpleStringListModel(self.types_model))
@@ -86,6 +88,8 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.txtDisplay.textChanged.connect(self.displayChanged)
     self.buttonBox.accepted.connect(self.__btn_accepted__)
     self.buttonBox.rejected.connect(self.__btn_rejected__)
+    self.txtGroup.textChanged.connect(self.groupChanged)
+    self.txtHelpText.textChanged.connect(self.helpTextChanged)
 
   def __btn_accepted__(self):
     self.accepted.emit()
@@ -100,7 +104,6 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
       self.parent().close()
     else:
       self.close()
-
 
   def valueChanged(self):
     self.model["value"] = self.txt_value.text()
@@ -123,4 +126,8 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
   def editableChanged(self):
     self.model['editable']=not self.checkstate_to_bool(self.cbGlobal.checkState())
 
+  def groupChanged(self):
+    self.model['group']=self.txtGroup.text()
 
+  def helpTextChanged(self):
+    self.model['helptext']=self.txtHelpText.text()
