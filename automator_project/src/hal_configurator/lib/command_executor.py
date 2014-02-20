@@ -77,7 +77,6 @@ class CommandExecutor(object):
       if self.verbose:
         self.log.write("=END= "+command_bundle["Name"]+" =END=")
 
-
   def execute_bundle_within_current_scope(self, bundle):
     self.execute_bundle(bundle, self.bundle_vars, self.bundle_res, self.operations_filter)
 
@@ -103,4 +102,3 @@ class CommandExecutor(object):
         if obj["DebugSettings"].has_key("Break"):
           continue_execution = not obj["DebugSettings"]["Break"]
     return continue_execution
-
