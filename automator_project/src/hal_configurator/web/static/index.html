@@ -8,16 +8,7 @@
 </head>
 <body ng-controller="HomePageCtrl">
     <div id="container" class="row container">
-        <div id="tabs" class="tabs-bellow col-md-2">
-            <ul class="nav nav-tabs nav-stacked">
-                <li class="active" id="variables"><a href="#NewConfig">Variables</a><img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/></li>
-                <li id="resources"><a href="#CertificatesAndResources">Resources</a><img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/></li>
-                <li id="buildApp"><a href="#BuildApp">Build App</a></li>
-            </ul>
-        </div>
-        <div id="center" class="col-md-6">
-            <ng-view></ng-view>
-        </div>
+        <ng-view></ng-view>
         <div id="preview" class="col-md-3">
             <img id="device" src="img/device.png" alt="Device Preview"/>
         </div>
@@ -31,7 +22,6 @@
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/services/configSvc.js"></script>
     <script type="text/javascript" src="js/controllers/ConfigCtrl.js"></script>
-    <script type="text/javascript" src="js/controllers/EditConfigCtrl.js"></script>
     <script type="text/javascript" src="js/controllers/HomePageCtrl.js"></script>
     <script type="text/javascript" src="js/controllers/CertificatesResourcesCtrl.js"></script>
 </body>

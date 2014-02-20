@@ -51,7 +51,7 @@ body {
 #tabs {
 	background-color: rgb(204, 204, 204);
 	top: 0;
-	height: 110px;
+	height: 100%;
 	margin-left: 20px;
 	margin-top: 70px;
 }

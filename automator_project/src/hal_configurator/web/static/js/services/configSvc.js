@@ -23,6 +23,23 @@ app.factory('configSvc', function($http, $log){
     result.platformsForApp = function(appName){
         return [{display:'iOS', value:'IOS'}, {display:'Android', value:'Android'}];
     };
+    
+    result.getGroups = function(platform){
+        var groups = {
+            'IOS':[
+                'Themes',
+                'General',
+                'Settings'
+            ],
+            'Android':[
+                'Themes',
+                'General',
+                'Settings'
+            ]
+        };
+        return groups[platform];
+    };
+    
     result.save = function(id, platform, config, callback){
         $http.post('/config/'+id+'/'+platform+'/bc.json', config)
         .success(function(data, status) {

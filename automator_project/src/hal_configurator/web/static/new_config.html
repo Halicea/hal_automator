@@ -1,25 +1,45 @@
-<div>
-    <ul class="nav nav-tabs">
-        <li ng-repeat="platform in platforms" class="{{platform.active}}">
-            <a href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
+<div id="tabs" class="tabs-bellow col-md-2">
+    <ul class="nav nav-tabs nav-stacked" ng-repeat="group in groups">
+        <li class="active" id="variables">
+            <button ng-click="groupChanged(group)">{{group}}</button><img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/>
         </li>
     </ul>
 </div>
-<div id="centerContainer" class="row tab-content">
-    <form>
-        <div ng-repeat="variable in config.Variables" class="col-md-12">
-            <div ng-if="!variable.admin_only" class='col-md-12'>
-                <label class="col-md-4">{{variable.display}}</label>
-                <div ng-switch="{{variable.type}}" class="col-md-6">
-                    <input class="col-md-12" ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
-                    <input  class="col-md-12" ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
-                    <select class="col-md-12"ng-model="variable.type" ng-switch-when="select">
-                        <option>{{variable.options.mediawire}}</option>
-                        <option>{{variable.options.autologin}}</option>
-                    </select>
+<div id="center" class="col-md-6">
+    <div>
+        <ul class="nav nav-tabs">
+            <li ng-repeat="platform in platforms" class="{{platform.active}}">
+                <a href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
+            </li>
+        </ul>
+    </div>
+    <div id="centerContainer" class="row tab-content">
+        <form>
+            <div ng-repeat="variable in config.Variables" class="col-md-12">
+                <div ng-if="!variable.admin_only" class='col-md-12'>
+                    <div ng-if="variable.group == displayed_group">
+                        <label class="col-md-4">{{variable.display}}</label>
+                        <div ng-switch="{{variable.type}}" class="col-md-6">
+                            <input class="col-md-12" ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
+                            <input  class="col-md-12" ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
+                            <select class="col-md-12"ng-model="variable.type" ng-switch-when="select">
+                                <option>{{variable.options.mediawire}}</option>
+                                <option>{{variable.options.autologin}}</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-primary col-md-2" ng-click="saveConfig()">Save</button>
+            </div>
+            <div style="margin-left:18%" ng-repeat="res in config.Resources">
+                <div ng-if="res && res.group==displayed_group">
+                    <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"/>
+                    </br>
+                    <input ng-model="res" style="margin-bottom:5px;" type="file" id="res" value=""/>
+                    <button type="submit" id="upload" ng-click="saveConfig()">Upload</button>
             </div>
         </div>
-    </form>
+        <button class="btn btn-primary" ng-click="saveConfig()">Save</button>
+        </form>
+    </div>
 </div>
+
