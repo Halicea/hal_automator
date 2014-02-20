@@ -1,0 +1,210 @@
+body {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	-webkit-moz-border: 0;
+	-o-border: 0;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	background-color: rgb(232, 232, 232);
+}
+
+#top {
+	width: 100%;
+	height: 29px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	background-color: rgb(250, 250, 250);
+}
+
+#logoId {
+	width: 196px;
+	height: 27px;
+	margin-left: 30%;
+}
+
+#welcome {
+	font-size: 16px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	color: grey;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 20%;
+	margin-top: 0;
+}
+
+#arrow {
+	width: 10px;
+	height: 13px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-right: 18.8%;
+	margin-top: 0;
+	padding-top: 8px;
+	padding-bottom: 6px;
+}
+
+#tabs {
+	background-color: rgb(204, 204, 204);
+	top: 0;
+	height: 110px;
+	margin-left: 20px;
+	margin-top: 70px;
+}
+
+#variables, #resources {
+	height: 36px;
+	border-bottom: 2px solid grey;
+	-webkit-moz-border-bottom: 2px solid grey;
+	-o-border-bottom: 2px solid grey;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	padding-left: 14px;
+	position: relative;
+	color: rgb( 250, 250, 250 );
+	font-size: 13px;
+}
+
+#buildApp {
+	height: 23px;
+	padding-top: 7px;
+	padding-bottom: 6px;
+	padding-left: 14px;
+	position: relative;
+	color: rgb( 250, 250, 250 );
+	font-size: 13px;
+	border: 0;
+}
+#build > form > input {
+    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+#iosLogo {
+	width: 13px;
+	height: 13px;
+	position: absolute;
+	bottom: 0;
+	right: 2px;
+	margin-bottom: 3px;
+}
+
+#androidLogo {
+	width: 13px;
+	height: 13px;
+	position: absolute;
+	bottom: 0;
+	right: 15px;
+	margin-bottom: 3px;
+}
+
+#iOS {
+	background-color: rgb(220, 220, 220);
+	top: 0;
+	margin-top: 44px;
+	padding: 0;
+	height: 36px;
+	color: rgb( 250, 250, 250 );
+}
+#i {
+	padding-left: 45%;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	height: 38px;
+	margin-top: 0;
+	font-size: 13px;
+}
+
+#Android {
+	background-color: rgb(200, 199, 199);
+	top: 0;
+	margin-top: 44px;
+	border-top: 2px solid grey;
+	border-left: 2px solid grey;
+	border-right: 2px solid grey;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	-webkit-moz-border-top: 2px solid grey;
+	-o-border-top: 2px solid grey;
+	-webkit-moz-border-left: 2px solid grey;
+	-o-border-left: 2px solid grey;
+	-webkit-moz-border-right: 2px solid grey;
+	-o-border-right: 2px solid grey;
+	-webkit-moz-border-top-left-radius:5px;
+	-o-border-top-left-radius:5px;
+	padding: 0;
+	height: 36px;
+	color: rgb( 250, 250, 250 );
+	
+}
+#a {
+	padding-left: 45%;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	height: 39px;
+	margin-top: 0;
+	font-size: 13px;
+	border: 0;
+}
+#a:hover {
+	background-color: rgb(220, 220, 220);
+}
+
+#myTabs > .nav-tabs > li.active > a,
+#myTabs > .nav-tabs > li.active > a:hover,
+#myTabs > .nav-tabs > li.active > a:focus{
+    background-color: rgb(220, 220, 220);
+} 
+#tabs > .nav-tabs > li.active > a,
+#tabs > .nav-tabs > li.active > a:hover,
+#tabs > .nav-tabs > li.active > a:focus{
+    background-color: rgb(204, 204, 204);
+    height: 15px;
+    border: 0;
+    color: rgb( 250, 250, 250 );
+    font-size: 13px;
+    font-weight: bold;
+}
+#tabs > .nav-tabs > li > a,
+#tabs > .nav-tabs > li > a:hover,
+#tabs > .nav-tabs > li > a:focus{
+    background-color: rgb(204, 204, 204);
+    height: 15px;
+    border: 0;
+    color: rgb( 250, 250, 250 );
+    font-size: 13px;
+    padding-top: 0;
+    border-bottom: 0;
+}
+
+#tabs > .nav-tabs > li > a:hover{
+    background-color: rgb(204, 204, 204);
+    height: 15px;
+    border: 0;
+    color: rgb( 250, 250, 250 );
+    font-size: 13px;
+    font-weight: bold;
+}
+
+#center {
+	margin-left: 6px;
+}
+#centerContainer {
+	height:100%;
+	background-color: rgb(220, 220, 220);
+}
+
+#preview {
+	height: 700px;
+	top: 0;
+	margin-top: 100px;
+	background-color: rgb(232, 232, 232);
+}
+
+#device {
+	height: 521px;
+}

@@ -1,24 +1,20 @@
 'use strict';
 
-app.controller('ConfigCtrl', function($scope, $log, $routeParams, configSvc){
+app.controller('ConfigCtrlAndroid', function($scope, $log, configSvc){
     $scope.config = {};
-    $scope.configId = $routeParams.appname;
-    $scope.platform = $routeParams.platform;
-    $scope.platforms = configSvc.platformsForApp($routeParams.appname);
-    for (var i = $scope.platforms.length - 1; i >= 0; i--) {
-        if($scope.platforms[i].value === $scope.platform){
-            $scope.platforms[i].active = "active";
-        }
-    };
-    if(!$scope.platform){
-        $scope.platform  = $scope.platforms[0].value;
-    }
+    $scope.configuraitons = [];
+    $scope.configId = 'FloridaDesign';
+    $scope.platform = 'Android';
+    $scope.platforms = ['IOS', 'Android'];
     var refreshConfig = function(){
         configSvc.get($scope.configId, $scope.platform, function(conf){
             $scope.config = conf;
         });
     };
     refreshConfig();
+    configSvc.index(function(result){
+        $scope.configurations =  _.union(['-- Select Item --'], result);
+    });
     $scope.reloadConfig = function(configId){
         $scope.configId = configId;
         refreshConfig();

@@ -30,4 +30,37 @@ app.controller('CertificatesResourcesCtrl', function($scope, $log, configSvc){
             }
         });
     };
+    $scope.setFiles = function(element) {
+        $scope.$apply(function($scope) {
+            console.log('files:', element.files);
+            $scope.files = [];
+            for (var i = 0; i < element.files.length; i++) {
+                $scope.files.push(element.files[i]);
+            }
+        });
+    };
+    $scope.uploadFile = function() {
+        var fd = new FormData();
+        for (var i in $scope.files) {
+            fd.append("uploadedFile", $scope.files[i]);
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", "http://localhost:5001/config/FloridaDesign/IOS/Resources/fileupload");
+        xhr.send(fd);
+    };
+
+    function uploadComplete(evt) {
+        alert(evt.target.responseText)
+    }
+
+    function uploadFailed(evt) {
+        alert("There was an error attempting to upload the file.")
+    }
+
+    function uploadCanceled(evt) {
+        alert("The upload has been canceled by the user or the browser dropped the connection.")
+    }
 });

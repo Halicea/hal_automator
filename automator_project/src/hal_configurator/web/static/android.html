@@ -1,0 +1,24 @@
+<div>
+    <div style="margin-left: 43%">
+        <select style="margin-top:15px;" ng-model="configId" ng-change="reloadConfig(configId)">
+            <option ng-repeat="c in configurations">{{c}}</option>
+        </select>
+    </div>
+    <form>
+        <div style="margin-left:45%"ng-repeat="variable in config.Variables">
+            <div ng-if="!variable.admin_only" style="margin-top: 24px">
+                <label>{{variable.display}}</label>
+                <div ng-switch="{{variable.type}}">
+                    <input ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
+                    <input ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
+
+                    <select ng-model="variable.type" ng-switch-when="select">
+                        <option>{{variable.options.mediawire}}</option>
+                        <option>{{variable.options.autologin}}</option>
+                    </select>
+                </div>
+                <button class="button" ng-click="saveConfig()">Save</button>
+            </div>
+        </div>
+    </form>
+</div>
