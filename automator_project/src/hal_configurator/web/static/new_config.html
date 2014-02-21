@@ -1,9 +1,7 @@
 <div id="tabs" class="tabs-bellow col-md-2">
-    <ul class="nav nav-tabs nav-stacked" ng-repeat="group in groups">
-        <li class="active" id="variables">
-            <button ng-click="groupChanged(group)">{{group}}</button><img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/>
-        </li>
-    </ul>
+    <div class="list-group" ng-repeat="group in groups">
+            <a ng-click="groupChanged(group)" class="list-group-item">{{group}} <img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/></a>
+    </div>
 </div>
 <div id="center" class="col-md-6">
     <div>
@@ -14,31 +12,95 @@
         </ul>
     </div>
     <div id="centerContainer" class="row tab-content">
-        <form>
-            <div ng-repeat="variable in config.Variables" class="col-md-12">
-                <div ng-if="!variable.admin_only" class='col-md-12'>
-                    <div ng-if="variable.group == displayed_group">
-                        <label class="col-md-4">{{variable.display}}</label>
-                        <div ng-switch="{{variable.type}}" class="col-md-6">
-                            <input class="col-md-12" ng-if="variable.required" ng-if="variable.type == 'text'" ng-model="variable.value" required type="text" value="{{variable.value}}" name="input" id="input"/>
-                            <input  class="col-md-12" ng-if="!variable.required" ng-if="variable.type == 'text'"  type="text" value="{{variable.value}}" name="input" id="input1"/>
-                            <select class="col-md-12"ng-model="variable.type" ng-switch-when="select">
-                                <option>{{variable.options.mediawire}}</option>
-                                <option>{{variable.options.autologin}}</option>
+        <form id="fileupload" action="http://localhost:5001/config/FloridaDesign/IOS/bc.json/res/Baner-Iphone-2x_209.png" method="POST" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+            <div class="col-lg-7">
+                <button type="button" class="btn btn-primary start col-lg-3 col-md-offset-9" data-ng-click="submit()">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Save</span>
+                </button>
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+                <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" style="position:absolute; top:-100px;">
+            </div>
+            <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
+             <!-- The global progress state -->
+            <div class="col-lg-5 fade" data-ng-class="{in: active()}">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" data-file-upload-progress="progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+             <table class="table table-striped files ng-cloak">
+                <tr data-ng-repeat="file in queue" data-ng-class="{'processing': file.$processing()}">
+                    <td data-ng-switch data-on="!!file.thumbnailUrl">
+                        <div class="preview" data-ng-switch-when="true">
+                            <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
+                        </div>
+                        <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+                    </td>
+                    <td>
+                        <p class="name" data-ng-switch data-on="!!file.url">
+                            <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
+                                <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
+                                <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+                            </span>
+                            <span data-ng-switch-default>{{file.name}}</span>
+                        </p>
+                        <strong data-ng-show="file.error" class="error text-danger">{{file.error}}</strong>
+                    </td>
+                    <td>
+                        <p class="size">{{file.size | formatFileSize}}</p>
+                        <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary start" data-ng-click="file.$submit()" data-ng-hide="!file.$submit || options.autoUpload" data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
+                            <i class="glyphicon glyphicon-upload"></i>
+                            <span>Start</span>
+                        </button>
+                        <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
+                            <i class="glyphicon glyphicon-ban-circle"></i>
+                            <span>Cancel</span>
+                        </button>
+                        <button type="button" class="btn btn-danger destroy" data-ng-click="file.$destroy()" data-ng-hide="!file.$destroy">
+                            <i class="glyphicon glyphicon-trash"></i>
+                            <span>Delete</span>
+                        </button>
+                    </td>
+                </tr>
+            </table>
+            <div ng-repeat="conf in config" class="col-md-12">
+                <div ng-if="!conf.admin_only" class='col-md-12'>
+                    <div ng-if="conf.group == displayed_group && !conf.rid">
+                        <label class="col-md-4">{{conf.display}}</label>
+                        <div ng-switch="{{conf.type}}" class="col-md-6">
+                            <input class="col-md-12" ng-if="conf.required" ng-if="conf.type == 'text'" ng-model="conf.value" required type="text" value="{{conf.value}}" name="input" id="input"/>
+                            <input  class="col-md-12" ng-if="!conf.required" ng-if="conf.type == 'text'"  type="text" value="{{conf.value}}" name="input" id="input1"/>
+                            <select class="col-md-12"ng-model="conf.type" ng-switch-when="select">
+                                <option>{{conf.options.mediawire}}</option>
+                                <option>{{conf.options.autologin}}</option>
                             </select>
                         </div>
                     </div>
+                    <div ng-if="conf && conf.group == displayed_group && conf.rid">
+                        <img ng-src="/config/{{configId}}/{{platform}}/{{conf.url}}" alt="{{conf.id}}" class="img-responsive" />
+                        </br>
+                        <div class="row fileupload-buttonbar">
+                            <div class="col-lg-7">
+                                <!-- The fileinput-button span is used to style the file input field as button -->
+                                <span class="btn btn-primary fileinput-button" ng-click="triggerUpload()">
+                                    <i class="glyphicon glyphicon-edit"></i>
+                                    <span>Change...</span>
+                                    <input type="button">
+                                </span>
+                            </div>
+                        </div>
+                            <!-- Redirect browsers with JavaScript disabled to the origin page -->
+                           
+                            <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                    </div>
                 </div>
             </div>
-            <div style="margin-left:18%" ng-repeat="res in config.Resources">
-                <div ng-if="res && res.group==displayed_group">
-                    <img src="/config/{{configId}}/{{platform}}/{{res.url}}" alt="{{res.id}}" style="max-height: 250px"/>
-                    </br>
-                    <input ng-model="res" style="margin-bottom:5px;" type="file" id="res" value=""/>
-                    <button type="submit" id="upload" ng-click="saveConfig()">Upload</button>
-            </div>
-        </div>
-        <button class="btn btn-primary" ng-click="saveConfig()">Save</button>
+            
         </form>
     </div>
 </div>

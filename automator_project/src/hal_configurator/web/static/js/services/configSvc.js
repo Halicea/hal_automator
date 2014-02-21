@@ -21,21 +21,21 @@ app.factory('configSvc', function($http, $log){
     };
     
     result.platformsForApp = function(appName){
-        return [{display:'iOS', value:'IOS'}, {display:'Android', value:'Android'}];
+        return [{display:'iOS', value:'IOS'}, {display:'Android', value:'Android'}, {'display':'Windows', 'value':'WIN'}];
     };
     
     result.getGroups = function(platform){
         var groups = {
             'IOS':[
-                'Themes',
                 'General',
-                'Settings'
+                'Settings',
+                'Resources'
             ],
             'Android':[
                 'Themes',
-                'General',
-                'Settings'
-            ]
+                'Resources'
+            ],
+
         };
         return groups[platform];
     };

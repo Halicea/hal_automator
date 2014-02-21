@@ -2,6 +2,19 @@
 
 app.controller('CertificatesResourcesCtrl', function($scope, $log, configSvc){
     $scope.config = {};
+    $scope.options = {
+        url: url
+    };
+    $scope.loadingFiles = true;
+    $http.get(url).then(
+        function (response) {
+            $scope.loadingFiles = false;
+            $scope.queue = response.data.files || [];
+        },
+        function () {
+            $scope.loadingFiles = false;
+        }
+    );
     $scope.configuraitons = [];
     $scope.configId = 'FloridaDesign';
     $scope.platform = 'IOS';
