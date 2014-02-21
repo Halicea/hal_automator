@@ -98,7 +98,10 @@ def save_resource(identifier, platform, name, resid):
   #file_url = url_for('download', file_name=file_name)
   # providing the thumbnail url is optional
   #thumbnail_url = url_for('thumbnail', file_name=file_name)
-  return jsonify(name='test')
+  return jsonify(name='test',
+                 size=100000,
+                 url='/config/%s/%s/%s'%(identifier, platform, res['url']),
+                 thumbnail='/config/%s/%s/%s'%(identifier, platform, res['url']))
 
 
 @app.route('/config/<path:filename>')

@@ -71,5 +71,4 @@ $(function () {
                 .call(this, $.Event('done'), {result: result});
         });
     }
-
 });
