@@ -1,33 +1,33 @@
 <div id="tabs" class="tabs-bellow col-md-2">
-    <div class="list-group" ng-repeat="group in groups">
-            <a ng-click="groupChanged(group)" class="list-group-item">{{group}} <img id="androidLogo" src="img/androidLogo.png" alt="Android Logo"/> <img id="iosLogo" src="img/iosLogo.png" alt="iOS Logo"/></a>
+    <div class="list-group"  ng-repeat="group in groups">
+            <a ng-click="groupChanged(group.title)" style="background-color:{{group.color}}; color: #FFFFFF" class="list-group-item">{{group.title}} 
+                <div class="col-md-offset-9">
+                    <img ng-repeat="plat in platforms" ng-src="{{plat.active?plat.img_prefix+'_active.png':plat.img_prefix+'_inactive.png'}}"/>    
+                </div>
+            </a>
     </div>
 </div>
 <div id="center" class="col-md-6">
     <div>
         <ul class="nav nav-tabs">
-            <li ng-repeat="platform in platforms" class="{{platform.active}}">
-                <a href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
+            <li ng-repeat="platform in platforms" class="{{platform.active}} col-md-6 {{platform.value}}">
+                <a style="color: #FFFFFF;" href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
             </li>
         </ul>
     </div>
     <div id="centerContainer" class="row tab-content">
         <form id="fileupload" action="http://localhost:5001/config/FloridaDesign/IOS/bc.json/res/Baner-Iphone-2x_209.png" method="POST" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
             <div class="col-lg-7">
-                <button type="button" class="btn btn-primary start col-lg-9 col-md-offset-6" data-ng-click="submit()">
+                <button  type="button" class="btn btn-primary start col-lg-9 col-md-offset-6" data-ng-click="submit()">
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Save</span>
                 </button>
-                <!-- The global file processing state -->
                 <span class="fileupload-process"></span>
                 <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" style="position:absolute; top:-100px;">
             </div>
             <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
-             <!-- The global progress state -->
             <div class="col-lg-5 fade" data-ng-class="{in: active()}">
-                <!-- The global progress bar -->
                 <div class="progress progress-striped active" data-file-upload-progress="progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
-                <!-- The extended global progress state -->
                 <div class="progress-extended">&nbsp;</div>
             </div>
              <table class="table table-striped files ng-cloak">
@@ -53,10 +53,6 @@
                         <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary start" data-ng-click="file.$submit()" data-ng-hide="!file.$submit || options.autoUpload" data-ng-disabled="file.$state() == 'pending' || file.$state() == 'rejected'">
-                            <i class="glyphicon glyphicon-upload"></i>
-                            <span>Start</span>
-                        </button>
                         <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="!file.$cancel">
                             <i class="glyphicon glyphicon-ban-circle"></i>
                             <span>Cancel</span>
@@ -68,7 +64,7 @@
                     </td>
                 </tr>
             </table>
-            <div ng-repeat="conf in config" class="col-md-12">
+            <div ng-repeat="conf in config" class="col-md-12" dir="">
                 <div ng-if="!conf.admin_only" class='col-md-12'>
                     <div ng-if="conf.group == displayed_group && !conf.rid">
                         <label class="col-md-4">{{conf.display}}</label>
@@ -80,16 +76,13 @@
                                 <option>{{conf.options.autologin}}</option>
                             </select>
                         </div>
-                        <button id="helptext"  disabled type="button" class="col-md-1 glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="{{conf.helptext}}"></button>
-                        
-
+                        <button type="button" id="helptext" ng-mouseover="popup(conf)" class="col-md-1 glyphicon glyphicon-question-sign {{placement}}" data-toggle="tooltip" data-placement="top" title="{{conf.tooltip}}"></button>
                     </div>
                     <div ng-if="conf && conf.group == displayed_group && conf.rid">
                         <label class="col-md-4">{{conf.rid}}</label><img ng-src="/config/{{configId}}/{{platform}}/{{conf.url}}" alt="{{conf.id}}" class="img-responsive col-md-offset-5" />
                         </br>
                         <div class="row fileupload-buttonbar">
                             <div class="col-lg-7">
-                                <!-- The fileinput-button span is used to style the file input field as button -->
                                 <span class="btn btn-primary fileinput-button col-md-offset-9" ng-click="triggerUpload()">
                                     <i class="glyphicon glyphicon-edit"></i>
                                     <span>Change...</span>
@@ -97,14 +90,10 @@
                                 </span>
                             </div>
                         </div>
-                        <button id="helptext"  disabled type="button" class="col-md-1 glyphicon glyphicon-question-sign" data-toggle="tooltip" data-placement="top" title="{{conf.helptext}}"></button>
-                            <!-- Redirect browsers with JavaScript disabled to the origin page -->
-                           
-                            <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+                        <button type="button" id="helptext" ng-mouseover="popup(conf)" class="col-md-1 glyphicon glyphicon-question-sign {{placement}}" data-toggle="tooltip" data-placement="top" title="{{conf.tooltip}}"></button>
                     </div>
                 </div>
             </div>
-            
         </form>
     </div>
 </div>

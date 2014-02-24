@@ -41,12 +41,22 @@ app.controller('ConfigCtrl', function($scope, $log, $http, $routeParams, configS
     $scope.triggerUpload = function(){
         $('#uploadfield').click();
     };
+
+    $scope.popup = function(conf) {
+        $("html").tooltip({ selector: '[data-toggle="tooltip"]' });
+        /*
+        $('#helptext').tooltip('hide').attr('data-original-title', conf.tooltip)
+          .tooltip('fixTitle')
+          .tooltip('show');
+        */
+    };
     $scope.groupChanged = function(group){
         for (var i = $scope.groups.length - 1; i >= 0; i--) {
-            if($scope.groups[i] == group) {
+            if($scope.groups[i].title == group) {
                 $scope.displayed_group = group;
             }
         };
+        //if(group == "IOS")
     };
     refreshConfig();
     $scope.reloadConfig = function(configId){

@@ -21,19 +21,24 @@ app.factory('configSvc', function($http, $log){
     };
     
     result.platformsForApp = function(appName){
-        return [{display:'iOS', value:'IOS'}, {display:'Android', value:'Android'}, {'display':'Windows', 'value':'WIN'}];
+        return [{display:'iOS', value:'IOS', img_prefix:"/img/ico_ios"}, {display:'Android', value:'Android', img_prefix:"/img/ico_android"}];
     };
     
     result.getGroups = function(platform){
         var groups = {
             'IOS':[
-                'General',
-                'Settings',
-                'Resources'
+                {title:'General', color:"#d477fc"}, 
+                {title:'Settings', color:"#a25cdb"},
+                {title:'Resources', color:"#5d31a8"},
+                {title:'Design', color:"#312294"},
+                {title:'Build App', color:"#030f69"}
             ],
             'Android':[
-                'Themes',
-                'Resources'
+                {title:'Themes', color:"#d477fc"}, 
+                {title:'Resources', color:"#a25cdb"},
+                {title:'Settings', color:"#5d31a8"},
+                {title:'Design', color:"#312294"},
+                {title:'Build App', color:"#030f69"}
             ],
 
         };
