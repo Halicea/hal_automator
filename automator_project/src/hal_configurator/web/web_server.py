@@ -1,4 +1,4 @@
-from flask import Flask, request, Response,send_from_directory, url_for, jsonify, send_file,abort # @UnusedImport
+from flask import Flask, request, Response,send_from_directory, redirect, url_for, jsonify, send_file,abort # @UnusedImport
 import os
 import json
 import sys
@@ -87,12 +87,14 @@ def save_resource(identifier, platform, name, resid):
   res=[x for x in conf["Resources"] if x["rid"] == resid][0]
   data_file = request.files.get('data_file')
   #filename = data_file.filename
-  print dir(data_file)
+  print "File Name: %s"%dir(data_file)
   print data_file
-  print request.files[0]
+  files = request.files.getlist('files[]')
+  print "Total Files: %s"%files[0].filename
   file_path = os.path.join(workspace_path, identifier, platform, res['url'])
+  files[0].save(file_path)
   #shutil.copy(data_file, file)
-  print file_path
+  print "File Path: %s"% file_path
   #save_file(data_file, file_name)
   #file_size = get_file_size(file_name)
   #file_url = url_for('download', file_name=file_name)
