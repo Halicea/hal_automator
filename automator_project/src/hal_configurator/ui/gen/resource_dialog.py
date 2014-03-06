@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resource_dialog.ui'
 #
-# Created: Sun Dec 22 01:10:29 2013
+# Created: Thu Feb 20 17:48:32 2014
 #      by: pyside-uic 0.2.13 running on PySide 1.1.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_ResourceDialog(object):
     def setupUi(self, ResourceDialog):
         ResourceDialog.setObjectName("ResourceDialog")
-        ResourceDialog.resize(400, 300)
+        ResourceDialog.resize(470, 434)
         self.verticalLayout = QtGui.QVBoxLayout(ResourceDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
@@ -36,6 +36,31 @@ class Ui_ResourceDialog(object):
         self.gvView.setSceneRect(QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
         self.gvView.setObjectName("gvView")
         self.verticalLayout.addWidget(self.gvView)
+        self.gbAdmin = QtGui.QGroupBox(ResourceDialog)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.gbAdmin.sizePolicy().hasHeightForWidth())
+        self.gbAdmin.setSizePolicy(sizePolicy)
+        self.gbAdmin.setObjectName("gbAdmin")
+        self.horizontalLayout_3 = QtGui.QHBoxLayout(self.gbAdmin)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout.setObjectName("gridLayout")
+        self.label_2 = QtGui.QLabel(self.gbAdmin)
+        self.label_2.setObjectName("label_2")
+        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
+        self.txtGroup = QtGui.QLineEdit(self.gbAdmin)
+        self.txtGroup.setObjectName("txtGroup")
+        self.gridLayout.addWidget(self.txtGroup, 2, 1, 1, 1)
+        self.txtHelpText = QtGui.QLineEdit(self.gbAdmin)
+        self.txtHelpText.setObjectName("txtHelpText")
+        self.gridLayout.addWidget(self.txtHelpText, 3, 1, 1, 1)
+        self.label_3 = QtGui.QLabel(self.gbAdmin)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
+        self.horizontalLayout_3.addLayout(self.gridLayout)
+        self.verticalLayout.addWidget(self.gbAdmin)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.btnChange = QtGui.QPushButton(ResourceDialog)
@@ -63,6 +88,9 @@ class Ui_ResourceDialog(object):
         ResourceDialog.setWindowTitle(QtGui.QApplication.translate("ResourceDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("ResourceDialog", "Name", None, QtGui.QApplication.UnicodeUTF8))
         self.btnExport.setText(QtGui.QApplication.translate("ResourceDialog", "Export", None, QtGui.QApplication.UnicodeUTF8))
+        self.gbAdmin.setTitle(QtGui.QApplication.translate("ResourceDialog", "Admin Panel", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("ResourceDialog", "Group", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_3.setText(QtGui.QApplication.translate("ResourceDialog", "Help Text", None, QtGui.QApplication.UnicodeUTF8))
         self.btnChange.setText(QtGui.QApplication.translate("ResourceDialog", "Change", None, QtGui.QApplication.UnicodeUTF8))
         self.btnCancel.setText(QtGui.QApplication.translate("ResourceDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.btnSave.setText(QtGui.QApplication.translate("ResourceDialog", "Save", None, QtGui.QApplication.UnicodeUTF8))

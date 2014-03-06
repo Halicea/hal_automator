@@ -19,7 +19,9 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
     self.root_dir = root_dir
     self.model = {
                   "rid":None,
-                  "url":None
+                  "url":None,
+                  "group":None,
+                  "helptext":None
                   }
   def show(self):
     if self.parent():
@@ -32,6 +34,8 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
   def setModel(self, model):
     self.model = model
     self.txtName.setText(self.model["rid"])
+    self.txtGroup.setText(self.model.has_key('group') and self.model['group'] or '')
+    self.txtHelpText.setText(self.model.has_key('helptext') and self.model['helptext'] or '')
     self.display_resource()
 
   def display_resource(self):
@@ -69,6 +73,8 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
     self.btnSave.clicked.connect(self.save_clicked)
     self.btnCancel.clicked.connect(self.cancel_clicked)
     self.btnExport.clicked.connect(self.export_resource)
+    self.txtGroup.textChanged.connect(self.groupChanged)
+    self.txtHelpText.textChanged.connect(self.helpTextChanged)
 
   def save_clicked(self):
     print 'save clicked'
@@ -91,6 +97,8 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
         os.makedirs(os.path.dirname(os.path.join(self.root_dir, dest)))
       shutil.copy(self.edited_resource["url"], os.path.join(self.root_dir, dest))
       self.edited_resource["url"]=dest
+      self.edited_resource['helptext'] = self.txtHelpText.text()
+      self.edited_resource['group'] = self.txtGroup.text()
     self.done(1)
 
 
@@ -124,6 +132,16 @@ class ResourceDialog(QtGui.QWidget, Ui_ResourceDialog):
     self.edited_resource["url"] = f
     self.display_resource()
     print "file_accepted"
+
+  def groupChanged(self):
+    if not self.edited_resource:
+      self.edited_resource = self.model.copy()
+    self.edited_resource['group']=self.txtGroup.text()
+
+  def helpTextChanged(self):
+    if not self.edited_resource:
+      self.edited_resource = self.model.copy()
+    self.edited_resource['helptext']=self.txtHelpText.text()
 
   def get_dict(self):
     if self.edited_resource:

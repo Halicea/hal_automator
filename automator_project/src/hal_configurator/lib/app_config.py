@@ -13,7 +13,7 @@ config = None
 try:
   config = Config(open(config_path(), 'r'))
 except:
-  pass
+  print 'Cannot Locate the Configuration file'
 
 def add_config_to_history(path):
   ch = get_config_history()
