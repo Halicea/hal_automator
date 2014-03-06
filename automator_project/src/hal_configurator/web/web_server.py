@@ -1,4 +1,4 @@
-from flask import Flask, request, Response,send_from_directory # @UnusedImport
+from flask import Flask, request, Response,send_from_directory, url_for, jsonify, send_file,abort # @UnusedImport
 import os
 import json
 import sys
@@ -19,7 +19,7 @@ def list_configs():
 
 @app.route("/config/<identifier>/<platform>/<name>")
 @crossdomain(origin="*")
-def return_json(identifier,platform, name):
+def get_config(identifier,platform, name):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.load_config()
@@ -27,7 +27,7 @@ def return_json(identifier,platform, name):
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 @crossdomain(origin="*")
-def save_json(identifier,platform, name):
+def save_config(identifier,platform, name):
   print "saved"
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
@@ -41,9 +41,9 @@ def save_json(identifier,platform, name):
     return Response(response="False", status=200)
 
 
-@app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["GET"])
+@app.route("/config/<identifier>/<platform>/<name>/var/<varname>", methods=["GET"])
 @crossdomain(origin="*")
-def get_var(identifier,platform, name, varname):
+def get_variable(identifier,platform, name, varname):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.load_config()
@@ -52,7 +52,7 @@ def get_var(identifier,platform, name, varname):
 
 @app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["POST"])
 @crossdomain(origin="*")
-def save_var(identifier,platform, name, res):
+def save_variable(identifier,platform, name, res):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.load_config()
@@ -60,6 +60,49 @@ def save_var(identifier,platform, name, res):
   res["value"] = request.data
   config_loader.save_config(conf)
   return True
+
+@app.route("/config/<identifier>/<platform>/<name>/res/<resid>", methods=["GET"])
+@crossdomain(origin="*")
+def get_resource(identifier,platform, name, resid):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res=[x for x in conf["Resources"] if x["rid"] == resid][0]
+  file_path = os.path.join(workspace_path, identifier, platform, res['url'])
+  print file_path
+  if os.path.exists(file_path):
+    print 'exists'
+    return send_file(file_path, mimetype='image/png')
+  else:
+    print 'non existent'
+    return abort(404)
+
+
+@app.route("/config/<identifier>/<platform>/<name>/res/<resid>", methods=["POST"])
+@crossdomain(origin="*")
+def save_resource(identifier, platform, name, resid):
+  filepath = os.path.join(workspace_path, identifier,platform,name)
+  config_loader = FileConfigLoader(filepath)
+  conf = config_loader.load_config()
+  res=[x for x in conf["Resources"] if x["rid"] == resid][0]
+  data_file = request.files.get('data_file')
+  #filename = data_file.filename
+  print dir(data_file)
+  print data_file
+  print request.files[0]
+  file_path = os.path.join(workspace_path, identifier, platform, res['url'])
+  #shutil.copy(data_file, file)
+  print file_path
+  #save_file(data_file, file_name)
+  #file_size = get_file_size(file_name)
+  #file_url = url_for('download', file_name=file_name)
+  # providing the thumbnail url is optional
+  #thumbnail_url = url_for('thumbnail', file_name=file_name)
+  return jsonify(name='test',
+                 size=100000,
+                 url='/config/%s/%s/%s'%(identifier, platform, res['url']),
+                 thumbnail='/config/%s/%s/%s'%(identifier, platform, res['url']))
+
 
 @app.route('/config/<path:filename>')
 def base_static(filename):

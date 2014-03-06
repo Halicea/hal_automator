@@ -21,8 +21,30 @@ app.factory('configSvc', function($http, $log){
     };
     
     result.platformsForApp = function(appName){
-        return [{display:'iOS', value:'IOS'}, {display:'Android', value:'Android'}];
+        return [{display:'iOS', value:'IOS', img_prefix:"/img/ico_ios"}, {display:'Android', value:'Android', img_prefix:"/img/ico_android"}];
     };
+    
+    result.getGroups = function(platform){
+        var groups = {
+            'IOS':[
+                {title:'General', color:"#d477fc"}, 
+                {title:'Settings', color:"#a25cdb"},
+                {title:'Resources', color:"#5d31a8"},
+                {title:'Design', color:"#312294"},
+                {title:'Build App', color:"#030f69"}
+            ],
+            'Android':[
+                {title:'Themes', color:"#d477fc"}, 
+                {title:'Resources', color:"#a25cdb"},
+                {title:'Settings', color:"#5d31a8"},
+                {title:'Design', color:"#312294"},
+                {title:'Build App', color:"#030f69"}
+            ],
+
+        };
+        return groups[platform];
+    };
+    
     result.save = function(id, platform, config, callback){
         $http.post('/config/'+id+'/'+platform+'/bc.json', config)
         .success(function(data, status) {
