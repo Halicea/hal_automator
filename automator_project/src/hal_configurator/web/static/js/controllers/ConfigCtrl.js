@@ -14,6 +14,7 @@ app.controller('ConfigCtrl', function($scope, $log, $http, $routeParams, configS
     for (var i = $scope.platforms.length - 1; i >= 0; i--) {
         if($scope.platforms[i].value === $scope.platform){
             $scope.platforms[i].active = "active";
+
         }
     };
     if(!$scope.platform){
@@ -67,12 +68,14 @@ app.controller('ConfigCtrl', function($scope, $log, $http, $routeParams, configS
         $scope.platform = platform;
         refreshConfig();
     };
+    /*
     $scope.$on('fileuploaddone', function(event, files){ 
         alert('done');
     });
     $scope.$on('fileuploadfail', function(event, files){ 
         alert('fail');
     });
+*/
     $scope.saveConfig = function() {
         $scope.submit();
         // configSvc.save($scope.configId, $scope.platform, $scope.config, function(validationResult){

@@ -23,7 +23,7 @@
                     <span>Save</span>
                 </button>
                 <span class="fileupload-process"></span>
-                <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" style="position:absolute; top:-100px;">
+                <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" data-url="http://localhost:5001/config/FloridaDesign/IOS/bc.json/" data-sequential-uploads="true" data-form-data='{"upload": "true"}' style="position:absolute; top:-100px;">
             </div>
             <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
             <div class="col-lg-5 fade" data-ng-class="{in: active()}">
@@ -83,7 +83,7 @@
                         </br>
                         <div class="row fileupload-buttonbar">
                             <div class="col-lg-7">
-                                <span class="btn btn-primary fileinput-button col-md-offset-9" ng-click="triggerUpload()">
+                                <span  class="btn btn-primary fileinput-button col-md-offset-9" ng-click="triggerUpload()">
                                     <i class="glyphicon glyphicon-edit"></i>
                                     <span>Change...</span>
                                     <input type="button">
