@@ -1,7 +1,4 @@
-import os
 from config import Config
-import codecs
-import json
 try:
   from hal_configurator.lib.workspace_manager import Workspace
 except:
@@ -62,7 +59,7 @@ def set_last_dir(d):
 def is_verbose():
   try:
     return config.verbose == True
-  except AttributeError, e:
+  except:
     config.verbose = False
     save()
     return config.verbose
