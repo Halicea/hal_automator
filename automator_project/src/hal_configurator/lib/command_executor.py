@@ -1,5 +1,6 @@
 import sys
 import plugin_loader
+import var_substitutor
 class CommandExecutor(object):
   def __init__(self, parent, resources, resources_root="",verbose=True, debug_mode = False, log = lambda x:sys.stdout):
     """
@@ -31,6 +32,9 @@ class CommandExecutor(object):
         token  = "{{"+v["name"]+"}}"
         if token in new_vars[key]:
           new_vars[key] = new_vars[key].replace(token, v["value"])
+    subs = var_substitutor.VarSubstitutor(bundle_vars, [], None)
+    for key in new_vars.keys():
+      new_vars[key]=subs.substitute_expressions(new_vars[key])
     return new_vars
 
   def replace_resources(self, bundle_res, dictionary):
@@ -40,6 +44,9 @@ class CommandExecutor(object):
         token  = "{#"+r["rid"]+"#}"
         if token in new_vars[key]:
           new_vars[key] = new_vars[key].replace(token, r["url"])
+    subs = var_substitutor.VarSubstitutor(bundle_res, [], None)
+    for key in new_vars.keys():
+      new_vars[key]=subs.substitute_expressions(new_vars[key])
     return new_vars
 
   def execute_bundle(self, command_bundle, global_vars, global_resources, operations_filter):
@@ -90,6 +97,7 @@ class CommandExecutor(object):
         repl_vars = self.replace_vars(bundle_vars, command["Arguments"])
       if not plugin.self_managed_resources:
         repl_vars = self.replace_resources(bundle_res, repl_vars)
+
       if "Description" in command:
         plugin.description = command["Description"]
       plugin.set_args(**repl_vars)
