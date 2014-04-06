@@ -11,18 +11,39 @@ from app_config import config
 import shutil
 from branded_apps_service import BrandedAppService as BAS
 import copy
+from hal_configurator.lib.models.hal_var import HalVar, HalResource
 last_config_loaded = None
 
 class ConfigLoader(object):
+  available_references = ["Content", "RequiredVariables", "RequiredResources", "Builds"]
   def __init__(self, *args, **kwargs):
     self.custom_bundles = []
     self.custom_vars = []
     self.custom_resources = []
     self.resources_root_url = None
 
-  def loadConfig(self):
+  def __load_config_dict__(self):
+    raise NotImplementedError("abstract class accessed")
+  def __save_dictionary__(self, *args, **kwargs):
     raise NotImplementedError("abstract class accessed")
 
+  def __pop_reference__(self, cfg, key, forced_reference_key = None):
+    raise NotImplementedError("abstract class accessed")
+
+  def __load_reference__(self, cfg, key, forced_reference_key = None):
+    raise NotImplementedError("abstract class accessed")
+
+  def load_config(self):
+    cfg = self.__load_config_dict__()
+    for ref in ConfigLoader.available_references:
+      self.__load_reference__(cfg, ref)
+
+
+    cfg = self.verify_required_vars(cfg)
+    cfg = self.load_customizations(cfg)
+    cfg = self.__objectify_vars__(cfg)
+    self.last_config_loaded = cfg
+    return cfg
   def extend_var(self, target, src, excluded_keys=[]):
     for k in src.keys():
       if not (k in excluded_keys):
@@ -77,6 +98,55 @@ class ConfigLoader(object):
         else:
           v['value'] = None
 
+  def __objectify_vars__(self, cfg):
+    obj_vars = []
+    obj_req_vars = []
+    obj_res = []
+    obj_req_res = []
+    keys_vars = {'Variables':obj_vars, 'RequiredVariables':obj_req_vars}
+    keys_res =  {'Resources':obj_res, 'RequiredResources':obj_req_res}
+    for key in keys_vars.keys():
+      if key in cfg:
+        for v in cfg[key]:
+          keys_vars[key].append(HalVar.from_dict(v))
+    for key in keys_res.keys():
+      if key in cfg:
+        for v in cfg[key]:
+          keys_res[key].append(HalResource.from_dict(v))
+
+    cfg['Variables'] = obj_vars
+    cfg['RequiredVariables'] = obj_req_vars
+    cfg['Resources'] = obj_res
+    cfg['RequiredResources'] = obj_req_res
+    return cfg
+
+  def __dictify_vars__(self, cfg):
+    obj_vars = []
+    obj_req_vars = []
+    obj_res = []
+    obj_req_res = []
+    keys = {'Variables':obj_vars, 'RequiredVariables':obj_req_vars, 'Resources':obj_res, 'RequiredResources':obj_req_res}
+    for key in keys.keys():
+      if key in cfg:
+        for v in cfg[key]:
+          if isinstance(v, (HalVar, HalResource)):
+            keys[key].append(v.dictionary)
+          else:
+            keys[key].append(v)
+    cfg['Variables'] = obj_vars
+    cfg['RequiredVariables'] = obj_req_vars
+    cfg['Resources'] = obj_res
+    cfg['RequiredResources'] = obj_req_res
+    return cfg
+
+  def save_config(self, cfg, save_references=False, is_new_config=False):
+    self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)
+    self.__dictify_vars__(cfg)
+    for ref in FileConfigLoader.available_references:
+      content, ref_path = self.__pop_reference__(cfg, ref)
+      if save_references and content and ref_path:
+        self.__save_dictionary__(content, ref_path)
+    self.__save_dictionary__(cfg, self.config_file)
 
   def load_custom_bundles(self, config):
     config["Content"]["OperationBundles"].extend(self.custom_bundles)
@@ -147,32 +217,22 @@ class SvcConfigLoader(ConfigLoader):
     return cfg
 
 class FileConfigLoader(ConfigLoader):
-  available_references = ["Content", "RequiredVariables", "Builds"]
+
   def __init__(self, fileName):
     super(FileConfigLoader, self).__init__()
     self.config_file = fileName
     self.resources_root = os.path.abspath(os.path.dirname(self.config_file))
     self.resource_root_url = urllib.pathname2url(self.resources_root)
 
-  def load_config(self):
+  def __load_config_dict__(self):
     global last_config_loaded
     print os.path.abspath(self.config_file)
     cfg =  json.load(open(self.config_file, 'r'))
-    for ref in FileConfigLoader.available_references:
-      try:
-        self.__load_reference__(cfg, ref)
-      except Exception, ex:
-        print ex.message
-        print "Cannot load reference", ref
-        raise ex
-    cfg = self.verify_required_vars(cfg)
-    cfg = self.load_customizations(cfg)
-    last_config_loaded = cfg
     return cfg
 
   def __load_reference__(self, cfg, key, forced_reference_key = None):
     if cfg.has_key(key):
-      if cfg[key].has_key("Reference"):
+      if isinstance(cfg[key], dict) and cfg[key].has_key("Reference"):
         content_path = os.path.join(os.path.dirname(self.config_file), cfg[key]["Reference"])
         content = json.load(open(content_path , "r"))
         if forced_reference_key:
@@ -183,14 +243,7 @@ class FileConfigLoader(ConfigLoader):
     else:
       cfg[key] = {}
 
-  def save_config(self, cfg, save_references=False, is_new_config=False):
-    self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)
 
-    for ref in FileConfigLoader.available_references:
-      content, ref_path = self.__pop_reference__(cfg, ref)
-      if save_references and content and ref_path:
-        self.__save_dictionary__(content, ref_path)
-    self.__save_dictionary__(cfg, self.config_file)
 
   def __save_dictionary__(self, content, filepath):
     f = open(filepath, 'w')
