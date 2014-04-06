@@ -3,6 +3,17 @@ Created on Dec 22, 2013
 @author: Costa Halicea
 '''
 class BaseProperty(object):
+  def __init__(self, display=None, helptext=None, validators=[]):
+    self.display = display
+    self.helptext = helptext
+    self.validators = validators
+    self.is_admin_only = False,
+    self.is_required=True
+    self.is_editable = True
+    self.is_from_req = False
+    self.type = ''
+    self.group = ''
+
   def __getitem__(self, key):
     if isinstance( key, ( int, long ) ):
       return self.__dict__.keys()[key]
@@ -27,7 +38,7 @@ class BaseProperty(object):
 
   def iteritems(self):
     for k in self.__dict__.keys():
-      if k.startswith('is_'):
+      if k.startswith('is_') and k!='is_from_req':
         yield (k[3:], getattr(self, k))
       else:
         yield (k, getattr(self, k))
@@ -35,22 +46,14 @@ class BaseProperty(object):
 
   def keys(self):
     for k in self.__dict__.keys():
-      if k.startswith('is_'):
+      if k.startswith('is_') and k!='is_from_req':
         yield k[3:]
       else:
         yield k
   def items(self):
     return self.iteritems()
 
-  def __init__(self, display=None, helptext=None, validators=[]):
-    self.display = display
-    self.helptext = helptext
-    self.validators = validators
-    self.is_admin_only = False,
-    self.is_required=True
-    self.is_editable = False
-    self.is_editable = True
-    self.is_from_req = False
+
 
   @classmethod
   def from_dict(cls, d):
@@ -82,7 +85,7 @@ class BaseProperty(object):
   def set_dictionary(self, value):
     self.display =value['display'] if 'display' in value else self.display
     self.group =value['group'] if 'group' in value else self.group
-    self.group =value['type'] if 'type' in value else self.type
+    self.type =value['type'] if 'type' in value else self.type
     self.is_from_req =value['is_from_req'] if 'is_from_req' in value else self.is_from_req
     self.helptext =value['helptext'] if 'helptext' in value else self.helptext
     self.is_admin_only =value['admin_only'] if 'admin_only' in value else self.is_admin_only
@@ -119,6 +122,7 @@ class HalVar(BaseProperty):
     super(HalVar, self).set_dictionary(value)
     self.name = value['name'] if 'name' in value else self.name
     self.value = value['value'] if 'value' in value else self.value
+    self.options = value['options'] if 'options' in value else None
 
   def __repr__(self):
     return repr(self.__dict__)

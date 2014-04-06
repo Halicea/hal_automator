@@ -19,8 +19,13 @@ class TestHalVar(unittest.TestCase):
           'validators':[1, 2],
           'admin_only':True,
           'required':False,
-          'editable':False
+          'editable':False,
+          'group':'Admin',
+          'type':'text',
+          'is_from_req':True,
+          'options':[{'op1':True}]
         }
+
     def tearDown(self):
         self.var_values = None
         self.test_var = None
