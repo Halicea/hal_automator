@@ -11,19 +11,19 @@
     <div>
         <ul class="nav nav-tabs">
             <li ng-repeat="platform in platforms" class="{{platform.active}} col-md-6 {{platform.value}}">
-                <a style="color: #FFFFFF;" href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
+                <a href="#/config/{{configId}}/{{platform.value}}" >{{platform.display}}</a>
             </li>
         </ul>
     </div>
     <div id="centerContainer" class="row tab-content">
-        <form id="fileupload" action="http://localhost:5001/config/FloridaDesign/IOS/bc.json/res/Baner-Iphone-2x_209.png" method="POST" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+        <form id="fileupload" action="/config/FloridaDesign/IOS/bc.json/res/Baner-Iphone-2x_209.png" method="POST" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
             <div class="col-lg-7">
                 <button  type="button" class="btn btn-primary start col-lg-9 col-md-offset-6" data-ng-click="submit()">
                     <i class="glyphicon glyphicon-upload"></i>
                     <span>Save</span>
                 </button>
                 <span class="fileupload-process"></span>
-                <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" data-url="http://localhost:5001/config/FloridaDesign/IOS/bc.json/" data-sequential-uploads="true" data-form-data='{"upload": "true"}' style="position:absolute; top:-100px;">
+                <input type="file" id="uploadfield" name="files[]" multiple ng-disabled="disabled" data-url="/config/FloridaDesign/IOS/bc.json/" data-sequential-uploads="true" data-form-data='{"upload": "true"}' style="position:absolute; top:-100px;">
             </div>
             <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
             <div class="col-lg-5 fade" data-ng-class="{in: active()}">

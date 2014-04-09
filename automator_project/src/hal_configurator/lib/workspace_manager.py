@@ -75,6 +75,7 @@ class Workspace(object):
 
     finally:
       os.chdir(old_cwd)
+
   def reset(self):
     old_cwd = os.getcwd()
     os.chdir(self.workspacedir)
@@ -89,6 +90,18 @@ class Workspace(object):
       print ss
     finally:
       os.chdir(old_cwd)
+
+  def configurations(self, **kwargs):
+    for root, dirs, files in os.walk(self.workspacedir):
+      for f in files:
+        file_path  = os.path.join(root, f)
+        if self.is_config_file(file_path):
+          yield f
+
+  def is_config_file(self, file_path):
+    return file_path.endswith('bc.json') or file_path.endswith('.halc')
+
+
 
 
 

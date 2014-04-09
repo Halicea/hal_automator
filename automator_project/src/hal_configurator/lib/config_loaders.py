@@ -21,6 +21,7 @@ class ConfigLoader(object):
     self.custom_vars = []
     self.custom_resources = []
     self.resources_root_url = None
+    self.last_config_loaded = None
 
   def __load_config_dict__(self):
     raise NotImplementedError("abstract class accessed")
@@ -138,6 +139,12 @@ class ConfigLoader(object):
     cfg['Resources'] = obj_res
     cfg['RequiredResources'] = obj_req_res
     return cfg
+  @property
+  def dictionary(self):
+    if not self.last_config_loaded:
+      self.load_config()
+    return self.__dictify_vars__(self.last_config_loaded)
+    
 
   def save_config(self, cfg, save_references=False, is_new_config=False):
     self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)

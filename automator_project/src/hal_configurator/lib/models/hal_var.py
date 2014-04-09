@@ -99,6 +99,10 @@ class HalVar(BaseProperty):
     self.value = value
     self.name = name
     self.options = []
+  def copy(self):
+    res = HalVar()
+    res.dictionary = self.dictionary
+    return res
 
   @classmethod
   def from_dict(cls, d):
@@ -135,6 +139,11 @@ class HalResource(BaseProperty):
     super(HalResource, self).__init__(display, helptext, validators)
     self.rid = rid
     self.url = url
+
+  def copy(self):
+    res = HalResource()
+    res.dictionary = self.dictionary
+    return res
 
   @classmethod
   def from_dict(cls, d):
