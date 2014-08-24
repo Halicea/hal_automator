@@ -1,4 +1,4 @@
-from flask import Flask, request, Response,send_from_directory, redirect, url_for, jsonify, send_file,abort # @UnusedImport
+from flask import Flask, request, Response,send_from_directory, jsonify, send_file,abort # @UnusedImport
 import os
 import json
 import sys
@@ -57,7 +57,7 @@ def get_variable(identifier,platform, name, varname):
 
 @app.route("/config/<identifier>/<platform>/<name>/<varname>", methods=["POST"])
 @crossdomain(origin="*")
-def save_variable(identifier,platform, name, res):
+def save_variable(identifier,platform, name, varname):
   filepath = os.path.join(workspace_path, identifier,platform,name)
   config_loader = FileConfigLoader(filepath)
   conf = config_loader.dictionary

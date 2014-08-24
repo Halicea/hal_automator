@@ -4,7 +4,6 @@ Created on Apr 5, 2014
 @author: Costa Halicea
 '''
 import unittest
-from collections import namedtuple
 from hal_configurator.lib.models.hal_var import HalVar
 
 

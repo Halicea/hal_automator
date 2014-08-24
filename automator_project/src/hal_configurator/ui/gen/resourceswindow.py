@@ -57,5 +57,5 @@ class Ui_ResourcesWindow(object):
     def retranslateUi(self, ResourcesWindow):
         ResourcesWindow.setWindowTitle(QtGui.QApplication.translate("ResourcesWindow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
-from resources_list import ResourcesList
-import images_rc
+from resources_list import ResourcesList  # @UnresolvedImport
+import images_rc  # @UnusedImport

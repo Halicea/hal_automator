@@ -297,4 +297,4 @@ class Ui_ConfigWindow(object):
         self.actionVerbose.setText(QtGui.QApplication.translate("ConfigWindow", "Verbose Output", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDebug_2.setText(QtGui.QApplication.translate("ConfigWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
 
-import images_rc
+import images_rc  # @UnusedImport

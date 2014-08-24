@@ -68,7 +68,7 @@ class ConfigLoader(object):
 
         if found:
           self.extend_var(found[0], v, excluded_keys)
-        elif v['required'] or not editable:
+        elif required or not editable:
           rvars.append(self.extend_var({}, v, excluded_keys))
 
       to_del = []
@@ -144,7 +144,7 @@ class ConfigLoader(object):
     if not self.last_config_loaded:
       self.load_config()
     return self.__dictify_vars__(self.last_config_loaded)
-    
+
 
   def save_config(self, cfg, save_references=False, is_new_config=False):
     self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)

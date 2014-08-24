@@ -72,4 +72,4 @@ class Ui_ConfigManager(object):
         self.menuEdit.setTitle(QtGui.QApplication.translate("ConfigManager", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionPreferences.setText(QtGui.QApplication.translate("ConfigManager", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
 
-import images_rc
+import images_rc  # @UnusedImport

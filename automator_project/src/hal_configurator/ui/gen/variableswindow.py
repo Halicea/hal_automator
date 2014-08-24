@@ -57,5 +57,5 @@ class Ui_VariablesWindow(object):
     def retranslateUi(self, VariablesWindow):
         VariablesWindow.setWindowTitle(QtGui.QApplication.translate("VariablesWindow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
-from dragable_list import DragableList
-import images_rc
+from dragable_list import DragableList  # @UnresolvedImport
+import images_rc  # @UnusedImport

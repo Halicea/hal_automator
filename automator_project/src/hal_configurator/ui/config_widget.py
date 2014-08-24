@@ -5,7 +5,6 @@ from resourceswindow import ResourcesWindow
 from variableswindow import VariablesWindow
 from models import ResourcesListModel, VariablesListModel
 import os
-import json
 import copy
 from hal_configurator.lib.workspace_manager import Workspace
 from shutil import copytree
@@ -111,7 +110,7 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
         self.save_path = sp
       print "saving file on "+self.save_path
       d = copy.deepcopy(self.get_dict())
-      save_references = Workspace.current.mode=='admin'
+      save_references = Workspace.current.mode=='admin'  # @UndefinedVariable
       self.config_loader.save_config(d, save_references, is_cloning_empty)
     else:
       print "Saving cancelled"

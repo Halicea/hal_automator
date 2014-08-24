@@ -165,4 +165,4 @@ class Ui_MainWindow(object):
         self.actionConfig_Editor.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+E", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDeclarative_View.setText(QtGui.QApplication.translate("MainWindow", "Declarative View", None, QtGui.QApplication.UnicodeUTF8))
 
-import images_rc
+import images_rc  # @UnusedImport

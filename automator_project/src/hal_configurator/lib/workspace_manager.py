@@ -92,7 +92,7 @@ class Workspace(object):
       os.chdir(old_cwd)
 
   def configurations(self, **kwargs):
-    for root, dirs, files in os.walk(self.workspacedir):
+    for root, _, files in os.walk(self.workspacedir):
       for f in files:
         file_path  = os.path.join(root, f)
         if self.is_config_file(file_path):
