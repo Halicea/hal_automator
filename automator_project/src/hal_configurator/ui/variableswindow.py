@@ -2,6 +2,7 @@ from PySide import QtGui, QtCore
 from hal_configurator.ui.gen.variableswindow import Ui_VariablesWindow
 from confirm_dialog import ConfirmDialog
 from variable_dialog import VariableDialog
+from hal_configurator.lib.models.hal_var import HalVar
 
 class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
   def __init__(self, *args, **kwargs):
@@ -41,7 +42,9 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
     self.edit_index = None
     parent = self.details_parent or QtGui.QDialog()
     self.new_dlg = VariableDialog(parent)
-    self.new_dlg.setModel({"name":"", "value":"", "type":"text"})
+    new_var =HalVar('', '')
+    new_var.type = 'text'
+    self.new_dlg.setModel(new_var)
     self.new_dlg.show()
     self.new_dlg.accepted.connect(self.__on_add_accepted)
     self.new_dlg.rejected.connect(self.__on_add_rejected)

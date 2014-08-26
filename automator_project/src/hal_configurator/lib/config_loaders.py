@@ -86,8 +86,12 @@ class ConfigLoader(object):
         if found:
           if found[0].has_key('editable') and not found[0]['editable']:
             to_remove.append(v)
-          elif found[0]['value'] == v['value']:
-            to_remove.append(v)
+
+          elif 'value' in found[0]:
+            if found[0]['value'] == v['value']:
+              to_remove.append(v)
+          else:
+            pass
       for v in to_remove:
         d['Variables'].remove(v)
 
@@ -249,8 +253,6 @@ class FileConfigLoader(ConfigLoader):
         cfg[key] = content
     else:
       cfg[key] = {}
-
-
 
   def __save_dictionary__(self, content, filepath):
     f = open(filepath, 'w')
