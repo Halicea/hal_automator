@@ -15,8 +15,8 @@ app_config = json.loads(open(os.path.join(current_dir,'config.json'), 'r').read(
 workspace_path = os.path.expanduser(app_config['workspace_path'])
 app = Flask(__name__, static_folder='./static', static_url_path='')
 #os.chdir(os.path.dirname(__file__))
-@app.route('/') 
-def root(): 
+@app.route('/')
+def root():
   return app.send_static_file('index.html')
 
 @app.route("/config")

@@ -1,7 +1,7 @@
 from jenkinsapi.jenkins import Jenkins
 class JenkinsBuild(object):
   def __init__(self, job_name):
-    self.j = Jenkins('http://192.168.3.44:8085', 'halicea', 'arman1')
+    self.j = Jenkins('http://*********', '*****', '*****')
 
   def build(self):
 
