@@ -117,8 +117,12 @@ class ConfigurationValidator(object):
     result = ValidationResult()
     undeclared_resources = []
     s = str(config["Content"])
-    search_pattern ="\{#\w+#\}"
+    f = open('/Users/kostamihajlov/Desktop/content_log.txt', 'w')
+    f.write(s)
+    f.close()
+    search_pattern ="{#\w+[\.\w]*#\}"
     used_resources = [k[2:-2] for k in re.findall(search_pattern, s)]
+
     for v in list(set(used_resources)):
       found = False
       for k in config["Resources"]:
