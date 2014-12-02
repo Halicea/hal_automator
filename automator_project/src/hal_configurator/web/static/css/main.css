@@ -10,6 +10,47 @@
 }
 
 /* line 9, ../scss/modules/_forms.scss */
+#ios-tab .vert-align, #android-tab .vert-align {
+  margin-top: 5px;
+}
+/* line 13, ../scss/modules/_forms.scss */
+#ios-tab .theme-colors img, #android-tab .theme-colors img {
+  width: 100%;
+  max-width: 350px;
+}
+/* line 18, ../scss/modules/_forms.scss */
+#ios-tab .theme-or, #android-tab .theme-or {
+  font-size: 24px;
+  color: red;
+}
+/* line 23, ../scss/modules/_forms.scss */
+#ios-tab .theme-colors input, #android-tab .theme-colors input {
+  margin-left: 0px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/* line 31, ../scss/modules/_forms.scss */
+#ios-tab .theme-colors label, #android-tab .theme-colors label {
+  width: 100%;
+  font-weight: normal;
+}
+/* line 36, ../scss/modules/_forms.scss */
+#ios-tab .img-upload input, #android-tab .img-upload input {
+  width: 49%;
+  height: 26px;
+  cursor: pointer;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: solid 1px #eeeeee;
+  margin-left: 0px;
+  display: inline;
+}
+/* line 47, ../scss/modules/_forms.scss */
 #ios-tab select, #android-tab select {
   width: 100%;
   height: 26px;
@@ -24,7 +65,7 @@
   border: solid 1px #eeeeee;
   background-color: #ffffff;
 }
-/* line 20, ../scss/modules/_forms.scss */
+/* line 58, ../scss/modules/_forms.scss */
 #ios-tab textarea, #android-tab textarea {
   width: 100%;
   height: 75px;
@@ -38,7 +79,7 @@
   border: solid 1px #eeeeee;
   background-color: #ffffff;
 }
-/* line 30, ../scss/modules/_forms.scss */
+/* line 68, ../scss/modules/_forms.scss */
 #ios-tab label, #android-tab label {
   width: 49%;
   height: 26px;
@@ -52,7 +93,7 @@
   border: solid 1px #eeeeee;
   margin-left: 0px;
 }
-/* line 40, ../scss/modules/_forms.scss */
+/* line 78, ../scss/modules/_forms.scss */
 #ios-tab input, #android-tab input {
   width: 100%;
   border: solid 1px #eeeeee;
@@ -63,27 +104,38 @@
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 47, ../scss/modules/_forms.scss */
+/* line 85, ../scss/modules/_forms.scss */
 #ios-tab input[type=radio], #android-tab input[type=radio] {
   width: 15px;
 }
-/* line 51, ../scss/modules/_forms.scss */
+/* line 89, ../scss/modules/_forms.scss */
 #ios-tab .radio-input, #android-tab .radio-input {
   margin-left: 0px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 58, ../scss/modules/_forms.scss */
+/* line 96, ../scss/modules/_forms.scss */
 #ios-tab .radio-inline-right, #android-tab .radio-inline-right {
   float: right;
   font-weight: normal;
 }
-/* line 63, ../scss/modules/_forms.scss */
+/* line 101, ../scss/modules/_forms.scss */
+#ios-tab .upload-right, #android-tab .upload-right {
+  float: right;
+  font-weight: normal;
+}
+/* line 106, ../scss/modules/_forms.scss */
 #ios-tab .row, #android-tab .row {
   margin: 10px 0px;
 }
 
+@media screen and (max-width: 500px) {
+  /* line 116, ../scss/modules/_forms.scss */
+  #ios-tab .vert-align, #android-tab .vert-align {
+    margin-top: 0px;
+  }
+}
 /* LAYOUTS - Layout styles */
 /* line 1, ../scss/layouts/_columns.scss */
 .text-center {

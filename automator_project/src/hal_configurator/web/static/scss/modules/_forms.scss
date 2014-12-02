@@ -6,6 +6,44 @@
 
 #ios-tab, #android-tab{
 
+	.vert-align{
+		margin-top:5px;
+	}
+
+	.theme-colors img{
+		width: 100%;
+		max-width:350px;
+	}
+
+	.theme-or{
+		font-size: 24px;
+		color: red;
+	}
+
+	.theme-colors input{
+		margin-left: 0px;
+		-moz-box-shadow: none;
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	}
+
+	
+	.theme-colors label{
+		width: 100%;
+		font-weight: normal;
+	}
+
+	.img-upload input{
+		width   : 49%;
+	    height:26px;
+		cursor: pointer;
+		@include border-radius(3px);
+		@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		border: solid 1px #eeeeee;
+		margin-left:0px;
+		display: inline;
+	}
+
 	select{
 	    width: 100%;
 	    height: 26px;
@@ -60,8 +98,25 @@
 		font-weight: normal;
 	}
 
+	.upload-right{
+		float: right;
+		font-weight: normal;
+	}
+
 	.row{
 		margin: 10px 0px;
+	}
+
+}
+
+@media screen and (max-width: 500px) {
+
+	#ios-tab, #android-tab{
+
+		.vert-align{
+		margin-top:0px;
+		}
+
 	}
 
 }

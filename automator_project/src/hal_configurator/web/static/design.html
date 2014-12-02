@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
 <head>
-    <title>Publisher Info</title>
+    <title>Design</title>
+    
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
     <!-- <link rel="stylesheet" href="/css/index.css"/> -->
+    <script src="js/colpick.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="css/colpick.css" type="text/css"/>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
@@ -63,109 +66,75 @@
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
-                        <div class="col-sm-4">Publisher Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
+                        <div class="col-sm-4">Icon Rounded Edges (1024x1024 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Msg To Readers:</div>
-                        <div class="col-sm-8"><textarea rows="4" cols="50"></textarea></div>
+                        <div class="col-sm-4">Icon Square Edges (1024x1024 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Website:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Blog Link:</div>
+                        <div class="col-sm-4">Splash Start #:</div>
                         <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Facebook:</div>
+                        <div class="col-sm-4">Splash End #:</div>
                         <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Twitter:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4">Powered by (400x400 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Pintrest:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-12">Select Color Theme:</div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Default</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 1</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 2</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 3</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 4</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 5</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 6</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">LinkedIn:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-12 theme-or">OR</div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">Google+:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    <div class="row theme-colors">
+                        <div class="col-sm-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-4">Contact Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Other Apps:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Copyright:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 1:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
                     </div>
                     <div class="row">
                         <input type="submit" id="save" name="save" value="Save"/>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
-                    <div class="row">
-                        <div class="col-sm-4">Publisher Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Msg To Readers:</div>
-                        <div class="col-sm-8"><textarea rows="4" cols="50"></textarea></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Website:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Blog Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Facebook:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Twitter:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Pintrest:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">LinkedIn:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Google+:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Contact Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Other Apps:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Copyright:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
-                    </div>
+                    
                 </div>
               </div>
 
@@ -181,6 +150,11 @@
         </div>
     </div> -->
 
+    <script>
+        $(document).ready(function(){
+            $('#picker').colpick();
+        });
+    </script>
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
@@ -207,6 +181,7 @@
     <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
+
 
 </body>
 </html>
