@@ -1,0 +1,57 @@
+/* Forms */
+
+.nav-tabs li{
+ 	width: 50%;
+}
+
+#ios-tab, #android-tab{
+
+select{
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+    cursor: pointer;
+    @include border-radius(3px);
+    @include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+    border: solid 1px #eeeeee;
+    background-color: #ffffff;
+}
+
+ label{
+    width   : 49%;
+    height:26px;
+	cursor: pointer;
+	@include border-radius(3px);
+	@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+	border: solid 1px #eeeeee;
+	margin-left:0px;
+}
+
+input{
+	width: 100%;
+	border: solid 1px #eeeeee;
+	@include border-radius(3px);
+	@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+}
+
+input[type=radio]{
+	width   : 15px;
+}
+
+.radio-input{
+	margin-left: 0px;
+	-moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.radio-inline-right{
+	float: right;
+	font-weight: normal;
+}
+
+.row{
+	margin: 10px 0px;
+}
+
+}

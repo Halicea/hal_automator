@@ -1,0 +1,145 @@
+/* BASE */
+/* Font Colors */
+/* Background Colors */
+/* Base */
+/* MODULES */
+/* Forms */
+/* line 3, ../scss/modules/_forms.scss */
+.nav-tabs li {
+  width: 50%;
+}
+
+/* line 9, ../scss/modules/_forms.scss */
+#ios-tab select, #android-tab select {
+  width: 100%;
+  height: 26px;
+  line-height: 26px;
+  cursor: pointer;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: solid 1px #eeeeee;
+  background-color: #ffffff;
+}
+/* line 20, ../scss/modules/_forms.scss */
+#ios-tab label, #android-tab label {
+  width: 49%;
+  height: 26px;
+  cursor: pointer;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: solid 1px #eeeeee;
+  margin-left: 0px;
+}
+/* line 30, ../scss/modules/_forms.scss */
+#ios-tab input, #android-tab input {
+  width: 100%;
+  border: solid 1px #eeeeee;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* line 37, ../scss/modules/_forms.scss */
+#ios-tab input[type=radio], #android-tab input[type=radio] {
+  width: 15px;
+}
+/* line 41, ../scss/modules/_forms.scss */
+#ios-tab .radio-input, #android-tab .radio-input {
+  margin-left: 0px;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/* line 48, ../scss/modules/_forms.scss */
+#ios-tab .radio-inline-right, #android-tab .radio-inline-right {
+  float: right;
+  font-weight: normal;
+}
+/* line 53, ../scss/modules/_forms.scss */
+#ios-tab .row, #android-tab .row {
+  margin: 10px 0px;
+}
+
+/* LAYOUTS - Layout styles */
+/* line 1, ../scss/layouts/_columns.scss */
+.text-center {
+  padding-top: 20px;
+}
+
+/* line 4, ../scss/layouts/_columns.scss */
+.col-xs-12 {
+  background-color: #fff;
+}
+
+/* line 7, ../scss/layouts/_columns.scss */
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+
+/* line 12, ../scss/layouts/_columns.scss */
+#sidebar .nav {
+  width: 95%;
+}
+
+/* line 15, ../scss/layouts/_columns.scss */
+#sidebar li {
+  border: 0 #f2f2f2 solid;
+  border-bottom-width: 1px;
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  /* line 24, ../scss/layouts/_columns.scss */
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+
+  /* line 31, ../scss/layouts/_columns.scss */
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  /* line 36, ../scss/layouts/_columns.scss */
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+
+  /* line 39, ../scss/layouts/_columns.scss */
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+
+  /* line 42, ../scss/layouts/_columns.scss */
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+
+  /* line 45, ../scss/layouts/_columns.scss */
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+
+  /* line 50, ../scss/layouts/_columns.scss */
+  #sidebar {
+    padding-top: 0;
+  }
+}
