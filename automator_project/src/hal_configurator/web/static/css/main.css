@@ -25,6 +25,20 @@
   background-color: #ffffff;
 }
 /* line 20, ../scss/modules/_forms.scss */
+#ios-tab textarea, #android-tab textarea {
+  width: 100%;
+  height: 75px;
+  line-height: 1.2em;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  border: solid 1px #eeeeee;
+  background-color: #ffffff;
+}
+/* line 30, ../scss/modules/_forms.scss */
 #ios-tab label, #android-tab label {
   width: 49%;
   height: 26px;
@@ -38,7 +52,7 @@
   border: solid 1px #eeeeee;
   margin-left: 0px;
 }
-/* line 30, ../scss/modules/_forms.scss */
+/* line 40, ../scss/modules/_forms.scss */
 #ios-tab input, #android-tab input {
   width: 100%;
   border: solid 1px #eeeeee;
@@ -49,23 +63,23 @@
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
-/* line 37, ../scss/modules/_forms.scss */
+/* line 47, ../scss/modules/_forms.scss */
 #ios-tab input[type=radio], #android-tab input[type=radio] {
   width: 15px;
 }
-/* line 41, ../scss/modules/_forms.scss */
+/* line 51, ../scss/modules/_forms.scss */
 #ios-tab .radio-input, #android-tab .radio-input {
   margin-left: 0px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 48, ../scss/modules/_forms.scss */
+/* line 58, ../scss/modules/_forms.scss */
 #ios-tab .radio-inline-right, #android-tab .radio-inline-right {
   float: right;
   font-weight: normal;
 }
-/* line 53, ../scss/modules/_forms.scss */
+/* line 63, ../scss/modules/_forms.scss */
 #ios-tab .row, #android-tab .row {
   margin: 10px 0px;
 }
