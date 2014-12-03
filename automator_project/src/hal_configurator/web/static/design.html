@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
     <!-- <link rel="stylesheet" href="/css/index.css"/> -->
-    <script src="js/colpick.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/colpick.css" type="text/css"/>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/main.css">
@@ -46,10 +45,10 @@
               <li><a href="publisher_info.html">Publisher Info</a></li>
               <li><a href="design.html">Design</a></li>  
               <li><a href="platform_specifics.html">Platform Specifics</a></li>
-              <li><a href="build_aps.html">Build App</a></li><br><br><br>
+              <li><a href="build_app.html">Build App</a></li><br><br><br>
               <li>Store Submission Information</li>
-              <li><a href="store-general.html">General</a></li>
-              <li><a href="store-artwork.html">Artwork</a></li>            
+              <li><a href="store_general.html">General</a></li>
+              <li><a href="store_artwork.html">Artwork</a></li>            
             </ul>
         </div>
 
@@ -89,7 +88,7 @@
                         </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12">Select Color Theme:</div>
+                        <div class="col-sm-12 section-heading">Select Color Theme:</div>
                     </div>
                     <div class="row theme-colors">
                         <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Default</label></div>
@@ -123,18 +122,128 @@
                         <div class="col-sm-12 theme-or">OR</div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-sm-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
+                        <div class="col-xs-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
                     </div>
                     <div class="row theme-colors">
                         <div class="col-xs-4">color 1:</div>
                         <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
                     </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 2:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 3:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 4:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 5:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 6:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
                     <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
+                        <div class="col-xs-12">
+                            <input type="submit" id="save" name="save" value="Save"/>
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
-                    
+                    <div class="row">
+                        <div class="col-sm-4">Icon Rounded Edges (1024x1024 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Icon Square Edges (1024x1024 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Splash Start #:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Splash End #:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Powered by (400x400 png):</div>
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        </form></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 section-heading">Select Color Theme:</div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Default</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 1</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 2</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 3</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 4</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 5</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 6</label></div>
+                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 theme-or">OR</div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 1:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 2:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 3:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 4:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 5:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row theme-colors">
+                        <div class="col-xs-4">color 6:</div>
+                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="submit" id="save" name="save" value="Save"/>
+                        </div>
+                    </div>
                 </div>
               </div>
 
@@ -180,7 +289,8 @@
     <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
     <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-    <script src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/colpick.js"></script>
 
 
 </body>

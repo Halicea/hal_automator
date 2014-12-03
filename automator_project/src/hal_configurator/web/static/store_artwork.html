@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>Publisher Info</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <!-- <link rel="stylesheet" href="/css/index.css"/> -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <style>
+    .ng-cloak {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+       <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="#">Web Viewer Admin Panel</a>
+        </div>
+       </div>
+    </div>
+
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li class="active"><a href="index.html">General</a></li>
+              <li><a href="publisher_info.html">Publisher Info</a></li>
+              <li><a href="design.html">Design</a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics</a></li>
+              <li><a href="build_app.html">Build App</a></li><br><br><br>
+              <li>Store Submission Information</li>
+              <li><a href="store_general.html">General</a></li>
+              <li><a href="store_artwork.html">Artwork</a></li>            
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-9" id="sidebar" role="navigation">
+            <div role="tabpanel">
+
+      <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="ios-tab">
+                    <div class="row">
+                        <div class="col-sm-4">App Name:</div>
+                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Apple ID:</div>
+                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Default Language:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">SKU Number:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Bundle ID:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Availability Date:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                     <div class="row">
+                        <div class="col-sm-4">List Countries you do NOT want to be listed in:</div>
+                        <div class="col-sm-8"><textarea rows="4" cols="50"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Version Information</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Version Number:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Copyright:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Category</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Primary Category:</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">Secondary Category (optional):</div>
+                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Rating</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 paragraph-text">For each content description, choose the level of frequency that best describes your app based on <a href="#">App Rating Detail</a>. <br>Apps must not contain any obscene, pornographic, offensive or defamatory content or materials of any kind (text, graphics, images, photographs, etc), or other content or materials that in Apple's reasonable judgment may be found objectionable.</div>
+                    </div>
+                    <div class="row rad-align col-head">
+                        <div class="col-xs-7 col-sm-5">Apple Content Description</div>
+                        <div class="col-xs-1 col-sm-1">None</div>
+                        <div class="col-xs-2 col-sm-3">Infrequent<br>(Mild)</div>
+                        <div class="col-xs-2 col-sm-3">Frequent<br>(Intense)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Cartoon or Fantasy Violence</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Realistic Violence</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Prolonged Graphic or Sadistic Realistic Violence</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Profanity or Crude Humor</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Mature/Suggestive Themes</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Cartoon or Fantasy Violence</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Horror/Fear Themes</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Alcohol, Tobacco, or Drug Use or References</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Simulated Gambling</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Sexual Content or Nudity</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-7 col-sm-5">Graphic Sexual Content and Nudity</div>
+                        <div class="col-xs-1 col-sm-1"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                        <div class="col-xs-2 col-sm-3"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="submit" id="save" name="save" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="android-tab">
+                    
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- <div id="container" class="row">
+        <ng-view></ng-view>
+        <div id="preview" class="col-md-3">
+            <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
+        </div>
+    </div> -->
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/vendor/jquery.ui.widget.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
+    <!--script src="/bower_components/tooltip/1.1/index.js"></script-->
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/services/configSvc.js"></script>
+    <script type="text/javascript" src="/js/controllers/ConfigCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/HomePageCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/CertificatesResourcesCtrl.js"></script>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>
+

@@ -1,5 +1,31 @@
 /* Forms */
 
+.col-head{
+	font-weight: bold;
+}
+
+.hor-rule{
+	margin:0px;
+}
+
+.rad-align{
+	text-align: center;
+
+	.col-xs-7, .col-sm-5{
+		text-align: left;
+	}
+
+}
+
+.paragraph-text{
+	text-align:justify;
+}
+
+.section-heading{
+	font-size: 130%;
+	font-weight: bold;
+}
+
 .nav-tabs li{
  	width: 50%;
 }
@@ -34,7 +60,7 @@
 	}
 
 	.img-upload input{
-		width   : 49%;
+		width   : 73%;
 	    height:26px;
 		cursor: pointer;
 		@include border-radius(3px);
@@ -42,6 +68,12 @@
 		border: solid 1px #eeeeee;
 		margin-left:0px;
 		display: inline;
+	}
+
+	.upload-right{
+		width: 25%!important;
+		float: right;
+		font-weight: normal;
 	}
 
 	select{
@@ -98,11 +130,6 @@
 		font-weight: normal;
 	}
 
-	.upload-right{
-		float: right;
-		font-weight: normal;
-	}
-
 	.row{
 		margin: 10px 0px;
 	}
@@ -115,6 +142,26 @@
 
 		.vert-align{
 		margin-top:0px;
+		}
+
+	}
+
+}
+
+@media screen and (max-width: 620px) {
+
+	#ios-tab, #android-tab{
+
+		.col-xs-2{
+			width:25%;
+		}
+
+		.col-xs-1{
+			width:10%;
+		}
+
+		.col-xs-7{
+			width:40%;
 		}
 
 	}
