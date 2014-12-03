@@ -1,23 +1,127 @@
-<div id="build">
-    <form>
-        App Name: <input type="text" id="app_name" name="app_name"/></br>
-        App ID in Portal: <input type="text" id="app_id_portal" name="app_id_portal"/></br>
-        iOS App ID: <input type="text" id="app_id" name="app_id"/></br>
-        Facebook ID: <input type="text" id="facebook_id" name="facebook_id"/></br>
-        Titles to Include: <input type="text" id="titles" name="titles"/></br>
-        Web URL: <input type="text" id="web_url" name="web_url"/></br>
-        Share Text: <input type="text" id="share_text" name="share_text"/></br>
-        Newsstand OR Desktop: <input type="button" id="newsstand" name="newsstand"/>
-                                <input type="button" id="desktop" name="desktop"/></br>
-        Registration: <input type="button" id="newsstand" name="newsstand"/>
-                        <input type="button" id="desktop" name="desktop"/></br>
-        Default Language:
-            <select id="lang" class="dropdown">
-                <option selected>English</option>
-                <option>French</option>
-                <option>Macedonian</option>
-                <option>Korean</option>
-            </select></br>
-        <input type="submit" id="save" name="save" value="Save"/>
-    </form>
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>Build App</title>
+    
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <!-- <link rel="stylesheet" href="/css/index.css"/> -->
+    <link rel="stylesheet" href="css/colpick.css" type="text/css"/>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <style>
+    .ng-cloak {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+       <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="#">Web Viewer Admin Panel</a>
+        </div>
+       </div>
+    </div>
+
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li class="active"><a href="index.html">General</a></li>
+              <li><a href="publisher_info.html">Publisher Info</a></li>
+              <li><a href="design.html">Design</a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics</a></li>
+              <li><a href="build_app.html">Build App</a></li><br><br><br>
+              <li>Store Submission Information</li>
+              <li><a href="store_general.html">General</a></li>
+              <li><a href="store_artwork.html">Artwork</a></li>            
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-9" id="sidebar" role="navigation">
+            <div role="tabpanel">
+
+      <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="ios-tab">
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Build For Testing</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Build For Submitting</div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="android-tab">
+                    
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+    <!-- <div id="container" class="row">
+        <ng-view></ng-view>
+        <div id="preview" class="col-md-3">
+            <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
+        </div>
+    </div> -->
+
+    <script>
+        $(document).ready(function(){
+            $('#picker').colpick();
+        });
+    </script>
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/vendor/jquery.ui.widget.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
+    <!--script src="/bower_components/tooltip/1.1/index.js"></script-->
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/services/configSvc.js"></script>
+    <script type="text/javascript" src="/js/controllers/ConfigCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/HomePageCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/CertificatesResourcesCtrl.js"></script>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/scripts.js"></script>
+    <script type="text/javascript" src="js/colpick.js"></script>
+
+
+</body>
+</html>
+

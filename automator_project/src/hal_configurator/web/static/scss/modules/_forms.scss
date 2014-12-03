@@ -1,5 +1,16 @@
 /* Forms */
 
+.for-kids {
+	margin-top:10px;
+
+	select{
+		width: 50%!important;
+		display: inline-block;
+		float: right;
+	}
+
+}
+
 .col-head{
 	font-weight: bold;
 }
@@ -11,7 +22,7 @@
 .rad-align{
 	text-align: center;
 
-	.col-xs-7, .col-sm-5{
+	.col-xs-6{
 		text-align: left;
 	}
 
@@ -24,6 +35,7 @@
 .section-heading{
 	font-size: 130%;
 	font-weight: bold;
+	margin-top:25px;
 }
 
 .nav-tabs li{
@@ -61,6 +73,27 @@
 
 	.img-upload input{
 		width   : 73%;
+	    height:26px;
+		cursor: pointer;
+		@include border-radius(3px);
+		@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		border: solid 1px #eeeeee;
+		margin-left:0px;
+		display: inline;
+	}
+
+	.img-upload-multi{
+		margin-bottom:25px;
+	}
+
+	.img-upload-multi img{
+		width: 100%!important;
+		margin:5px 0px;
+		height: auto!important;
+	}
+
+	.img-upload-multi input{
+		width   : 100%;
 	    height:26px;
 		cursor: pointer;
 		@include border-radius(3px);
@@ -114,7 +147,7 @@
 		@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
 	}
 
-	input[type=radio]{
+	input[type=radio], input[type=checkbox]{
 		width   : 15px;
 	}
 
@@ -153,14 +186,11 @@
 	#ios-tab, #android-tab{
 
 		.col-xs-2{
-			width:25%;
+			width:20%;
 		}
 
-		.col-xs-1{
-			width:10%;
-		}
 
-		.col-xs-7{
+		.col-xs-6{
 			width:40%;
 		}
 
