@@ -1,0 +1,17 @@
+.nav{
+	
+	.os-icons{
+		float: right;
+		width: 25px;
+		height: 25px;
+	}
+
+}
+
+#general-ios-icon, #publisher-info-ios-icon, #design-ios-icon, #platform-specifics-ios-icon, #build-app-ios-icon, #store-general-ios-icon, #store-artwork-ios-icon{
+	background: url('../img/ico_ios_inactive.png');
+}
+
+#general-android-icon, #publisher-info-android-icon, #design-android-icon, #platform-specifics-android-icon, #build-app-android-icon, #store-general-android-icon, #store-artwork-android-icon{
+	background: url('../img/ico_android_inactive.png');
+}

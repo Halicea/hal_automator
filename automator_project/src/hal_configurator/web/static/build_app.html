@@ -41,14 +41,14 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General</a></li>
-              <li><a href="publisher_info.html">Publisher Info</a></li>
-              <li><a href="design.html">Design</a></li>  
-              <li><a href="platform_specifics.html">Platform Specifics</a></li>
-              <li><a href="build_app.html">Build App</a></li><br><br><br>
+              <li class="active"><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
-              <li><a href="store_general.html">General</a></li>
-              <li><a href="store_artwork.html">Artwork</a></li>            
+              <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
             </ul>
         </div>
 
@@ -57,18 +57,18 @@
 
       <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
-                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+                <li role="presentation" id="build-app-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation" id="build-app-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
-                        <div class="col-xs-12 section-heading">Build For Testing</div>
+                        <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Testing</button></div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-12 section-heading">Build For Submitting</div>
+                        <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Submitting</button></div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
@@ -88,11 +88,11 @@
         </div>
     </div> -->
 
-    <script>
-        $(document).ready(function(){
-            $('#picker').colpick();
-        });
-    </script>
+    <div class="img-preloader">
+      <img src="img/ico_ios_active.png">
+      <img src="img/ico_android_active.png">
+    </div>
+
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
@@ -119,7 +119,6 @@
     <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
-    <script type="text/javascript" src="js/colpick.js"></script>
 
 
 </body>

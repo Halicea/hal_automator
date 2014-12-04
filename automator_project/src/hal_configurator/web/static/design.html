@@ -41,14 +41,14 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General</a></li>
-              <li><a href="publisher_info.html">Publisher Info</a></li>
-              <li><a href="design.html">Design</a></li>  
-              <li><a href="platform_specifics.html">Platform Specifics</a></li>
-              <li><a href="build_app.html">Build App</a></li><br><br><br>
+              <li class="active"><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
-              <li><a href="store_general.html">General</a></li>
-              <li><a href="store_artwork.html">Artwork</a></li>            
+              <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
             </ul>
         </div>
 
@@ -57,38 +57,38 @@
 
       <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
-                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+                <li role="presentation" id="design-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation" id="design-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
-                        <div class="col-sm-4">Icon Rounded Edges (1024x1024 png):</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Icon Rounded Edges (1024x1024 png):<span><strong>Icon Rounded Edges (1024x1024 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Icon Square Edges (1024x1024 png):</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Icon Square Edges (1024x1024 png):<span><strong>Icon Square Edges (1024x1024 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Splash Start #:</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Splash Start #:<span><strong>Splash Start #</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Splash End #:</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Splash End #:<span><strong>Splash End #</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Powered by (400x400 png):</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Powered by (400x400 png):<span><strong>Powered by (400x400 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-12 section-heading">Select Color Theme:</div>
+                        <div class="col-sm-12 section-heading"><a class="tooltip1" href="#">Select Color Theme:<span><strong>Select Color Theme</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                     </div>
                     <div class="row theme-colors">
                         <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Default</label></div>
@@ -125,28 +125,28 @@
                         <div class="col-xs-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 1:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 1:<span><strong>Custom Color 1</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box1">Click to choose color</div></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 2:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 2:<span><strong>Custom Color 2</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box2">Click to choose color</div></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 3:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 3:<span><strong>Custom Color 3</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box3">Click to choose color</div></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 4:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 4:<span><strong>Custom Color 4</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box4">Click to choose color</div></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 5:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 5:<span><strong>Custom Color 5</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box5">Click to choose color</div></div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4">color 6:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
+                        <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 6:<span><strong>Custom Color 6</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-xs-8"><div class="color-box col-box6">Click to choose color</div></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
@@ -155,95 +155,7 @@
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
-                    <div class="row">
-                        <div class="col-sm-4">Icon Rounded Edges (1024x1024 png):</div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
-                        </form></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Icon Square Edges (1024x1024 png):</div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
-                        </form></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Splash Start #:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Splash End #:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Powered by (400x400 png):</div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
-                        </form></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 section-heading">Select Color Theme:</div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Default</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 1</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 2</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 3</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 4</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 5</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4 vert-align"><label><input type="radio" name="theme-colors">Theme 6</label></div>
-                        <div class="col-xs-8"><img src="img/theme-colors-1.png" /></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 theme-or">OR</div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 1:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 2:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 3:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 4:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 5:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row theme-colors">
-                        <div class="col-xs-4">color 6:</div>
-                        <div class="col-xs-8"><button id="picker">Show Color Picker</button></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <input type="submit" id="save" name="save" value="Save"/>
-                        </div>
-                    </div>
+                   
                 </div>
               </div>
 
@@ -259,11 +171,12 @@
         </div>
     </div> -->
 
-    <script>
-        $(document).ready(function(){
-            $('#picker').colpick();
-        });
-    </script>
+
+     <div class="img-preloader">
+      <img src="img/ico_ios_active.png">
+      <img src="img/ico_android_active.png">
+    </div>
+    
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
