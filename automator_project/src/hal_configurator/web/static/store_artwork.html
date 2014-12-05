@@ -40,14 +40,14 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
               <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
               <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
               <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
               <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
               <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
-              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
+              <li class="active"><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
             </ul>
         </div>
 
@@ -65,33 +65,34 @@
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Icon (1024x1024 png):<span><strong>Icon (1024x1024 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="txtfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="store_icon"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 section-heading"><a class="tooltip1" href="#">Screenshot files (5):<span><strong>Screenshot files</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-xs-6  img-upload-multi"><input type='file' onchange="readURL(this);" /><img id="multi-up1" src="#" alt="Screenshot #1" /><input class="" type="submit" name="submit" value="upload"></div>
-                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' onchange="readURL2(this);" /><img id="multi-up2" src="#" alt="Screenshot #2" /><input class="" type="submit" name="submit" value="upload"></div>
-                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' onchange="readURL3(this);" /><img id="multi-up3" src="#" alt="Screenshot #3" /><input class="" type="submit" name="submit" value="upload"></div>
-                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' onchange="readURL4(this);" /><img id="multi-up4" src="#" alt="Screenshot #4" /><input class="" type="submit" name="submit" value="upload"></div>
-                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' onchange="readURL5(this);" /><img id="multi-up5" src="#" alt="Screenshot #5" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6  img-upload-multi"><input type='file' name="screenshot_1" onchange="readURL(this);" /><img id="multi-up1" src="#" alt="Screenshot #1" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' name="screenshot_2" onchange="readURL2(this);" /><img id="multi-up2" src="#" alt="Screenshot #2" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' name="screenshot_3" onchange="readURL3(this);" /><img id="multi-up3" src="#" alt="Screenshot #3" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file'
+                         name="screenshot_4" onchange="readURL4(this);" /><img id="multi-up4" src="#" alt="Screenshot #4" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6 img-upload-multi"><input type='file' name="screenshot_5" onchange="readURL5(this);" /><img id="multi-up5" src="#" alt="Screenshot #5" /><input class="" type="submit" name="submit" value="upload"></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12 section-heading"><a class="tooltip1" href="#">Newsstand Cover Art:<span><strong>Newsstand Cover Art</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-3 col-xs-6  img-upload-multi"><input type='file' onchange="readURL6(this);" /><img id="multi-up6" src="#" alt="Newsstand Cover Art" /><input class="" type="submit" name="submit" value="upload"></div>
+                        <div class="col-sm-3 col-xs-6  img-upload-multi"><input type='file' name="newsstand_cover_art" onchange="readURL6(this);" /><img id="multi-up6" src="#" alt="Newsstand Cover Art" /><input class="" type="submit" name="submit" value="upload"></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Routine App Coverage File (Optional):<span><strong>Routine App Coverage File</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="txtfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="routine_app_coverage"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input type="submit" id="save" name="save" value="Save"/>
+                            <input type="submit" id="save" name="store_artwork_save" value="Save"/>
                         </div>
                     </div>
                 </div>

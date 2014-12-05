@@ -2,6 +2,15 @@
 
 #ios-tab, #android-tab{
 
+	a{
+	color: #777777;
+}
+
+a:hover{
+	color:#777777!important;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+}
+
 	.vert-align{
 		margin-top:5px;
 	}
@@ -13,7 +22,7 @@
 
 	.theme-or{
 		font-size: 24px;
-		color: red;
+		color: #777777;
 	}
 
 	.theme-colors input{
@@ -75,7 +84,8 @@
 	    @include border-radius(3px);
 	    @include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
 	    border: solid 1px #eeeeee;
-	    background-color: #ffffff;
+	    background: none;
+	    color: #777777;
 	}
 
 	textarea{
@@ -85,7 +95,8 @@
 	    @include border-radius(3px);
 	    @include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
 	    border: solid 1px #eeeeee;
-	    background-color: #ffffff;
+	    background: none;
+	    color: #777777;
 	}
 
 	 label{
@@ -96,6 +107,26 @@
 		@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
 		border: solid 1px #eeeeee;
 		margin-left:0px;
+		padding-left: 20px;
+		color: #777777;
+	}
+
+	.nav .active, input[type=submit]:hover, label:active, label:hover, .input-sel{
+		@include box-shadow(inset 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		background: #e3e0d4;
+		color:#ffffff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+	}
+
+	.rad-align label:active, .rad-align label:hover, .rad-align .input-sel{
+		-webkit-box-shadow: none;
+    	-moz-box-shadow: none;
+    	box-shadow: none;
+		background: none;
+	}
+
+	.theme-colors .create-own{
+		width: 165px;
 	}
 
 	input{
@@ -103,10 +134,13 @@
 		border: solid 1px #eeeeee;
 		@include border-radius(3px);
 		@include box-shadow(1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		background: none;
+		color: #777777;
 	}
 
 	input[type=radio], input[type=checkbox]{
 		width   : 15px;
+		cursor: pointer;
 	}
 
 	.radio-input{
@@ -150,6 +184,19 @@
 
 		.col-xs-6{
 			width:40%;
+		}
+
+		.build-data{
+
+			.col-xs-2{
+			width:16.666%!important;
+			}
+
+
+			.col-xs-6{
+			width:50%;
+			}
+
 		}
 
 	}

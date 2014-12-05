@@ -1,9 +1,7 @@
 .text-center {
   padding-top: 20px;
 }
-.col-xs-12 {
-  background-color: #fff;
-}
+
 #sidebar {
   height: 100%;
   padding-right: 0;
@@ -16,8 +14,6 @@
   border:0 #f2f2f2 solid;
   border-bottom-width:1px;
 }
-
-
 
 /* collapsed sidebar styles */
 @media screen and (max-width: 767px) {
@@ -50,4 +46,29 @@
   #sidebar {
     padding-top:0;
   }
+}
+
+@media screen and (max-width: 550px) {
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -240px;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -240px;
+  }
+  .row-offcanvas-right.active {
+    right: 240px;
+  }
+  .row-offcanvas-left.active {
+    left: 240px;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 240px!important;
+  }
+
 }

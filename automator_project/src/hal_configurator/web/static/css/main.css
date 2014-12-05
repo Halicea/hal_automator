@@ -3,11 +3,17 @@
 /* Background Colors */
 /* Base */
 /* line 3, ../scss/base/_base.scss */
+.navbar-default {
+  background: #e3e0d4;
+}
+
+/* line 7, ../scss/base/_base.scss */
 .color-box {
   float: left;
   width: 155px;
   height: 26px;
   cursor: pointer;
+  color: #777777;
   border-radius: 3px;
   -moz0border-radius: 3px;
   -webkit-border-radius: 3px;
@@ -18,9 +24,36 @@
   padding: 3px 0px 0px 10px;
 }
 
-/* line 14, ../scss/base/_base.scss */
+/* line 20, ../scss/base/_base.scss */
 .colpick_rgbhex {
   margin-top: -200px;
+}
+
+/* line 24, ../scss/base/_base.scss */
+body {
+  overflow-x: hidden;
+  background: url("../img/main_bg1.png");
+}
+
+/* line 29, ../scss/base/_base.scss */
+#sidebar {
+  background: none;
+}
+
+/* line 33, ../scss/base/_base.scss */
+a {
+  color: #777777;
+}
+
+/* line 37, ../scss/base/_base.scss */
+a:hover {
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+
+/* line 42, ../scss/base/_base.scss */
+.nav li {
+  color: #777777;
 }
 
 /* MODULES */
@@ -61,46 +94,58 @@
   font-size: 130%;
   font-weight: bold;
   margin-top: 25px;
+  color: #777777;
 }
 
-/* line 13, ../scss/modules/_typography.scss */
+/* line 14, ../scss/modules/_typography.scss */
 .col-head {
   font-weight: bold;
 }
 
-/* line 17, ../scss/modules/_typography.scss */
+/* line 18, ../scss/modules/_typography.scss */
 .hor-rule {
   margin: 0px;
+  color: #ffffff;
+  background: #ffffff;
 }
 
 /* Tabs */
 /* line 5, ../scss/modules/_tabs.scss */
+#ios-tab a, #android-tab a {
+  color: #777777;
+}
+/* line 9, ../scss/modules/_tabs.scss */
+#ios-tab a:hover, #android-tab a:hover {
+  color: #777777!important;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+/* line 14, ../scss/modules/_tabs.scss */
 #ios-tab .vert-align, #android-tab .vert-align {
   margin-top: 5px;
 }
-/* line 9, ../scss/modules/_tabs.scss */
+/* line 18, ../scss/modules/_tabs.scss */
 #ios-tab .theme-colors img, #android-tab .theme-colors img {
   width: 100%;
   max-width: 350px;
 }
-/* line 14, ../scss/modules/_tabs.scss */
+/* line 23, ../scss/modules/_tabs.scss */
 #ios-tab .theme-or, #android-tab .theme-or {
   font-size: 24px;
-  color: red;
+  color: #777777;
 }
-/* line 19, ../scss/modules/_tabs.scss */
+/* line 28, ../scss/modules/_tabs.scss */
 #ios-tab .theme-colors input, #android-tab .theme-colors input {
   margin-left: 0px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 27, ../scss/modules/_tabs.scss */
+/* line 36, ../scss/modules/_tabs.scss */
 #ios-tab .theme-colors label, #android-tab .theme-colors label {
   width: 100%;
   font-weight: normal;
 }
-/* line 32, ../scss/modules/_tabs.scss */
+/* line 41, ../scss/modules/_tabs.scss */
 #ios-tab .img-upload input, #android-tab .img-upload input {
   width: 73%;
   height: 26px;
@@ -115,17 +160,17 @@
   margin-left: 0px;
   display: inline;
 }
-/* line 43, ../scss/modules/_tabs.scss */
+/* line 52, ../scss/modules/_tabs.scss */
 #ios-tab .img-upload-multi, #android-tab .img-upload-multi {
   margin-bottom: 25px;
 }
-/* line 47, ../scss/modules/_tabs.scss */
+/* line 56, ../scss/modules/_tabs.scss */
 #ios-tab .img-upload-multi img, #android-tab .img-upload-multi img {
   width: 100%!important;
   margin: 5px 0px;
   height: auto!important;
 }
-/* line 53, ../scss/modules/_tabs.scss */
+/* line 62, ../scss/modules/_tabs.scss */
 #ios-tab .img-upload-multi input, #android-tab .img-upload-multi input {
   width: 100%;
   height: 26px;
@@ -140,13 +185,13 @@
   margin-left: 0px;
   display: inline;
 }
-/* line 64, ../scss/modules/_tabs.scss */
+/* line 73, ../scss/modules/_tabs.scss */
 #ios-tab .upload-right, #android-tab .upload-right {
   width: 25%!important;
   float: right;
   font-weight: normal;
 }
-/* line 70, ../scss/modules/_tabs.scss */
+/* line 79, ../scss/modules/_tabs.scss */
 #ios-tab select, #android-tab select {
   width: 100%;
   height: 26px;
@@ -159,9 +204,10 @@
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border: solid 1px #eeeeee;
-  background-color: #ffffff;
+  background: none;
+  color: #777777;
 }
-/* line 81, ../scss/modules/_tabs.scss */
+/* line 91, ../scss/modules/_tabs.scss */
 #ios-tab textarea, #android-tab textarea {
   width: 100%;
   height: 75px;
@@ -173,9 +219,10 @@
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border: solid 1px #eeeeee;
-  background-color: #ffffff;
+  background: none;
+  color: #777777;
 }
-/* line 91, ../scss/modules/_tabs.scss */
+/* line 102, ../scss/modules/_tabs.scss */
 #ios-tab label, #android-tab label {
   width: 49%;
   height: 26px;
@@ -188,8 +235,30 @@
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   border: solid 1px #eeeeee;
   margin-left: 0px;
+  padding-left: 20px;
+  color: #777777;
 }
-/* line 101, ../scss/modules/_tabs.scss */
+/* line 114, ../scss/modules/_tabs.scss */
+#ios-tab .nav .active, #ios-tab input[type=submit]:hover, #ios-tab label:active, #ios-tab label:hover, #ios-tab .input-sel, #android-tab .nav .active, #android-tab input[type=submit]:hover, #android-tab label:active, #android-tab label:hover, #android-tab .input-sel {
+  -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: #e3e0d4;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+/* line 121, ../scss/modules/_tabs.scss */
+#ios-tab .rad-align label:active, #ios-tab .rad-align label:hover, #ios-tab .rad-align .input-sel, #android-tab .rad-align label:active, #android-tab .rad-align label:hover, #android-tab .rad-align .input-sel {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  background: none;
+}
+/* line 128, ../scss/modules/_tabs.scss */
+#ios-tab .theme-colors .create-own, #android-tab .theme-colors .create-own {
+  width: 165px;
+}
+/* line 132, ../scss/modules/_tabs.scss */
 #ios-tab input, #android-tab input {
   width: 100%;
   border: solid 1px #eeeeee;
@@ -199,51 +268,74 @@
   -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: none;
+  color: #777777;
 }
-/* line 108, ../scss/modules/_tabs.scss */
+/* line 141, ../scss/modules/_tabs.scss */
 #ios-tab input[type=radio], #ios-tab input[type=checkbox], #android-tab input[type=radio], #android-tab input[type=checkbox] {
   width: 15px;
+  cursor: pointer;
 }
-/* line 112, ../scss/modules/_tabs.scss */
+/* line 146, ../scss/modules/_tabs.scss */
 #ios-tab .radio-input, #android-tab .radio-input {
   margin-left: 0px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 119, ../scss/modules/_tabs.scss */
+/* line 153, ../scss/modules/_tabs.scss */
 #ios-tab .radio-inline-right, #android-tab .radio-inline-right {
   float: right;
   font-weight: normal;
 }
-/* line 124, ../scss/modules/_tabs.scss */
+/* line 158, ../scss/modules/_tabs.scss */
 #ios-tab .row, #android-tab .row {
   margin: 10px 0px;
 }
 
 @media screen and (max-width: 500px) {
-  /* line 134, ../scss/modules/_tabs.scss */
+  /* line 168, ../scss/modules/_tabs.scss */
   #ios-tab .vert-align, #android-tab .vert-align {
     margin-top: 0px;
   }
 }
 @media screen and (max-width: 620px) {
-  /* line 146, ../scss/modules/_tabs.scss */
+  /* line 180, ../scss/modules/_tabs.scss */
   #ios-tab .col-xs-2, #android-tab .col-xs-2 {
     width: 20%;
   }
-  /* line 151, ../scss/modules/_tabs.scss */
+  /* line 185, ../scss/modules/_tabs.scss */
   #ios-tab .col-xs-6, #android-tab .col-xs-6 {
     width: 40%;
+  }
+  /* line 191, ../scss/modules/_tabs.scss */
+  #ios-tab .build-data .col-xs-2, #android-tab .build-data .col-xs-2 {
+    width: 16.666%!important;
+  }
+  /* line 196, ../scss/modules/_tabs.scss */
+  #ios-tab .build-data .col-xs-6, #android-tab .build-data .col-xs-6 {
+    width: 50%;
   }
 }
 /* Buttons */
 /* line 3, ../scss/modules/_buttons.scss */
-.btn-custom-full {
+.btn-custom-full, .btn-custom-full:focus {
   width: 100%;
+  color: #777777;
+  background-image: linear-gradient(to bottom, #f4f2e9 0%, #e3e0d4 100%);
+  background-position: 0px 0px;
 }
 
-/* line 7, ../scss/modules/_buttons.scss */
+/* line 10, ../scss/modules/_buttons.scss */
+.btn-custom-full:hover, .btn-custom-full:active {
+  width: 100%;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(to bottom, #e3e0d4 0%, #f4f2e9 100%);
+  background-position: 0px 0px;
+}
+
+/* line 18, ../scss/modules/_buttons.scss */
 .img-preloader {
   display: none;
 }
@@ -256,7 +348,7 @@ a.tooltip1 {
 
 /* line 7, ../scss/modules/_tooltips.scss */
 a.tooltip1 strong {
-  line-height: 30px;
+  line-height: 15px;
 }
 
 /* line 11, ../scss/modules/_tooltips.scss */
@@ -279,12 +371,16 @@ a.tooltip1 span {
 a.tooltip1:hover span {
   display: inline;
   position: absolute;
-  color: #111;
-  border: 1px solid #DCA;
-  background: #ffffff;
+  color: #777777;
+  border: 1px solid #e3e0d4;
+  background: #f4f2e9;
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  text-shadow: none;
 }
 
-/* line 33, ../scss/modules/_tooltips.scss */
+/* line 37, ../scss/modules/_tooltips.scss */
 .callout {
   z-index: 20;
   position: absolute;
@@ -293,7 +389,7 @@ a.tooltip1:hover span {
   left: -12px;
 }
 
-/* line 41, ../scss/modules/_tooltips.scss */
+/* line 45, ../scss/modules/_tooltips.scss */
 a.tooltip1 span {
   border-radius: 4px;
   -moz0border-radius: 4px;
@@ -303,14 +399,14 @@ a.tooltip1 span {
   box-shadow: 5px 5px 8px #cccccc;
 }
 
-/* line 46, ../scss/modules/_tooltips.scss */
+/* line 50, ../scss/modules/_tooltips.scss */
 .section-heading a.tooltip1:hover span {
   font-weight: normal!important;
   font-size: 14px!important;
 }
 
 @media screen and (max-width: 500px) {
-  /* line 53, ../scss/modules/_tooltips.scss */
+  /* line 57, ../scss/modules/_tooltips.scss */
   a.tooltip1 span {
     z-index: 10;
     display: none;
@@ -341,29 +437,35 @@ a.tooltip1 span {
   background: url("../img/ico_android_inactive.png");
 }
 
+/* line 19, ../scss/layouts/_nav.scss */
+.nav li.active a {
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background-color: #e3e0d4;
+}
+
 /* line 1, ../scss/layouts/_columns.scss */
 .text-center {
   padding-top: 20px;
 }
 
-/* line 4, ../scss/layouts/_columns.scss */
-.col-xs-12 {
-  background-color: #fff;
-}
-
-/* line 7, ../scss/layouts/_columns.scss */
+/* line 5, ../scss/layouts/_columns.scss */
 #sidebar {
   height: 100%;
   padding-right: 0;
   padding-top: 20px;
 }
 
-/* line 12, ../scss/layouts/_columns.scss */
+/* line 10, ../scss/layouts/_columns.scss */
 #sidebar .nav {
   width: 95%;
 }
 
-/* line 15, ../scss/layouts/_columns.scss */
+/* line 13, ../scss/layouts/_columns.scss */
 #sidebar li {
   border: 0 #f2f2f2 solid;
   border-bottom-width: 1px;
@@ -371,7 +473,7 @@ a.tooltip1 span {
 
 /* collapsed sidebar styles */
 @media screen and (max-width: 767px) {
-  /* line 24, ../scss/layouts/_columns.scss */
+  /* line 20, ../scss/layouts/_columns.scss */
   .row-offcanvas {
     position: relative;
     -webkit-transition: all 0.25s ease-out;
@@ -379,37 +481,98 @@ a.tooltip1 span {
     transition: all 0.25s ease-out;
   }
 
-  /* line 31, ../scss/layouts/_columns.scss */
+  /* line 27, ../scss/layouts/_columns.scss */
   .row-offcanvas-right
   .sidebar-offcanvas {
     right: -41.6%;
   }
 
-  /* line 36, ../scss/layouts/_columns.scss */
+  /* line 32, ../scss/layouts/_columns.scss */
   .row-offcanvas-left
   .sidebar-offcanvas {
     left: -41.6%;
   }
 
-  /* line 39, ../scss/layouts/_columns.scss */
+  /* line 35, ../scss/layouts/_columns.scss */
   .row-offcanvas-right.active {
     right: 41.6%;
   }
 
-  /* line 42, ../scss/layouts/_columns.scss */
+  /* line 38, ../scss/layouts/_columns.scss */
   .row-offcanvas-left.active {
     left: 41.6%;
   }
 
-  /* line 45, ../scss/layouts/_columns.scss */
+  /* line 41, ../scss/layouts/_columns.scss */
   .sidebar-offcanvas {
     position: absolute;
     top: 0;
     width: 41.6%;
   }
 
-  /* line 50, ../scss/layouts/_columns.scss */
+  /* line 46, ../scss/layouts/_columns.scss */
   #sidebar {
     padding-top: 0;
   }
+}
+@media screen and (max-width: 550px) {
+  /* line 54, ../scss/layouts/_columns.scss */
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -240px;
+  }
+
+  /* line 59, ../scss/layouts/_columns.scss */
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -240px;
+  }
+
+  /* line 62, ../scss/layouts/_columns.scss */
+  .row-offcanvas-right.active {
+    right: 240px;
+  }
+
+  /* line 65, ../scss/layouts/_columns.scss */
+  .row-offcanvas-left.active {
+    left: 240px;
+  }
+
+  /* line 68, ../scss/layouts/_columns.scss */
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 240px!important;
+  }
+}
+/* Build History */
+/* line 5, ../scss/layouts/_build-history.scss */
+#ios-tab .push-right, #android-tab .push-right {
+  text-align: right;
+}
+/* line 9, ../scss/layouts/_build-history.scss */
+#ios-tab .build-data, #android-tab .build-data {
+  font-size: 12px;
+}
+/* line 15, ../scss/layouts/_build-history.scss */
+#ios-tab .build-history, #android-tab .build-history {
+  font-size: 14px;
+  font-weight: bold;
+}
+/* line 19, ../scss/layouts/_build-history.scss */
+#ios-tab .build-history label, #android-tab .build-history label {
+  width: 135px;
+  padding: 3px 0px 0px 7px;
+}
+/* line 24, ../scss/layouts/_build-history.scss */
+#ios-tab .build-history label:hover, #android-tab .build-history label:hover {
+  -webkit-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+/* line 28, ../scss/layouts/_build-history.scss */
+#ios-tab .build-history label:active, #android-tab .build-history label:active {
+  -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
 }

@@ -1,7 +1,18 @@
 /* Buttons */
 
-.btn-custom-full{
+.btn-custom-full, .btn-custom-full:focus{
 	width: 100%;
+	color: #777777;
+	background-image: linear-gradient(to bottom, #f4f2e9 0%, #e3e0d4 100%);
+	background-position: 0px 0px;
+}
+
+.btn-custom-full:hover, .btn-custom-full:active{
+	width: 100%;
+	color: #ffffff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .5);
+	background-image: linear-gradient(to bottom, #e3e0d4 0%, #f4f2e9 100%);
+	background-position: 0px 0px;
 }
 
 .img-preloader{

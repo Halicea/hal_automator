@@ -1,4 +1,52 @@
+$('.text-input').blur(function()
+{
+      if( !this.value == '' ) {
+            $(this).addClass('input-sel');
+      }
+      else{
+        $(this).removeClass('input-sel');
+      }
+});
 
+$(function() {
+    var $radioButtons = $('input[type="radio"]');
+    $radioButtons.click(function() {
+        $radioButtons.each(function() {
+            $(this).parent().toggleClass('input-sel', this.checked);
+        });
+    });
+});
+
+$(function() {
+    var $radioButtons = $('input[type="checkbox"]');
+    $radioButtons.click(function() {
+        $radioButtons.each(function() {
+            $(this).parent().toggleClass('input-sel', this.checked);
+        });
+    });
+});
+
+$('.test-build-history').click(function() {
+    $('.test-build-history-container').toggleClass( "hidden" );
+    $('.test-build-history').toggleClass( "input-sel" );
+    if($('.test-build-history-container').hasClass('hidden')) {
+        $('.test-build-history').text('See Build History');
+    }
+    else{
+        $('.test-build-history').text('Hide Build History');
+    }
+});
+
+$('.submit-build-history').click(function() {
+    $('.submit-build-history-container').toggleClass( "hidden" );
+    $('.submit-build-history').toggleClass( "input-sel" );
+    if($('.submit-build-history-container').hasClass('hidden')) {
+        $('.submit-build-history').text('See Build History');
+    }
+    else{
+        $('.submit-build-history').text('Hide Build History');
+    }
+});
 
 $( ".col-box1" ).click(function() {
   $( ".col-box1" ).empty();
@@ -24,17 +72,9 @@ $( ".col-box6" ).click(function() {
   $( ".col-box6" ).empty();
 });
 
-$(document).ready(function() {
-   $('.color-box').colpick({
-    colorScheme:'light',
-    layout:'rgbhex',
-    color:'ff8800',
-    onSubmit:function(hsb,hex,rgb,el) {
-        $(el).css('background-color', '#'+hex);
-        $(el).colpickHide();
-    }
-})
-});
+
+
+
 
 $(document).ready(function() {
     if($('#general-ios').hasClass('active')) {
@@ -271,4 +311,16 @@ if (input.files && input.files[0]) {
     reader.readAsDataURL(input.files[0]);
 }
 }
+
+$(document).ready(function() {
+   $('.color-box').colpick({
+        colorScheme:'light',
+        layout:'rgbhex',
+        color:'ff8800',
+        onSubmit:function(hsb,hex,rgb,el) {
+            $(el).css('background-color', '#'+hex);
+            $(el).colpickHide();
+        }
+    })
+});
 

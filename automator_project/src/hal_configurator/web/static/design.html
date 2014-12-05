@@ -41,9 +41,9 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
               <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
-              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li class="active"><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
               <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
               <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
@@ -66,25 +66,25 @@
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Icon Rounded Edges (1024x1024 png):<span><strong>Icon Rounded Edges (1024x1024 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="icon_round"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Icon Square Edges (1024x1024 png):<span><strong>Icon Square Edges (1024x1024 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="icon_square"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Splash Start #:<span><strong>Splash Start #</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="splash_start" name="splash_start"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Splash End #:<span><strong>Splash End #</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="splash_end" name="splash_end"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Powered by (400x400 png):<span><strong>Powered by (400x400 png)</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="imgfile"><input class="upload-right" type="submit" name="submit" value="upload">
+                        <div class="col-sm-8 img-upload"><form method="post" enctype="multipart/form-data"><input type="file" name="powered_by"><input class="upload-right" type="submit" name="submit" value="upload">
                         </form></div>
                     </div>
                     <div class="row">
@@ -122,7 +122,7 @@
                         <div class="col-sm-12 theme-or">OR</div>
                     </div>
                     <div class="row theme-colors">
-                        <div class="col-xs-4"><label><input type="radio" name="theme-colors">Create Your Own:</label></div>
+                        <div class="col-xs-12"><label class="create-own"><input type="radio" name="theme-colors">Create Your Own:</label></div>
                     </div>
                     <div class="row theme-colors">
                         <div class="col-xs-4"><a class="tooltip1" href="#">Custom Color 1:<span><strong>Custom Color 1</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
@@ -150,7 +150,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input type="submit" id="save" name="save" value="Save"/>
+                            <input type="submit" id="save" name="design_save" value="Save"/>
                         </div>
                     </div>
                 </div>

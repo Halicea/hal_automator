@@ -15,3 +15,9 @@
 #general-android-icon, #publisher-info-android-icon, #design-android-icon, #platform-specifics-android-icon, #build-app-android-icon, #store-general-android-icon, #store-artwork-android-icon{
 	background: url('../img/ico_android_inactive.png');
 }
+
+.nav li.active a{
+	@include border-radius(3px);
+	@include box-shadow(inset 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+	background-color: #e3e0d4;
+}
