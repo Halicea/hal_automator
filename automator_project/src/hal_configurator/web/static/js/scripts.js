@@ -1,3 +1,138 @@
+// General Page Validation
+
+$(document).ready(function(){
+$('#save_general').click(function(){
+
+if ($("#app_name1").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please enter App Name</p>');
+$("#app_name1").addClass('val_error_highlight');
+return false;
+}
+if ($("#app_id_portal").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please enter App ID created by the system</p>');
+$("#app_id_portal").addClass('val_error_highlight');
+return false;
+}
+if ($("#ios_app_id").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please enter the ID set in the Apple Dev account for the app</p>');
+$("#ios_app_id").addClass('val_error_highlight');
+return false;
+}
+if ($("#facebook_id").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please enter the ID Facebook generates when you create an app in their system</p>');
+$("#facebook_id").addClass('val_error_highlight');
+return false;
+}
+if ($("#portal_app").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please determine which Portal App is linked to the build</p>');
+$("#portal_app").addClass('val_error_highlight');
+return false;
+}
+if ($("#sharing:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to have the sharing option enabled</p>');
+$("#sharing_label").addClass('val_error_highlight');
+$("#sharing_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#share_text").val() == '' ){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please enter the tag line that will show when shared</p>');
+$("#share_text").addClass('val_error_highlight');
+return false;
+}
+if ($("#platform:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please select which platform you would like to publish on</p>');
+$("#platform_label").addClass('val_error_highlight');
+$("#platform_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#registration:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to register your app</p>');
+$("#registration_label").addClass('val_error_highlight');
+$("#registration_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#multi_lang:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like your app to be multi lingual</p>');
+$("#multi_label").addClass('val_error_highlight');
+$("#multi_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#preview_pages:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to preview your pages</p>');
+$("#preview_label").addClass('val_error_highlight');
+$("#preview_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#toc:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to have a table of contents</p>');
+$("#toc_label").addClass('val_error_highlight');
+$("#toc_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#advertising:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you want to support banner ads in your app</p>');
+$("#advertising_label").addClass('val_error_highlight');
+$("#advertising_label2").addClass('val_error_highlight');
+$("#advertising_label3").addClass('val_error_highlight');
+return false;
+}
+if ($("#color_themes_enable:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to enable color themes</p>');
+$("#color_themes_enable_label").addClass('val_error_highlight');
+$("#color_themes_enable_label2").addClass('val_error_highlight');
+return false;
+}
+if ($("#push_notification:checked").length == 0){
+$('.validation_msg').slideDown().html('<h4>Error While Saving</h4><p id="error">Please choose if you would like to enable push notifications</p>');
+$("#push_notification_label").addClass('val_error_highlight');
+$("#push_notification_label2").addClass('val_error_highlight');
+return false;
+}
+
+
+else{
+    $('.validation_msg').slideDown().html('<h4 class="val_success">Save Successfull</h4><p id="error">Your information was successfully saved</p>');
+return true;
+}
+});
+});
+
+$( ".val_close" ).click(function() {
+  $('.validation_container').addClass( "hidden" );
+  setTimeout(function() {
+      $("#app_name1").removeClass('val_error_highlight');
+      $("#app_id_portal").removeClass('val_error_highlight');
+      $("#sharing_label").removeClass('val_error_highlight');
+      $("#sharing_label2").removeClass('val_error_highlight');
+      $("#ios_app_id").removeClass('val_error_highlight');
+      $("#facebook_id").removeClass('val_error_highlight');
+      $("#portal_app").removeClass('val_error_highlight');
+      $("#share_text").removeClass('val_error_highlight');
+      $("#platform_label").removeClass('val_error_highlight');
+      $("#platform_label2").removeClass('val_error_highlight');
+      $("#registration_label").removeClass('val_error_highlight');
+      $("#registration_label2").removeClass('val_error_highlight');
+      $("#multi_label").removeClass('val_error_highlight');
+      $("#multi_label2").removeClass('val_error_highlight');
+      $("#preview_label").removeClass('val_error_highlight');
+      $("#preview_label2").removeClass('val_error_highlight');
+      $("#toc_label").removeClass('val_error_highlight');
+      $("#toc_label2").removeClass('val_error_highlight');
+      $("#advertising_label").removeClass('val_error_highlight');
+      $("#advertising_label2").removeClass('val_error_highlight');
+      $("#advertising_label3").removeClass('val_error_highlight');
+      $("#color_themes_enable_label").removeClass('val_error_highlight');
+      $("#color_themes_enable_label2").removeClass('val_error_highlight');
+      $("#push_notification_label").removeClass('val_error_highlight');
+      $("#push_notification_label2").removeClass('val_error_highlight');
+}, 2000);
+});
+
+
+function save_success() {
+    $('.validation_container').removeClass( "hidden" );
+};
+
 $('.text-input').blur(function()
 {
       if( !this.value == '' ) {

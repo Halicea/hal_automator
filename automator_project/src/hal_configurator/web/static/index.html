@@ -64,7 +64,7 @@
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">App Name:<span><strong>App Name</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="app_name" name="app_name"/></div>
+                        <div class="col-sm-8"><input id="app_name1" type="text" class="text-input" maxlength="11" name="app_name1"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">App ID in Portal:<span><strong>App ID in Portal</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
@@ -80,28 +80,28 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Portal App:<span><strong>Portal App</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="porta_app" name="portal_app"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="portal_app" name="portal_app"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Sharing:<span><strong>Sharing</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8">
-                            <label class="radio-inline"><input class="radio-input" type="radio" name="sharing">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="sharing">Off</label>
+                            <label id="sharing_label" class="radio-inline"><input id="sharing" class="radio-input" type="radio" name="sharing">On</label>
+                            <label id="sharing_label2" class="radio-inline radio-inline-right"><input id="sharing" class="radio-input" type="radio" name="sharing">Off</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Share Text:<span><strong>Share Text</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="share_text" name="share_text"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="share_text" maxlength="30" name="share_text"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Newstand OR Desktop:<span><strong>Newstand OR Desktop</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="news-desk">Newsstand</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="news-desk">Desktop</label></div>
+                        <div class="col-sm-8"><label id="platform_label" class="radio-inline"><input id="platform" class="radio-input" type="radio" name="news-desk">Newsstand</label>
+                            <label id="platform_label2" class="radio-inline radio-inline-right"><input id="platform" class="radio-input" type="radio" name="news-desk">Desktop</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Registration:<span><strong>Registration</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="registration">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="registration">Off</label></div>
+                        <div class="col-sm-8"><label id="registration_label" class="radio-inline"><input id="registration" class="radio-input" type="radio" name="registration">On</label>
+                            <label id="registration_label2" class="radio-inline radio-inline-right"><input id="registration" class="radio-input" type="radio" name="registration">Off</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Default language:<span><strong>Default language</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
@@ -115,36 +115,37 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Multi Language:<span><strong>Multi Language</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="multi-lang">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="multi-lang">Off</label></div>
+                        <div class="col-sm-8"><label id="multi_label" class="radio-inline"><input id="multi_lang" class="radio-input" type="radio" name="multi-lang">On</label>
+                            <label id="multi_label2" class="radio-inline radio-inline-right"><input id="multi_lang" class="radio-input" type="radio" name="multi-lang">Off</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Preview Pages:<span><strong>Preview Pages</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="preview-pages">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="preview-pages">Off</label></div>
+                        <div class="col-sm-8"><label id="preview_label" class="radio-inline"><input id="preview_pages" class="radio-input" type="radio" name="preview-pages">On</label>
+                            <label id="preview_label2" class="radio-inline radio-inline-right"><input id="preview_pages" class="radio-input" type="radio" name="preview-pages">Off</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">TOC:<span><strong>TOC</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="toc">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="toc">Off</label></div>
+                        <div class="col-sm-8"><label id="toc_label" class="radio-inline"><input id="toc" class="radio-input" type="radio" name="toc">On</label>
+                            <label id="toc_label2" class="radio-inline radio-inline-right"><input id="toc" class="radio-input" type="radio" name="toc">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4"><a class="tooltip1" href="#">Advertising:<span><strong>Advertising</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="advertising" name="advertising"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Advertising Banner:<span><strong>Advertising Banner</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8 input-3-wide"><label id="advertising_label" class="radio-inline radio-inline-left"><input id="advertising" class="radio-input" type="radio" name="advertising">Top</label>
+                            <label id="advertising_label2" class="radio-inline radio-inline-middle"><input id="advertising" class="radio-input" type="radio" name="advertising">Middle</label><label id="advertising_label3" class="radio-inline radio-inline-right"><input id="advertising" class="radio-input" type="radio" name="advertising">All</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Color Themes:<span><strong>Color Themes</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="color-themes">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="color-themes">Off</label></div>
+                        <div class="col-sm-8"><label id="color_themes_enable_label" class="radio-inline"><input id="color_themes_enable" class="radio-input" type="radio" name="color-themes">On</label>
+                            <label id="color_themes_enable_label2" class="radio-inline radio-inline-right"><input id="color_themes_enable" class="radio-input" type="radio" name="color-themes">Off</label></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Push Notifications:<span><strong>Push Notifications</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="push-notification">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="push-notification">Off</label></div>
+                        <div class="col-sm-8"><label id="push_notification_label" class="radio-inline"><input id="push_notification" class="radio-input" type="radio" name="push-notification">On</label>
+                            <label id="push_notification_label2" class="radio-inline radio-inline-right"><input id="push_notification" class="radio-input" type="radio" name="push-notification">Off</label></div>
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <input type="submit" id="save" name="general_save" value="Save"/>
+                            <input onclick="save_success()" type="submit" id="save_general" name="save_general" value="Save"/>
                         </div>
                     </div>
                 </div>
@@ -164,6 +165,13 @@
             <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
         </div>
     </div> -->
+    <div class="validation_container hidden">
+        <div class="validation_holder">
+            <div class="validation_msg">
+            </div>
+            <button class="val_close btn btn-default">OK</button>
+        </div>
+    </div>
 
      <div class="img-preloader">
       <img src="img/ico_ios_active.png">

@@ -239,7 +239,42 @@ a:hover {
   color: #777777;
 }
 /* line 114, ../scss/modules/_tabs.scss */
-#ios-tab .nav .active, #ios-tab input[type=submit]:hover, #ios-tab label:active, #ios-tab label:hover, #ios-tab .input-sel, #android-tab .nav .active, #android-tab input[type=submit]:hover, #android-tab label:active, #android-tab label:hover, #android-tab .input-sel {
+#ios-tab .nav .active, #ios-tab label:active, #ios-tab label:hover, #android-tab .nav .active, #android-tab label:active, #android-tab label:hover {
+  -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* line 119, ../scss/modules/_tabs.scss */
+#ios-tab input[type=submit]:focus, #android-tab input[type=submit]:focus {
+  -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: #759fc2;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+/* line 126, ../scss/modules/_tabs.scss */
+#ios-tab input[type=submit]:hover, #android-tab input[type=submit]:hover {
+  -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+  background: #759fc2;
+  color: #ffffff;
+  text-shadow: 1px 1px 15px rgba(0, 0, 0, 0.3);
+}
+/* line 133, ../scss/modules/_tabs.scss */
+#ios-tab input[type=submit], #android-tab input[type=submit] {
+  -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  background: #759fc2;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+  border: none;
+}
+/* line 141, ../scss/modules/_tabs.scss */
+#ios-tab .input-sel, #android-tab .input-sel {
   -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
@@ -247,18 +282,18 @@ a:hover {
   color: #ffffff;
   text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
 }
-/* line 121, ../scss/modules/_tabs.scss */
+/* line 148, ../scss/modules/_tabs.scss */
 #ios-tab .rad-align label:active, #ios-tab .rad-align label:hover, #ios-tab .rad-align .input-sel, #android-tab .rad-align label:active, #android-tab .rad-align label:hover, #android-tab .rad-align .input-sel {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
   background: none;
 }
-/* line 128, ../scss/modules/_tabs.scss */
+/* line 155, ../scss/modules/_tabs.scss */
 #ios-tab .theme-colors .create-own, #android-tab .theme-colors .create-own {
   width: 165px;
 }
-/* line 132, ../scss/modules/_tabs.scss */
+/* line 159, ../scss/modules/_tabs.scss */
 #ios-tab input, #android-tab input {
   width: 100%;
   border: solid 1px #eeeeee;
@@ -271,48 +306,67 @@ a:hover {
   background: none;
   color: #777777;
 }
-/* line 141, ../scss/modules/_tabs.scss */
+/* line 168, ../scss/modules/_tabs.scss */
 #ios-tab input[type=radio], #ios-tab input[type=checkbox], #android-tab input[type=radio], #android-tab input[type=checkbox] {
   width: 15px;
   cursor: pointer;
 }
-/* line 146, ../scss/modules/_tabs.scss */
+/* line 173, ../scss/modules/_tabs.scss */
 #ios-tab .radio-input, #android-tab .radio-input {
   margin-left: 0px;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 153, ../scss/modules/_tabs.scss */
+/* line 180, ../scss/modules/_tabs.scss */
 #ios-tab .radio-inline-right, #android-tab .radio-inline-right {
   float: right;
   font-weight: normal;
 }
-/* line 158, ../scss/modules/_tabs.scss */
+/* line 185, ../scss/modules/_tabs.scss */
+#ios-tab .radio-inline-middle, #android-tab .radio-inline-middle {
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: normal;
+}
+/* line 191, ../scss/modules/_tabs.scss */
+#ios-tab .radio-inline-left, #android-tab .radio-inline-left {
+  float: left;
+}
+/* line 195, ../scss/modules/_tabs.scss */
+#ios-tab .input-3-wide label, #android-tab .input-3-wide label {
+  width: 32%;
+  text-align: left;
+}
+/* line 200, ../scss/modules/_tabs.scss */
+#ios-tab .input-3-wide, #android-tab .input-3-wide {
+  text-align: center;
+}
+/* line 204, ../scss/modules/_tabs.scss */
 #ios-tab .row, #android-tab .row {
   margin: 10px 0px;
 }
 
 @media screen and (max-width: 500px) {
-  /* line 168, ../scss/modules/_tabs.scss */
+  /* line 214, ../scss/modules/_tabs.scss */
   #ios-tab .vert-align, #android-tab .vert-align {
     margin-top: 0px;
   }
 }
 @media screen and (max-width: 620px) {
-  /* line 180, ../scss/modules/_tabs.scss */
+  /* line 226, ../scss/modules/_tabs.scss */
   #ios-tab .col-xs-2, #android-tab .col-xs-2 {
     width: 20%;
   }
-  /* line 185, ../scss/modules/_tabs.scss */
+  /* line 231, ../scss/modules/_tabs.scss */
   #ios-tab .col-xs-6, #android-tab .col-xs-6 {
     width: 40%;
   }
-  /* line 191, ../scss/modules/_tabs.scss */
+  /* line 237, ../scss/modules/_tabs.scss */
   #ios-tab .build-data .col-xs-2, #android-tab .build-data .col-xs-2 {
     width: 16.666%!important;
   }
-  /* line 196, ../scss/modules/_tabs.scss */
+  /* line 242, ../scss/modules/_tabs.scss */
   #ios-tab .build-data .col-xs-6, #android-tab .build-data .col-xs-6 {
     width: 50%;
   }
@@ -338,6 +392,23 @@ a:hover {
 /* line 18, ../scss/modules/_buttons.scss */
 .img-preloader {
   display: none;
+}
+
+/* line 22, ../scss/modules/_buttons.scss */
+.val_close {
+  width: 100px;
+  color: #777777;
+  background-image: linear-gradient(to bottom, #f4f2e9 0%, #e3e0d4 100%);
+  background-position: 0px 0px;
+}
+
+/* line 29, ../scss/modules/_buttons.scss */
+.val_close:hover {
+  width: 100px;
+  color: #ffffff;
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
+  background-image: linear-gradient(to bottom, #e3e0d4 0%, #f4f2e9 100%);
+  background-position: 0px 0px;
 }
 
 /* Tooltips */
@@ -419,6 +490,51 @@ a.tooltip1 span {
     left: 0%;
   }
 }
+/* Validation Messages */
+/* line 3, ../scss/modules/_validation.scss */
+.validation_container {
+  width: 100%;
+  position: fixed;
+  top: 10%;
+  text-align: center;
+}
+
+/* line 10, ../scss/modules/_validation.scss */
+.validation_holder {
+  width: 300px;
+  background: #e3e0d4;
+  padding: 5px 20px;
+  border-radius: 3px;
+  -moz0border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -webkit-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+
+/* line 19, ../scss/modules/_validation.scss */
+.validation_msg .val_success {
+  color: #759fc2;
+}
+
+/* line 23, ../scss/modules/_validation.scss */
+.validation_msg h4 {
+  color: #c27575;
+}
+
+/* line 27, ../scss/modules/_validation.scss */
+.validation_msg p {
+  color: #777777;
+}
+
+/* line 31, ../scss/modules/_validation.scss */
+.val_error_highlight {
+  -moz-box-shadow: 0px 0px 10px rgba(194, 117, 117, 0.8) !important;
+  -webkit-box-shadow: 0px 0px 10px rgba(194, 117, 117, 0.8) !important;
+  box-shadow: 0px 0px 10px rgba(194, 117, 117, 0.8) !important;
+}
+
 /* LAYOUTS - Layout styles */
 /* line 3, ../scss/layouts/_nav.scss */
 .nav .os-icons {

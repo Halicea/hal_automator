@@ -4,12 +4,12 @@
 
 	a{
 	color: #777777;
-}
+	}
 
-a:hover{
-	color:#777777!important;
-	text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
-}
+	a:hover{
+		color:#777777!important;
+		text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+	}
 
 	.vert-align{
 		margin-top:5px;
@@ -111,7 +111,34 @@ a:hover{
 		color: #777777;
 	}
 
-	.nav .active, input[type=submit]:hover, label:active, label:hover, .input-sel{
+	.nav .active, label:active, label:hover{
+		@include box-shadow( 1px, 1px, 5px, rgba(0, 0, 0, 0.3));
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, .3);
+	}
+
+	input[type=submit]:focus{
+		@include box-shadow(inset 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		background: #759fc2;
+		color:#ffffff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+	}
+
+	input[type=submit]:hover{
+		@include box-shadow( 1px, 1px, 5px, rgba(0, 0, 0, 0.3));
+		background: #759fc2;
+		color:#ffffff;
+		text-shadow: 1px 1px 15px rgba(0, 0, 0, .3);
+	}
+
+	input[type=submit]{
+		@include box-shadow( 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		background: #759fc2;
+		color:#ffffff;
+	text-shadow: 1px 1px 0px rgba(0, 0, 0, .3);
+	border: none;
+	}
+
+	.input-sel{
 		@include box-shadow(inset 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
 		background: #e3e0d4;
 		color:#ffffff;
@@ -153,6 +180,25 @@ a:hover{
 	.radio-inline-right{
 		float: right;
 		font-weight: normal;
+	}
+
+	.radio-inline-middle{
+		margin-left: auto;
+		margin-right: auto;
+		font-weight: normal;
+	}
+
+	.radio-inline-left{
+		float: left;
+	}
+
+	.input-3-wide label{
+		width: 32%;
+		text-align: left;
+	}
+
+	.input-3-wide{
+		text-align: center;
 	}
 
 	.row{

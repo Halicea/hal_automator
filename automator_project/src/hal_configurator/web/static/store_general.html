@@ -64,7 +64,7 @@
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">App Name:<span><strong>App Name</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="store_app_name" name="store_app_name"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="store_app_name" maxlength="255" name="store_app_name"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Apple ID:<span><strong>Apple ID</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
@@ -232,10 +232,9 @@
                     <div class="row">
                         <div class="col-xs-12 paragraph-text">Made For Kids indicates that your app has been designed for children. These apps will be part of the kids category on the App Store and will be categorized and searchable by age range. To update existing privacy policy URL localizations, see the Metadata and Uploads section in the app's Version Details page.</div>
                         <div class="col-xs-12 for-kids"><label class="radio-inline"><input class="radio-input" type="checkbox" value="">Made For Kids</label><select class="form-control" id="made_for_kids">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                            <option>0 to 5</option>
+                            <option>6 to 8</option>
+                            <option>9 to 11</option>
                           </select></div>
                     </div>
                     <div class="row">
@@ -243,11 +242,11 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Description:<span><strong>Description</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><textarea class="text-input" rows="4" cols="50"></textarea></div>
+                        <div class="col-sm-8"><textarea class="text-input" maxlength="4000" rows="4" cols="50"></textarea></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Keywords:<span><strong>Keywords</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
-                        <div class="col-sm-8"><input type="text" class="text-input" id="keywords" name="keywords"/></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="keywords" maxlength="100" name="keywords"/></div>
                     </div>
                     <div class="row">
                         <div class="col-sm-4"><a class="tooltip1" href="#">Support URL:<span><strong>Support URL</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
