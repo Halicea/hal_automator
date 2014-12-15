@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <title>Store General</title>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+    <!-- <link rel="stylesheet" href="/css/index.css"/> -->
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <style>
+    .ng-cloak {
+        display: none;
+    }
+    </style>
+</head>
+<body>
+<div class="page-container">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+       <div class="container">
+        <div class="navbar-header">
+           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="navbar-brand" href="#">Web Viewer Admin Panel</a>
+        </div>
+       </div>
+    </div>
+
+<div class="container">
+    <div class="row row-offcanvas row-offcanvas-left">
+        
+        <!-- sidebar -->
+        <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <ul class="nav">
+              <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
+              <li>Store Submission Information</li>
+              <li class="active"><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
+            </ul>
+        </div>
+
+        <div class="col-xs-12 col-sm-9" id="sidebar" role="navigation">
+            <div role="tabpanel">
+
+      <!-- Nav tabs -->
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" id="store-general-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation" id="store-general-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="ios-tab">
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">App Name:<span><strong>App Name</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="store_app_name" maxlength="255" name="store_app_name"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Apple ID:<span><strong>Apple ID</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="apple_id" name="apple_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Default Language:<span><strong>Default Language</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="default_language" name="default_language"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">SKU Number:<span><strong>SKU Number</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="sku_number" name="sku_number"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Bundle ID:<span><strong>Bundle ID</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="bundle_id" name="bundle_id"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Availability Date:<span><strong>Availability Date</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="availability_date" name="availability_date"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">List Countries you do NOT want to be listed in:<span><strong>List Countries you do NOT want to be listed in</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><textarea class="text-input" rows="4" cols="50"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Version Information</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Version Number:<span><strong>Version Number</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="version_number" name="version_number"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Copyright:<span><strong>Copyright</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="store_copyright" name="store_copyright"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Category</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Primary Category:<span><strong>Primary Category</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="primary_category" name="primary_category"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Secondary Category (optional):<span><strong>Secondary Category</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="secondary_category" name="secondary_category"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Rating</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 paragraph-text">For each content description, choose the level of frequency that best describes your app based on <a href="#">App Rating Detail</a>. <br>Apps must not contain any obscene, pornographic, offensive or defamatory content or materials of any kind (text, graphics, images, photographs, etc), or other content or materials that in Apple's reasonable judgment may be found objectionable.</div>
+                    </div>
+                    <div class="row rad-align col-head">
+                        <div class="col-xs-6 ">Apple Content Description</div>
+                        <div class="col-xs-2 ">None</div>
+                        <div class="col-xs-2 ">Infrequent<br>(Mild)</div>
+                        <div class="col-xs-2 ">Frequent<br>(Intense)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Cartoon or Fantasy Violence</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Realistic Violence</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Prolonged Graphic or Sadistic Realistic Violence</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Profanity or Crude Humor</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd4"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Mature/Suggestive Themes</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd5"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Cartoon or Fantasy Violence</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Horror/Fear Themes</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd7"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Alcohol, Tobacco, or Drug Use or References</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd8"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Simulated Gambling</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd9"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Sexual Content or Nudity</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd10"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row rad-align">
+                        <div class="col-xs-6">Graphic Sexual Content and Nudity</div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                        <div class="col-xs-2"><input class="radio-input" type="radio" name="apple-cd11"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12"><hr class="hor-rule"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Made For Kids (Optional)</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 paragraph-text">Made For Kids indicates that your app has been designed for children. These apps will be part of the kids category on the App Store and will be categorized and searchable by age range. To update existing privacy policy URL localizations, see the Metadata and Uploads section in the app's Version Details page.</div>
+                        <div class="col-xs-12 for-kids"><label class="radio-inline"><input class="radio-input" type="checkbox" value="">Made For Kids</label><select class="form-control" id="made_for_kids">
+                            <option>0 to 5</option>
+                            <option>6 to 8</option>
+                            <option>9 to 11</option>
+                          </select></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 section-heading">Metadata</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Description:<span><strong>Description</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><textarea class="text-input" maxlength="4000" rows="4" cols="50"></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Keywords:<span><strong>Keywords</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="keywords" maxlength="100" name="keywords"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Support URL:<span><strong>Support URL</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="support_url" name="support_url" value="http://"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Marketing URL (Optional):<span><strong>Marketing URL</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="marketing_url" name="marketing_url" value="http://"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Privacy Policy URL (Optional):<span><strong>Privacy Policy URL</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="privacy_policy" name="privacy_policy" value="http://"/></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <input type="submit" id="save" name="store_general_save" value="Save"/>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="android-tab">
+                    
+                </div>
+              </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- <div id="container" class="row">
+        <ng-view></ng-view>
+        <div id="preview" class="col-md-3">
+            <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
+        </div>
+    </div> -->
+
+     <div class="img-preloader">
+      <img src="img/ico_ios_active.png">
+      <img src="img/ico_android_active.png">
+    </div>
+
+    <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="js/vendor/jquery.ui.widget.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Load-Image/js/load-image.min.js"></script>
+    <script src="http://blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+    <script src="http://blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+    <script src="/bower_components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
+    <!--script src="/bower_components/tooltip/1.1/index.js"></script-->
+    <script type="text/javascript" src="/js/app.js"></script>
+    <script type="text/javascript" src="/js/services/configSvc.js"></script>
+    <script type="text/javascript" src="/js/controllers/ConfigCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/HomePageCtrl.js"></script>
+    <script type="text/javascript" src="/js/controllers/CertificatesResourcesCtrl.js"></script>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
+    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,33 @@
+/* Build History */
+
+#ios-tab, #android-tab{
+
+	.push-right{
+		text-align:right;
+	}
+
+	.build-data{
+		font-size: 12px;
+	}
+
+
+
+	.build-history{
+		font-size: 14px;
+		font-weight: bold;
+
+		label{
+			width:135px;
+			padding: 3px 0px 0px 7px;
+		}
+
+		label:hover{
+			@include box-shadow(inset 1px, 1px, 5px, rgba(0, 0, 0, 0.3));
+		}
+
+		label:active{
+			@include box-shadow(inset 1px, 1px, 2px, rgba(0, 0, 0, 0.3));
+		}
+	}
+
+}

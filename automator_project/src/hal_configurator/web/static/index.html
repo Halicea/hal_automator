@@ -39,14 +39,14 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General</a></li>
-              <li><a href="publisher_info.html">Publisher Info</a></li>
-              <li><a href="design.html">Design</a></li>  
-              <li><a href="platform_specifics.html">Platform Specifics</a></li>
-              <li><a href="build_aps.html">Build App</a></li><br><br><br>
+              <li class="active"><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
-              <li><a href="store-general.html">General</a></li>
-              <li><a href="store-artwork.html">Artwork</a></li>            
+              <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
             </ul>
         </div>
 
@@ -55,56 +55,56 @@
 
       <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
-                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+                <li role="presentation" id="general-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation" id="general-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
-                        <div class="col-sm-4">App Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">App Name:<span><strong>App Name</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input id="app_name1" type="text" class="text-input" maxlength="11" name="app_name1"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">App ID in Portal:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id_portal" name="app_id_portal"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">App ID in Portal:<span><strong>App ID in Portal</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="app_id_portal" name="app_id_portal"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">iOS App ID:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">iOS App ID:<span><strong>iOS App ID</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="ios_app_id" name="ios_app_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Facebook ID:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Facebook ID:<span><strong>Facebook ID</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="facebook_id" name="facebook_id"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Portal App:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Portal App:<span><strong>Portal App</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="portal_app" name="portal_app"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Sharing:</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Sharing:<span><strong>Sharing</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8">
-                            <label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label>
+                            <label id="sharing_label" class="radio-inline"><input id="sharing" class="radio-input" type="radio" name="sharing">On</label>
+                            <label id="sharing_label2" class="radio-inline radio-inline-right"><input id="sharing" class="radio-input" type="radio" name="sharing">Off</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Share Text:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Share Text:<span><strong>Share Text</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="share_text" maxlength="30" name="share_text"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Newstand OR Desktop:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">Newsstand</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Desktop</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Newstand OR Desktop:<span><strong>Newstand OR Desktop</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="platform_label" class="radio-inline"><input id="platform" class="radio-input" type="radio" name="news-desk">Newsstand</label>
+                            <label id="platform_label2" class="radio-inline radio-inline-right"><input id="platform" class="radio-input" type="radio" name="news-desk">Desktop</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Registration:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Registration:<span><strong>Registration</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="registration_label" class="radio-inline"><input id="registration" class="radio-input" type="radio" name="registration">On</label>
+                            <label id="registration_label2" class="radio-inline radio-inline-right"><input id="registration" class="radio-input" type="radio" name="registration">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Default language:</div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Default language:<span><strong>Default language</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
                         <div class="col-sm-8">
                             <select id="lang" class="dropdown">
                                 <option selected>English</option>
@@ -114,122 +114,43 @@
                             </select></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Multi Language:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Multi Language:<span><strong>Multi Language</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="multi_label" class="radio-inline"><input id="multi_lang" class="radio-input" type="radio" name="multi-lang">On</label>
+                            <label id="multi_label2" class="radio-inline radio-inline-right"><input id="multi_lang" class="radio-input" type="radio" name="multi-lang">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Preview Pages:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Preview Pages:<span><strong>Preview Pages</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="preview_label" class="radio-inline"><input id="preview_pages" class="radio-input" type="radio" name="preview-pages">On</label>
+                            <label id="preview_label2" class="radio-inline radio-inline-right"><input id="preview_pages" class="radio-input" type="radio" name="preview-pages">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">TOC:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">TOC:<span><strong>TOC</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="toc_label" class="radio-inline"><input id="toc" class="radio-input" type="radio" name="toc">On</label>
+                            <label id="toc_label2" class="radio-inline radio-inline-right"><input id="toc" class="radio-input" type="radio" name="toc">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Advertising:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Advertising Banner:<span><strong>Advertising Banner</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8 input-3-wide"><label id="advertising_label" class="radio-inline radio-inline-left"><input id="advertising" class="radio-input" type="radio" name="advertising">Top</label>
+                            <label id="advertising_label2" class="radio-inline radio-inline-middle"><input id="advertising" class="radio-input" type="radio" name="advertising">Middle</label><label id="advertising_label3" class="radio-inline radio-inline-right"><input id="advertising" class="radio-input" type="radio" name="advertising">All</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Color Themes:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Color Themes:<span><strong>Color Themes</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="color_themes_enable_label" class="radio-inline"><input id="color_themes_enable" class="radio-input" type="radio" name="color-themes">On</label>
+                            <label id="color_themes_enable_label2" class="radio-inline radio-inline-right"><input id="color_themes_enable" class="radio-input" type="radio" name="color-themes">Off</label></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Push Notifications:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Push Notifications:<span><strong>Push Notifications</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><label id="push_notification_label" class="radio-inline"><input id="push_notification" class="radio-input" type="radio" name="push-notification">On</label>
+                            <label id="push_notification_label2" class="radio-inline radio-inline-right"><input id="push_notification" class="radio-input" type="radio" name="push-notification">Off</label></div>
                     </div>
                     <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
+                        <div class="col-xs-12">
+                            <input onclick="save_success()" type="submit" id="save_general" name="save_general" value="Save"/>
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
-                    <div class="row">
-                        <div class="col-sm-4">App Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">App ID in Portal:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id_portal" name="app_id_portal"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">iOS App ID:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Facebook ID:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Portal App:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Sharing:</div>
-                        <div class="col-sm-8">
-                            <label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Share Text:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Newstand OR Desktop:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">Newsstand</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Desktop</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Registration:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Default language:</div>
-                        <div class="col-sm-8">
-                            <select id="lang" class="dropdown">
-                                <option selected>English</option>
-                                <option>French</option>
-                                <option>Macedonian</option>
-                                <option>Korean</option>
-                            </select></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Multi Language:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Preview Pages:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">TOC:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Advertising:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Color Themes:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Push Notifications:</div>
-                        <div class="col-sm-8"><label class="radio-inline"><input class="radio-input" type="radio" name="optradio">On</label>
-                            <label class="radio-inline radio-inline-right"><input class="radio-input" type="radio" name="optradio">Off</label></div>
-                    </div>
-                    <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
-                    </div>
+                    
                 </div>
               </div>
 
@@ -244,7 +165,19 @@
             <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
         </div>
     </div> -->
+    <div class="validation_container hidden">
+        <div class="validation_holder">
+            <div class="validation_msg">
+            </div>
+            <button class="val_close btn btn-default">OK</button>
+        </div>
+    </div>
 
+     <div class="img-preloader">
+      <img src="img/ico_ios_active.png">
+      <img src="img/ico_android_active.png">
+    </div>
+    
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
     <script type="text/javascript" src="/bower_components/angular/angular.js"></script>

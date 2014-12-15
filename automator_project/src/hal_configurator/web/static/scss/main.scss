@@ -8,9 +8,13 @@
 
 @import 'modules/_forms.scss';
 @import 'modules/_typography.scss';
+@import 'modules/_tabs.scss';
 @import 'modules/_buttons.scss';
+@import 'modules/_tooltips.scss';
+@import 'modules/_validation.scss';
 
 /* LAYOUTS - Layout styles */
 
 @import 'layouts/_nav.scss';
 @import 'layouts/_columns.scss';
+@import 'layouts/_build-history.scss';

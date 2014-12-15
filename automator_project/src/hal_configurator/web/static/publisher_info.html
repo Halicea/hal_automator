@@ -39,14 +39,14 @@
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
             <ul class="nav">
-              <li class="active"><a href="index.html">General</a></li>
-              <li><a href="publisher_info.html">Publisher Info</a></li>
-              <li><a href="design.html">Design</a></li>  
-              <li><a href="platform_specifics.html">Platform Specifics</a></li>
-              <li><a href="build_aps.html">Build App</a></li><br><br><br>
+              <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+              <li class="active"><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
+              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
               <li>Store Submission Information</li>
-              <li><a href="store-general.html">General</a></li>
-              <li><a href="store-artwork.html">Artwork</a></li>            
+              <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
             </ul>
         </div>
 
@@ -55,117 +55,69 @@
 
       <!-- Nav tabs -->
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
-                <li role="presentation"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+                <li role="presentation" id="publisher-info-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+                <li role="presentation" id="publisher-info-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
               </ul>
 
               <!-- Tab panes -->
               <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ios-tab">
                     <div class="row">
-                        <div class="col-sm-4">Publisher Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Publisher Name:<span><strong>Publisher Name</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="publisher_name" name="publisher_name"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Msg To Readers:</div>
-                        <div class="col-sm-8"><textarea rows="4" cols="50"></textarea></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Msg To Readers:<span><strong>Msg To Readers</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><textarea class="text-input" rows="4" cols="50"></textarea></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Website:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Website:<span><strong>Website</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="website" name="website"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Blog Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Blog Link:<span><strong>Blog Link</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="blog_link" name="blog_link"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Facebook:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Facebook:<span><strong>Facebook</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="facebook" name="facebook"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Twitter:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Twitter:<span><strong>Twitter</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="twitter" name="twitter"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Pintrest:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Pintrest:<span><strong>Pintrest</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="pintrest" name="pintrest"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">LinkedIn:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">LinkedIn:<span><strong>LinkedIn</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="linkedin" name="linkedin"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Google+:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Google+:<span><strong>Google+</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="google" name="google"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Contact Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Contact Link:<span><strong>Contact Link</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="contact_link" name="contact_link"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Other Apps:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Other Apps:<span><strong>Other Apps</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="other_apps" name="other_apps"/></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4">Copyright:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
+                        <div class="col-sm-4"><a class="tooltip1" href="#">Copyright:<span><strong>Copyright</strong><br>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span></a></div>
+                        <div class="col-sm-8"><input type="text" class="text-input" id="copyright" name="copyright"/></div>
                     </div>
                     <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
+                        <div class="col-xs-12">
+                            <input type="submit" id="save_publisher_info" name="save_publisher_info" value="Save"/>
+                        </div>
                     </div>
                 </div>
                 <div role="tabpanel" class="tab-pane" id="android-tab">
-                    <div class="row">
-                        <div class="col-sm-4">Publisher Name:</div>
-                        <div class="col-sm-8"><input type="text" id="app_name" name="app_name"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Msg To Readers:</div>
-                        <div class="col-sm-8"><textarea rows="4" cols="50"></textarea></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Website:</div>
-                        <div class="col-sm-8"><input type="text" id="app_id" name="app_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Blog Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Facebook:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Twitter:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Pintrest:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">LinkedIn:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Google+:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Contact Link:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Other Apps:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-4">Copyright:</div>
-                        <div class="col-sm-8"><input type="text" id="facebook_id" name="facebook_id"/></div>
-                    </div>
-                    <div class="row">
-                        <input type="submit" id="save" name="save" value="Save"/>
-                    </div>
+                    
                 </div>
               </div>
 
@@ -180,6 +132,11 @@
             <img style="max-width:70%" id="device" class="img-responsive" src="/img/device.png" alt="Device Preview"/>
         </div>
     </div> -->
+
+     <div class="img-preloader">
+      <img src="img/ico_ios_active.png">
+      <img src="img/ico_android_active.png">
+    </div>
 
     <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
