@@ -19,7 +19,7 @@ class ConfigWidget(QtGui.QWidget):
 
 class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
-  def __init__(self, config_loader, parent=None, details_parent = None, *args, **kwargs):
+  def __init__(self, config_loader, parent=None, details_parent=None, *args, **kwargs):
     super(ConfigForm, self).__init__(*args, **kwargs)
     self.setupUi()
     self.config_loader = config_loader
@@ -27,17 +27,15 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.root_dir = os.path.dirname(self.config_loader.config_file)
     self.save_path = self.config_loader.config_file
     self.details_parent = details_parent or None
-    self.bundles =[]
+    self.bundles = []
     self.parent = parent
     self.bind_controls()
 
-    #pprint(self.get_dict())
   def set_save_path(self, path):
     self.save_path = path
 
   def setupUi(self):
     super(ConfigForm, self).setupUi(self)
-
 
   def bind_controls(self):
     self.variables_widget = VariablesWindow(self)
@@ -59,6 +57,9 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.btn_save.clicked.connect(self.save_config)
     self.btn_save.clicked.connect(lambda x: self.save_config(True))
     self.setup_bundles()
+    width = self.splitter.sizeHint().width()
+    self.splitter.setSizes([0.2*width, 0.8*width])
+    self.splitter.sizePolicy().setHorizontalStretch(1)
 
   def setup_bundles(self):
     self.txt_name.setText(self.get_config()["PublisherId"])
@@ -92,9 +93,9 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
   @QtCore.Slot()
   def save_config(self, is_new=False, is_cloning_empty=False):
-    sp  = self.save_path
+    sp = self.save_path
     old_path = self.save_path
-    if self.save_path == None or is_new:
+    if self.save_path is None or is_new:
       self.dlg = QtGui.QFileDialog(self, 'Choose where to save the project')
 
       self.dlg.setAcceptMode(QtGui.QFileDialog.AcceptSave)
@@ -104,13 +105,13 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
       sp = self.dlg.selectedFiles()[0]
       self.dlg = None
     if sp:
-      if is_new and self.save_path!=sp:
+      if is_new and self.save_path != sp:
         if not is_cloning_empty:
           copytree(self.root_dir, os.path.dirname(sp))
         self.save_path = sp
       print "saving file on "+self.save_path
       d = copy.deepcopy(self.get_dict())
-      save_references = Workspace.current.mode=='admin'  # @UndefinedVariable
+      save_references = Workspace.current.mode == 'admin'  # @UndefinedVariable
       self.config_loader.save_config(d, save_references, is_cloning_empty)
     else:
       print "Saving cancelled"
@@ -118,11 +119,10 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
 
   def get_dict(self):
     d = copy.deepcopy(self.__config__)
-    d["PublisherId"]= self.txt_name.text()
-    bundles = d["Content"]["OperationBundles"]=[]
+    d["PublisherId"] = self.txt_name.text()
+    bundles = d["Content"]["OperationBundles"] = []
     for bw in self.bundles:
       bundles.append(bw.get_dict())
-    d["Resources"]= copy.deepcopy(self.resources_widget.data_model.resources)
-    d["Variables"]=copy.deepcopy(self.variables_widget.data_model.resources)
+    d["Resources"] = copy.deepcopy(self.resources_widget.data_model.resources)
+    d["Variables"] = copy.deepcopy(self.variables_widget.data_model.resources)
     return d
-

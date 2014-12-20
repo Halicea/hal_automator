@@ -14,7 +14,9 @@ def get_plugins(plugin_dir):
   #check to see if a plugins directory exists and add any found plugins
   # (even if they're zipped)
   if os.path.exists(plugin_dir):
-    plugins = [x for x in os.listdir(plugin_dir) if not x.startswith('.') and (x.endswith('.py') or os.path.isdir(os.path.join(plugin_dir, x)))]
+    plugins = [x for x in os.listdir(plugin_dir) \
+               if not x.startswith('.') and\
+               (x.endswith('.py') or os.path.isdir(os.path.join(plugin_dir, x)))]
     pattern = ".py$"
     for plugin in plugins:
       plugin_path = os.path.join(plugin_dir, plugin)

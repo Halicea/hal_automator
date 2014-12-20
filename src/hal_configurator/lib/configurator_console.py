@@ -29,9 +29,10 @@ def main():
   execution_dir = None
   if "-dir" in sys.argv:
     execution_dir = sys.argv[sys.argv.index("-dir") + 1]
-    builder.set_execution_dir(execution_dir)
+    ex_dir_expanded = os.path.abspath(os.path.expanduser(execution_dir))
+    builder.set_execution_dir(ex_dir_expanded)
   validator = ConfigurationValidator(config_loader.config_file)
-  validation_result = validator.validate(config_loader.load_config(), execution_dir)
+  validation_result = validator.validate(config_loader.load_config(), ex_dir_expanded)
 
   if validation_result.is_valid:
     builder.exclude_bundles(get_excluded_bundles())

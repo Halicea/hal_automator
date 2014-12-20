@@ -38,7 +38,16 @@
         </size>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="margin">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
          <number>0</number>
         </property>
         <item>
@@ -137,7 +146,7 @@
         </widget>
        </widget>
        <widget class="QWidget" name="verticalLayoutWidget">
-        <layout class="QVBoxLayout" name="lv_tools">
+        <layout class="QVBoxLayout" name="lv_tools" stretch="1">
          <property name="sizeConstraint">
           <enum>QLayout::SetMinimumSize</enum>
          </property>
@@ -152,7 +161,7 @@
               <x>0</x>
               <y>0</y>
               <width>648</width>
-              <height>431</height>
+              <height>438</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_3">

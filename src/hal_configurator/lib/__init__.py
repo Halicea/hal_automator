@@ -11,17 +11,17 @@ def copytree(src, dst, symlinks=False, ignore=None):
           shutil.copy2(s, d)
 
 def config_path():
-
-  current =  os.path.abspath(__file__)
-  current = os.path.dirname(os.path.dirname(os.path.dirname(current)))
+  current = os.path.abspath(__file__)
+  d = os.path.dirname
+  current = d(d(d(current)))
   res = os.path.join(current, 'config.conf')
-  print 'Trying:',res
+  res = os.path.expanduser(res)
+  print 'Trying:', res
   if not os.path.exists(res):
-    if sys.platform =='darwin':
+    if sys.platform == 'darwin':
       print 'in Mac'
       res = os.path.join(os.getcwd(), 'config.conf')
       print res
       return res
   print res
   return res
-

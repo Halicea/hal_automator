@@ -16,6 +16,7 @@ last_config_loaded = None
 
 class ConfigLoader(object):
   available_references = ["Content", "RequiredVariables", "RequiredResources", "Builds"]
+
   def __init__(self, *args, **kwargs):
     self.custom_bundles = []
     self.custom_vars = []
@@ -25,43 +26,43 @@ class ConfigLoader(object):
 
   def __load_config_dict__(self):
     raise NotImplementedError("abstract class accessed")
+
   def __save_dictionary__(self, *args, **kwargs):
     raise NotImplementedError("abstract class accessed")
 
-  def __pop_reference__(self, cfg, key, forced_reference_key = None):
+  def __pop_reference__(self, cfg, key, forced_reference_key=None):
     raise NotImplementedError("abstract class accessed")
 
-  def __load_reference__(self, cfg, key, forced_reference_key = None):
+  def __load_reference__(self, cfg, key, forced_reference_key=None):
     raise NotImplementedError("abstract class accessed")
 
   def load_config(self):
     cfg = self.__load_config_dict__()
     for ref in ConfigLoader.available_references:
       self.__load_reference__(cfg, ref)
-
-
     cfg = self.verify_required_vars(cfg)
     cfg = self.load_customizations(cfg)
     cfg = self.__objectify_vars__(cfg)
     self.last_config_loaded = cfg
     return cfg
+
   def extend_var(self, target, src, excluded_keys=[]):
     for k in src.keys():
       if not (k in excluded_keys):
         if k in target:
-          if src[k]!=None and src[k]!=target[k]:
+          if src[k] is not None and src[k] != target[k]:
             target[k] = src[k]
         else:
-          target[k]= src[k]
+          target[k] = src[k]
     return target
 
-  def __sanitize_vars_before_save__(self, d, clean_required_vars = True, update_global_vars=False, wipe_var_values=False):
+  def __sanitize_vars_before_save__(self, d, clean_required_vars=True, update_global_vars=False, wipe_var_values=False):
     rvars = d['RequiredVariables']
     if update_global_vars:
       for v in d['Variables']:
         editable = True if not ('editable' in v) else v['editable']
         required = False if not ('required' in v) else v['required']
-        found = [rv for rv in rvars if rv['name']==v['name']]
+        found = [rv for rv in rvars if rv['name'] == v['name']]
         excluded_keys = ['is_from_req']
         if editable:
           excluded_keys.append('value')
@@ -73,7 +74,7 @@ class ConfigLoader(object):
 
       to_del = []
       for rv in rvars:
-        found = [v for v in d['Variables'] if v['name']==rv['name'] and (v['required'] or v['editable']==False or v['admin_only'])]
+        found = [v for v in d['Variables'] if v['name'] == rv['name'] and (v['required'] or v['editable'] is False or v['admin_only'])]
         if not found:
           to_del.append(rv)
       for k in to_del:
@@ -82,7 +83,7 @@ class ConfigLoader(object):
     if clean_required_vars:
       to_remove = []
       for v in d['Variables']:
-        found = [rv for rv in rvars if rv['name']==v['name']]
+        found = [rv for rv in rvars if rv['name'] == v['name']]
         if found:
           if found[0].has_key('editable') and not found[0]['editable']:
             to_remove.append(v)
@@ -97,7 +98,7 @@ class ConfigLoader(object):
 
     if wipe_var_values:
       for v in d['Variables']:
-        found = [rv for rv in rvars if rv['name']==v['name']]
+        found = [rv for rv in rvars if rv['name'] == v['name']]
         if found:
           v['value'] = found[0]['value']
         else:
@@ -108,8 +109,8 @@ class ConfigLoader(object):
     obj_req_vars = []
     obj_res = []
     obj_req_res = []
-    keys_vars = {'Variables':obj_vars, 'RequiredVariables':obj_req_vars}
-    keys_res =  {'Resources':obj_res, 'RequiredResources':obj_req_res}
+    keys_vars = {'Variables': obj_vars, 'RequiredVariables': obj_req_vars}
+    keys_res = {'Resources': obj_res, 'RequiredResources': obj_req_res}
     for key in keys_vars.keys():
       if key in cfg:
         for v in cfg[key]:
@@ -130,7 +131,7 @@ class ConfigLoader(object):
     obj_req_vars = []
     obj_res = []
     obj_req_res = []
-    keys = {'Variables':obj_vars, 'RequiredVariables':obj_req_vars, 'Resources':obj_res, 'RequiredResources':obj_req_res}
+    keys = {'Variables': obj_vars, 'RequiredVariables': obj_req_vars, 'Resources': obj_res, 'RequiredResources': obj_req_res}
     for key in keys.keys():
       if key in cfg:
         for v in cfg[key]:
@@ -143,12 +144,12 @@ class ConfigLoader(object):
     cfg['Resources'] = obj_res
     cfg['RequiredResources'] = obj_req_res
     return cfg
+
   @property
   def dictionary(self):
     if not self.last_config_loaded:
       self.load_config()
     return self.__dictify_vars__(self.last_config_loaded)
-
 
   def save_config(self, cfg, save_references=False, is_new_config=False):
     self.__sanitize_vars_before_save__(cfg, clean_required_vars=True, update_global_vars=save_references, wipe_var_values=is_new_config)
@@ -157,7 +158,7 @@ class ConfigLoader(object):
       content, ref_path = self.__pop_reference__(cfg, ref)
       if save_references and content and ref_path:
         self.__save_dictionary__(content, ref_path)
-    self.__save_dictionary__(cfg, self.config_file)
+    self.__save_dictionary__(cfg, self.resolved_path)
 
   def load_custom_bundles(self, config):
     config["Content"]["OperationBundles"].extend(self.custom_bundles)
@@ -165,7 +166,7 @@ class ConfigLoader(object):
 
   def load_custom_vars(self, config):
     variables = config["Variables"]
-    existing_ones = [x for x in variables if len([y for y in self.custom_vars if y["name"]==x["name"]])>0]
+    existing_ones = [x for x in variables if len([y for y in self.custom_vars if y["name"] == x["name"]]) > 0]
     for k in existing_ones:
       variables.remove(k)
     variables.extend(self.custom_vars)
@@ -173,7 +174,7 @@ class ConfigLoader(object):
 
   def load_custom_resources(self, config):
     variables = config["Resources"]
-    existing_ones = [x for x in variables if len([y for y in self.custom_vars if y["rid"]==x["rid"]])>0]
+    existing_ones = [x for x in variables if len([y for y in self.custom_vars if y["rid"] == x["rid"]]) > 0]
     for k in existing_ones:
       variables.remove(k)
     variables.extend(self.custom_resources)
@@ -191,18 +192,18 @@ class ConfigLoader(object):
       if not v:
         variables.insert(0, copy.deepcopy(rv))
       else:
-        if len(v)==1:
+        if len(v) == 1:
           v = v[0]
         else:
-          raise Exception('Variable %s is defined % times, it should be only once.'%(rv['name'], len(v)))
+          raise Exception('Variable %s is defined % times, it should be only once.' % (rv['name'], len(v)))
         for key in rv:
-          if key!='name' and key!='value':
-            if rv[key]!=None and rv[key]!='':
+          if key != 'name' and key != 'value':
+            if rv[key] is not None and rv[key] != '':
               v[key] = copy.deepcopy(rv[key])
         if rv.has_key('editable') and not rv['editable']:
           v['value'] = copy.deepcopy(rv['value'])
         v['is_from_req'] = True
-    return  config
+    return config
 
   def append_bundles(self, *bundles):
     self.custom_bundles.extend(bundles)
@@ -231,23 +232,23 @@ class FileConfigLoader(ConfigLoader):
 
   def __init__(self, fileName):
     super(FileConfigLoader, self).__init__()
-    self.config_file = fileName
-    self.resources_root = os.path.abspath(os.path.dirname(self.config_file))
+    self._config_file_raw = fileName
+    self.resolved_path = self.config_file = os.path.abspath(os.path.expanduser(self._config_file_raw))
+    self.resources_root = os.path.abspath(os.path.dirname(self.resolved_path))
     self.resource_root_url = urllib.pathname2url(self.resources_root)
 
   def __load_config_dict__(self):
     global last_config_loaded
-    print os.path.abspath(self.config_file)
-    cfg =  json.load(open(self.config_file, 'r'))
+    cfg = json.load(open(self.resolved_path, 'r'))
     return cfg
 
-  def __load_reference__(self, cfg, key, forced_reference_key = None):
+  def __load_reference__(self, cfg, key, forced_reference_key=None):
     if cfg.has_key(key):
       if isinstance(cfg[key], dict) and cfg[key].has_key("Reference"):
-        content_path = os.path.join(os.path.dirname(self.config_file), cfg[key]["Reference"])
-        content = json.load(open(content_path , "r"))
+        content_path = os.path.join(os.path.dirname(self.resolved_path), cfg[key]["Reference"])
+        content = json.load(open(content_path, "r"))
         if forced_reference_key:
-          cfg[forced_reference_key] =  cfg[key]["Reference"]
+          cfg[forced_reference_key] = cfg[key]["Reference"]
         else:
           cfg[key+"-Reference"] = cfg[key]["Reference"]
         cfg[key] = content
@@ -256,10 +257,10 @@ class FileConfigLoader(ConfigLoader):
 
   def __save_dictionary__(self, content, filepath):
     f = open(filepath, 'w')
-    f.write(json.dumps(content, sort_keys = True, indent = 2))
+    f.write(json.dumps(content, sort_keys=True, indent=2))
     f.close()
 
-  def __pop_reference__(self, cfg, key, forced_reference_key = None):
+  def __pop_reference__(self, cfg, key, forced_reference_key=None):
     ref_path = None
     content = {}
     if forced_reference_key:
@@ -272,15 +273,15 @@ class FileConfigLoader(ConfigLoader):
         del cfg[key+"-Reference"]
     if ref_path:
       content = cfg[key]
-      cfg[key]={"Reference":ref_path}
-      return content, os.path.join(os.path.dirname(self.config_file), ref_path)
+      cfg[key] = {"Reference": ref_path}
+      return content, os.path.join(os.path.dirname(self.resolved_path), ref_path)
     else:
       return None, None
 
   def fix_resource_separator_chars(self, config):
-    if os.path.sep!='/':
+    if os.path.sep != '/':
       for k in config["Resources"]:
-        k["url"]=k["url"].replace('/', os.sep)
+        k["url"] = k["url"].replace('/', os.sep)
     return config
 
   @classmethod

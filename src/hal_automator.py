@@ -1,10 +1,22 @@
-#!/usr/bin/env python
+#!/Users/halicea/envs/hal_automator/bin/python
 import sys
 import os
 from hal_configurator.lib.app_config import config
+from hal_configurator.lib import config_path
 from hal_configurator.lib.plugin_loader import load_plugins_from_directory_list
 if config:
-    load_plugins_from_directory_list(config.plugin_dirs)
+    plugin_dirs = []
+    cp = config_path()
+    j = os.path.join
+    dn = os.path.dirname
+    abp = os.path.abspath
+    for p_dir in config.plugin_dirs:
+        if os.path.isabs(p_dir):
+            plugin_dirs.append(p_dir)
+        else:
+            abs_dir = abp(j(dn(cp), p_dir))
+            plugin_dirs.append(abs_dir)
+    load_plugins_from_directory_list(plugin_dirs)
 else:
     print 'No Configuration Loadeed, Continuing...'
 
@@ -48,7 +60,7 @@ if __name__ == "__main__":
         try:
             import hal_configurator.web.web_server as web_server
         except:
-            print 'Not Configured for web mode'
+            raise
         web_server.run_server()
     else:
         console.main()

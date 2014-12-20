@@ -37,8 +37,17 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.set_plugins()
     self.setupUi()
     self.set_message_receiver()
+    self.start_last_if_any()
 
-  def set_configuration(self, config_path, working_dir):
+  def start_last_if_any(self):
+    try:
+      config_history = app_config.get_config_history()
+      if config_history:
+        self.set_configuration(config_history[-1])
+    except Exception as ex:
+        print(ex)
+
+  def set_configuration(self, config_path, working_dir=None):
     self.config_path = config_path
     if working_dir:
       self.working_dir = working_dir
@@ -109,26 +118,19 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.actionViewAsModerator.setChecked(self.viewMode=='moderator')
 
   def bindUi(self):
-    if self.viewMode !='admin':
+    if self.viewMode != 'admin':
       self.tool = self.detailsContainer
     else:
       self.tool = None
     title = os.path.basename((os.path.dirname(os.path.dirname(self.config_path))))
-    title +="     -- Configurator Version:%s"%(app_config.get_version())
+    title +="     -- Configurator Version:%s" % (app_config.get_version())
     self.setWindowTitle(title)
     self.txtWorkingDir.setText(self.working_dir)
     if self.cw:
       self.ltv_content.removeWidget(self.cw)
       self.cw.close()
     self.cw = ConfigForm(self.loader, parent=self, details_parent = self.tool)
-    if self.viewMode!='admin':
-      self.cw.tlbx_bundles.hide()
-      self.widget.hide()
-      self.splitter_2.setSizes([self.splitter_2.width()/3.0, 2*self.splitter_2.width()/3.0])
-    else:
-      self.splitter_2.setSizes([self.splitter_2.width(), self.splitter_2.width()])
 
-    self.ltv_content.addWidget(self.cw)
 
 
     #self.tool.setModel(ToolsListModel(self.plugins, False))
@@ -136,6 +138,15 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.build_output = None
     self.set_bundles_model()
 
+    self.ltv_content.addWidget(self.cw)
+    if self.viewMode!='admin':
+      self.cw.tlbx_bundles.hide()
+      self.widget.hide()
+      width = self.splitter_2.sizeHint().width()
+      self.splitter_2.setSizes([width, 0])
+    else:
+      width = self.splitter_2.sizeHint().width()
+      self.splitter_2.setSizes([width*0.3, width*0.7])
   def chose_working_dir(self):
     """
     Choses the current working directory for the current configuration
