@@ -24,7 +24,6 @@ class ResourcesListModel(QtCore.QAbstractListModel):
     elif role=="object":
       return self.resources[index.row()]
     elif role == QtCore.Qt.ToolTipRole:
-      import pdb;pdb.set_trace();
       res = self.resources[index.row()]
       if "helptext" in res:
         return res["helptext"]
