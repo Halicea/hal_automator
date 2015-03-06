@@ -300,7 +300,10 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     self.set_configuration(self.sender().text(), self.working_dir)
 
   def open_config(self):
-    cur_dir = app_config.get_config_history()[-1]
+    curr_dir = None
+    if app_config.get_config_history():
+      cur_dir = app_config.get_config_history()[-1]
+      
     params = {"caption":"Choose Configuration","filter":"Config Files(*.json *.halc)"}
     if cur_dir:
       params["dir"] = app_config.get_config_history()[-1]

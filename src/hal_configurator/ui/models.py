@@ -15,7 +15,12 @@ class ResourcesListModel(QtCore.QAbstractListModel):
 
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
-      item = self.resources[index.row()]["rid"]
+      res = self.resources[index.row()]
+      has_display = "display" in res and res["display"]
+      if has_display:
+        item = self.resources[index.row()]["display"]
+      else:
+        item = self.resources[index.row()]["rid"]+' [No Display Name Set]'
       return str(item)
     elif role==QtCore.Qt.UserRole:
       return "{#"+self.resources[index.row()]["rid"]+"#}"
@@ -95,10 +100,12 @@ class VariablesListModel(QtCore.QAbstractListModel):
 
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
-      if "display" in self.resources[index.row()]:
+      res = self.resources[index.row()]
+      has_display = "display" in res and res["display"]
+      if has_display:
         item = self.resources[index.row()]["display"]
       else:
-        item = self.resources[index.row()]["name"]
+        item = self.resources[index.row()]["name"]+' [No Display Name Set]'
       return str(item)
     elif role == QtCore.Qt.UserRole:
       return "{{"+self.resources[index.row()]["name"]+"}}"

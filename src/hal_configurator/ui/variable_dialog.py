@@ -132,4 +132,3 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
 
   def helpTextChanged(self):
     self.model['helptext']=self.txtHelpText.toPlainText()
-

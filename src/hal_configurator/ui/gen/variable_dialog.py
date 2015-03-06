@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/variable_dialog.ui'
 #
-# Created: Fri Mar  6 19:25:39 2015
+# Created: Fri Mar  6 20:25:09 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
