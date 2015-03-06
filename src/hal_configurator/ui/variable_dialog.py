@@ -131,5 +131,5 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     self.model['group']=self.txtGroup.text()
 
   def helpTextChanged(self):
-    self.model['helptext']=self.txtHelpText.text()
+    self.model['helptext']=self.txtHelpText.toPlainText()
 

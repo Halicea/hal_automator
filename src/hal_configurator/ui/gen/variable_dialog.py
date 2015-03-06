@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/variable_dialog.ui'
 #
-# Created: Fri Mar  6 18:19:33 2015
+# Created: Fri Mar  6 19:25:39 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(442, 330)
+        Form.resize(443, 508)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -38,10 +38,15 @@ class Ui_Form(object):
         self.gridLayout.addWidget(self.txt_value, 4, 1, 1, 1)
         self.label_6 = QtGui.QLabel(Form)
         self.label_6.setObjectName("label_6")
-        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
-        self.txtHelpText = QtGui.QLineEdit(Form)
+        self.gridLayout.addWidget(self.label_6, 6, 0, 1, 1)
+        self.txtHelpText = QtGui.QTextEdit(Form)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.txtHelpText.sizePolicy().hasHeightForWidth())
+        self.txtHelpText.setSizePolicy(sizePolicy)
         self.txtHelpText.setObjectName("txtHelpText")
-        self.gridLayout.addWidget(self.txtHelpText, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.txtHelpText, 6, 1, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.adminPanel = QtGui.QGroupBox(Form)
         self.adminPanel.setObjectName("adminPanel")
@@ -82,12 +87,12 @@ class Ui_Form(object):
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.buttonBox = QtGui.QDialogButtonBox(self.adminPanel)
+        self.verticalLayout_2.addWidget(self.adminPanel)
+        self.buttonBox = QtGui.QDialogButtonBox(Form)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
         self.buttonBox.setObjectName("buttonBox")
-        self.verticalLayout.addWidget(self.buttonBox)
-        self.verticalLayout_2.addWidget(self.adminPanel)
+        self.verticalLayout_2.addWidget(self.buttonBox)
         self.line = QtGui.QFrame(Form)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
