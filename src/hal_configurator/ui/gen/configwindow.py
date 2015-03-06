@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/configwindow.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Mon Dec 30 16:50:07 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Mar  6 18:19:32 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -30,9 +30,9 @@ class Ui_ConfigWindow(object):
         self.widget.setObjectName("widget")
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.widget)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.horizontalLayout = QtGui.QHBoxLayout()
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.cbChooseWorkingDir = QtGui.QToolButton(self.widget)
         self.cbChooseWorkingDir.setObjectName("cbChooseWorkingDir")
@@ -87,7 +87,7 @@ class Ui_ConfigWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.detailsContainer = QtGui.QWidget()
-        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 648, 431))
+        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 648, 438))
         self.detailsContainer.setObjectName("detailsContainer")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -98,6 +98,7 @@ class Ui_ConfigWindow(object):
         self.verticalLayout_3.addItem(spacerItem)
         self.scrollArea.setWidget(self.detailsContainer)
         self.lv_tools.addWidget(self.scrollArea)
+        self.lv_tools.setStretch(0, 1)
         self.verticalLayout_2.addWidget(self.splitter_3)
         ConfigWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar()
@@ -297,4 +298,4 @@ class Ui_ConfigWindow(object):
         self.actionVerbose.setText(QtGui.QApplication.translate("ConfigWindow", "Verbose Output", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDebug_2.setText(QtGui.QApplication.translate("ConfigWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
 
-import images_rc  # @UnusedImport
+import images_rc

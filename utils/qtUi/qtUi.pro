@@ -36,7 +36,8 @@ FORMS    += mainwindow.ui \
     qmltest.ui \
     variable_dialog.ui \
     execution_progress.ui \
-    bundle_execution_progress.ui
+    bundle_execution_progress.ui \
+    testingflow.ui
 
 RESOURCES += \
     images.qrc

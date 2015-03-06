@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/config_widget.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_widget.ui'
 #
-# Created: Sun Dec 22 01:10:28 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Mar  6 18:19:31 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -41,7 +41,10 @@ class Ui_ConfigForm(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
         self.splitter.setSizePolicy(sizePolicy)
+        self.splitter.setAutoFillBackground(True)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter.setOpaqueResize(True)
+        self.splitter.setChildrenCollapsible(True)
         self.splitter.setObjectName("splitter")
         self.tabs_vars = QtGui.QTabWidget(self.splitter)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding, QtGui.QSizePolicy.Expanding)
@@ -85,18 +88,18 @@ class Ui_ConfigForm(object):
         self.tabs_vars.addTab(self.tab_resources, "")
         self.tlbx_bundles = QtGui.QToolBox(self.splitter)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tlbx_bundles.sizePolicy().hasHeightForWidth())
         self.tlbx_bundles.setSizePolicy(sizePolicy)
         self.tlbx_bundles.setBaseSize(QtCore.QSize(0, 0))
         self.tlbx_bundles.setObjectName("tlbx_bundles")
         self.page = QtGui.QWidget()
-        self.page.setGeometry(QtCore.QRect(0, 0, 309, 530))
+        self.page.setGeometry(QtCore.QRect(0, 0, 840, 531))
         self.page.setObjectName("page")
         self.tlbx_bundles.addItem(self.page, "")
         self.page_2 = QtGui.QWidget()
-        self.page_2.setGeometry(QtCore.QRect(0, 0, 309, 530))
+        self.page_2.setGeometry(QtCore.QRect(0, 0, 310, 531))
         self.page_2.setObjectName("page_2")
         self.tlbx_bundles.addItem(self.page_2, "")
         self.verticalLayout.addWidget(self.splitter)

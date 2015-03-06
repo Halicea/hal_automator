@@ -26,8 +26,6 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
 
   def setDetailsContainer(self, container):
     self.details_parent = container
-
-
   def eventFilter(self, sender, event):
     if event.type() == QtCore.QEvent.KeyPress and event.matches(QtGui.QKeySequence.InsertParagraphSeparator) and sender == self.lv_items:
       self.__on_variable_edit()

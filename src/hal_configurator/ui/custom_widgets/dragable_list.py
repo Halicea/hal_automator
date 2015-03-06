@@ -14,6 +14,16 @@ class DragableList(QtGui.QListView):
 
   def set_object_format(self, object_format):
     self.object_format = object_format
+  
+  def flags(self, index):
+    flag = QtCore.Qt.ItemIsEnabled
+    if index.isValid():
+      flag |= QtCore.Qt.ItemIsSelectable \
+           | QtCore.Qt.ItemIsUserCheckable \
+           | QtCore.Qt.ItemIsEditable \
+           | QtCore.Qt.ItemIsDragEnabled \
+           | QtCore.Qt.ItemIsDropEnabled
+    return flag
     
   def dragEnterEvent(self, event):
     if event.mimeData().hasFormat(self.object_format):
@@ -44,6 +54,4 @@ class DragableList(QtGui.QListView):
     return pixmap.grabWidget(self, self.rectForIndex(index))
     
   def mouseMoveEvent(self, event):
-    self.startDrag(event)
-
-  
+    self.startDrag(event)  

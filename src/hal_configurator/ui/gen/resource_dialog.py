@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resource_dialog.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/resource_dialog.ui'
 #
-# Created: Thu Feb 20 17:48:32 2014
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Mar  6 18:19:32 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -50,15 +50,15 @@ class Ui_ResourceDialog(object):
         self.label_2 = QtGui.QLabel(self.gbAdmin)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
-        self.txtGroup = QtGui.QLineEdit(self.gbAdmin)
-        self.txtGroup.setObjectName("txtGroup")
-        self.gridLayout.addWidget(self.txtGroup, 2, 1, 1, 1)
         self.txtHelpText = QtGui.QLineEdit(self.gbAdmin)
         self.txtHelpText.setObjectName("txtHelpText")
         self.gridLayout.addWidget(self.txtHelpText, 3, 1, 1, 1)
         self.label_3 = QtGui.QLabel(self.gbAdmin)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
+        self.txtGroup = QtGui.QLineEdit(self.gbAdmin)
+        self.txtGroup.setObjectName("txtGroup")
+        self.gridLayout.addWidget(self.txtGroup, 2, 1, 1, 1)
         self.horizontalLayout_3.addLayout(self.gridLayout)
         self.verticalLayout.addWidget(self.gbAdmin)
         self.horizontalLayout = QtGui.QHBoxLayout()

@@ -86,9 +86,6 @@
           </property>
          </widget>
         </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="txtGroup"/>
-        </item>
         <item row="3" column="1">
          <widget class="QLineEdit" name="txtHelpText"/>
         </item>
@@ -98,6 +95,9 @@
            <string>Help Text</string>
           </property>
          </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLineEdit" name="txtGroup"/>
         </item>
        </layout>
       </item>

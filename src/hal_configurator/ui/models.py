@@ -23,6 +23,13 @@ class ResourcesListModel(QtCore.QAbstractListModel):
       return self.resources[index.row()]
     elif role=="object":
       return self.resources[index.row()]
+    elif role == QtCore.Qt.ToolTipRole:
+      import pdb;pdb.set_trace();
+      res = self.resources[index.row()]
+      if "helptext" in res:
+        return res["helptext"]
+      else:
+        return "No Help is Set"
 
   def appendData(self, item):
     self.beginInsertRows(QtCore.QModelIndex(), len(self.resources), len(self.resources))
@@ -89,12 +96,21 @@ class VariablesListModel(QtCore.QAbstractListModel):
 
   def data(self, index, role):
     if role == QtCore.Qt.DisplayRole:
-      item = self.resources[index.row()]["name"]
+      if "display" in self.resources[index.row()]:
+        item = self.resources[index.row()]["display"]
+      else:
+        item = self.resources[index.row()]["name"]
       return str(item)
     elif role == QtCore.Qt.UserRole:
       return "{{"+self.resources[index.row()]["name"]+"}}"
     elif role == QtCore.Qt.EditRole:
       return  self.resources[index.row()]
+    elif role == QtCore.Qt.ToolTipRole:
+      res = self.resources[index.row()]
+      if "helptext" in res:
+        return res["helptext"]
+      else:
+        return "No Help is Set"
 
   def appendData(self, item):
     self.beginInsertRows(QtCore.QModelIndex(), len(self.resources), len(self.resources))

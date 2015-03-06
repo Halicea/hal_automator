@@ -95,7 +95,6 @@ excludes = [
     "pydoc",
     "tkinter",
 ]
-
 if '--freeze' in sys.argv:
     print "Building standalone executable..."
     sys.argv.remove('--freeze')

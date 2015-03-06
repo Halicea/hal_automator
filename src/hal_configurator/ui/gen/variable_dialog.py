@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/variable_dialog.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/variable_dialog.ui'
 #
-# Created: Thu Feb 20 14:14:03 2014
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Mar  6 18:19:33 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -36,6 +36,12 @@ class Ui_Form(object):
         self.txt_value = QtGui.QLineEdit(Form)
         self.txt_value.setObjectName("txt_value")
         self.gridLayout.addWidget(self.txt_value, 4, 1, 1, 1)
+        self.label_6 = QtGui.QLabel(Form)
+        self.label_6.setObjectName("label_6")
+        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+        self.txtHelpText = QtGui.QLineEdit(Form)
+        self.txtHelpText.setObjectName("txtHelpText")
+        self.gridLayout.addWidget(self.txtHelpText, 5, 1, 1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.adminPanel = QtGui.QGroupBox(Form)
         self.adminPanel.setObjectName("adminPanel")
@@ -61,12 +67,6 @@ class Ui_Form(object):
         self.txtGroup = QtGui.QLineEdit(self.adminPanel)
         self.txtGroup.setObjectName("txtGroup")
         self.gridLayout_2.addWidget(self.txtGroup, 2, 1, 1, 1)
-        self.label_6 = QtGui.QLabel(self.adminPanel)
-        self.label_6.setObjectName("label_6")
-        self.gridLayout_2.addWidget(self.label_6, 3, 0, 1, 1)
-        self.txtHelpText = QtGui.QLineEdit(self.adminPanel)
-        self.txtHelpText.setObjectName("txtHelpText")
-        self.gridLayout_2.addWidget(self.txtHelpText, 3, 1, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_2)
         self.horizontalLayout = QtGui.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
@@ -82,12 +82,12 @@ class Ui_Form(object):
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout)
-        self.verticalLayout_2.addWidget(self.adminPanel)
-        self.buttonBox = QtGui.QDialogButtonBox(Form)
+        self.buttonBox = QtGui.QDialogButtonBox(self.adminPanel)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
         self.buttonBox.setObjectName("buttonBox")
-        self.verticalLayout_2.addWidget(self.buttonBox)
+        self.verticalLayout.addWidget(self.buttonBox)
+        self.verticalLayout_2.addWidget(self.adminPanel)
         self.line = QtGui.QFrame(Form)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
@@ -101,11 +101,11 @@ class Ui_Form(object):
         Form.setWindowTitle(QtGui.QApplication.translate("Form", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("Form", "Value", None, QtGui.QApplication.UnicodeUTF8))
         self.label_4.setText(QtGui.QApplication.translate("Form", "Display", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_6.setText(QtGui.QApplication.translate("Form", "Help Text", None, QtGui.QApplication.UnicodeUTF8))
         self.adminPanel.setTitle(QtGui.QApplication.translate("Form", "Admin Panel", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("Form", "Type", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("Form", "Name", None, QtGui.QApplication.UnicodeUTF8))
         self.label_5.setText(QtGui.QApplication.translate("Form", "Group", None, QtGui.QApplication.UnicodeUTF8))
-        self.label_6.setText(QtGui.QApplication.translate("Form", "Help Text", None, QtGui.QApplication.UnicodeUTF8))
         self.cbAdminOnly.setText(QtGui.QApplication.translate("Form", "Admin Only", None, QtGui.QApplication.UnicodeUTF8))
         self.cbRequired.setText(QtGui.QApplication.translate("Form", "Required", None, QtGui.QApplication.UnicodeUTF8))
         self.cbGlobal.setText(QtGui.QApplication.translate("Form", "Global", None, QtGui.QApplication.UnicodeUTF8))

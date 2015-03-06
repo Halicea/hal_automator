@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/mainwindow.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/mainwindow.ui'
 #
-# Created: Sun Dec 22 01:10:29 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Fri Mar  6 18:19:32 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(767, 443)
+        MainWindow.resize(1128, 670)
         MainWindow.setUnifiedTitleAndToolBarOnMac(True)
         self.centralWidget = QtGui.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
@@ -86,7 +86,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_2.addLayout(self.verticalLayout)
         MainWindow.setCentralWidget(self.centralWidget)
         self.menuBar = QtGui.QMenuBar()
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 767, 22))
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1128, 22))
         self.menuBar.setObjectName("menuBar")
         self.menuFile = QtGui.QMenu(self.menuBar)
         self.menuFile.setObjectName("menuFile")
@@ -165,4 +165,4 @@ class Ui_MainWindow(object):
         self.actionConfig_Editor.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+E", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDeclarative_View.setText(QtGui.QApplication.translate("MainWindow", "Declarative View", None, QtGui.QApplication.UnicodeUTF8))
 
-import images_rc  # @UnusedImport
+import images_rc
