@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_widget.ui'
 #
-# Created: Fri Mar  6 18:19:31 2015
+# Created: Fri Mar  6 22:23:05 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,7 +37,7 @@ class Ui_ConfigForm(object):
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.splitter = QtGui.QSplitter(ConfigForm)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setHorizontalStretch(3)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
         self.splitter.setSizePolicy(sizePolicy)
@@ -47,8 +47,8 @@ class Ui_ConfigForm(object):
         self.splitter.setChildrenCollapsible(True)
         self.splitter.setObjectName("splitter")
         self.tabs_vars = QtGui.QTabWidget(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabs_vars.sizePolicy().hasHeightForWidth())
         self.tabs_vars.setSizePolicy(sizePolicy)
@@ -56,7 +56,7 @@ class Ui_ConfigForm(object):
         self.tabs_vars.setObjectName("tabs_vars")
         self.tab_variables = QtGui.QWidget()
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tab_variables.sizePolicy().hasHeightForWidth())
         self.tab_variables.setSizePolicy(sizePolicy)
@@ -87,25 +87,35 @@ class Ui_ConfigForm(object):
         self.verticalLayout_6.addLayout(self.lt_resources)
         self.tabs_vars.addTab(self.tab_resources, "")
         self.tlbx_bundles = QtGui.QToolBox(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(1)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(4)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tlbx_bundles.sizePolicy().hasHeightForWidth())
         self.tlbx_bundles.setSizePolicy(sizePolicy)
         self.tlbx_bundles.setBaseSize(QtCore.QSize(0, 0))
         self.tlbx_bundles.setObjectName("tlbx_bundles")
         self.page = QtGui.QWidget()
-        self.page.setGeometry(QtCore.QRect(0, 0, 840, 531))
+        self.page.setGeometry(QtCore.QRect(0, 0, 310, 531))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(2)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.page.sizePolicy().hasHeightForWidth())
+        self.page.setSizePolicy(sizePolicy)
         self.page.setObjectName("page")
         self.tlbx_bundles.addItem(self.page, "")
         self.page_2 = QtGui.QWidget()
-        self.page_2.setGeometry(QtCore.QRect(0, 0, 310, 531))
+        self.page_2.setGeometry(QtCore.QRect(0, 0, 16, 531))
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(2)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.page_2.sizePolicy().hasHeightForWidth())
+        self.page_2.setSizePolicy(sizePolicy)
         self.page_2.setObjectName("page_2")
         self.tlbx_bundles.addItem(self.page_2, "")
         self.verticalLayout.addWidget(self.splitter)
 
         self.retranslateUi(ConfigForm)
-        self.tabs_vars.setCurrentIndex(0)
+        self.tabs_vars.setCurrentIndex(1)
         self.tlbx_bundles.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(ConfigForm)
 

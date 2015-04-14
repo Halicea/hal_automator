@@ -58,8 +58,8 @@ class ConfigForm(ConfigWidget, Ui_ConfigForm):
     self.btn_save.clicked.connect(lambda x: self.save_config(True))
     self.setup_bundles()
     width = self.splitter.sizeHint().width()
-    self.splitter.setSizes([0.2*width, 0.8*width])
-    self.splitter.sizePolicy().setHorizontalStretch(1)
+    print("Widget size width  is:{}".format(width))
+    self.splitter.setSizes([0.2*width-1, 0.8*width-1])
 
   def setup_bundles(self):
     self.txt_name.setText(self.get_config()["PublisherId"])

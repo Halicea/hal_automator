@@ -28,6 +28,8 @@ class VariableDialog(QtGui.QWidget, Ui_Form):
     if Workspace.current.mode !='admin':  # @UndefinedVariable
       self.txtDisplay.setEnabled(False)
       self.txtHelpText.setEnabled(False)
+      self.laDisplay.hide()
+      self.laHelpText.hide()
       self.adminPanel.hide()
 
   def show(self):

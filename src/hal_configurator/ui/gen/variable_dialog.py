@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/variable_dialog.ui'
 #
-# Created: Fri Mar  6 20:25:09 2015
+# Created: Sat Mar  7 15:52:52 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,6 +22,8 @@ class Ui_Form(object):
         self.verticalLayout_2 = QtGui.QVBoxLayout(Form)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
+        self.gridLayout.setContentsMargins(-1, -1, -1, 5)
         self.gridLayout.setHorizontalSpacing(5)
         self.gridLayout.setObjectName("gridLayout")
         self.label_2 = QtGui.QLabel(Form)
@@ -45,8 +47,12 @@ class Ui_Form(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.txtHelpText.sizePolicy().hasHeightForWidth())
         self.txtHelpText.setSizePolicy(sizePolicy)
+        self.txtHelpText.setMaximumSize(QtCore.QSize(16777213, 100))
         self.txtHelpText.setObjectName("txtHelpText")
         self.gridLayout.addWidget(self.txtHelpText, 6, 1, 1, 1)
+        self.gridLayout.setRowMinimumHeight(5, 1)
+        self.gridLayout.setRowMinimumHeight(6, 1)
+        self.gridLayout.setColumnStretch(1, 1)
         self.verticalLayout_2.addLayout(self.gridLayout)
         self.adminPanel = QtGui.QGroupBox(Form)
         self.adminPanel.setObjectName("adminPanel")

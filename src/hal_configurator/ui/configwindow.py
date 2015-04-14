@@ -126,6 +126,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     title +="     -- Configurator Version:%s" % (app_config.get_version())
     self.setWindowTitle(title)
     self.txtWorkingDir.setText(self.working_dir)
+
     if self.cw:
       self.ltv_content.removeWidget(self.cw)
       self.cw.close()
@@ -143,10 +144,12 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       self.cw.tlbx_bundles.hide()
       self.widget.hide()
       width = self.splitter_2.sizeHint().width()
-      self.splitter_2.setSizes([width, 0])
+      self.splitter_2.setSizes([width*0.3, width*0.7])
     else:
       width = self.splitter_2.sizeHint().width()
-      self.splitter_2.setSizes([width*0.3, width*0.7])
+      self.splitter_2.setSizes([width, 0])
+
+      
   def chose_working_dir(self):
     """
     Choses the current working directory for the current configuration
@@ -303,7 +306,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     curr_dir = None
     if app_config.get_config_history():
       cur_dir = app_config.get_config_history()[-1]
-      
+
     params = {"caption":"Choose Configuration","filter":"Config Files(*.json *.halc)"}
     if cur_dir:
       params["dir"] = app_config.get_config_history()[-1]

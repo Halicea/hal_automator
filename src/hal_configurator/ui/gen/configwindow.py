@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Fri Mar  6 18:19:32 2015
+# Created: Fri Mar  6 22:12:53 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -63,6 +63,11 @@ class Ui_ConfigWindow(object):
         self.splitter_2.setOrientation(QtCore.Qt.Horizontal)
         self.splitter_2.setObjectName("splitter_2")
         self.splitter = QtGui.QSplitter(self.splitter_2)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(1)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
+        self.splitter.setSizePolicy(sizePolicy)
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
         self.layoutWidget = QtGui.QWidget(self.splitter)
@@ -87,7 +92,7 @@ class Ui_ConfigWindow(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.detailsContainer = QtGui.QWidget()
-        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 648, 438))
+        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 77, 438))
         self.detailsContainer.setObjectName("detailsContainer")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
@@ -98,7 +103,6 @@ class Ui_ConfigWindow(object):
         self.verticalLayout_3.addItem(spacerItem)
         self.scrollArea.setWidget(self.detailsContainer)
         self.lv_tools.addWidget(self.scrollArea)
-        self.lv_tools.setStretch(0, 1)
         self.verticalLayout_2.addWidget(self.splitter_3)
         ConfigWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar()

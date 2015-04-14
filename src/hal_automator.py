@@ -45,7 +45,6 @@ def main(isAdmin):
     :type : isAdmin: bool
     """
     app = QtGui.QApplication(sys.argv)
-    app.setStyle('windows')
     mw = ConfigWindow(None)
     mw.show()
     app.setWindowIcon(QtGui.QIcon())
