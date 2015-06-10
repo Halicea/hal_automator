@@ -10,3 +10,5 @@ automator_project/src/.ipynb_checkpoints
 src/hal_configurator/web/static/bower_components
 win_installer/installer-cache
 src/.ipynb_checkpoints
+hal_automator.sublime-project
+hal_automator.sublime-workspace

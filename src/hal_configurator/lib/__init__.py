@@ -18,6 +18,7 @@ def config_path():
   res = os.path.expanduser(res)
   print 'Trying:', res
   if not os.path.exists(res):
+    print('Error: path {} does not exists'.format(res))
     if sys.platform == 'darwin':
       print 'in Mac'
       res = os.path.join(os.getcwd(), 'config.conf')
