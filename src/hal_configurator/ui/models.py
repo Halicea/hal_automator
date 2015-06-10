@@ -55,12 +55,14 @@ class ResourcesListModel(QtCore.QAbstractListModel):
         self.endInsertRows()
 
     def removeData(self, index):
+        join = os.path.join
+        exists = os.path.exists
+
         self.beginRemoveRows(QtCore.QModelIndex(), index, index)
-        to_remove = os.path.join(self.root_dir, self.resources[index]["url"])
+        to_remove = join(self.root_dir, self.resources[index]["url"])
         print "To Remove", to_remove
-        if(os.path.exists(os.path.join(self.root_dir, self.resources[index]["url"]))):
-            os.remove(
-                os.path.join(self.root_dir, self.resources[index]["url"]))
+        if(exists(join(self.root_dir, self.resources[index]["url"]))):
+            os.remove(join(self.root_dir, self.resources[index]["url"]))
         del self.resources[index]
         self.endRemoveRows()
 
@@ -92,18 +94,18 @@ class VariablesListModel(QtCore.QAbstractListModel):
         result = []
         for k in self.raw_variables:
             if not self.show_not_editable:
-                if k.has_key('editable') and not k['editable']:
+                if 'editable' in k and not k['editable']:
                     pass
                 else:
                     if not self.show_admin_vars:
-                        if k.has_key('admin_only') and not k['admin_only']:
+                        if 'admin_only' in k and not k['admin_only']:
                             pass
                         else:
                             result.append(k)
                     else:
                         result.append(k)
             elif not self.show_admin_vars:
-                if k.has_key('admin_only') and not k['admin_only']:
+                if 'admin_only' in k and not k['admin_only']:
                     pass
                 else:
                     result.append(k)

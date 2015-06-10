@@ -1,3 +1,4 @@
+import traceback
 from config import Config
 try:
   from hal_configurator.lib.workspace_manager import Workspace
@@ -10,19 +11,21 @@ config = None
 try:
   config = Config(open(config_path(), 'r'))
 except:
+  traceback.print_exc()
+  print 'ConfigPath %s' % config_path()
   print 'Cannot Locate the Configuration file'
 
 def add_config_to_history(path):
   ch = get_config_history()
   if path in ch:
     ch.append(ch.pop(ch.index(path)))
-  elif len(config.config_history)==len(ch):
+  elif len(config.config_history) == len(ch):
     ch.append("'"+path+"'")
     ch.pop(0)
   else:
     ch.append("'"+path+"'")
   for i in range(0, len(ch)):
-    config.config_history[i].path=ch[i]
+    config.config_history[i].path = ch[i]
   save()
 
 def get_config_history():
@@ -34,9 +37,9 @@ def get_current_workspace():
   return Workspace.current
 
 def set_current_workspace(path):
-  if not Workspace.current or Workspace.current.workspacedir!=path:  # @UndefinedVariable
+  if not Workspace.current or Workspace.current.workspacedir != path:
     Workspace.set(path)
-    config.current_workspace = "'%s'"%path
+    config.current_workspace = "'%s'" % path
     save()
 
 def get_working_dir():
@@ -58,7 +61,7 @@ def set_last_dir(d):
 
 def is_verbose():
   try:
-    return config.verbose == True
+    return config.verbose is True
   except:
     config.verbose = False
     save()
