@@ -274,11 +274,12 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.verbose = self.actionVerbose.isChecked()
 
     def create_new_config(self):
-        last_config = app_config.get_config_history()[-1]
         params = {"caption":"Choose Configuration","filter":"bc.halc"}
-        if last_config:
+        if len(app_config.get_config_history())>0:
+            last_config = app_config.get_config_history()[-1]
             last_config = last_config.replace("'", '')
             params["dir"] = os.path.dirname(last_config)
+            
         f = QtGui.QFileDialog.getSaveFileName(**params)
         if f[0]:
             self.config_path = f[0]
@@ -302,7 +303,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.set_configuration(self.sender().text(), self.working_dir)
 
     def open_config(self):
-        curr_dir = None
+        cur_dir = None
         if app_config.get_config_history():
             cur_dir = app_config.get_config_history()[-1]
 

@@ -52,7 +52,6 @@ def save_config(identifier, platform, name):
     print ex.message
     return Response(response="False", status=200)
 
-
 @app.route("/config/<identifier>/<platform>/<name>/var/<varname>", methods=["GET"])
 @crossdomain(origin="*")
 def get_variable(identifier, platform, name, varname):
