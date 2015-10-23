@@ -4,6 +4,7 @@ from flask import (
 import os
 import json
 import sys
+
 current_dir = os.path.dirname(__file__)
 root_dir = os.path.abspath(os.path.join(current_dir, '../../'))
 print current_dir
@@ -12,6 +13,9 @@ sys.path.append(root_dir)
 
 from hal_configurator.lib.config_loaders import FileConfigLoader
 from attributes import crossdomain
+from hal_configurator.lib.workspace_manager import Workspace
+from hal_configurator.lib.app_configurator import AppConfigurator
+from hal_configurator.lib.logers import ConsoleLoger, FileLoger, StringLoger, CompositeLoger
 
 app_config = json.loads(open(os.path.join(current_dir, 'config.json'), 'r').read())
 workspace_path = os.path.expanduser(app_config['workspace_path'])
@@ -29,6 +33,36 @@ def list_configs():
          not (x.startswith('.') or x.startswith('_'))]
   return Response(response=json.dumps(res), status=200, mimetype="application/json")
 
+@app.route("/config/jobs")
+@crossdomain(origin="*")
+def get_jobs_list():
+  root = os.path.join(workspace_path, 'jobs')
+  res = [x for x in os.listdir(root)
+         if os.path.isfile(os.path.join(root, x)) and x.endswith('.halc') and
+          not ('_vars' in x or '_ress' in x) and
+          not (x.startswith('.') or x.startswith('_'))]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+@app.route("/config/<environment>")
+@crossdomain(origin="*")
+def list_environments(environment):
+  root = os.path.join(workspace_path, environment)
+  res = [x for x in os.listdir(root)
+         if os.path.isdir(os.path.join(root, x)) and
+          not (x.startswith('.') or x.startswith('_'))]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+
+@app.route("/config/<environment>/<name>")
+@crossdomain(origin="*")
+def list_environment_jobs(environment, name):
+  root = os.path.join(workspace_path, environment, name)
+  res = [x for x in os.listdir(root)
+         if os.path.isfile(os.path.join(root, x)) and x.endswith('.halc') and
+          not (x.startswith('.') or x.startswith('_'))]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+
 @app.route("/config/<identifier>/<platform>/<name>")
 @crossdomain(origin="*")
 def get_config(identifier, platform, name):
@@ -36,19 +70,29 @@ def get_config(identifier, platform, name):
   conf = FileConfigLoader(filepath).dictionary
   return Response(response=json.dumps(conf), status=200, mimetype="application/json")
 
-@app.route("/config/<environment>")
-def list_environments(environment):
-  res = [x for x in os.listdir(os.path.join(workspace_path, environment))
-         if os.path.isdir(os.path.join(workspace_path, x)) and
-          not (x.startswith('.') or x.startswith('_'))]
-  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+@app.route("/config/<identifier>/<platform>/<name>/run")
+@crossdomain(origin="*")
+def run_config(identifier, platform, name):
+  Workspace.set(workspace_path)
+  filepath = os.path.join(workspace_path, identifier, platform, name)
+  loader = FileConfigLoader(filepath)
+  config = loader.dictionary
+  c_loger = ConsoleLoger()
+  s_loger = StringLoger()
+  composite_log = CompositeLoger(*[c_loger, s_loger])
+  builder = AppConfigurator(loader, composite_log)
+  builder.set_execution_dir(workspace_path)
+  res_msg = ''
+  try:
+    builder.apply()
+  except Exception,ex:
+    res_msg+=ex.message+'\n'
+  res =  Response(response=s_loger.result, status=200, mimetype="text/plain")
+  builder.logger.close()
+  return res
 
-@app.route("/config/<environment>/<name>")
-def list_environments(environment, name):
-  res = [x for x in os.listdir(os.path.join(workspace_path, environment, name))
-         if os.path.isdir(os.path.join(workspace_path, x)) and
-          not (x.startswith('.') or x.startswith('_'))]
-  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 @crossdomain(origin="*")
@@ -127,5 +171,8 @@ def save_resource(identifier, platform, name, resid):
 def base_static(filename):
     return send_from_directory(workspace_path, filename)
 
-if __name__ == '__main__':
+def main():
   app.run(host="0.0.0.0", port=5001, debug=True)
+
+if __name__ == '__main__':
+  main()  

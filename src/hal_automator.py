@@ -57,7 +57,7 @@ if __name__ == "__main__":
         main(True)
     elif sys.argv[1] == '-web':
         if '-debug' in sys.argv:
-            import hal_configurator.web.app
+            import hal_configurator.web.app as app
             app.main()
         else:
             import hal_configurator.web.web_server as web_server

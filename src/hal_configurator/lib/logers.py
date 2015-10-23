@@ -83,7 +83,7 @@ class FileLoger(LoggerBase):
     return 1
 
 class StringLoger(LoggerBase):
-  def __init__(self, f):
+  def __init__(self):
     self.result = ''
 
   def write(self, message, logtype="i"):
