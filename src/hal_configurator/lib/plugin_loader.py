@@ -35,6 +35,10 @@ def get_plugins(plugin_dir):
             (shortname, ext) = os.path.splitext(plugin) #@UnusedVariable
             sys.path.append(plugin_path)
             registered_plugins.append(shortname)
+  else:
+    print 'Plugin path does not exists: %s'%os.path.abspath(plugin_dir)
+  print 'Plugins Registered:'
+  print registered_plugins
   return registered_plugins
 
 def init_plugin_system(cfg):

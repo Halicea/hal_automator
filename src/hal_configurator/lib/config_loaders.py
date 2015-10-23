@@ -42,7 +42,7 @@ class ConfigLoader(object):
       self.__load_reference__(cfg, ref)
     cfg = self.verify_required_vars(cfg)
     cfg = self.load_customizations(cfg)
-    cfg = self.__objectify_vars__(cfg)
+    cfg = self.__objectify__(cfg)
     self.last_config_loaded = cfg
     return cfg
 
@@ -104,7 +104,7 @@ class ConfigLoader(object):
         else:
           v['value'] = None
 
-  def __objectify_vars__(self, cfg):
+  def __objectify__(self, cfg):
     obj_vars = []
     obj_req_vars = []
     obj_res = []
@@ -246,12 +246,14 @@ class FileConfigLoader(ConfigLoader):
     if cfg.has_key(key):
       if isinstance(cfg[key], dict) and cfg[key].has_key("Reference"):
         content_path = os.path.join(os.path.dirname(self.resolved_path), cfg[key]["Reference"])
-        content = json.load(open(content_path, "r"))
-        if forced_reference_key:
-          cfg[forced_reference_key] = cfg[key]["Reference"]
-        else:
-          cfg[key+"-Reference"] = cfg[key]["Reference"]
-        cfg[key] = content
+        content = None
+        if os.path.exists(content_path):
+          content = json.load(open(content_path, "r"))
+          if forced_reference_key:
+            cfg[forced_reference_key] = cfg[key]["Reference"]
+          else:
+            cfg[key+"-Reference"] = cfg[key]["Reference"]
+          cfg[key] = content
     else:
       cfg[key] = {}
 
