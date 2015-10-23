@@ -36,6 +36,19 @@ def get_config(identifier, platform, name):
   conf = FileConfigLoader(filepath).dictionary
   return Response(response=json.dumps(conf), status=200, mimetype="application/json")
 
+@app.route("/config/<environment>")
+def list_environments(environment):
+  res = [x for x in os.listdir(os.path.join(workspace_path, environment))
+         if os.path.isdir(os.path.join(workspace_path, x)) and
+          not (x.startswith('.') or x.startswith('_'))]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
+
+@app.route("/config/<environment>/<name>")
+def list_environments(environment, name):
+  res = [x for x in os.listdir(os.path.join(workspace_path, environment, name))
+         if os.path.isdir(os.path.join(workspace_path, x)) and
+          not (x.startswith('.') or x.startswith('_'))]
+  return Response(response=json.dumps(res), status=200, mimetype="application/json")
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 @crossdomain(origin="*")
