@@ -82,15 +82,15 @@ class FileLoger(LoggerBase):
   def fileno(self):
     return 1
 
-class StringLoger(LogerBase):
+class StringLoger(LoggerBase):
   def __init__(self, f):
-    self.f = open(f, "a")
+    self.result = ''
 
   def write(self, message, logtype="i"):
-    self.f.write(message+'\n')
+    self.result+=message+'\n'
 
   def close(self):
-    self.f.close()
+    self.result = ''
   #needed for pushing the stdout and stderr into the log
   def fileno(self):
     return 1
