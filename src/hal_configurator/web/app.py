@@ -1,28 +1,31 @@
 from flask import (
     Flask, request, Response, send_from_directory, jsonify,
     send_file, abort)  # @UnusedImport
+from hal_configurator.job_server import execute_job
+from flask.ext.socketio import SocketIO
+from attributes import crossdomain
+
 import os
 import json
 import sys
 
 current_dir = os.path.dirname(__file__)
 root_dir = os.path.abspath(os.path.join(current_dir, '../../'))
-print current_dir
-print root_dir
 sys.path.append(root_dir)
 
 from hal_configurator.lib.config_loaders import FileConfigLoader
-from attributes import crossdomain
 from hal_configurator.lib.workspace_manager import Workspace
 from hal_configurator.lib.app_configurator import AppConfigurator
 from hal_configurator.lib.logers import ConsoleLoger, FileLoger, StringLoger, CompositeLoger
 
+
 app_config = json.loads(open(os.path.join(current_dir, 'config.json'), 'r').read())
 workspace_path = os.path.expanduser(app_config['workspace_path'])
 app = Flask(__name__, static_folder='./static', static_url_path='')
-# os.chdir(os.path.dirname(__file__))
+socketio = SocketIO(app)
 
 @app.route('/')
+@crossdomain(origin="*")
 def root():
   return app.send_static_file('index.html')
 
@@ -68,8 +71,38 @@ def list_environment_jobs(environment, name):
 def get_config(identifier, platform, name):
   filepath = os.path.join(workspace_path, identifier, platform, name)
   conf = FileConfigLoader(filepath).dictionary
-  return Response(response=json.dumps(conf), status=200, mimetype="application/json")
+  admin = request.args.get('admin')
+  result = conf['Variables']
+  if bool(admin):
+    result = conf
+  return Response(response=json.dumps(result), status=200, mimetype="application/json")
 
+
+@app.route("/config/<identifier>/<platform>/<name>/job/start")
+@crossdomain(origin="*")
+def job_start(identifier, platform, name):
+  Workspace.set(workspace_path)
+  filepath = os.path.join(workspace_path, identifier, platform, name)
+  loader = FileConfigLoader(filepath)
+  config = loader.dictionary
+  c_loger = ConsoleLoger()
+  s_loger = StringLoger()
+  composite_log = CompositeLoger(*[c_loger, s_loger])
+  builder = AppConfigurator(loader, composite_log)
+  job_output = "No Response"
+  try:
+    job_output = execute_job.delay(builder, workspace_path, workspace_path).get(100)
+  except OSError, e:
+    job_output = e.strerror
+    job_output+='\nTraceback'+job_output.traceback
+  except Exception, e:
+    job_output = e.message
+    job_output+='\nTraceback'+job_output.traceback
+  
+  finally:
+    res =  Response(response=job_output, status=200, mimetype="text/plain")
+    return res
+  
 @app.route("/config/<identifier>/<platform>/<name>/run")
 @crossdomain(origin="*")
 def run_config(identifier, platform, name):
@@ -90,9 +123,6 @@ def run_config(identifier, platform, name):
   res =  Response(response=s_loger.result, status=200, mimetype="text/plain")
   builder.logger.close()
   return res
-
-
-
 
 @app.route("/config/<identifier>/<platform>/<name>", methods=["POST"])
 @crossdomain(origin="*")
@@ -137,11 +167,13 @@ def get_resource(identifier, platform, name, resid):
   file_path = os.path.join(workspace_path, identifier, platform, res['url'])
   print file_path
   if os.path.exists(file_path):
-    print 'exists'
+    print 'resource exists:'+file_path
     return send_file(file_path, mimetype='image/png')
   else:
     print 'non existent'
-    return abort(404)
+    print 'resource not available at:'+file_path
+    return Response(status = 404)
+
 
 
 @app.route("/config/<identifier>/<platform>/<name>/res/<resid>", methods=["POST"])
@@ -168,11 +200,24 @@ def save_resource(identifier, platform, name, resid):
 
 
 @app.route('/config/<path:filename>')
+@crossdomain(origin="*")
 def base_static(filename):
     return send_from_directory(workspace_path, filename)
 
-def main():
-  app.run(host="0.0.0.0", port=5001, debug=True)
+
+@socketio.on('connect', namespace='/builds')
+@crossdomain(origin="*")
+def on_connect():
+    emit('my response', {'data': 'Connected'})
+
+@socketio.on('disconnect', namespace='/builds')
+@crossdomain(origin="*")
+def on_disconnect():
+    print('Client disconnected')
+
+def main(port):
+  app.run(host="0.0.0.0", port=port, debug=True)
+  socketio.run(app)
 
 if __name__ == '__main__':
   main()  
