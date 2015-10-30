@@ -2,7 +2,12 @@
 import sys
 import os
 from hal_configurator.lib import load_plugins
-
+from hal_configurator.lib import configurator_console as console
+try:
+    from PySide import QtGui
+except:
+    pass
+    
 
 def main():
     load_plugins()

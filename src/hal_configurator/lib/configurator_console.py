@@ -13,56 +13,60 @@ from hal_configurator.lib.workspace_manager import Workspace
 svcUrl = "http://localhost:3000"
 
 
-def main():
-  print "Starting Configurator"
-  print "Version", app_config.get_version()
-  config_loader = get_config_loader()
+def main(args=None, loger=None):
+  if not args:
+    args = sys.argv
+  config_loader = get_config_loader(args)
   Workspace.set(os.path.dirname(config_loader.config_file))
-  custom_bundles = get_additional_bundles()
-  custom_vars = get_additional_vars(sys.argv)
+  custom_bundles = get_additional_bundles(args)
+  custom_vars = get_additional_vars(args)
   if custom_bundles:
     config_loader.append_bundles(*custom_bundles)
   if custom_vars:
     config_loader.append_vars(*custom_vars)
-
-  builder = AppConfigurator(config_loader, get_logger(), verbose=is_verbose(), debug_mode=False)
+  is_outside_loger = True
+  if not loger:
+    is_outside_loger = False
+    loger = get_logger(args)
+  builder = AppConfigurator(config_loader, loger, verbose=is_verbose(args), debug_mode=False)
   execution_dir = None
-  if "-dir" in sys.argv:
-    execution_dir = sys.argv[sys.argv.index("-dir") + 1]
+  if "-dir" in args:
+    execution_dir = args[args.index("-dir") + 1]
     ex_dir_expanded = os.path.abspath(os.path.expanduser(execution_dir))
     builder.set_execution_dir(ex_dir_expanded)
   validator = ConfigurationValidator(config_loader.config_file)
   validation_result = validator.validate(config_loader.load_config(), ex_dir_expanded)
 
   if validation_result.is_valid:
-    builder.exclude_bundles(get_excluded_bundles())
-    builder.include_bundles(get_included_bundles())
+    builder.exclude_bundles(get_excluded_bundles(args))
+    builder.include_bundles(get_included_bundles(args))
     builder.apply()
-    builder.logger.close()
+    if not is_outside_loger:
+      builder.logger.close()
   else:
     builder.logger.write(str(validation_result))
-    builder.logger.close()
-    sys.exit(1)
+    if not is_outside_loger:
+      builder.logger.close()
 
-def get_excluded_bundles():
-  if "-excluded-bundles" in sys.argv:
-    ind = sys.argv.index("-excluded-bundles")+1
-    excbundlestring = sys.argv[ind]
+def get_excluded_bundles(args):
+  if "-excluded-bundles" in args:
+    ind = args.index("-excluded-bundles")+1
+    excbundlestring = args[ind]
     excluded_bundles = json.loads(excbundlestring)
     return excluded_bundles
   return []
-def get_included_bundles():
-  if "-included-bundles" in sys.argv:
-    ind = sys.argv.index("--included-bundles")+1
-    incbundlestring = sys.argv[ind]
+def get_included_bundles(args):
+  if "-included-bundles" in args:
+    ind = args.index("--included-bundles")+1
+    incbundlestring = args[ind]
     included_bundles = json.loads(incbundlestring)
     return included_bundles
   return []
-def get_additional_bundles():
+def get_additional_bundles(args):
   custom_bundle = []
-  if "-custom-bundle" in sys.argv:
-    ind = sys.argv.index("-custom-bundle")+1
-    bundlestring = sys.argv[ind]
+  if "-custom-bundle" in args:
+    ind = args.index("-custom-bundle")+1
+    bundlestring = args[ind]
     custom_bundle = json.loads(bundlestring)
   return custom_bundle
 
@@ -82,35 +86,38 @@ def get_additional_vars(args):
   return custom_vars
 
 
-def get_logger():
+def get_logger(args):
   logger = ConsoleLoger()
-  if "-log" in sys.argv:
-    file_log = FileLoger(sys.argv[sys.argv.index("-log") + 1])
+  if "-log" in args:
+    file_log = FileLoger(args[args.index("-log") + 1])
     logger = CompositeLoger(logger, file_log)
   return logger
 
 
-def is_verbose():
+def is_verbose(args):
   verbose = False
-  if "-v" in sys.argv:
+  if "-v" in args:
     verbose = True
   return verbose
 
 
-def get_config_loader():
-  if sys.argv[1]=='-from':
+def get_config_loader(args):
+  if args[1]=='-from':
     ldr = None
-    if sys.argv[2]== 'fs':
-      ldr = FileConfigLoader(sys.argv[3])
-    elif sys.argv[2]=='svc':
-      ldr =  SvcConfigLoader(svcUrl, sys.argv[3])
+    if args[2]== 'fs':
+      ldr = FileConfigLoader(args[3])
+    elif args[2]=='svc':
+      ldr =  SvcConfigLoader(svcUrl, args[3])
     return ldr
   else:
     print '''
-    1. t2sconf -from svc [configuration_id] -o [destinationDir]
-    2. t2sconf -from fs [configuration_path] -o [destinationDir]
+    1. automator -from svc [configuration_id] -o [destinationDir]
+    2. automator -from fs [configuration_path] -o [destinationDir]
     '''
-    #raise Exception("Invalid Parameters")
+    raise Exception("""Console mode requires a ConfigLoader to be specified:+)
+    1. automator -from svc [configuration_id] -o [destinationDir]
+    2. automator -from fs [configuration_path] -o [destinationDir]
+    """)
 
 def __testLocal__():
   workingDir =os.path.dirname(os.path.abspath(__file__))
@@ -127,12 +134,13 @@ def __testRemote__():
   builder.apply()
 
 if __name__ == '__main__':
-  if sys.argv[1]=="testVars":
-    get_additional_vars(sys.argv)
-  if sys.argv[1]=="testLocal":
+  args = sys.argv
+  if args[1]=="testVars":
+    get_additional_vars(args)
+  if args[1]=="testLocal":
     __testLocal__()
-  elif sys.argv[1]=="testRemote":
+  elif args[1]=="testRemote":
     __testRemote__()
   else:
-    main()
+    main(args)
   print "Done"

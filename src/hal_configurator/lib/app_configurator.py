@@ -172,6 +172,7 @@ class AppConfigurator(object):
     def configure(
             self, cnf, executor, selector=True,
             bundles_filter=None, operations_filter=None):
+        
         _executor = executor or self.executor
         _bundles_filter = bundles_filter or self.bundles_filter
         _operations_filter = operations_filter or self.operations_filter
