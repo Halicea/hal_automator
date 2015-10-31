@@ -63,6 +63,7 @@ class CommandExecutor(object):
     bundle_res = []
     if command_bundle.has_key("Resources"):
       bundle_res = command_bundle["Resources"]
+
     for gres in global_resources:
       if len([x for x in bundle_res if x["rid"] == gres["rid"]])==0:
         bundle_res.append(gres)
@@ -70,6 +71,7 @@ class CommandExecutor(object):
     for k in bundle_res:
       if not ("://" in k["url"]):
         k["url"] = self.resources_root+"/"+k["url"]
+
     self.bundle_vars = bundle_vars
     self.bundle_res = bundle_res
     continue_execution = self.check_debug_settings(command_bundle)
@@ -89,12 +91,13 @@ class CommandExecutor(object):
 
   def execute_command(self, command, bundle_vars, bundle_res):
     if self.check_debug_settings(command):
-      cmd  = command["Code"] #@UnusedVariable
       plugin_cls = plugin_loader.get_plugin_cls(command)
       plugin = plugin_cls(executor=self, variables=bundle_vars, resources=bundle_res,  verbose=self.verbose, log=self.log)
       repl_vars = command["Arguments"].copy()
+
       if not plugin.self_managed_variables:
         repl_vars = self.replace_vars(bundle_vars, command["Arguments"])
+      
       if not plugin.self_managed_resources:
         repl_vars = self.replace_resources(bundle_res, repl_vars)
 

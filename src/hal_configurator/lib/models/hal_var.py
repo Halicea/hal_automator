@@ -60,7 +60,7 @@ class BaseProperty(object):
     result = cls()
     result.display =d['display'] if 'display' in d else ''
     result.helptext =d['helptext'] if 'helptext' in d else ''
-    result.is_admin_only =d['admin_only'] if 'admin_only' in d else False
+    result.is_admin_only = d['admin_only'] if 'admin_only' in d else False
     result.is_required =d['required'] if 'required' in d else True
     result.is_editable = d['editable'] if 'editable' in d else True
     result.validators =d['validators'] if 'validators' in d else []

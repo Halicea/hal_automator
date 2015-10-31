@@ -157,25 +157,6 @@ class VariablesListModel(QtCore.QAbstractListModel):
         self.raw_variables[raw_index] = value
         return True
 
-# class OperationTypeListModel(QtCore.QAbstractListModel):
-#
-#   def __init__(self, *args, **kwargs):
-#     super(OperationTypeListModel,self).__init__(*args, **kwargs)
-#
-#     self.op_types = fact.get_operation_codes()
-#     self.op_types.insert(0, "--Select Type--")
-#
-#   def rowCount(self, parent):
-#     return len(self.op_types)
-#
-#   def data(self, index, role):
-#     if role == QtCore.Qt.DisplayRole:
-#       return self.op_types[index.row()]
-#     elif role == QtCore.Qt.UserRole:
-#       return fact.new_operation(self.op_types[index.row()])
-#     return None
-
-
 class ToolsListModel(QtCore.QAbstractListModel):
 
     def __init__(self, tools, include_void=True, *args, **kwargs):
@@ -194,7 +175,6 @@ class ToolsListModel(QtCore.QAbstractListModel):
         elif role == QtCore.Qt.UserRole:
             return get_plugin_cls(command)
         return None
-
 
 class ObjectWrapper(QtCore.QObject):
 

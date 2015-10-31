@@ -16,5 +16,3 @@ class ConsoleOutput(QtGui.QWidget, Ui_ConsoleOutput):
 
   def clear_output(self):
     self.txt_output.clear()
-
-
