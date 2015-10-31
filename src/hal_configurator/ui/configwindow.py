@@ -19,7 +19,6 @@ from hal_configurator.lib.config_validator import ConfigurationValidator
 from hal_configurator.ui.regex_tool import RegexTool
 from hal_configurator.lib.workspace_manager import Workspace
 
-
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     def __init__(self, main_window, *args, **kwargs):
         super(ConfigWindow, self).__init__(*args, **kwargs)
@@ -37,60 +36,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.setupUi()
         self.set_message_receiver()
         self.start_last_if_any()
-
-    def start_last_if_any(self):
-        try:
-            config_history = app_config.get_config_history()
-            if config_history:
-                self.set_configuration(config_history[-1])
-        except Exception as ex:
-                print(ex)
-
-    def set_configuration(self, config_path, working_dir=None):
-        self.config_path = config_path
-        if working_dir:
-            self.working_dir = working_dir
-        else:
-            self.working_dir = app_config.get_working_dir()
-        self.loader = FileConfigLoader(self.config_path)
-        self.configuration = self.loader.load_config()
-        self.bindUi()
-
-
-    def get_mode_config_for_key(self, work_mode, key):
-        if self.configuration.has_key('Builds'):
-            if self.configuration['Builds'].has_key(work_mode):
-                bc = self.configuration['Builds'][work_mode]
-                if bc.has_key(key):
-                    return copy.deepcopy(bc[key])
-        return {}
-
-
-    def set_bundles_model(self, ):
-        self.bundlesModel.clear()
-        work_mode = Workspace.current.mode    # @UndefinedVariable
-        bundle_filter = ConfigBuildFilter(included=Workspace.registered_bundles)
-        d = self.get_mode_config_for_key(work_mode, 'bundles')
-        bundle_filter.extend_from_dict(d)
-        for bundle in self.configuration['Content']['OperationBundles']:
-            dataItem = QtGui.QStandardItem(bundle['Name'])
-            dataItem.setCheckable(True)
-            check_state = bundle_filter.allowed(bundle['Name']) and QtCore.Qt.CheckState.Checked or QtCore.Qt.CheckState.Unchecked
-            dataItem.setCheckState(check_state)
-            self.bundlesModel.appendRow(dataItem)
-
-    def get_included_bundles(self):
-        i = 0
-        includedBundles = []
-        while self.bundlesModel.item(i):
-            dataItem = self.bundlesModel.item(i)
-            if dataItem.checkState():
-                includedBundles.append(dataItem.text())
-            i += 1
-        return includedBundles
-
-
-
+    
     def set_plugins(self):
         self.plugins =[]
         for d in config.plugin_dirs:
@@ -130,9 +76,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
             self.ltv_content.removeWidget(self.cw)
             self.cw.close()
         self.cw = ConfigForm(self.loader, parent=self, details_parent = self.tool)
-
-
-
         #self.tool.setModel(ToolsListModel(self.plugins, False))
         self.menubar.setWindowTitle(title)
         self.build_output = None
@@ -147,7 +90,59 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         else:
             width = self.splitter_2.sizeHint().width()
             self.splitter_2.setSizes([width, 0])
+            
+    def start_last_if_any(self):
+        try:
+            config_history = app_config.get_config_history()
+            if config_history:
+                self.set_configuration(config_history[-1])
+        except Exception as ex:
+                print(ex)
 
+    def set_configuration(self, config_path, working_dir=None):
+        self.config_path = config_path
+        if working_dir:
+            self.working_dir = working_dir
+        else:
+            self.working_dir = app_config.get_working_dir()
+        self.loader = FileConfigLoader(self.config_path)
+        self.configuration = self.loader.load_config()
+        self.bindUi()
+
+
+
+
+
+    def set_bundles_model(self):
+        self.bundlesModel.clear()
+        work_mode = Workspace.current.mode
+        bundle_filter = ConfigBuildFilter(included=Workspace.registered_bundles)
+        d = self.get_mode_config_for_key(work_mode, 'bundles')
+        bundle_filter.extend_from_dict(d)
+        for bundle in self.configuration['Content']['OperationBundles']:
+            dataItem = QtGui.QStandardItem(bundle['Name'])
+            dataItem.setCheckable(True)
+            check_state = bundle_filter.allowed(bundle['Name']) and QtCore.Qt.CheckState.Checked or QtCore.Qt.CheckState.Unchecked
+            dataItem.setCheckState(check_state)
+            self.bundlesModel.appendRow(dataItem)
+    
+    def get_mode_config_for_key(self, work_mode, key):
+        if self.configuration.has_key('Builds'):
+            if self.configuration['Builds'].has_key(work_mode):
+                bc = self.configuration['Builds'][work_mode]
+                if bc.has_key(key):
+                    return copy.deepcopy(bc[key])
+        return {}
+
+    def get_included_bundles(self):
+        i = 0
+        includedBundles = []
+        while self.bundlesModel.item(i):
+            dataItem = self.bundlesModel.item(i)
+            if dataItem.checkState():
+                includedBundles.append(dataItem.text())
+            i += 1
+        return includedBundles
             
     def chose_working_dir(self):
         """
@@ -307,7 +302,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         if app_config.get_config_history():
             cur_dir = app_config.get_config_history()[-1]
 
-        params = {"caption":"Choose Configuration","filter":"Config Files(*.json *.halc)"}
+        params = {"caption":"Choose Configuration","filter":"Config Files(bc.json *.halc)"}
         if cur_dir:
             params["dir"] = app_config.get_config_history()[-1]
         f = QtGui.QFileDialog.getOpenFileName(**params)
@@ -347,9 +342,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
             self.messages_thread.on_message_received.connect(self.on_message_received)
             self.messages_thread.start(QThread.TimeCriticalPriority)
 
-
     def on_message_received(self, message):
         if self.build_output:
             self.build_output.txt_output.append("%s" % message)
-
-

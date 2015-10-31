@@ -153,9 +153,18 @@ class AppConfigurator(object):
             val = kvar["value"]
             res = re.findall(search_pattern, val)
             for k in res:
-                inner_var = [x for x in global_vars if x["name"] == k[2:-2]][0]
+                inner_var = [x for x in global_vars if x["name"] == k[2:-2]]
+                if len(inner_var) == 0:
+                    
+                    print "Variable %s cannot be found"%k
+                    available_vars = [x['name'] for x in global_vars]
+                    print "Available Variables"
+                    print available_vars
+                else:
+                    inner_var = inner_var[0]
                 syth_val = self.synthesized_value(inner_var, global_vars)
                 val = val.replace(k, syth_val)
+                
             return val
         else:
             return kvar["value"]
@@ -163,6 +172,7 @@ class AppConfigurator(object):
     def configure(
             self, cnf, executor, selector=True,
             bundles_filter=None, operations_filter=None):
+        
         _executor = executor or self.executor
         _bundles_filter = bundles_filter or self.bundles_filter
         _operations_filter = operations_filter or self.operations_filter

@@ -1,5 +1,6 @@
 import sys
 import traceback
+import json
 from hal_configurator.lib.workspace_manager import Workspace
 
 
@@ -116,9 +117,17 @@ def is_number(s):
   except ValueError:
     return False
 
+def is_json(item):
+  try:
+    json.loads(item)
+    return True
+  except:
+    return False
+
 ArgumentTypes = {
   "text": lambda x: True,
   "number": lambda x: is_number(x),
+  "json": lambda x: is_json(x),
   "date": lambda x: True,
   "file": lambda x: True,
   "list": lambda x:True,
@@ -139,6 +148,8 @@ class ArgumentDescriptor(object):
 
   def default_validator(self, value):
     if ArgumentTypes.has_key(self.argument_type):
+      if not value and self.is_optional:
+        return True
       return ArgumentTypes[self.argument_type](value)
     return False, "Incompatible Type"
 
@@ -147,3 +158,4 @@ class ArgumentDescriptor(object):
 
 
 from hal_configurator.lib.var_substitutor import VarSubstitutor
+

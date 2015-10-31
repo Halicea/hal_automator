@@ -82,6 +82,19 @@ class FileLoger(LoggerBase):
   def fileno(self):
     return 1
 
+class StringLoger(LoggerBase):
+  def __init__(self):
+    self.result = ''
+
+  def write(self, message, logtype="i"):
+    self.result+=message+'\n'
+
+  def close(self):
+    self.result = ''
+  #needed for pushing the stdout and stderr into the log
+  def fileno(self):
+    return 1
+
 class CompositeLoger(LoggerBase):
   def __init__(self, *logers):
     self.logers = logers
