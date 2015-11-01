@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_widget.ui'
 #
-# Created: Sun Nov  1 02:19:34 2015
+# Created: Sun Nov  1 19:09:18 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

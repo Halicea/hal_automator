@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/kostamihajlov/MyProjects/hal_automator/automator_project/utils/qtUi/resourceswindow.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/resourceswindow.ui'
 #
-# Created: Sun Dec 22 01:10:29 2013
-#      by: pyside-uic 0.2.13 running on PySide 1.1.1
+# Created: Sun Nov  1 19:09:21 2015
+#      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,5 +57,5 @@ class Ui_ResourcesWindow(object):
     def retranslateUi(self, ResourcesWindow):
         ResourcesWindow.setWindowTitle(QtGui.QApplication.translate("ResourcesWindow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
-from resources_list import ResourcesList  # @UnresolvedImport
-import images_rc  # @UnusedImport
+from resources_list import ResourcesList
+import images_rc
