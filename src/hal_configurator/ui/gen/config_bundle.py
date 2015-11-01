@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_bundle.ui'
 #
-# Created: Sun Nov  1 02:32:00 2015
+# Created: Sun Nov  1 04:41:26 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,8 +12,8 @@ from PySide import QtCore, QtGui
 class Ui_BundleWidget(object):
     def setupUi(self, BundleWidget):
         BundleWidget.setObjectName("BundleWidget")
-        BundleWidget.resize(443, 473)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Preferred)
+        BundleWidget.resize(665, 526)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(BundleWidget.sizePolicy().hasHeightForWidth())
@@ -23,7 +23,7 @@ class Ui_BundleWidget(object):
         self.verticalLayout.setContentsMargins(10, 0, 10, 10)
         self.verticalLayout.setObjectName("verticalLayout")
         self.scroll_area = QtGui.QScrollArea(BundleWidget)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.scroll_area.sizePolicy().hasHeightForWidth())
@@ -31,45 +31,14 @@ class Ui_BundleWidget(object):
         self.scroll_area.setWidgetResizable(True)
         self.scroll_area.setObjectName("scroll_area")
         self.scroll_contents = QtGui.QWidget()
-        self.scroll_contents.setGeometry(QtCore.QRect(0, 0, 421, 461))
+        self.scroll_contents.setGeometry(QtCore.QRect(0, 0, 643, 514))
         self.scroll_contents.setObjectName("scroll_contents")
         self.verticalLayout_2 = QtGui.QVBoxLayout(self.scroll_contents)
         self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.control_menu = QtGui.QFrame(self.scroll_contents)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.control_menu.sizePolicy().hasHeightForWidth())
-        self.control_menu.setSizePolicy(sizePolicy)
-        self.control_menu.setMinimumSize(QtCore.QSize(0, 44))
-        self.control_menu.setFrameShape(QtGui.QFrame.NoFrame)
-        self.control_menu.setFrameShadow(QtGui.QFrame.Raised)
-        self.control_menu.setLineWidth(0)
-        self.control_menu.setObjectName("control_menu")
-        self.horizontalLayout = QtGui.QHBoxLayout(self.control_menu)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.rbBreak = QtGui.QRadioButton(self.control_menu)
-        self.rbBreak.setObjectName("rbBreak")
-        self.horizontalLayout.addWidget(self.rbBreak)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-        self.btn_add_operation = QtGui.QPushButton(self.control_menu)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btn_add_operation.sizePolicy().hasHeightForWidth())
-        self.btn_add_operation.setSizePolicy(sizePolicy)
-        self.btn_add_operation.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.btn_add_operation.setStyleSheet("")
-        self.btn_add_operation.setDefault(True)
-        self.btn_add_operation.setFlat(False)
-        self.btn_add_operation.setObjectName("btn_add_operation")
-        self.horizontalLayout.addWidget(self.btn_add_operation)
-        self.verticalLayout_2.addWidget(self.control_menu)
-        self.contents = QtGui.QFrame(self.scroll_contents)
+        self.contents = ContentFrame(self.scroll_contents)
         self.contents.setStyleSheet("")
         self.contents.setFrameShape(QtGui.QFrame.NoFrame)
         self.contents.setFrameShadow(QtGui.QFrame.Raised)
@@ -88,6 +57,5 @@ class Ui_BundleWidget(object):
 
     def retranslateUi(self, BundleWidget):
         BundleWidget.setWindowTitle(QtGui.QApplication.translate("BundleWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.rbBreak.setText(QtGui.QApplication.translate("BundleWidget", "Break", None, QtGui.QApplication.UnicodeUTF8))
-        self.btn_add_operation.setText(QtGui.QApplication.translate("BundleWidget", "+", None, QtGui.QApplication.UnicodeUTF8))
 
+from content_frame import ContentFrame

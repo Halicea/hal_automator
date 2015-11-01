@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Fri Mar  6 22:12:53 2015
+# Created: Sun Nov  1 03:56:56 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -88,21 +88,9 @@ class Ui_ConfigWindow(object):
         self.lv_tools.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.lv_tools.setContentsMargins(0, 0, 0, 0)
         self.lv_tools.setObjectName("lv_tools")
-        self.scrollArea = QtGui.QScrollArea(self.verticalLayoutWidget)
-        self.scrollArea.setWidgetResizable(True)
-        self.scrollArea.setObjectName("scrollArea")
-        self.detailsContainer = QtGui.QWidget()
-        self.detailsContainer.setGeometry(QtCore.QRect(0, 0, 77, 438))
-        self.detailsContainer.setObjectName("detailsContainer")
-        self.verticalLayout_3 = QtGui.QVBoxLayout(self.detailsContainer)
-        self.verticalLayout_3.setObjectName("verticalLayout_3")
-        self.verticalLayout = QtGui.QVBoxLayout()
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.verticalLayout_3.addLayout(self.verticalLayout)
-        spacerItem = QtGui.QSpacerItem(20, 389, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.verticalLayout_3.addItem(spacerItem)
-        self.scrollArea.setWidget(self.detailsContainer)
-        self.lv_tools.addWidget(self.scrollArea)
+        self.listWidget = PluginsList(self.verticalLayoutWidget)
+        self.listWidget.setObjectName("listWidget")
+        self.lv_tools.addWidget(self.listWidget)
         self.verticalLayout_2.addWidget(self.splitter_3)
         ConfigWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar()
@@ -302,4 +290,5 @@ class Ui_ConfigWindow(object):
         self.actionVerbose.setText(QtGui.QApplication.translate("ConfigWindow", "Verbose Output", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDebug_2.setText(QtGui.QApplication.translate("ConfigWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
 
+from plugins_list import PluginsList
 import images_rc

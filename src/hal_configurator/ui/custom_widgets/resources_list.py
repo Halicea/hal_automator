@@ -11,6 +11,7 @@ class ResourcesList(DragableList):
   def __init__(self, *args, **kwargs):
     super(ResourcesList, self).__init__(*args, **kwargs)
     self.resource_root = "/"
+  
   def set_resource_root(self, resource_root):
     self.resource_root = resource_root
 

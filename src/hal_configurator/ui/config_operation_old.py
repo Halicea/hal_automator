@@ -22,11 +22,12 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
     self.items =[]
     self.setupUi()
     self.bindUi()
-
-
+    self.setAcceptDrops(True);
+    
   def setupUi(self):
     super(OperationWidget,self).setupUi(self)
     self.btn_toggle.clicked.connect(self.toggle)
+    self.btn_delete.clicked.connect(self.delete_clicked)
 
   def bindUi(self):
     #self.la_name.setText(self.op["Code"])
@@ -35,7 +36,7 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
       self.la_description.setText(self.op["Description"])
     else:
       self.la_description.setText("No Description is set!")
-
+    total_height = 0
     for desc in self.descriptors:
       arg = desc.name
       la = desc.name
@@ -43,11 +44,11 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
       if arg in self.op["Arguments"]:
         val = self.op["Arguments"][arg]
       item = QtGui.QFrame(self)
-      layout = QtGui.QHBoxLayout(item)
+      layout = QtGui.QHBoxLayout()
       layout.setSizeConstraint(QtGui.QLayout.SetMinAndMaxSize)
       layout.setContentsMargins(0, 0, 0, 0)
-      self.ltv_content.addWidget(item)
       item.setLayout(layout)
+      self.ltv_content.addWidget(item)
       self.items.append(item)
       arg_label = QtGui.QLabel(item)
       arg_label.setMinimumWidth(100)
@@ -65,11 +66,17 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
         arg_box.setText(val)
       layout.addWidget(arg_label)
       layout.addWidget(arg_box)
+      
+      height = arg_box.sizeHint().height()+12+arg_label.sizeHint().height()+12
       arg_label.setText(la)
+      item.setFixedHeight(height)
+      total_height+=12+height
+
+    self.setFixedHeight(total_height)
     self.is_toggled = False
     self.toggle()
 
-  def closeEvent(self, *args, **kwargs):
+  def delete_clicked(self):
     self.bundle_widget.remove_operation(self)
 
   def toggle(self):
@@ -80,7 +87,6 @@ class OperationWidget(QtGui.QWidget, Ui_OperationWidget):
     else:
       self.groupBox.hide()
     self.updateGeometry()
-
 
   def sizeHint(self):
     s = None

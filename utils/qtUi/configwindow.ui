@@ -137,14 +137,14 @@
          <enum>Qt::Vertical</enum>
         </property>
         <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="ltv_content" stretch="">
+         <layout class="QVBoxLayout" name="ltv_content">
           <property name="sizeConstraint">
            <enum>QLayout::SetMaximumSize</enum>
           </property>
          </layout>
         </widget>
         <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="ltv_bottom" stretch="">
+         <layout class="QVBoxLayout" name="ltv_bottom">
           <property name="sizeConstraint">
            <enum>QLayout::SetMinimumSize</enum>
           </property>
@@ -157,39 +157,7 @@
           <enum>QLayout::SetMinimumSize</enum>
          </property>
          <item>
-          <widget class="QScrollArea" name="scrollArea">
-           <property name="widgetResizable">
-            <bool>true</bool>
-           </property>
-           <widget class="QWidget" name="detailsContainer">
-            <property name="geometry">
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>77</width>
-              <height>438</height>
-             </rect>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_3">
-             <item>
-              <layout class="QVBoxLayout" name="verticalLayout"/>
-             </item>
-             <item>
-              <spacer name="verticalSpacer">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>389</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
-          </widget>
+          <widget class="PluginsList" name="listWidget"/>
          </item>
         </layout>
        </widget>
@@ -517,6 +485,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PluginsList</class>
+   <extends>QListWidget</extends>
+   <header>plugins_list.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="images.qrc"/>
  </resources>
