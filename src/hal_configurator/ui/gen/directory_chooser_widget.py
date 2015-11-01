@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/shared/directory_chooser_widget.ui'
 #
-# Created: Sun Nov  1 22:25:37 2015
+# Created: Sun Nov  1 23:10:14 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -27,6 +27,8 @@ class Ui_DirectoryChooserWidget(object):
         self.horizontalLayout.addWidget(self.btn_remove)
 
         self.retranslateUi(DirectoryChooserWidget)
+        QtCore.QObject.connect(self.btn_remove, QtCore.SIGNAL("clicked()"), self.txt_dir.clear)
+        QtCore.QObject.connect(self.btn_browse, QtCore.SIGNAL("clicked()"), DirectoryChooserWidget.chooseDirectory)
         QtCore.QMetaObject.connectSlotsByName(DirectoryChooserWidget)
 
     def retranslateUi(self, DirectoryChooserWidget):

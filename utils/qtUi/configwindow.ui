@@ -130,6 +130,8 @@
     <addaction name="separator"/>
     <addaction name="actionVerbose"/>
     <addaction name="actionDebug_2"/>
+    <addaction name="separator"/>
+    <addaction name="actionToggle_Toolbar"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -964,6 +966,14 @@
     <enum>Qt::WindowShortcut</enum>
    </property>
   </action>
+  <action name="actionToggle_Toolbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Toggle Toolbar</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1008,6 +1018,22 @@
     <hint type="destinationlabel">
      <x>512</x>
      <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionToggle_Toolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolBar</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>512</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>

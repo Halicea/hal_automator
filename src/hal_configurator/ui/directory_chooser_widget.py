@@ -5,9 +5,17 @@ class DirectoryChooserWidget(QtGui.QWidget, Ui_DirectoryChooserWidget):
   
   def __init__(self, message,*args, **kwargs):
     super(DirectoryChooserWidget, self).__init__(*args, **kwargs)
-
+    self.setupUi()
+    self.bindUi()
+    self.title = "Choose directory"
   def setupUi(self):
-    pass
+    super(DirectoryChooserWidget, self).setupUi(self)
   
   def bindUi(self):
     pass
+  
+  @QtCore.Slot()
+  def chooseDirectory(self):
+    res = QtGui.QFileDialog.getExistingDirectory(caption=self.title)
+    if res:
+      self.txt_dir.setText(res)

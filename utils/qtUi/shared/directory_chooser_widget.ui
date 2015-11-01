@@ -46,5 +46,41 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>btn_remove</sender>
+   <signal>clicked()</signal>
+   <receiver>txt_dir</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_browse</sender>
+   <signal>clicked()</signal>
+   <receiver>DirectoryChooserWidget</receiver>
+   <slot>chooseDirectory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>chooseDirectory()</slot>
+ </slots>
 </ui>

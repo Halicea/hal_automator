@@ -342,5 +342,5 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
       
     @QtCore.Slot()
     def showOptionsMenu(self):
-        self.prefs = PreferencesWidget(self)
+        self.prefs = PreferencesWidget()
         self.prefs.show()

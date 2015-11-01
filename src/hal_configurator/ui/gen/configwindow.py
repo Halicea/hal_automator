@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Sun Nov  1 22:20:05 2015
+# Created: Sun Nov  1 23:00:39 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -335,6 +335,9 @@ class Ui_ConfigWindow(object):
         self.actionOptions.setIcon(icon3)
         self.actionOptions.setShortcutContext(QtCore.Qt.WindowShortcut)
         self.actionOptions.setObjectName("actionOptions")
+        self.actionToggle_Toolbar = QtGui.QAction(ConfigWindow)
+        self.actionToggle_Toolbar.setCheckable(True)
+        self.actionToggle_Toolbar.setObjectName("actionToggle_Toolbar")
         self.menuWorkspace.addAction(self.actionSync)
         self.menuWorkspace.addAction(self.actionReset)
         self.menuWorkspace.addSeparator()
@@ -365,6 +368,8 @@ class Ui_ConfigWindow(object):
         self.menuView.addSeparator()
         self.menuView.addAction(self.actionVerbose)
         self.menuView.addAction(self.actionDebug_2)
+        self.menuView.addSeparator()
+        self.menuView.addAction(self.actionToggle_Toolbar)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
         self.menubar.addAction(self.menuRun.menuAction())
@@ -381,6 +386,7 @@ class Ui_ConfigWindow(object):
         self.retranslateUi(ConfigWindow)
         QtCore.QObject.connect(self.txt_plugin_filter, QtCore.SIGNAL("textEdited(QString)"), self.listWidget.filter)
         QtCore.QObject.connect(self.actionOptions, QtCore.SIGNAL("triggered()"), ConfigWindow.showOptionsMenu)
+        QtCore.QObject.connect(self.actionToggle_Toolbar, QtCore.SIGNAL("toggled(bool)"), self.toolBar.setVisible)
         QtCore.QMetaObject.connectSlotsByName(ConfigWindow)
 
     def retranslateUi(self, ConfigWindow):
@@ -445,6 +451,7 @@ class Ui_ConfigWindow(object):
         self.actionVerbose.setText(QtGui.QApplication.translate("ConfigWindow", "Verbose Output", None, QtGui.QApplication.UnicodeUTF8))
         self.actionDebug_2.setText(QtGui.QApplication.translate("ConfigWindow", "Debug", None, QtGui.QApplication.UnicodeUTF8))
         self.actionOptions.setText(QtGui.QApplication.translate("ConfigWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionToggle_Toolbar.setText(QtGui.QApplication.translate("ConfigWindow", "Toggle Toolbar", None, QtGui.QApplication.UnicodeUTF8))
 
 from plugins_list import PluginsList
 import images_rc

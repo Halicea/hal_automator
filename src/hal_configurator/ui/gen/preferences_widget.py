@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/PreferenceForms/Config/preferences_widget.ui'
 #
-# Created: Sun Nov  1 22:36:11 2015
+# Created: Sun Nov  1 23:32:01 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -77,10 +77,10 @@ class Ui_PreferencesWidget(object):
         self.verticalLayout.addItem(spacerItem)
         self.scrollArea.setWidget(self.ws_content)
         self.verticalLayout_5.addWidget(self.scrollArea)
-        self.actionBox = QtGui.QDialogButtonBox(self.gen_plugins)
-        self.actionBox.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
-        self.actionBox.setObjectName("actionBox")
-        self.verticalLayout_5.addWidget(self.actionBox)
+        self.genAction = QtGui.QDialogButtonBox(self.gen_plugins)
+        self.genAction.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
+        self.genAction.setObjectName("genAction")
+        self.verticalLayout_5.addWidget(self.genAction)
         self.widgets.addWidget(self.gen_plugins)
         self.ws_info = QtGui.QWidget()
         self.ws_info.setObjectName("ws_info")
@@ -107,10 +107,10 @@ class Ui_PreferencesWidget(object):
         self.verticalLayout_8.addLayout(self.horizontalLayout_5)
         spacerItem1 = QtGui.QSpacerItem(20, 224, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_8.addItem(spacerItem1)
-        self.actionBox_3 = QtGui.QDialogButtonBox(self.ws_info)
-        self.actionBox_3.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
-        self.actionBox_3.setObjectName("actionBox_3")
-        self.verticalLayout_8.addWidget(self.actionBox_3)
+        self.wsInfoAction = QtGui.QDialogButtonBox(self.ws_info)
+        self.wsInfoAction.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
+        self.wsInfoAction.setObjectName("wsInfoAction")
+        self.verticalLayout_8.addWidget(self.wsInfoAction)
         self.widgets.addWidget(self.ws_info)
         self.ws_plugins = QtGui.QWidget()
         self.ws_plugins.setObjectName("ws_plugins")
@@ -148,15 +148,22 @@ class Ui_PreferencesWidget(object):
         self.verticalLayout_6.addItem(spacerItem2)
         self.scrollArea_2.setWidget(self.gen_contents)
         self.verticalLayout_7.addWidget(self.scrollArea_2)
-        self.actionBox_2 = QtGui.QDialogButtonBox(self.ws_plugins)
-        self.actionBox_2.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
-        self.actionBox_2.setObjectName("actionBox_2")
-        self.verticalLayout_7.addWidget(self.actionBox_2)
+        self.wsPluginsAction = QtGui.QDialogButtonBox(self.ws_plugins)
+        self.wsPluginsAction.setStandardButtons(QtGui.QDialogButtonBox.Cancel|QtGui.QDialogButtonBox.Save)
+        self.wsPluginsAction.setObjectName("wsPluginsAction")
+        self.verticalLayout_7.addWidget(self.wsPluginsAction)
         self.widgets.addWidget(self.ws_plugins)
         self.horizontalLayout.addWidget(self.widgets)
 
         self.retranslateUi(PreferencesWidget)
-        self.widgets.setCurrentIndex(2)
+        self.widgets.setCurrentIndex(0)
+        QtCore.QObject.connect(self.genAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveConfigPlugins)
+        QtCore.QObject.connect(self.wsPluginsAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSPlugins)
+        QtCore.QObject.connect(self.wsInfoAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSInfo)
+        QtCore.QObject.connect(self.wsInfoAction, QtCore.SIGNAL("rejected()"), PreferencesWidget.loadWSInfo)
+        QtCore.QObject.connect(self.wsPluginsAction, QtCore.SIGNAL("rejected()"), PreferencesWidget.loadWSPlugins)
+        QtCore.QObject.connect(self.genAction, QtCore.SIGNAL("rejected()"), PreferencesWidget.loadConfigPlugins)
+        QtCore.QObject.connect(self.tree_sections, QtCore.SIGNAL("itemClicked(QTreeWidgetItem*,int)"), PreferencesWidget.selectionChanged)
         QtCore.QMetaObject.connectSlotsByName(PreferencesWidget)
 
     def retranslateUi(self, PreferencesWidget):

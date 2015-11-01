@@ -96,7 +96,7 @@
       <bool>false</bool>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="gen_plugins">
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -168,7 +168,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QDialogButtonBox" name="actionBox">
+        <widget class="QDialogButtonBox" name="genAction">
          <property name="standardButtons">
           <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
          </property>
@@ -224,7 +224,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QDialogButtonBox" name="actionBox_3">
+        <widget class="QDialogButtonBox" name="wsInfoAction">
          <property name="standardButtons">
           <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
          </property>
@@ -302,7 +302,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QDialogButtonBox" name="actionBox_2">
+        <widget class="QDialogButtonBox" name="wsPluginsAction">
          <property name="standardButtons">
           <set>QDialogButtonBox::Cancel|QDialogButtonBox::Save</set>
          </property>
@@ -323,5 +323,127 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>genAction</sender>
+   <signal>accepted()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>saveConfigPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wsPluginsAction</sender>
+   <signal>accepted()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>saveWSPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wsInfoAction</sender>
+   <signal>accepted()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>saveWSInfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wsInfoAction</sender>
+   <signal>rejected()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>loadWSInfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>wsPluginsAction</sender>
+   <signal>rejected()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>loadWSPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>genAction</sender>
+   <signal>rejected()</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>loadConfigPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>422</x>
+     <y>348</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tree_sections</sender>
+   <signal>itemClicked(QTreeWidgetItem*,int)</signal>
+   <receiver>PreferencesWidget</receiver>
+   <slot>selectionChanged(QTreeWidgetItem*,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>190</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>317</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>loadConfigPlugins()</slot>
+  <slot>loadWSInfo()</slot>
+  <slot>loadWSPlugins()</slot>
+  <slot>saveWSInfo()</slot>
+  <slot>saveWSPlugins()</slot>
+  <slot>saveConfigPlugins()</slot>
+  <slot>selectionChanged(QTreeWidgetItem*,int)</slot>
+ </slots>
 </ui>
