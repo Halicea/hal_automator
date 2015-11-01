@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/PreferenceForms/Config/config_widget.ui'
+# Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/PreferenceForms/Config/preferences_widget.ui'
 #
-# Created: Sun Nov  1 20:32:44 2015
+# Created: Sun Nov  1 22:36:11 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
 
 from PySide import QtCore, QtGui
 
-class Ui_main_form(object):
-    def setupUi(self, main_form):
-        main_form.setObjectName("main_form")
-        main_form.resize(635, 381)
-        self.horizontalLayout = QtGui.QHBoxLayout(main_form)
+class Ui_PreferencesWidget(object):
+    def setupUi(self, PreferencesWidget):
+        PreferencesWidget.setObjectName("PreferencesWidget")
+        PreferencesWidget.resize(635, 381)
+        self.horizontalLayout = QtGui.QHBoxLayout(PreferencesWidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.tree_sections = QtGui.QTreeWidget(main_form)
+        self.tree_sections = QtGui.QTreeWidget(PreferencesWidget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -37,11 +37,11 @@ class Ui_main_form(object):
         self.tree_sections.header().setVisible(False)
         self.tree_sections.header().setDefaultSectionSize(150)
         self.horizontalLayout.addWidget(self.tree_sections)
-        self.widgets = QtGui.QStackedWidget(main_form)
+        self.widgets = QtGui.QStackedWidget(PreferencesWidget)
         self.widgets.setEnabled(True)
         self.widgets.setAutoFillBackground(False)
         self.widgets.setObjectName("widgets")
-        self.gen_plugins = PluginSourcesWidget()
+        self.gen_plugins = QtGui.QWidget()
         self.gen_plugins.setObjectName("gen_plugins")
         self.verticalLayout_5 = QtGui.QVBoxLayout(self.gen_plugins)
         self.verticalLayout_5.setObjectName("verticalLayout_5")
@@ -155,23 +155,22 @@ class Ui_main_form(object):
         self.widgets.addWidget(self.ws_plugins)
         self.horizontalLayout.addWidget(self.widgets)
 
-        self.retranslateUi(main_form)
-        self.widgets.setCurrentIndex(1)
-        QtCore.QMetaObject.connectSlotsByName(main_form)
+        self.retranslateUi(PreferencesWidget)
+        self.widgets.setCurrentIndex(2)
+        QtCore.QMetaObject.connectSlotsByName(PreferencesWidget)
 
-    def retranslateUi(self, main_form):
-        main_form.setWindowTitle(QtGui.QApplication.translate("main_form", "Form", None, QtGui.QApplication.UnicodeUTF8))
-        self.tree_sections.headerItem().setText(0, QtGui.QApplication.translate("main_form", "Root", None, QtGui.QApplication.UnicodeUTF8))
+    def retranslateUi(self, PreferencesWidget):
+        PreferencesWidget.setWindowTitle(QtGui.QApplication.translate("PreferencesWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.headerItem().setText(0, QtGui.QApplication.translate("PreferencesWidget", "Root", None, QtGui.QApplication.UnicodeUTF8))
         __sortingEnabled = self.tree_sections.isSortingEnabled()
         self.tree_sections.setSortingEnabled(False)
-        self.tree_sections.topLevelItem(0).setText(0, QtGui.QApplication.translate("main_form", "General", None, QtGui.QApplication.UnicodeUTF8))
-        self.tree_sections.topLevelItem(0).child(0).setText(0, QtGui.QApplication.translate("main_form", "Plugins", None, QtGui.QApplication.UnicodeUTF8))
-        self.tree_sections.topLevelItem(1).setText(0, QtGui.QApplication.translate("main_form", "Workspace", None, QtGui.QApplication.UnicodeUTF8))
-        self.tree_sections.topLevelItem(1).child(0).setText(0, QtGui.QApplication.translate("main_form", "Info", None, QtGui.QApplication.UnicodeUTF8))
-        self.tree_sections.topLevelItem(1).child(1).setText(0, QtGui.QApplication.translate("main_form", "Plugins", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.topLevelItem(0).setText(0, QtGui.QApplication.translate("PreferencesWidget", "General", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.topLevelItem(0).child(0).setText(0, QtGui.QApplication.translate("PreferencesWidget", "Plugins", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.topLevelItem(1).setText(0, QtGui.QApplication.translate("PreferencesWidget", "Workspace", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.topLevelItem(1).child(0).setText(0, QtGui.QApplication.translate("PreferencesWidget", "Info", None, QtGui.QApplication.UnicodeUTF8))
+        self.tree_sections.topLevelItem(1).child(1).setText(0, QtGui.QApplication.translate("PreferencesWidget", "Plugins", None, QtGui.QApplication.UnicodeUTF8))
         self.tree_sections.setSortingEnabled(__sortingEnabled)
-        self.label_2.setText(QtGui.QApplication.translate("main_form", "Path:", None, QtGui.QApplication.UnicodeUTF8))
-        self.label.setText(QtGui.QApplication.translate("main_form", "Name:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label_2.setText(QtGui.QApplication.translate("PreferencesWidget", "Path:", None, QtGui.QApplication.UnicodeUTF8))
+        self.label.setText(QtGui.QApplication.translate("PreferencesWidget", "Name:", None, QtGui.QApplication.UnicodeUTF8))
 
-from plugin_sources_widget import PluginSourcesWidget
-from directory_chooser_widget import DirectoryChooserWidget
+from hal_configurator.ui.directory_chooser_widget import DirectoryChooserWidget

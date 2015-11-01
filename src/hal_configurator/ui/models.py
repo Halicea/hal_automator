@@ -193,7 +193,7 @@ class ToolsListModel(QtCore.QAbstractListModel):
             return command
         elif role == QtCore.Qt.UserRole:
             return get_plugin_cls(command)
-        return None
+        return None        
 
 
 class ObjectWrapper(QtCore.QObject):

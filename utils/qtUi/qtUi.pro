@@ -38,7 +38,9 @@ FORMS    += \
     execution_progress.ui \
     bundle_execution_progress.ui \
     testingflow.ui \
-    mainwindow.ui
+    mainwindow.ui \
+    shared/directory_chooser_widget.ui \
+    PreferenceForms/Config/preferences_widget.ui
 
 RESOURCES += \
     images.qrc
