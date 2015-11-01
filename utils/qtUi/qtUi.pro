@@ -37,7 +37,8 @@ FORMS    += \
     variable_dialog.ui \
     execution_progress.ui \
     bundle_execution_progress.ui \
-    testingflow.ui
+    testingflow.ui \
+    mainwindow.ui
 
 RESOURCES += \
     images.qrc

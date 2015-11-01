@@ -1,5 +1,6 @@
 from PySide import QtGui, QtCore
-from config_operation import OperationWidget
+# from config_operation import OperationWidget
+from config_operation_old import OperationWidget
 from confirm_dialog import ConfirmDialog
 from hal_configurator.lib.plugin_loader import get_plugins_list
 from hal_configurator.ui.gen.config_bundle import Ui_BundleWidget
@@ -20,10 +21,24 @@ class OpChooserDialog(QtGui.QDialog):
 class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
   def __init__(self, bundle, *args, **kwargs):
     super(BundleWidget, self).__init__(*args, **kwargs)
+    self.scroll_on = True
     self.bundle= bundle
     self.ops = []
     self.setupUi()
     self.bindUi()
+
+  def set_vertical_scroll(self, on):
+    self.scroll_on = on
+    self.updateGeometry()
+      # self.resize(self.sizeHint())
+
+  def sizeHint(self):
+    s = None
+    if self.scroll_on:
+      s = super(BundleWidget,self).sizeHint()
+    else:
+      s = QtCore.QSize(super(BundleWidget,self).sizeHint().width(), 50+ self.contents.sizeHint().height())
+    return s
 
   def setupUi(self):
     super(BundleWidget, self).setupUi(self)
@@ -31,6 +46,7 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     self.delete_confirmation.accepted.connect(self.on_delete_accepted)
     self.delete_confirmation.rejected.connect(self.on_delete_rejected)
     self.btn_add_operation.clicked.connect(self.add_clicked)
+
     
   def bindUi(self):
     for op in self.bundle["Operations"]:
@@ -71,8 +87,8 @@ class BundleWidget(QtGui.QWidget, Ui_BundleWidget):
     op = OperationWidget(self, op, self)
     #op.btn_delete.clicked.connect(self.delete_clicked)
     self.ops.append(op)
-    self.ltv_operations.addWidget(op)
-  
+    self.contents.layout().addWidget(op)
+
   def get_dict(self):
     res = {}
     res["Name"] = self.bundle["Name"]

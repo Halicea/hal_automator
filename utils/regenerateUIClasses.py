@@ -106,7 +106,7 @@ def server():
     observer.join()
 
 if __name__ == "__main__":
-  if "server" in sys.argv:
+  if "-s" in sys.argv:
     server()
   else:
     main()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_widget.ui'
 #
-# Created: Fri Mar  6 22:23:05 2015
+# Created: Sun Nov  1 02:19:34 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,7 +47,7 @@ class Ui_ConfigForm(object):
         self.splitter.setChildrenCollapsible(True)
         self.splitter.setObjectName("splitter")
         self.tabs_vars = QtGui.QTabWidget(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabs_vars.sizePolicy().hasHeightForWidth())
@@ -95,7 +95,7 @@ class Ui_ConfigForm(object):
         self.tlbx_bundles.setBaseSize(QtCore.QSize(0, 0))
         self.tlbx_bundles.setObjectName("tlbx_bundles")
         self.page = QtGui.QWidget()
-        self.page.setGeometry(QtCore.QRect(0, 0, 310, 531))
+        self.page.setGeometry(QtCore.QRect(0, 0, 649, 531))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
