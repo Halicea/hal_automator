@@ -19,3 +19,9 @@ class DirectoryChooserWidget(QtGui.QWidget, Ui_DirectoryChooserWidget):
     res = QtGui.QFileDialog.getExistingDirectory(caption=self.title)
     if res:
       self.txt_dir.setText(res)
+  
+  def setText(self, value):
+    self.txt_dir.setText(value)
+  
+  def text(self):
+    return self.txt_dir.text() or ''

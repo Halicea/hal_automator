@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Sun Nov  1 23:00:39 2015
+# Created: Mon Nov  2 04:57:25 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_ConfigWindow(object):
     def setupUi(self, ConfigWindow):
         ConfigWindow.setObjectName("ConfigWindow")
-        ConfigWindow.resize(1026, 552)
+        ConfigWindow.resize(1026, 697)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/buttons/images/HAL-9000-icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         ConfigWindow.setWindowIcon(icon)
@@ -246,7 +246,25 @@ class Ui_ConfigWindow(object):
         self.horizontalLayout.addWidget(self.cbStepThruOps)
         self.verticalLayout.addLayout(self.horizontalLayout)
         self.dock_working_dir.setWidget(self.dockWidgetContents_2)
-        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dock_working_dir)
+        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(4), self.dock_working_dir)
+        self.dock_console = QtGui.QDockWidget(ConfigWindow)
+        self.dock_console.setObjectName("dock_console")
+        self.dockWidgetContents_3 = QtGui.QWidget()
+        self.dockWidgetContents_3.setObjectName("dockWidgetContents_3")
+        self.horizontalLayout_2 = QtGui.QHBoxLayout(self.dockWidgetContents_3)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.widget = ConsoleOutput(self.dockWidgetContents_3)
+        self.widget.setObjectName("widget")
+        self.horizontalLayout_2.addWidget(self.widget)
+        self.dock_console.setWidget(self.dockWidgetContents_3)
+        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dock_console)
+        self.dock_resources = QtGui.QDockWidget(ConfigWindow)
+        self.dock_resources.setObjectName("dock_resources")
+        self.resources_widget = ResourcesWidget()
+        self.resources_widget.setObjectName("resources_widget")
+        self.dock_resources.setWidget(self.resources_widget)
+        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_resources)
         self.actionSave = QtGui.QAction(ConfigWindow)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/buttons/images/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -453,5 +471,7 @@ class Ui_ConfigWindow(object):
         self.actionOptions.setText(QtGui.QApplication.translate("ConfigWindow", "Preferences", None, QtGui.QApplication.UnicodeUTF8))
         self.actionToggle_Toolbar.setText(QtGui.QApplication.translate("ConfigWindow", "Toggle Toolbar", None, QtGui.QApplication.UnicodeUTF8))
 
-from plugins_list import PluginsList
+from hal_configurator.ui.custom_widgets.plugins_list import PluginsList
+from hal_configurator.ui.custom_widgets.resources_widget import ResourcesWidget
+from hal_configurator.ui.console_output import ConsoleOutput
 import images_rc

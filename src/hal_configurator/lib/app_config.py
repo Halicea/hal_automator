@@ -1,15 +1,23 @@
 import traceback
-from config import Config
+import json
 try:
   from hal_configurator.lib.workspace_manager import Workspace
 except:
   pass
+from hal_configurator.lib.dict2obj import DynamicObject
+from hal_configurator.lib import config_path
 
 __author__ = 'Costa Halicea'
-from hal_configurator.lib import config_path
+
+
+class Config(DynamicObject):
+  def __init__(self, d):
+    j = json.loads(d)
+    DynamicObject.__init__(self, j)
+
 config = None
 try:
-  config = Config(open(config_path(), 'r'))
+  config = Config(open(config_path(), 'r').read())
 except:
   traceback.print_exc()
   print 'ConfigPath %s' % config_path()
@@ -19,17 +27,14 @@ def add_config_to_history(path):
   ch = get_config_history()
   if path in ch:
     ch.append(ch.pop(ch.index(path)))
-  elif len(config.config_history) == len(ch):
-    ch.append("'"+path+"'")
+  
+  ch.append(path)
+  if len(config.config_history) >= 10:
     ch.pop(0)
-  else:
-    ch.append("'"+path+"'")
-  for i in range(0, len(ch)):
-    config.config_history[i].path = ch[i]
   save()
 
 def get_config_history():
-  return [k.path for k in config.config_history if k.path]
+  return config.config_history
 
 def get_current_workspace():
   if not Workspace.current:
@@ -39,14 +44,14 @@ def get_current_workspace():
 def set_current_workspace(path):
   if not Workspace.current or Workspace.current.workspacedir != path:
     Workspace.set(path)
-    config.current_workspace = "'%s'" % path
+    config.current_workspace = path
     save()
 
 def get_working_dir():
-  return config.working_dir_history[0].path
+  return config.working_dir_history[-1]
 
 def set_working_dir(path):
-  config.working_dir_history[0].path = "'"+path+"'"
+  config.working_dir_history[-1] = path
   save()
 
 def get_last_dir():
@@ -56,7 +61,7 @@ def get_version():
   return config.version
 
 def set_last_dir(d):
-  config.last_dir = "'"+d+"'"
+  config.last_dir = d
   save()
 
 def is_verbose():
@@ -72,6 +77,4 @@ def set_verbose(value):
   save()
 
 def save():
-  s = open(config_path(), 'w')
-  config.save(s)
-  s.close()
+  config.save(config_path())

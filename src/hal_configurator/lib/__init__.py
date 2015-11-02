@@ -12,7 +12,6 @@ def copytree(src, dst, symlinks=False, ignore=None):
       else:
           shutil.copy2(s, d)
 
-
 def config_path():
   current = os.path.abspath(__file__)
   d = os.path.dirname

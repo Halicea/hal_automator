@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1026</width>
-    <height>552</height>
+    <height>697</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -626,9 +626,6 @@
       </widget>
      </item>
     </layout>
-    <zorder>listWidget</zorder>
-    <zorder>verticalLayoutWidget</zorder>
-    <zorder>txt_plugin_filter</zorder>
    </widget>
   </widget>
   <widget class="QDockWidget" name="dock_working_dir">
@@ -636,7 +633,7 @@
     <string>Working Directory</string>
    </property>
    <attribute name="dockWidgetArea">
-    <number>2</number>
+    <number>4</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -713,8 +710,37 @@
      </item>
     </layout>
     <zorder></zorder>
-    <zorder></zorder>
    </widget>
+  </widget>
+  <widget class="QDockWidget" name="dock_console">
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="ConsoleOutput" name="widget" native="true"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dock_resources">
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="ResourcesWidget" name="resources_widget"/>
   </widget>
   <action name="actionSave">
    <property name="icon">
@@ -979,10 +1005,22 @@
   <customwidget>
    <class>PluginsList</class>
    <extends>QListWidget</extends>
-   <header>plugins_list.h</header>
+   <header>hal_configurator.ui.custom_widgets.plugins_list.h</header>
    <slots>
     <slot>filter(QString)</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>ConsoleOutput</class>
+   <extends>QWidget</extends>
+   <header>hal_configurator.ui.console_output.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ResourcesWidget</class>
+   <extends>QWidget</extends>
+   <header>hal_configurator.ui.custom_widgets.resources_widget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

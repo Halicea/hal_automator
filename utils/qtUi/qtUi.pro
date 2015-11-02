@@ -40,7 +40,8 @@ FORMS    += \
     testingflow.ui \
     mainwindow.ui \
     shared/directory_chooser_widget.ui \
-    PreferenceForms/Config/preferences_widget.ui
+    PreferenceForms/Config/preferences_widget.ui \
+    resources_widget.ui
 
 RESOURCES += \
     images.qrc

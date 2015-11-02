@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/PreferenceForms/Config/preferences_widget.ui'
 #
-# Created: Sun Nov  1 23:32:01 2015
+# Created: Mon Nov  2 03:56:58 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -156,7 +156,7 @@ class Ui_PreferencesWidget(object):
         self.horizontalLayout.addWidget(self.widgets)
 
         self.retranslateUi(PreferencesWidget)
-        self.widgets.setCurrentIndex(0)
+        self.widgets.setCurrentIndex(1)
         QtCore.QObject.connect(self.genAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveConfigPlugins)
         QtCore.QObject.connect(self.wsPluginsAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSPlugins)
         QtCore.QObject.connect(self.wsInfoAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSInfo)

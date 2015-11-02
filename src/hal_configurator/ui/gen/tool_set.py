@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/tool_set.ui'
 #
-# Created: Sun Nov  1 19:09:22 2015
+# Created: Mon Nov  2 03:56:58 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -17,6 +17,8 @@ class Ui_ToolSet(object):
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.lv_tools = QtGui.QListView(ToolSet)
+        self.lv_tools.setViewMode(QtGui.QListView.ListMode)
+        self.lv_tools.setModelColumn(0)
         self.lv_tools.setObjectName("lv_tools")
         self.verticalLayout.addWidget(self.lv_tools)
         spacerItem = QtGui.QSpacerItem(20, 538, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
