@@ -10,22 +10,24 @@ from hal_configurator.ui.gen.resourceswindow import Ui_ResourcesWindow
 from resource_dialog import ResourceDialog
 
 class ResourcesWindow(QtGui.QWidget, Ui_ResourcesWindow):
-  def __init__(self, root_dir, *args, **kwargs):
+  def __init__(self, *args, **kwargs):
     super(ResourcesWindow, self).__init__(*args, **kwargs)
     self.setupUi(self)
     self.show()
-    self.root_dir = root_dir
+    self.root_dir = None 
     self.details_parent = None
 
   def setDetailsContainer(self, container):
     self.details_parent = container
 
-  def setModel(self, model):
+  def setModel(self, model, root_dir):
+    self.root_dir = root_dir
     self.data_model = model
-    self.lv_resources.setModel(self.data_model)
+    self.lv_resources.setModel(self.data_model, self.root_dir)
     self.lv_resources.set_resource_root(self.root_dir)
     self.lv_resources.doubleClicked.connect(self.__on_resource_edit)
     self.lv_resources.installEventFilter(self)
+    self.lv_resources.set_object_format("application/x-resource")
 
     #self.lv_resources.key
     self.btn_add.clicked.connect(self.on_add_clicked)

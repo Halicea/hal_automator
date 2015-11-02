@@ -21,7 +21,7 @@ from hal_configurator.lib.workspace_manager import Workspace
 from hal_configurator.ui.preferences_widget import PreferencesWidget
 
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
-    def __init__(self, main_window, *args, **kwargs):
+    def __init__(self, main_window, *args, **kwargs):        
         super(ConfigWindow, self).__init__(*args, **kwargs)
         self.viewMode = 'admin'
         self.debug = False
@@ -31,13 +31,17 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.main_window = main_window or self
         self.working_dir_choser = None
         self.messages_thread = None
+        self.root_dir = None 
+        
+        self.loader = None
+        self.save_path = None 
         self.cw = None
         self.bundlesModel = QtGui.QStandardItemModel()
         self.set_plugins()
         self.setupUi()
         self.set_message_receiver()
         self.start_last_if_any()
-    
+        
     def set_plugins(self):
         self.plugins =[]
         for d in config.plugin_dirs:
@@ -69,26 +73,16 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         title +="         -- Configurator Version:%s" % (app_config.get_version())
         self.setWindowTitle(title)
         self.txtWorkingDir.setText(self.working_dir)
-
         if self.cw:
             self.ltv_content.removeWidget(self.cw)
             self.cw.close()
         self.cw = ConfigForm(self.loader, parent=self, details_parent = self.tool)
-        #self.tool.setModel(ToolsListModel(self.plugins, False))
         self.menubar.setWindowTitle(title)
-        self.build_output = None
         self.set_bundles_model()
-
         self.ltv_content.addWidget(self.cw)
-        # if self.viewMode!='admin':
-        #     self.cw.tlbx_bundles.hide()
-        #     self.widget.hide()
-        #     width = self.splitter_2.sizeHint().width()
-        #     self.splitter_2.setSizes([width*0.3, width*0.7])
-        # else:
-        #     width = self.splitter_2.sizeHint().width()
-        #     self.splitter_2.setSizes([width, 0])
-            
+        
+        self.resources_widget.setModel(self.configuration)
+
     def start_last_if_any(self):
         try:
             config_history = app_config.get_config_history()
@@ -104,6 +98,8 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         else:
             self.working_dir = app_config.get_working_dir()
         self.loader = FileConfigLoader(self.config_path)
+        self.save_path = self.loader.config_file
+        self.root_dir = os.path.dirname(self.loader.config_file)
         self.configuration = self.loader.load_config()
         self.bindUi()
 
@@ -119,7 +115,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
             check_state = bundle_filter.allowed(bundle['Name']) and QtCore.Qt.CheckState.Checked or QtCore.Qt.CheckState.Unchecked
             dataItem.setCheckState(check_state)
             self.bundlesModel.appendRow(dataItem)
-    
+
     def get_mode_config_for_key(self, work_mode, key):
         if self.configuration.has_key('Builds'):
             if self.configuration['Builds'].has_key(work_mode):
@@ -137,7 +133,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
                 includedBundles.append(dataItem.text())
             i += 1
         return includedBundles
-            
+
     def chose_working_dir(self):
         """
         Choses the current working directory for the current configuration
@@ -172,8 +168,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
 
 
     def sync_workspace(self):
-        self.build_output = ConsoleOutput()
-        self.build_output.show()
+        
         class thc(QtCore.QThread):
             def __init__(self, workspace):
                 self.workspace = workspace
@@ -199,8 +194,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.workspacedialog.close()
 
     def reset_workspace(self):
-        self.build_output = ConsoleOutput()
-        self.build_output.show()
         class thc(QtCore.QThread):
             def __init__(self, workspace):
                 self.workspace = workspace
@@ -210,7 +203,45 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
                 self.workspace.reset()
         self.th = thc(self.workspace)
         self.th.start()
-
+        
+    def save_config(self, is_new=False, is_cloning_empty=False):
+        sp = self.save_path
+        old_path = self.save_path
+        if self.save_path is None or is_new:
+            self.dlg = QtGui.QFileDialog(self, 'Choose where to save the project')
+            self.dlg.setAcceptMode(QtGui.QFileDialog.AcceptSave)
+            self.dlg.currentChanged.connect(self.ensure_in_workspace)
+            if self.dlg.exec_() == QtGui.QFileDialog.Rejected:
+                return
+            sp = self.dlg.selectedFiles()[0]
+            self.dlg = None
+        if sp:
+            if is_new and self.save_path != sp:
+                if not is_cloning_empty:
+                    copytree(self.root_dir, os.path.dirname(sp))
+                    self.save_path = sp
+            print "saving file on "+self.save_path
+            save_references = Workspace.current.mode == 'admin'  # @UndefinedVariable
+            self.loader.save_config(self.get_dict(), save_references, is_cloning_empty)
+        else:
+            print "Saving cancelled"
+        self.save_path = old_path
+    
+    @QtCore.Slot()
+    def ensure_in_workspace(self, current):
+        root = self.workspace.workspacedir
+        wd = os.path.realpath(root)
+        cd = os.path.realpath(current)
+        in_workspace = False
+        if cd:
+            in_workspace = cd.startswith(wd)
+    
+        if not in_workspace:
+            print 'not in workspace', current
+            self.dlg.setDirectory(wd)
+        else:
+            print 'in workspace'
+        
     def setViewMode(self, modeUsed=None):
         newViewMode = None
         if modeUsed=='moderator':
@@ -229,7 +260,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         def save(is_new, is_cloning_empty):
             def fn ():
                 if self.cw:
-                    self.cw.save_config(is_new, is_cloning_empty)
+                    self.save_config(is_new, is_cloning_empty)
             return fn
         def viewModeSetter(mode):
             def fn ():
@@ -267,7 +298,7 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
             last_config = app_config.get_config_history()[-1]
             last_config = last_config.replace("'", '')
             params["dir"] = os.path.dirname(last_config)
-            
+
         f = QtGui.QFileDialog.getSaveFileName(**params)
         if f[0]:
             self.config_path = f[0]
@@ -309,10 +340,9 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         root_url = os.path.dirname(self.config_path)
         if os.name!='posix':
             root_url = '/'+root_url
-        if self.build_output:
-            self.build_output.close()
-        self.build_output = ConsoleOutput()
-        self.build_output.show()
+        if self.dock_console.isHidden():
+            self.dock_console.show()
+        self.console.clear_output()
         config_loader = FileConfigLoader(self.config_path)
         builder = AppConfigurator(config_loader, ZmqChainedLoger(1234), verbose=self.verbose)
         builder.set_execution_dir(self.working_dir)
@@ -336,11 +366,20 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
             self.messages_thread.start(QThread.TimeCriticalPriority)
 
     def on_message_received(self, message):
-        if self.build_output:
-            self.build_output.txt_output.append("%s" % message)
+        self.console.txt_output.append("%s" % message)
 
-      
     @QtCore.Slot()
     def showOptionsMenu(self):
         self.prefs = PreferencesWidget()
         self.prefs.show()
+    
+    def get_dict(self):
+        d = copy.deepcopy(self.configuration)
+        cw_dict = self.cw.get_dict()
+        rs_dict = self.resources_widget.get_dict()
+        
+        d["PublisherId"] = cw_dict["PublisherId"]
+        d["Content"]["OperationBundles"] = cw_dict["OperationBundles"]
+        d["Resources"] = rs_dict["Resources"]
+        d["Variables"] = rs_dict["Variables"]
+        return d

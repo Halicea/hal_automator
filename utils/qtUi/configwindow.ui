@@ -713,6 +713,9 @@
    </widget>
   </widget>
   <widget class="QDockWidget" name="dock_console">
+   <property name="windowTitle">
+    <string>Console</string>
+   </property>
    <attribute name="dockWidgetArea">
     <number>8</number>
    </attribute>
@@ -731,14 +734,20 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="ConsoleOutput" name="widget" native="true"/>
+      <widget class="ConsoleOutput" name="console" native="true"/>
      </item>
     </layout>
    </widget>
   </widget>
   <widget class="QDockWidget" name="dock_resources">
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="windowTitle">
+    <string>Variables</string>
+   </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="ResourcesWidget" name="resources_widget"/>
   </widget>

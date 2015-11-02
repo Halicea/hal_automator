@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/configwindow.ui'
 #
-# Created: Mon Nov  2 04:57:25 2015
+# Created: Mon Nov  2 11:37:47 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -254,17 +254,18 @@ class Ui_ConfigWindow(object):
         self.horizontalLayout_2 = QtGui.QHBoxLayout(self.dockWidgetContents_3)
         self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.widget = ConsoleOutput(self.dockWidgetContents_3)
-        self.widget.setObjectName("widget")
-        self.horizontalLayout_2.addWidget(self.widget)
+        self.console = ConsoleOutput(self.dockWidgetContents_3)
+        self.console.setObjectName("console")
+        self.horizontalLayout_2.addWidget(self.console)
         self.dock_console.setWidget(self.dockWidgetContents_3)
         ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(8), self.dock_console)
         self.dock_resources = QtGui.QDockWidget(ConfigWindow)
+        self.dock_resources.setFloating(False)
         self.dock_resources.setObjectName("dock_resources")
         self.resources_widget = ResourcesWidget()
         self.resources_widget.setObjectName("resources_widget")
         self.dock_resources.setWidget(self.resources_widget)
-        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(1), self.dock_resources)
+        ConfigWindow.addDockWidget(QtCore.Qt.DockWidgetArea(2), self.dock_resources)
         self.actionSave = QtGui.QAction(ConfigWindow)
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/buttons/images/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -427,6 +428,8 @@ class Ui_ConfigWindow(object):
         self.cbChooseWorkingDir.setText(QtGui.QApplication.translate("ConfigWindow", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.cbStepThruBundles.setText(QtGui.QApplication.translate("ConfigWindow", "Step Thru Bundles", None, QtGui.QApplication.UnicodeUTF8))
         self.cbStepThruOps.setText(QtGui.QApplication.translate("ConfigWindow", "Step Thru Ops", None, QtGui.QApplication.UnicodeUTF8))
+        self.dock_console.setWindowTitle(QtGui.QApplication.translate("ConfigWindow", "Console", None, QtGui.QApplication.UnicodeUTF8))
+        self.dock_resources.setWindowTitle(QtGui.QApplication.translate("ConfigWindow", "Variables", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setText(QtGui.QApplication.translate("ConfigWindow", "Save", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setShortcut(QtGui.QApplication.translate("ConfigWindow", "Ctrl+S", None, QtGui.QApplication.UnicodeUTF8))
         self.actionRun.setText(QtGui.QApplication.translate("ConfigWindow", "Run", None, QtGui.QApplication.UnicodeUTF8))

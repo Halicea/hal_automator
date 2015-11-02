@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/bundle_execution_progress.ui'
 #
-# Created: Sun Nov  1 19:09:15 2015
+# Created: Mon Nov  2 11:05:46 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

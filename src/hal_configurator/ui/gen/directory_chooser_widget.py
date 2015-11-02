@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/shared/directory_chooser_widget.ui'
 #
-# Created: Sun Nov  1 23:10:14 2015
+# Created: Mon Nov  2 11:05:55 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

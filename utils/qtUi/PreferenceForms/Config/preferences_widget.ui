@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>635</width>
+    <width>670</width>
     <height>381</height>
    </rect>
   </property>
@@ -96,7 +96,7 @@
       <bool>false</bool>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="gen_plugins">
       <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -110,8 +110,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>375</width>
-            <height>291</height>
+            <width>98</width>
+            <height>124</height>
            </rect>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout">
@@ -244,7 +244,7 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>375</width>
+            <width>410</width>
             <height>291</height>
            </rect>
           </property>
@@ -318,7 +318,7 @@
   <customwidget>
    <class>DirectoryChooserWidget</class>
    <extends>QWidget</extends>
-   <header>directory_chooser_widget.h</header>
+   <header>hal_configurator.ui.directory_chooser_widget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

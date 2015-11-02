@@ -21,6 +21,7 @@ class VariablesWindow(QtGui.QWidget, Ui_VariablesWindow):
     self.data_model = data_model
     self.lv_items.setModel(data_model)
     self.lv_items.doubleClicked.connect(self.__on_variable_edit)
+    self.lv_items.set_object_format("application/x-variable")
     self.btn_add.clicked.connect(self.__on_add_clicked)
     self.btn_delete.clicked.connect(self.__on_remove_clicked)
 

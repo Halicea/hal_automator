@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/testingflow.ui'
 #
-# Created: Sun Nov  1 19:09:21 2015
+# Created: Mon Nov  2 11:05:53 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!

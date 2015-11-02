@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/variableswindow.ui'
 #
-# Created: Sun Nov  1 19:09:22 2015
+# Created: Mon Nov  2 11:05:54 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,12 +12,11 @@ from PySide import QtCore, QtGui
 class Ui_VariablesWindow(object):
     def setupUi(self, VariablesWindow):
         VariablesWindow.setObjectName("VariablesWindow")
-        VariablesWindow.resize(208, 538)
+        VariablesWindow.resize(243, 538)
         self.verticalLayout = QtGui.QVBoxLayout(VariablesWindow)
         self.verticalLayout.setContentsMargins(0, -1, 0, -1)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.lv_items = DragableList(VariablesWindow)
-        self.lv_items.setDragDropMode(QtGui.QAbstractItemView.DragDrop)
+        self.lv_items = QtGui.QListView(VariablesWindow)
         self.lv_items.setObjectName("lv_items")
         self.verticalLayout.addWidget(self.lv_items)
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -57,5 +56,4 @@ class Ui_VariablesWindow(object):
     def retranslateUi(self, VariablesWindow):
         VariablesWindow.setWindowTitle(QtGui.QApplication.translate("VariablesWindow", "Form", None, QtGui.QApplication.UnicodeUTF8))
 
-from dragable_list import DragableList
 import images_rc

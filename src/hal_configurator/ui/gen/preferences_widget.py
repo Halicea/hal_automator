@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/PreferenceForms/Config/preferences_widget.ui'
 #
-# Created: Mon Nov  2 03:56:58 2015
+# Created: Mon Nov  2 11:10:07 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PySide import QtCore, QtGui
 class Ui_PreferencesWidget(object):
     def setupUi(self, PreferencesWidget):
         PreferencesWidget.setObjectName("PreferencesWidget")
-        PreferencesWidget.resize(635, 381)
+        PreferencesWidget.resize(670, 381)
         self.horizontalLayout = QtGui.QHBoxLayout(PreferencesWidget)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.tree_sections = QtGui.QTreeWidget(PreferencesWidget)
@@ -49,7 +49,7 @@ class Ui_PreferencesWidget(object):
         self.scrollArea.setWidgetResizable(True)
         self.scrollArea.setObjectName("scrollArea")
         self.ws_content = QtGui.QWidget()
-        self.ws_content.setGeometry(QtCore.QRect(0, 0, 375, 291))
+        self.ws_content.setGeometry(QtCore.QRect(0, 0, 98, 124))
         self.ws_content.setObjectName("ws_content")
         self.verticalLayout = QtGui.QVBoxLayout(self.ws_content)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -120,7 +120,7 @@ class Ui_PreferencesWidget(object):
         self.scrollArea_2.setWidgetResizable(True)
         self.scrollArea_2.setObjectName("scrollArea_2")
         self.gen_contents = QtGui.QWidget()
-        self.gen_contents.setGeometry(QtCore.QRect(0, 0, 375, 291))
+        self.gen_contents.setGeometry(QtCore.QRect(0, 0, 410, 291))
         self.gen_contents.setObjectName("gen_contents")
         self.verticalLayout_6 = QtGui.QVBoxLayout(self.gen_contents)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
@@ -156,7 +156,7 @@ class Ui_PreferencesWidget(object):
         self.horizontalLayout.addWidget(self.widgets)
 
         self.retranslateUi(PreferencesWidget)
-        self.widgets.setCurrentIndex(1)
+        self.widgets.setCurrentIndex(2)
         QtCore.QObject.connect(self.genAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveConfigPlugins)
         QtCore.QObject.connect(self.wsPluginsAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSPlugins)
         QtCore.QObject.connect(self.wsInfoAction, QtCore.SIGNAL("accepted()"), PreferencesWidget.saveWSInfo)
