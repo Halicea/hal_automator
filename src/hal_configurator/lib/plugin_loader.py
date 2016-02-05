@@ -67,6 +67,7 @@ def load_plugins(plugins):
       __import__(plugin, None, None, [plugin])
 __plugins_list__ = []
 def load_plugins_from_directory_list(plugin_dirs):
+  print plugin_dirs
   """
   Loads all the plugins found in a specific directory
   :param plugin_dirs:
@@ -99,7 +100,12 @@ def get_plugin_cls(command):
 
 
 def get_plugin_module(command):
-  cmd  = isinstance(command, str) and  command or command["Code"]
+  print 'Command', command
+  
+  cmd  = command 
+  if isinstance(cmd, str):
+    cmd = command["Code"]
+ 
   module, claz =  get_module_and_class_names_from_cmd(cmd) #@UnusedVariable
   return __import__(module)
 

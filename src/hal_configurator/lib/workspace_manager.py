@@ -35,7 +35,23 @@ class Workspace(object):
   def mode(self, value):
     self.settings['mode'] = value
     self.save()
-
+  
+  @property
+  def name(self):
+    return self.settings.has_key('name') and self.settings['name'] or ''
+  
+  @name.setter
+  def name(self, value):
+    self.settings['name'] = value
+    self.save()
+  @property
+  def plugin_dirs(self):
+    return self.settings.has_key('plugin_dirs') and self.settings['plugin_dirs'] or []
+  
+  @plugin_dirs.setter
+  def plugin_dirs(self, value):
+    self.settings['plugin_dirs'] = value
+    
   def __load_workspace_settings__(self):
     if os.path.exists(self.settings_file):
       self.settings = json.loads(open(self.settings_file).read())

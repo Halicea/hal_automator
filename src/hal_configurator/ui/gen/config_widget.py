@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/Users/halicea/projects/hal_automator/utils/qtUi/config_widget.ui'
 #
-# Created: Fri Mar  6 22:23:05 2015
+# Created: Mon Nov  2 04:05:00 2015
 #      by: pyside-uic 0.2.15 running on PySide 1.2.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,7 +47,7 @@ class Ui_ConfigForm(object):
         self.splitter.setChildrenCollapsible(True)
         self.splitter.setObjectName("splitter")
         self.tabs_vars = QtGui.QTabWidget(self.splitter)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabs_vars.sizePolicy().hasHeightForWidth())
@@ -65,6 +65,9 @@ class Ui_ConfigForm(object):
         self.verticalLayout_4.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.verticalLayout_4.setContentsMargins(0, -1, 0, 10)
         self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.lineEdit_2 = QtGui.QLineEdit(self.tab_variables)
+        self.lineEdit_2.setObjectName("lineEdit_2")
+        self.verticalLayout_4.addWidget(self.lineEdit_2)
         self.lt_variables = QtGui.QVBoxLayout()
         self.lt_variables.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.lt_variables.setObjectName("lt_variables")
@@ -81,6 +84,9 @@ class Ui_ConfigForm(object):
         self.verticalLayout_6.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.verticalLayout_6.setContentsMargins(0, -1, 0, 10)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.lineEdit = QtGui.QLineEdit(self.tab_resources)
+        self.lineEdit.setObjectName("lineEdit")
+        self.verticalLayout_6.addWidget(self.lineEdit)
         self.lt_resources = QtGui.QVBoxLayout()
         self.lt_resources.setSizeConstraint(QtGui.QLayout.SetMinimumSize)
         self.lt_resources.setObjectName("lt_resources")
@@ -95,7 +101,7 @@ class Ui_ConfigForm(object):
         self.tlbx_bundles.setBaseSize(QtCore.QSize(0, 0))
         self.tlbx_bundles.setObjectName("tlbx_bundles")
         self.page = QtGui.QWidget()
-        self.page.setGeometry(QtCore.QRect(0, 0, 310, 531))
+        self.page.setGeometry(QtCore.QRect(0, 0, 649, 531))
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(2)
         sizePolicy.setVerticalStretch(0)
@@ -122,8 +128,10 @@ class Ui_ConfigForm(object):
     def retranslateUi(self, ConfigForm):
         ConfigForm.setWindowTitle(QtGui.QApplication.translate("ConfigForm", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.btn_save.setText(QtGui.QApplication.translate("ConfigForm", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit_2.setPlaceholderText(QtGui.QApplication.translate("ConfigForm", "Search ...", None, QtGui.QApplication.UnicodeUTF8))
         self.tabs_vars.setTabText(self.tabs_vars.indexOf(self.tab_variables), QtGui.QApplication.translate("ConfigForm", "Variables", None, QtGui.QApplication.UnicodeUTF8))
         self.tabs_vars.setTabToolTip(self.tabs_vars.indexOf(self.tab_variables), QtGui.QApplication.translate("ConfigForm", "List of available variables", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEdit.setPlaceholderText(QtGui.QApplication.translate("ConfigForm", "Search ...", None, QtGui.QApplication.UnicodeUTF8))
         self.tabs_vars.setTabText(self.tabs_vars.indexOf(self.tab_resources), QtGui.QApplication.translate("ConfigForm", "Resources", None, QtGui.QApplication.UnicodeUTF8))
         self.tabs_vars.setTabToolTip(self.tabs_vars.indexOf(self.tab_resources), QtGui.QApplication.translate("ConfigForm", "List of available resources", None, QtGui.QApplication.UnicodeUTF8))
         self.tlbx_bundles.setItemText(self.tlbx_bundles.indexOf(self.page), QtGui.QApplication.translate("ConfigForm", "Page 1", None, QtGui.QApplication.UnicodeUTF8))

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DirectoryChooserWidget</class>
+ <widget class="QWidget" name="DirectoryChooserWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>375</width>
+    <height>32</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="leftMargin">
+    <number>5</number>
+   </property>
+   <property name="topMargin">
+    <number>5</number>
+   </property>
+   <property name="rightMargin">
+    <number>5</number>
+   </property>
+   <property name="bottomMargin">
+    <number>5</number>
+   </property>
+   <item>
+    <widget class="QLineEdit" name="txt_dir"/>
+   </item>
+   <item>
+    <widget class="QToolButton" name="btn_browse">
+     <property name="text">
+      <string>...</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="btn_remove">
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>btn_remove</sender>
+   <signal>clicked()</signal>
+   <receiver>txt_dir</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>358</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>btn_browse</sender>
+   <signal>clicked()</signal>
+   <receiver>DirectoryChooserWidget</receiver>
+   <slot>chooseDirectory()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>325</x>
+     <y>15</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>187</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>chooseDirectory()</slot>
+ </slots>
+</ui>

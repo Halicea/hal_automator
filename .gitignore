@@ -2,8 +2,8 @@ automator_project/.project
 automator_project/.pydevproject
 *.pyc
 .idea/
-plugins
-plugins_*
+plugins/
+plugins_*/
 
 
 automator_project/src/.ipynb_checkpoints

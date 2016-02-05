@@ -18,6 +18,7 @@ from hal_configurator.ui.message_subscriber import MessageSubsriberThread
 from hal_configurator.lib.config_validator import ConfigurationValidator
 from hal_configurator.ui.regex_tool import RegexTool
 from hal_configurator.lib.workspace_manager import Workspace
+from hal_configurator.ui.preferences_widget import PreferencesWidget
 
 class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     def __init__(self, main_window, *args, **kwargs):
@@ -47,9 +48,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         title="Configurator Version:%s"%(app_config.get_version())
         self.setWindowTitle(title)
         self.cbChooseWorkingDir.clicked.connect(self.chose_working_dir)
-        self.splitter.setSizes([self.splitter.height(), 0])
-
-        self.btnRun.clicked.connect(self.on_run_click)
         self.set_menu_bar()
         self.set_recent_config_actions()
         self.tool = None
@@ -82,14 +80,14 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.set_bundles_model()
 
         self.ltv_content.addWidget(self.cw)
-        if self.viewMode!='admin':
-            self.cw.tlbx_bundles.hide()
-            self.widget.hide()
-            width = self.splitter_2.sizeHint().width()
-            self.splitter_2.setSizes([width*0.3, width*0.7])
-        else:
-            width = self.splitter_2.sizeHint().width()
-            self.splitter_2.setSizes([width, 0])
+        # if self.viewMode!='admin':
+        #     self.cw.tlbx_bundles.hide()
+        #     self.widget.hide()
+        #     width = self.splitter_2.sizeHint().width()
+        #     self.splitter_2.setSizes([width*0.3, width*0.7])
+        # else:
+        #     width = self.splitter_2.sizeHint().width()
+        #     self.splitter_2.setSizes([width, 0])
             
     def start_last_if_any(self):
         try:
@@ -108,10 +106,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
         self.loader = FileConfigLoader(self.config_path)
         self.configuration = self.loader.load_config()
         self.bindUi()
-
-
-
-
 
     def set_bundles_model(self):
         self.bundlesModel.clear()
@@ -242,7 +236,6 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
                 return self.setViewMode(mode)
             return fn
         self.actionRun.triggered.connect(self.on_run_click)
-
         self.actionClose.triggered.connect(self.close)
         self.actionOpen.triggered.connect(self.open_config)
         self.actionNew.triggered.connect(self.create_new_config)
@@ -345,3 +338,9 @@ class ConfigWindow(QtGui.QMainWindow, Ui_ConfigWindow):
     def on_message_received(self, message):
         if self.build_output:
             self.build_output.txt_output.append("%s" % message)
+
+      
+    @QtCore.Slot()
+    def showOptionsMenu(self):
+        self.prefs = PreferencesWidget()
+        self.prefs.show()

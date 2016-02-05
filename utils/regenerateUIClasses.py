@@ -15,6 +15,7 @@ rcc_cmd = "pyside-rcc -o %s %s"
 ui_root = "../src/hal_configurator/ui/gen/"
 ui_classes_root ="../src/hal_configurator/ui"
 additional_imports = ["../src/hal_configurator/ui/custom_widgets", "../src/hal_configurator/ui"]
+app_root = '../src'
 
 ui_class_template ="""
 from PySide import QtGui
@@ -57,6 +58,8 @@ def main():
           call(fcmd, shell=True)
   print "importing", os.path.abspath(ui_root)
 
+  sys.path.append(os.path.abspath(app_root))
+  print 'AppRoot:', os.path.abspath(app_root)
   sys.path.append(os.path.abspath(ui_root))
   for ai in additional_imports:
     sys.path.append(os.path.abspath(ai))
@@ -106,7 +109,7 @@ def server():
     observer.join()
 
 if __name__ == "__main__":
-  if "server" in sys.argv:
+  if "-s" in sys.argv:
     server()
   else:
     main()

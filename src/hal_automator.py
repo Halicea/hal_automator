@@ -44,7 +44,9 @@ def try_gui_imports():
 
 def main_gui(isAdmin):
     from hal_configurator.ui.configwindow import ConfigWindow
+    from hal_configurator.ui.styles import qdarkstyle 
     app = QtGui.QApplication(sys.argv)
+    app.setStyleSheet(qdarkstyle.load_stylesheet())
     mw = ConfigWindow(None)
     mw.show()
     app.setWindowIcon(QtGui.QIcon())
