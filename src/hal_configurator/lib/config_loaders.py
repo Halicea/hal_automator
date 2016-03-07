@@ -195,7 +195,7 @@ class ConfigLoader(object):
         if len(v) == 1:
           v = v[0]
         else:
-          raise Exception('Variable %s is defined % times, it should be only once.' % (rv['name'], len(v)))
+          raise Exception('Variable %s is defined %s times, it should be only once.' % (rv['name'], len(v)))
         for key in rv:
           if key != 'name' and key != 'value':
             if rv[key] is not None and rv[key] != '':
