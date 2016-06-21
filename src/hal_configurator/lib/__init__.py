@@ -40,7 +40,9 @@ def load_plugins():
       dn = os.path.dirname
       abp = os.path.abspath
       for p_dir in config.plugin_dirs:
-          if os.path.isabs(p_dir):
+          if not p_dir:
+              pass
+          elif os.path.isabs(p_dir):
               plugin_dirs.append(p_dir)
           else:
               abs_dir = abp(j(dn(cp), p_dir))

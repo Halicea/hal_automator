@@ -73,7 +73,7 @@ def load_plugins_from_directory_list(plugin_dirs):
   :param plugin_dirs:
   :type plugin_dirs: list
   """
-  for plugin_dir in plugin_dirs:
+  for plugin_dir in [p for p in plugin_dirs if p]:
     plugin_list = get_plugins(plugin_dir)
     init_plugin_system({'plugin_path': plugin_dir, 'plugins': plugin_list})
     for p in plugin_list:
@@ -101,11 +101,11 @@ def get_plugin_cls(command):
 
 def get_plugin_module(command):
   print 'Command', command
-  
-  cmd  = command 
+
+  cmd  = command
   if isinstance(cmd, str):
     cmd = command["Code"]
- 
+
   module, claz =  get_module_and_class_names_from_cmd(cmd) #@UnusedVariable
   return __import__(module)
 
