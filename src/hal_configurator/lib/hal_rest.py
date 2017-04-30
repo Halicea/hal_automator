@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # encoding: utf-8
 """
-prinstand_integration_tests.py
 Created by Kosta Mihajlov on 2012-07-19.
 Copyright (c) 2012 Halicea.Co. All rights reserved.
 """
@@ -14,18 +13,20 @@ def run_tests(title, test_address, tests_dict):
   global address  
   print(test_address)
   address = test_address  
-  print(("="*len(title)))
+  print("="*len(title))
   print(title)
-  print(("="*len(title)))
+  print("="*len(title))
   print()
-  print(("  Generated On: :: ", datetime.date.today())) 
+  print("  Generated On: :: ", datetime.date.today()) 
   print()
   for k in tests_dict:
     print((k[0]))
-    print(("="*len(k[0])))
+    print("="*len(k[0]))
     print() 
     k[1]()
     print()
+
+
 def set_address(add):
   global address
   address = add
@@ -67,7 +68,6 @@ class RestException(Exception):
     super(RestException, self).__init__(message=message)
 
 class HalRest(object): 
-  """docstring for ClassName"""
   def __init__(self, address, verbose=True):
     super(HalRest, self).__init__()       
     self.verbose = verbose

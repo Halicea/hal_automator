@@ -9,7 +9,6 @@ import os
 import urllib.request, urllib.parse, urllib.error
 from .app_config import config
 import shutil
-from branded_apps_service import BrandedAppService as BAS
 import copy
 from hal_configurator.lib.models.hal_var import HalVar, HalResource
 last_config_loaded = None

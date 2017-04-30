@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# encoding: utf-8
 import sys
 import os
 import json
@@ -102,8 +100,12 @@ def is_verbose(args):
 
 
 def get_config_loader(args):
-  if args[1]=='-from':
-    ldr = None
+  ldr = None
+  if args[1].startswith('.') or args[1].startswith('/'):
+    ldr = FileConfigLoader(args[1])
+  elif args[1].startswith('http://'):
+    ldr = SvcConfigLoader(args[1])
+  elif args[1]=='-from':
     if args[2]== 'fs':
       ldr = FileConfigLoader(args[3])
     elif args[2]=='svc':
@@ -135,6 +137,8 @@ def __testRemote__():
 
 if __name__ == '__main__':
   args = sys.argv
+  if len(args)==1:
+    args.append('')
   if args[1]=="testVars":
     get_additional_vars(args)
   if args[1]=="testLocal":
