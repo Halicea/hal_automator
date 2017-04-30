@@ -23,6 +23,6 @@ socketio = SocketIO(app)
 def base_static(filename):
     return send_from_directory(workspace_path, filename)
 
-import auth
-import config
+from . import auth
+from . import config
 

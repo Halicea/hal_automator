@@ -36,9 +36,9 @@ def get_plugins(plugin_dir):
             sys.path.append(plugin_path)
             registered_plugins.append(shortname)
   else:
-    print 'Plugin path does not exists: %s'%os.path.abspath(plugin_dir)
-  print 'Plugins Registered:'
-  print registered_plugins
+    print(('Plugin path does not exists: %s'%os.path.abspath(plugin_dir)))
+  print('Plugins Registered:')
+  print(registered_plugins)
   return registered_plugins
 
 def init_plugin_system(cfg):
@@ -67,7 +67,7 @@ def load_plugins(plugins):
       __import__(plugin, None, None, [plugin])
 __plugins_list__ = []
 def load_plugins_from_directory_list(plugin_dirs):
-  print plugin_dirs
+  print(plugin_dirs)
   """
   Loads all the plugins found in a specific directory
   :param plugin_dirs:
@@ -88,7 +88,7 @@ def get_plugins_list():
   return list(set(__plugins_list__))
 
 def get_plugin_cls(command):
-  cmd  = isinstance(command, (str, unicode)) and command or command["Code"]
+  cmd  = isinstance(command, str) and command or command["Code"]
   module, claz = get_module_and_class_names_from_cmd(cmd)
   plugin_module = __import__(module)
   plugin_cls = None
@@ -100,7 +100,7 @@ def get_plugin_cls(command):
 
 
 def get_plugin_module(command):
-  print 'Command', command
+  print(('Command', command))
 
   cmd  = command
   if isinstance(cmd, str):
@@ -119,11 +119,11 @@ def get_module_and_class_names_from_cmd(cmd):
 def get_command_for_plugin(plugin_cls):
   module = plugin_cls.__module__
   cls_name = plugin_cls.__name__
-  matched = filter(lambda x:x.startswith(module), get_plugins_list())
+  matched = [x for x in get_plugins_list() if x.startswith(module)]
   if len(matched)==1:
     return matched[0]
   elif len(matched)>1:
-    final = filter(lambda x:x.endswith(cls_name), matched)
+    final = [x for x in matched if x.endswith(cls_name)]
     if len(final)>0:
       return final[0]
   return None

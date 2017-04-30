@@ -92,10 +92,10 @@ def job_start(identifier, platform, name):
   job_output = "No Response"
   try:
     job_output = execute_job.delay(builder, workspace_path, workspace_path).get(100)
-  except OSError, e:
+  except OSError as e:
     job_output = e.strerror
     job_output+='\nTraceback'+job_output.traceback
-  except Exception, e:
+  except Exception as e:
     job_output = e.message
     job_output+='\nTraceback'+job_output.traceback
   
@@ -123,7 +123,7 @@ def run_config(identifier, platform, name):
   res_msg = ''
   try:
     builder.apply()
-  except Exception,ex:
+  except Exception as ex:
     res_msg+=ex.message+'\n'
   res =  Response(response=s_loger.result, status=200, mimetype="text/plain")
   builder.logger.close()
@@ -133,16 +133,16 @@ def run_config(identifier, platform, name):
 @crossdomain(origin="*")
 @flask_login.login_required
 def save_config(identifier, platform, name):
-  print "saved"
+  print("saved")
   filepath = os.path.join(workspace_path, identifier, platform, name)
   config_loader = FileConfigLoader(filepath)
   try:
     newconf = json.loads(request.data)
     config_loader.save_config(newconf)
-    print 'all fine'
+    print('all fine')
     return Response(response="True", status=200)
-  except Exception, ex:  # @UnusedVariable
-    print ex.message
+  except Exception as ex:  # @UnusedVariable
+    print((ex.message))
     return Response(response="False", status=200)
 
 @app.route("/config/<identifier>/<platform>/<name>/var/<varname>", methods=["GET"])
@@ -174,13 +174,13 @@ def get_resource(identifier, platform, name, resid):
   conf = FileConfigLoader(filepath).dictionary
   res = [x for x in conf["Resources"] if x["rid"] == resid][0]
   file_path = os.path.join(workspace_path, identifier, platform, res['url'])
-  print file_path
+  print(file_path)
   if os.path.exists(file_path):
-    print 'resource exists:'+file_path
+    print(('resource exists:'+file_path))
     return send_file(file_path, mimetype='image/png')
   else:
-    print 'non existent'
-    print 'resource not available at:'+file_path
+    print('non existent')
+    print(('resource not available at:'+file_path))
     return Response(status = 404)
 
 @app.route("/config/<identifier>/<platform>/<name>/res/<resid>", methods=["POST"])
@@ -194,7 +194,7 @@ def save_resource(identifier, platform, name, resid):
   files = request.files.getlist('files[]')
   file_path = os.path.join(workspace_path, identifier, platform, res['url'])
   files[0].save(file_path)
-  print "File Path: %s" % file_path
+  print(("File Path: %s" % file_path))
   # shutil.copy(data_file, file)
   # save_file(data_file, file_name)
   # file_size = get_file_size(file_name)

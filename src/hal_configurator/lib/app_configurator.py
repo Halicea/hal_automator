@@ -56,17 +56,17 @@ class AppConfigurator(object):
         self.executors.remove(executor)
 
     def get_config(self):
-        print "in configure"
+        print("in configure")
         if self.config:
-            print "returning config"
+            print("returning config")
             return self.config
         else:
             self.config = self.config_loader.load_config()
-            print "config loaded"
+            print("config loaded")
         return self.config
 
     def apply(self):
-        print "started execution"
+        print("started execution")
         self.old_dir = os.getcwd()
         exec_dir = os.path.abspath(self.get_execution_dir())
         cnf = self.get_config()
@@ -87,7 +87,7 @@ class AppConfigurator(object):
                 'Inavlid Configuration cannot continue with the build')
 
         # self.executor.log.close()
-        print "finished execution"
+        print("finished execution")
         os.chdir(self.old_dir)
 
     def apply_parametrized(
@@ -101,7 +101,7 @@ class AppConfigurator(object):
         :type working_dir:str
         :param executor_kwargs: **
         """
-        print "started execution"
+        print("started execution")
         old_dir = os.getcwd()
         if self.old_dir:
             os.chdir(self.old_dir)
@@ -120,7 +120,7 @@ class AppConfigurator(object):
             os.chdir(self.old_dir)
             raise Exception(
                 'Invalid Configuration cannot continue with the build')
-        print "finished execution"
+        print("finished execution")
         os.chdir(old_dir)
 
     def get_execution_dir(self):
@@ -130,10 +130,10 @@ class AppConfigurator(object):
         self._execution_dir = execution_dir
 
     def exclude_bundles(self, bundles):
-        map(self.exclude_bundle, bundles)
+        list(map(self.exclude_bundle, bundles))
 
     def include_bundles(self, bundles):
-        map(self.include_bundle, bundles)
+        list(map(self.include_bundle, bundles))
 
     def include_bundle(self, bundle):
         if isinstance(bundle, dict):
@@ -156,10 +156,10 @@ class AppConfigurator(object):
                 inner_var = [x for x in global_vars if x["name"] == k[2:-2]]
                 if len(inner_var) == 0:
                     
-                    print "Variable %s cannot be found"%k
+                    print(("Variable %s cannot be found"%k))
                     available_vars = [x['name'] for x in global_vars]
-                    print "Available Variables"
-                    print available_vars
+                    print("Available Variables")
+                    print(available_vars)
                 else:
                     inner_var = inner_var[0]
                 syth_val = self.synthesized_value(inner_var, global_vars)

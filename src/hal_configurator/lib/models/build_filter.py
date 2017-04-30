@@ -5,8 +5,8 @@ class ConfigBuildFilter(object):
         self.excluded = excluded
 
     def allowed(self, name):
-        print "Included:{}".format(self.included)
-        print "Excluded:{}".format(self.excluded)
+        print(("Included:{}".format(self.included)))
+        print(("Excluded:{}".format(self.excluded)))
         if self.included and self.excluded:
             if name in self.included:
                 return True

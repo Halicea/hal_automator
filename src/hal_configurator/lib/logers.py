@@ -5,7 +5,7 @@ __author__ = 'Costa Halicea'
 
 class LoggerBase(object):
   def write(self, message, logtype='i'):
-    print  message
+    print(message)
   def close(self):
     raise NotImplementedError()
   def fileno(self):
@@ -25,8 +25,8 @@ class ZmqChainedLoger(LoggerBase):
       self.ensure_socket()
       ZmqChainedLoger.message_sender.send_unicode(text)
     except:
-      print text
-      print "Exception:", traceback.print_exc()
+      print(text)
+      print(("Exception:", traceback.print_exc()))
 
   def close(self):
     if ZmqChainedLoger.message_sender:
@@ -40,9 +40,9 @@ class ZmqChainedLoger(LoggerBase):
       ZmqChainedLoger.message_sender = context.socket(zmq.PUB) #@UndefinedVariable
     if not ZmqChainedLoger.is_binded or ZmqChainedLoger.message_sender.closed:
       ZmqChainedLoger.message_sender.bind("tcp://*:%s"%self.port)
-      print "Loger binded, sleeping 2 more seconds..."
+      print("Loger binded, sleeping 2 more seconds...")
       time.sleep(2)
-      print "continuing execution"
+      print("continuing execution")
       ZmqChainedLoger.is_binded = True
 
 class SocketIOLogger(LoggerBase):
@@ -58,7 +58,7 @@ class ConsoleLoger(LoggerBase):
   # noinspection PyBroadException
   def write(self, message, logtype="i"):
     try:
-      print message
+      print(message)
     except:
       pass
 

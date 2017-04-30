@@ -62,7 +62,7 @@ class OperationBase(object):
     return {
             "Code":self.get_code(),
             "Type":self.get_name(),
-            "Arguments":dict([(x.name, self.kwargs.has_key(x.name) and self.kwargs[x.name] or "") for x in self.get_arg_descriptors()])
+            "Arguments":dict([(x.name, x.name in self.kwargs and self.kwargs[x.name] or "") for x in self.get_arg_descriptors()])
            }
   
   @classmethod
@@ -90,7 +90,7 @@ class OperationBase(object):
     errors = []
     descriptors = self.get_arg_descriptors()
     for k in descriptors:
-      if self.kwargs.has_key(k.name):
+      if k.name in self.kwargs:
         v = k.validate_argument(self.kwargs[k.name])
         if not v:
           errors.append(v)
@@ -147,7 +147,7 @@ class ArgumentDescriptor(object):
     self.default_value_lambda = default_value_lambda
 
   def default_validator(self, value):
-    if ArgumentTypes.has_key(self.argument_type):
+    if self.argument_type in ArgumentTypes:
       if not value and self.is_optional:
         return True
       return ArgumentTypes[self.argument_type](value)

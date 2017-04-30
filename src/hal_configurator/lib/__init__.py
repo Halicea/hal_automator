@@ -18,15 +18,15 @@ def config_path():
   current = d(d(d(current)))
   res = os.path.join(current, 'config.conf')
   res = os.path.expanduser(res)
-  print 'Trying:', res
+  print(('Trying:', res))
   if not os.path.exists(res):
-    print('Error: path {} does not exists'.format(res))
+    print(('Error: path {} does not exists'.format(res)))
     if sys.platform == 'darwin':
-      print 'in Mac'
+      print('in Mac')
       res = os.path.join(os.getcwd(), 'config.conf')
-      print res
+      print(res)
       return res
-  print res
+  print(res)
   return res
 
 
@@ -49,6 +49,6 @@ def load_plugins():
               plugin_dirs.append(abs_dir)
       load_plugins_from_directory_list(plugin_dirs)
   else:
-      print 'No Configuration Loadeed, Continuing...'
+      print('No Configuration Loadeed, Continuing...')
 
   sys.path.append(os.path.abspath(__file__))

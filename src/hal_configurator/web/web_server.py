@@ -1,5 +1,5 @@
 from cherrypy import wsgiserver
-from app import app
+from .app import app
 
 d = wsgiserver.WSGIPathInfoDispatcher({'/': app})
 server = None 

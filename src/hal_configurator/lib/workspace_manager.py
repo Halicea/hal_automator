@@ -30,7 +30,7 @@ class Workspace(object):
 
   @property
   def mode(self):
-    return self.settings.has_key('mode') and self.settings['mode'] or 'admin'
+    return 'mode' in self.settings and self.settings['mode'] or 'admin'
   @mode.setter
   def mode(self, value):
     self.settings['mode'] = value
@@ -38,7 +38,7 @@ class Workspace(object):
   
   @property
   def name(self):
-    return self.settings.has_key('name') and self.settings['name'] or ''
+    return 'name' in self.settings and self.settings['name'] or ''
   
   @name.setter
   def name(self, value):
@@ -46,7 +46,7 @@ class Workspace(object):
     self.save()
   @property
   def plugin_dirs(self):
-    return self.settings.has_key('plugin_dirs') and self.settings['plugin_dirs'] or []
+    return 'plugin_dirs' in self.settings and self.settings['plugin_dirs'] or []
   
   @plugin_dirs.setter
   def plugin_dirs(self, value):
@@ -64,7 +64,7 @@ class Workspace(object):
 
   def _call(self, command, just_print=True):
     cmd = command
-    if isinstance(command, (str, unicode)):
+    if isinstance(command, str):
       cmd = command.split(' ')
     p = subprocess.Popen(cmd, stderr=subprocess.STDOUT, stdout=subprocess.PIPE,
                        close_fds=True, env=os.environ)
@@ -74,7 +74,7 @@ class Workspace(object):
       if just_print:
         if self.loger:
           self.loger.write(line)
-        print line
+        print(line)
     return output
 
   def sync(self):
@@ -103,7 +103,7 @@ class Workspace(object):
       ss = traceback.format_exc()
       if self.loger:
         self.loger.write(traceback.format_exc(ss))
-      print ss
+      print(ss)
     finally:
       os.chdir(old_cwd)
 

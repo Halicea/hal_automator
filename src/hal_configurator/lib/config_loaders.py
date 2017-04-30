@@ -6,8 +6,8 @@ Prebuild Configuration Loaders
 '''
 import json
 import os
-import urllib
-from app_config import config
+import urllib.request, urllib.parse, urllib.error
+from .app_config import config
 import shutil
 from branded_apps_service import BrandedAppService as BAS
 import copy
@@ -47,7 +47,7 @@ class ConfigLoader(object):
     return cfg
 
   def extend_var(self, target, src, excluded_keys=[]):
-    for k in src.keys():
+    for k in list(src.keys()):
       if not (k in excluded_keys):
         if k in target:
           if src[k] is not None and src[k] != target[k]:
@@ -85,7 +85,7 @@ class ConfigLoader(object):
       for v in d['Variables']:
         found = [rv for rv in rvars if rv['name'] == v['name']]
         if found:
-          if found[0].has_key('editable') and not found[0]['editable']:
+          if 'editable' in found[0] and not found[0]['editable']:
             to_remove.append(v)
 
           elif 'value' in found[0]:
@@ -111,11 +111,11 @@ class ConfigLoader(object):
     obj_req_res = []
     keys_vars = {'Variables': obj_vars, 'RequiredVariables': obj_req_vars}
     keys_res = {'Resources': obj_res, 'RequiredResources': obj_req_res}
-    for key in keys_vars.keys():
+    for key in list(keys_vars.keys()):
       if key in cfg:
         for v in cfg[key]:
           keys_vars[key].append(HalVar.from_dict(v))
-    for key in keys_res.keys():
+    for key in list(keys_res.keys()):
       if key in cfg:
         for v in cfg[key]:
           keys_res[key].append(HalResource.from_dict(v))
@@ -132,7 +132,7 @@ class ConfigLoader(object):
     obj_res = []
     obj_req_res = []
     keys = {'Variables': obj_vars, 'RequiredVariables': obj_req_vars, 'Resources': obj_res, 'RequiredResources': obj_req_res}
-    for key in keys.keys():
+    for key in list(keys.keys()):
       if key in cfg:
         for v in cfg[key]:
           if isinstance(v, (HalVar, HalResource)):
@@ -200,7 +200,7 @@ class ConfigLoader(object):
           if key != 'name' and key != 'value':
             if rv[key] is not None and rv[key] != '':
               v[key] = copy.deepcopy(rv[key])
-        if rv.has_key('editable') and not rv['editable']:
+        if 'editable' in rv and not rv['editable']:
           v['value'] = copy.deepcopy(rv['value'])
         v['is_from_req'] = True
     return config
@@ -235,7 +235,7 @@ class FileConfigLoader(ConfigLoader):
     self._config_file_raw = fileName
     self.resolved_path = self.config_file = os.path.abspath(os.path.expanduser(self._config_file_raw))
     self.resources_root = os.path.abspath(os.path.dirname(self.resolved_path))
-    self.resource_root_url = urllib.pathname2url(self.resources_root)
+    self.resource_root_url = urllib.request.pathname2url(self.resources_root)
 
   def __load_config_dict__(self):
     global last_config_loaded
@@ -243,8 +243,8 @@ class FileConfigLoader(ConfigLoader):
     return cfg
 
   def __load_reference__(self, cfg, key, forced_reference_key=None):
-    if cfg.has_key(key):
-      if isinstance(cfg[key], dict) and cfg[key].has_key("Reference"):
+    if key in cfg:
+      if isinstance(cfg[key], dict) and "Reference" in cfg[key]:
         content_path = os.path.join(os.path.dirname(self.resolved_path), cfg[key]["Reference"])
         content = None
         if os.path.exists(content_path):
@@ -266,11 +266,11 @@ class FileConfigLoader(ConfigLoader):
     ref_path = None
     content = {}
     if forced_reference_key:
-      if cfg.has_key(forced_reference_key):
+      if forced_reference_key in cfg:
         ref_path = cfg[forced_reference_key]
         del cfg[forced_reference_key]
     else:
-      if cfg.has_key(key+"-Reference"):
+      if key+"-Reference" in cfg:
         ref_path = cfg[key+"-Reference"]
         del cfg[key+"-Reference"]
     if ref_path:

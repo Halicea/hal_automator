@@ -7,7 +7,7 @@ import json
 class DynamicObject(object):
   '''The recursive class for building and representing objects with.'''
   def __init__(self, obj):
-    for k, v in obj.iteritems():
+    for k, v in list(obj.items()):
       if isinstance(v, dict):
         setattr(self, k, DynamicObject(v))
       else:
@@ -26,7 +26,7 @@ class DynamicObject(object):
       (k, v) in self.props()))
       
   def props(self):
-    for k, v in self.__dict__.iteritems():
+    for k, v in list(self.__dict__.items()):
       if not isfunction(v):
         yield k, v
   

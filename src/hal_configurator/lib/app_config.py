@@ -20,8 +20,8 @@ try:
   config = Config(open(config_path(), 'r').read())
 except:
   traceback.print_exc()
-  print 'ConfigPath %s' % config_path()
-  print 'Cannot Locate the Configuration file'
+  print(('ConfigPath %s' % config_path()))
+  print('Cannot Locate the Configuration file')
 
 def add_config_to_history(path):
   ch = get_config_history()

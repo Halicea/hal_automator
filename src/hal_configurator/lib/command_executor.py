@@ -1,6 +1,6 @@
 import sys
-import plugin_loader
-import var_substitutor
+from . import plugin_loader
+from . import var_substitutor
 class CommandExecutor(object):
   def __init__(self, parent, resources, resources_root="",verbose=True, debug_mode = False, log = lambda x:sys.stdout):
     """
@@ -27,25 +27,25 @@ class CommandExecutor(object):
 
   def replace_vars(self, bundle_vars, dictionary):
     new_vars = dictionary.copy()
-    for key in new_vars.keys():
+    for key in list(new_vars.keys()):
       for v in bundle_vars:
         token  = "{{"+v["name"]+"}}"
         if token in new_vars[key]:
           new_vars[key] = new_vars[key].replace(token, v["value"])
     subs = var_substitutor.VarSubstitutor(bundle_vars, [], None)
-    for key in new_vars.keys():
+    for key in list(new_vars.keys()):
       new_vars[key]=subs.substitute_expressions(new_vars[key])
     return new_vars
 
   def replace_resources(self, bundle_res, dictionary):
     new_vars = dictionary.copy()
-    for key in new_vars.keys():
+    for key in list(new_vars.keys()):
       for r in bundle_res:
         token  = "{#"+r["rid"]+"#}"
         if token in new_vars[key]:
           new_vars[key] = new_vars[key].replace(token, r["url"])
     subs = var_substitutor.VarSubstitutor(bundle_res, [], None)
-    for key in new_vars.keys():
+    for key in list(new_vars.keys()):
       new_vars[key]=subs.substitute_expressions(new_vars[key])
     return new_vars
 
@@ -53,7 +53,7 @@ class CommandExecutor(object):
     self.current_bundle = command_bundle
     self.operations_filter = operations_filter
     bundle_vars = []
-    if command_bundle.has_key("Variables"):
+    if "Variables" in command_bundle:
       bundle_vars = command_bundle["Variables"]
 
     for gvar in global_vars:
@@ -61,7 +61,7 @@ class CommandExecutor(object):
         bundle_vars.append(gvar)
 
     bundle_res = []
-    if command_bundle.has_key("Resources"):
+    if "Resources" in command_bundle:
       bundle_res = command_bundle["Resources"]
 
     for gres in global_resources:
@@ -109,7 +109,7 @@ class CommandExecutor(object):
   def check_debug_settings(self, obj):
     continue_execution = True
     if self.debug_mode:
-      if obj.has_key("DebugSettings"):
-        if obj["DebugSettings"].has_key("Break"):
+      if "DebugSettings" in obj:
+        if "Break" in obj["DebugSettings"]:
           continue_execution = not obj["DebugSettings"]["Break"]
     return continue_execution

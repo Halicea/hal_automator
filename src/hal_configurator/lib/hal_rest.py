@@ -12,55 +12,55 @@ verbose = True
 address = None
 def run_tests(title, test_address, tests_dict):
   global address  
-  print test_address
+  print(test_address)
   address = test_address  
-  print "="*len(title)
-  print title
-  print "="*len(title)
-  print
-  print "  Generated On: :: ", datetime.date.today() 
-  print
+  print(("="*len(title)))
+  print(title)
+  print(("="*len(title)))
+  print()
+  print(("  Generated On: :: ", datetime.date.today())) 
+  print()
   for k in tests_dict:
-    print k[0]
-    print "="*len(k[0])
-    print 
+    print((k[0]))
+    print(("="*len(k[0])))
+    print() 
     k[1]()
-    print
+    print()
 def set_address(add):
   global address
   address = add
 
 def execute_request(token, selector, headers={}, method="GET", data="", attachment=None):
   req = method=="POST" and requests.post or requests.get   
-  print address
+  print(address)
   res = req(address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  attachment and {'attachment':attachment} or None) 
   if verbose:
-    print
-    print "Request"
-    print "+++++++"
-    print
-    print "  Selector:", selector
-    print
-    print "  Method:", method
-    print
-    print "  Data:", data   
-    print
-    print "  Headers: ::"
-    print
-    print "    "+str(headers)
-    print
-    print "Response:"
-    print "+++++++++"   
-    print
-    print "  Status:", res.status_code    
-    print
-    print "  Headers: ::"        
-    print 
-    print '    '+str(res.headers)
-    print
-    print "  Response Content:  ::" 
-    print 
-    print ''.join(['     '+x+'\n' for x in res.text.split('\n')] )
+    print()
+    print("Request")
+    print("+++++++")
+    print()
+    print(("  Selector:", selector))
+    print()
+    print(("  Method:", method))
+    print()
+    print(("  Data:", data))   
+    print()
+    print("  Headers: ::")
+    print()
+    print(("    "+str(headers)))
+    print()
+    print("Response:")
+    print("+++++++++")   
+    print()
+    print(("  Status:", res.status_code))    
+    print()
+    print("  Headers: ::")        
+    print() 
+    print(('    '+str(res.headers)))
+    print()
+    print("  Response Content:  ::") 
+    print() 
+    print((''.join(['     '+x+'\n' for x in res.text.split('\n')] )))
   return res.text, res.status_code   
 class RestException(Exception):
   def __init__(self, message=""):
@@ -78,32 +78,32 @@ class HalRest(object):
     #print self.address
     res = req(self.address+selector,data=data, cookies={"mwr.sid":token}, headers=headers, files =  attachment and {'attachment':attachment} or None) 
     if self.verbose:
-      print
-      print "Request"
-      print "+++++++"
-      print
-      print "  Selector:", selector
-      print
-      print "  Method:", method
-      print
-      print "  Data:", data   
-      print
-      print "  Headers: ::"
-      print
-      print "    "+str(headers)
-      print
-      print "Response:"
-      print "+++++++++"   
-      print
-      print "  Status:", res.status_code    
-      print
-      print "  Headers: ::"        
-      print 
-      print '    '+str(res.headers)
-      print
-      print "  Response Content:  ::" 
-      print 
-      print ''.join(['     '+x+'\n' for x in res.text.split('\n')] )
+      print()
+      print("Request")
+      print("+++++++")
+      print()
+      print(("  Selector:", selector))
+      print()
+      print(("  Method:", method))
+      print()
+      print(("  Data:", data))   
+      print()
+      print("  Headers: ::")
+      print()
+      print(("    "+str(headers)))
+      print()
+      print("Response:")
+      print("+++++++++")   
+      print()
+      print(("  Status:", res.status_code))    
+      print()
+      print("  Headers: ::")        
+      print() 
+      print(('    '+str(res.headers)))
+      print()
+      print("  Response Content:  ::") 
+      print() 
+      print((''.join(['     '+x+'\n' for x in res.text.split('\n')] )))
     return res.text, res.status_code 
 
   def get_dict(self, token, selector, headers={}, method="GET", data="", f=None):
@@ -113,4 +113,4 @@ class HalRest(object):
       if res["data"]:
         return res["data"]
       else:
-        raise(RestException(res.error))        
+        raise RestException        

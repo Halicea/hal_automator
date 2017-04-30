@@ -15,8 +15,8 @@ class BaseProperty(object):
     self.group = ''
 
   def __getitem__(self, key):
-    if isinstance( key, ( int, long ) ):
-      return self.__dict__.keys()[key]
+    if isinstance( key, int ):
+      return list(self.__dict__.keys())[key]
     if key in self.__dict__:
       return getattr(self, key)
     elif "is_"+key in self.__dict__:
@@ -37,7 +37,7 @@ class BaseProperty(object):
     return  key in self.__dict__ or "is_"+key in self.__dict__
 
   def iteritems(self):
-    for k in self.__dict__.keys():
+    for k in list(self.__dict__.keys()):
       if k.startswith('is_') and k!='is_from_req':
         yield (k[3:], getattr(self, k))
       else:
@@ -45,13 +45,13 @@ class BaseProperty(object):
 
 
   def keys(self):
-    for k in self.__dict__.keys():
+    for k in list(self.__dict__.keys()):
       if k.startswith('is_') and k!='is_from_req':
         yield k[3:]
       else:
         yield k
   def items(self):
-    return self.iteritems()
+    return iter(list(self.items()))
 
 
 

@@ -82,7 +82,7 @@ def get_additional_vars(args):
         custom_vars.append(v)
       else:
         break
-    print "Custom Variables:", custom_vars
+    print(("Custom Variables:", custom_vars))
   return custom_vars
 
 
@@ -110,10 +110,10 @@ def get_config_loader(args):
       ldr =  SvcConfigLoader(svcUrl, args[3])
     return ldr
   else:
-    print '''
+    print('''
     1. automator -from svc [configuration_id] -o [destinationDir]
     2. automator -from fs [configuration_path] -o [destinationDir]
-    '''
+    ''')
     raise Exception("""Console mode requires a ConfigLoader to be specified:+)
     1. automator -from svc [configuration_id] -o [destinationDir]
     2. automator -from fs [configuration_path] -o [destinationDir]
@@ -143,4 +143,4 @@ if __name__ == '__main__':
     __testRemote__()
   else:
     main(args)
-  print "Done"
+  print("Done")
