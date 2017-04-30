@@ -1,1 +1,0 @@
-python regenerateUIClasses.py server
