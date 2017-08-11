@@ -1,12 +1,13 @@
 class ConfigBuildFilter(object):
+
     def __init__(self, included=[], excluded=[]):
         self.reserved = ['Incondition', 'InForLoop']
         self.included = [x for x in included if x not in self.reserved]
-        self.excluded = excluded
-
-    def allowed(self, name):
+        self.excluded = [x for x in excluded]
         print "Included:{}".format(self.included)
         print "Excluded:{}".format(self.excluded)
+
+    def allowed(self, name):
         if self.included and self.excluded:
             if name in self.included:
                 return True
@@ -17,8 +18,7 @@ class ConfigBuildFilter(object):
             return name in self.included or name in self.reserved
         elif self.excluded:
             return name not in self.excluded
-        else:
-            return True
+        return True
 
     def extend_from_dict(self, d):
         if 'excluded' in d:

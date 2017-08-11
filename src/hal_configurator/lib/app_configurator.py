@@ -56,39 +56,38 @@ class AppConfigurator(object):
         self.executors.remove(executor)
 
     def get_config(self):
-        print "in configure"
         if self.config:
-            print "returning config"
             return self.config
         else:
             self.config = self.config_loader.load_config()
-            print "config loaded"
+            print("config loaded")
         return self.config
 
     def apply(self):
-        print "started execution"
-        self.old_dir = os.getcwd()
-        exec_dir = os.path.abspath(self.get_execution_dir())
-        cnf = self.get_config()
-        if self.executor is None:
-            self.executor = self.create_executor()
-        validation_result = self.validator.validate(
-            self.get_config(), exec_dir)
-        if validation_result.errors or self.verbose:
-            self.executor.log.write(repr(validation_result))
+        try:
+            print "started execution"
+            self.old_dir = os.getcwd()
+            exec_dir = os.path.abspath(self.get_execution_dir())
+            cnf = self.get_config()
+            if self.executor is None:
+                self.executor = self.create_executor()
+            validation_result = self.validator.validate(
+                self.get_config(), exec_dir)
+            if validation_result.errors or self.verbose:
+                self.executor.log.write(repr(validation_result))
 
-        if validation_result.is_valid:
-            os.chdir(exec_dir)
-            self.configure(cnf, self.executor)
-        else:
-            os.chdir(self.old_dir)
+            if validation_result.is_valid:
+                os.chdir(exec_dir)
+                self.configure(cnf, self.executor)
+            else:
+                os.chdir(self.old_dir)
+                # self.executor.log.close()
+                raise Exception(
+                    'Inavlid Configuration cannot continue with the build')
+        finally:
             # self.executor.log.close()
-            raise Exception(
-                'Inavlid Configuration cannot continue with the build')
-
-        # self.executor.log.close()
-        print "finished execution"
-        os.chdir(self.old_dir)
+            print "finished execution"
+            os.chdir(self.old_dir)
 
     def apply_parametrized(
             self, config, working_dir=None, selector=True,
@@ -155,8 +154,8 @@ class AppConfigurator(object):
             for k in res:
                 inner_var = [x for x in global_vars if x["name"] == k[2:-2]]
                 if len(inner_var) == 0:
-                    
-                    print "Variable %s cannot be found"%k
+
+                    print "Variable %s cannot be found" % k
                     available_vars = [x['name'] for x in global_vars]
                     print "Available Variables"
                     print available_vars
@@ -164,7 +163,7 @@ class AppConfigurator(object):
                     inner_var = inner_var[0]
                 syth_val = self.synthesized_value(inner_var, global_vars)
                 val = val.replace(k, syth_val)
-                
+
             return val
         else:
             return kvar["value"]
@@ -172,7 +171,7 @@ class AppConfigurator(object):
     def configure(
             self, cnf, executor, selector=True,
             bundles_filter=None, operations_filter=None):
-        
+
         _executor = executor or self.executor
         _bundles_filter = bundles_filter or self.bundles_filter
         _operations_filter = operations_filter or self.operations_filter
