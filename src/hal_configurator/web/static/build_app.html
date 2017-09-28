@@ -1,185 +1,199 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
+
 <head>
-    <title>Build App</title>
-    
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
-    <!-- <link rel="stylesheet" href="/css/index.css"/> -->
-    <link rel="stylesheet" href="css/colpick.css" type="text/css"/>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
-    <link rel="stylesheet" href="/css/jquery.fileupload.css">
-    <link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
-    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
-    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
-    <style>
+  <title>Build App</title>
+
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.css" />
+  <!-- <link rel="stylesheet" href="/css/index.css"/> -->
+  <link rel="stylesheet" href="css/colpick.css" type="text/css" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+  <link rel="stylesheet" href="/css/jquery.fileupload.css">
+  <link rel="stylesheet" href="/css/jquery.fileupload-ui.css">
+  <noscript>
+    <link rel="stylesheet" href="/css/jquery.fileupload-noscript.css">
+  </noscript>
+  <noscript>
+    <link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css">
+  </noscript>
+  <style>
     .ng-cloak {
-        display: none;
+      display: none;
     }
-    </style>
+  </style>
 </head>
+
 <body>
-<div class="page-container">
+  <div class="page-container">
     <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-       <div class="container">
+      <div class="container">
         <div class="navbar-header">
-           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
+          <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav">
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
              <span class="icon-bar"></span>
            </button>
-           <a class="navbar-brand" href="#">Web Viewer Admin Panel</a>
+          <a class="navbar-brand" href="#">Web Viewer Admin Panel</a>
         </div>
-       </div>
+      </div>
     </div>
 
-<div class="container">
-    <div class="row row-offcanvas row-offcanvas-left">
-        
+    <div class="container">
+      <div class="row row-offcanvas row-offcanvas-left">
+
         <!-- sidebar -->
         <div class="col-xs-3 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <ul class="nav">
-              <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
-              <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
-              <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>  
-              <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
-              <li class="active"><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
-              <li>Store Submission Information</li>
-              <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
-              <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>            
-            </ul>
+          <ul class="nav">
+            <li><a href="index.html">General <div id="general-android-icon" class="os-icons"></div><div id="general-ios-icon" class="os-icons"></div></a></li>
+            <li><a href="publisher_info.html">Publisher Info <div id="publisher-info-android-icon" class="os-icons"></div><div id="publisher-info-ios-icon" class="os-icons"></div></a></li>
+            <li><a href="design.html">Design <div id="design-android-icon" class="os-icons"></div><div id="design-ios-icon" class="os-icons"></div></a></li>
+            <li><a href="platform_specifics.html">Platform Specifics <div id="platform-specifics-android-icon" class="os-icons"></div><div id="platform-specifics-ios-icon" class="os-icons"></div></a></li>
+            <li class="active"><a href="build_app.html">Build App <div id="build-app-android-icon" class="os-icons"></div><div id="build-app-ios-icon" class="os-icons"></div></a></li><br><br><br>
+            <li>Store Submission Information</li>
+            <li><a href="store_general.html">General <div id="store-general-android-icon" class="os-icons"></div><div id="store-general-ios-icon" class="os-icons"></div></a></li>
+            <li><a href="store_artwork.html">Artwork <div id="store-artwork-android-icon" class="os-icons"></div><div id="store-artwork-ios-icon" class="os-icons"></div></a></li>
+          </ul>
         </div>
 
         <div class="col-xs-12 col-sm-9" id="sidebar" role="navigation">
-            <div role="tabpanel">
+          <div role="tabpanel">
 
-      <!-- Nav tabs -->
-              <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" id="build-app-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
-                <li role="presentation" id="build-app-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
-              </ul>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" id="build-app-ios" class="active"><a href="#ios-tab" aria-controls="home" role="tab" data-toggle="tab">iOS</a></li>
+              <li role="presentation" id="build-app-android"><a href="#android-tab" aria-controls="profile" role="tab" data-toggle="tab">Android</a></li>
+            </ul>
 
-              <!-- Tab panes -->
-              <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="ios-tab">
-                    <div class="row">
-                        <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Testing</button></div>
-                    </div>
-                    <div class="row build-data">
-                      <div class="col-xs-5 build-history">
-                        <label class="test-build-history">See Build History</label>
-                      </div>
-                      <div class="col-xs-7 push-right">
-                        Last Built: 18.01.2014 at 14:20 EST
-                      </div>
-                    </div>
-                    <div class="test-build-history-container hidden">
-                    <div class="row build-data col-head">
-                      <div class="col-xs-2">
-                        Build Number
-                      </div>
-                      <div class="col-xs-4">
-                        Time Stamp
-                      </div>
-                      <div class="col-xs-2">
-                        Code Version
-                      </div>
-                      <div class="col-xs-2">
-                        Status
-                      </div>
-                      <div class="col-xs-2">
-                        Download
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12"><hr class="hor-rule"></div>
-                    </div>
-                    <div class="row build-data">
-                      <div class="col-xs-2">
-                        25
-                      </div>
-                      <div class="col-xs-4">
-                        18.01.2014 at 14:20 EST
-                      </div>
-                      <div class="col-xs-2">
-                        27
-                      </div>
-                      <div class="col-xs-2">
-                        Submitted
-                      </div>
-                      <div class="col-xs-2">
-                        <a href="#">Download</a>
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12"><hr class="hor-rule"></div>
-                    </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Submitting</button></div>
-                    </div>
-                    <div class="row build-data">
-                      <div class="col-xs-5 build-history">
-                        <label class="submit-build-history">See Build History</label>
-                      </div>
-                      <div class="col-xs-7 push-right">
-                        Last Built: 18.01.2014 at 14:20 EST
-                      </div>
-                    </div>
-                    <div class="submit-build-history-container hidden">
-                    <div class="row build-data col-head">
-                      <div class="col-xs-2">
-                        Build Number
-                      </div>
-                      <div class="col-xs-4">
-                        Time Stamp
-                      </div>
-                      <div class="col-xs-2">
-                        Code Version
-                      </div>
-                      <div class="col-xs-2">
-                        Status
-                      </div>
-                      <div class="col-xs-2">
-                        Download
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12"><hr class="hor-rule"></div>
-                    </div>
-                    <div class="row build-data">
-                      <div class="col-xs-2">
-                        25
-                      </div>
-                      <div class="col-xs-4">
-                        18.01.2014 at 14:20 EST
-                      </div>
-                      <div class="col-xs-2">
-                        27
-                      </div>
-                      <div class="col-xs-2">
-                        Submitted
-                      </div>
-                      <div class="col-xs-2">
-                        <a href="#">Download</a>
-                      </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-12"><hr class="hor-rule"></div>
-                    </div>
-                    </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="ios-tab">
+                <div class="row">
+                  <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Testing</button></div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="android-tab">
-                    
+                <div class="row build-data">
+                  <div class="col-xs-5 build-history">
+                    <label class="test-build-history">See Build History</label>
+                  </div>
+                  <div class="col-xs-7 push-right">
+                    Last Built: 18.01.2014 at 14:20 EST
+                  </div>
+                </div>
+                <div class="test-build-history-container hidden">
+                  <div class="row build-data col-head">
+                    <div class="col-xs-2">
+                      Build Number
+                    </div>
+                    <div class="col-xs-4">
+                      Time Stamp
+                    </div>
+                    <div class="col-xs-2">
+                      Code Version
+                    </div>
+                    <div class="col-xs-2">
+                      Status
+                    </div>
+                    <div class="col-xs-2">
+                      Download
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <hr class="hor-rule">
+                    </div>
+                  </div>
+                  <div class="row build-data">
+                    <div class="col-xs-2">
+                      25
+                    </div>
+                    <div class="col-xs-4">
+                      18.01.2014 at 14:20 EST
+                    </div>
+                    <div class="col-xs-2">
+                      27
+                    </div>
+                    <div class="col-xs-2">
+                      Submitted
+                    </div>
+                    <div class="col-xs-2">
+                      <a href="#">Download</a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <hr class="hor-rule">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 section-heading"><button type="button" class="btn btn-default btn-lg btn-custom-full"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Build For Submitting</button></div>
+                </div>
+                <div class="row build-data">
+                  <div class="col-xs-5 build-history">
+                    <label class="submit-build-history">See Build History</label>
+                  </div>
+                  <div class="col-xs-7 push-right">
+                    Last Built: 18.01.2014 at 14:20 EST
+                  </div>
+                </div>
+                <div class="submit-build-history-container hidden">
+                  <div class="row build-data col-head">
+                    <div class="col-xs-2">
+                      Build Number
+                    </div>
+                    <div class="col-xs-4">
+                      Time Stamp
+                    </div>
+                    <div class="col-xs-2">
+                      Code Version
+                    </div>
+                    <div class="col-xs-2">
+                      Status
+                    </div>
+                    <div class="col-xs-2">
+                      Download
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <hr class="hor-rule">
+                    </div>
+                  </div>
+                  <div class="row build-data">
+                    <div class="col-xs-2">
+                      25
+                    </div>
+                    <div class="col-xs-4">
+                      18.01.2014 at 14:20 EST
+                    </div>
+                    <div class="col-xs-2">
+                      27
+                    </div>
+                    <div class="col-xs-2">
+                      Submitted
+                    </div>
+                    <div class="col-xs-2">
+                      <a href="#">Download</a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <hr class="hor-rule">
+                    </div>
+                  </div>
                 </div>
               </div>
+              <div role="tabpanel" class="tab-pane" id="android-tab">
 
+              </div>
             </div>
+
+          </div>
         </div>
+      </div>
     </div>
-</div>
 
     <!-- <div id="container" class="row">
         <ng-view></ng-view>
@@ -215,12 +229,16 @@
     <script type="text/javascript" src="/js/controllers/ConfigCtrl.js"></script>
     <script type="text/javascript" src="/js/controllers/HomePageCtrl.js"></script>
     <script type="text/javascript" src="/js/controllers/CertificatesResourcesCtrl.js"></script>
-    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-noscript.css"></noscript>
-    <noscript><link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css"></noscript>
+    <noscript>
+      <link rel="stylesheet" href="/css/jquery.fileupload-noscript.css">
+    </noscript>
+    <noscript>
+      <link rel="stylesheet" href="/css/jquery.fileupload-ui-noscript.css">
+    </noscript>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
 
 
 </body>
-</html>
 
+</html>

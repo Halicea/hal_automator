@@ -137,7 +137,6 @@ __init__.py	../src/__init__.py	1;"	kind:file	line:1
 __init__.py	../src/hal_configurator/__init__.py	1;"	kind:file	line:1
 __init__.py	../src/hal_configurator/lib/__init__.py	1;"	kind:file	line:1
 __init__.py	../src/hal_configurator/lib/models/__init__.py	1;"	kind:file	line:1
-__init__.py	../src/hal_configurator/lib/remote_build/__init__.py	1;"	kind:file	line:1
 __init__.py	../src/hal_configurator/web/__init__.py	1;"	kind:file	line:1
 __init__.py	../src/hal_configurator/web/routes/__init__.py	1;"	kind:file	line:1
 __init__.py	../tests/__init__.py	1;"	kind:file	line:1
@@ -164,7 +163,7 @@ __str__	../src/hal_configurator/lib/models/hal_var.py	/^  def __str__(self):$/;"
 __testLocal__	../src/hal_configurator/lib/configurator_console.py	/^def __testLocal__():$/;"	kind:function	line:124
 __testRemote__	../src/hal_configurator/lib/configurator_console.py	/^def __testRemote__():$/;"	kind:function	line:132
 __validate_dict__	../src/hal_configurator/lib/models/hal_config.py	/^	def __validate_dict__(d)$/;"	kind:member	line:45
-__version__	../src/hal_configurator/__init__.py	/^__version__ = '3.2.27'/;"	kind:variable	line:1
+__version__	../src/hal_configurator/__init__.py	/^__version__ = '4.0.0'$/;"	kind:variable	line:1
 _call	../src/hal_configurator/lib/workspace_manager.py	/^  def _call(self, command, just_print=True):$/;"	kind:member	line:65
 _compress_config	../src/hal_configurator/lib/configuration_manager.py	/^  def _compress_config(self, config_path):$/;"	kind:member	line:34
 _decompress_config	../src/hal_configurator/lib/configuration_manager.py	/^  def _decompress_config(self, zip_path):$/;"	kind:member	line:37
@@ -175,12 +174,12 @@ add_config_to_history	../src/hal_configurator/lib/app_config.py	/^def add_config
 add_operation	../src/hal_configurator/lib/models/hal_module.py	/^	def add_operation(self, op):$/;"	kind:member	line:12
 address	../src/hal_configurator/lib/hal_rest.py	/^address = None$/;"	kind:variable	line:11
 allowed	../src/hal_configurator/lib/models/build_filter.py	/^    def allowed(self, name):$/;"	kind:member	line:7
-app	../src/hal_automator.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
 app	../src/hal_configurator/web/app.py	/^from .routes import app, socketio$/;"	kind:namespace	line:2
 app	../src/hal_configurator/web/routes/__init__.py	/^app = Flask(__name__, static_folder='.\/static', static_url_path='')$/;"	kind:variable	line:16
 app	../src/hal_configurator/web/routes/auth.py	/^from hal_configurator.web.routes import app$/;"	kind:namespace	line:3
 app	../src/hal_configurator/web/routes/config.py	/^from hal_configurator.web.routes import app, socketio, workspace_path, app_config$/;"	kind:namespace	line:10
 app	../src/hal_configurator/web/web_server.py	/^from .app import app$/;"	kind:namespace	line:2
+app	../src/manage.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
 app.py	../src/hal_configurator/web/app.py	1;"	kind:file	line:1
 app_config	../src/hal_configurator/lib/configurator_console.py	/^import hal_configurator.lib.app_config as app_config$/;"	kind:namespace	line:8
 app_config	../src/hal_configurator/web/routes/__init__.py	/^app_config = json.loads(open(os.path.join(current_dir, '..\/config.json'), 'r').read())$/;"	kind:variable	line:12
@@ -225,7 +224,7 @@ configurations	../src/hal_configurator/lib/workspace_manager.py	/^  def configur
 configurator_console.py	../src/hal_configurator/lib/configurator_console.py	1;"	kind:file	line:1
 configure	../src/hal_configurator/lib/app_configurator.py	/^    def configure($/;"	kind:member	line:172
 connect	../src/hal_configurator/lib/logers.py	/^  def connect(self):$/;"	kind:member	line:53
-console	../src/hal_automator.py	/^from hal_configurator.lib import configurator_console as console$/;"	kind:namespace	line:4
+console	../src/manage.py	/^from hal_configurator.lib import configurator_console as console$/;"	kind:namespace	line:4
 continueExectution	../src/hal_configurator/lib/debug_handle.py	/^  def continueExectution(self):$/;"	kind:member	line:12
 copy	../src/hal_configurator/lib/config_loaders.py	/^import copy$/;"	kind:namespace	line:12
 copy	../src/hal_configurator/lib/models/hal_var.py	/^  def copy(self):$/;"	kind:member	line:102
@@ -336,11 +335,10 @@ get_unused_warnings	../src/hal_configurator/lib/config_validator.py	/^  def get_
 get_variable	../src/hal_configurator/web/routes/config.py	/^def get_variable(identifier, platform, name, varname):$/;"	kind:function	line:151
 get_version	../src/hal_configurator/lib/app_config.py	/^def get_version():$/;"	kind:function	line:60
 get_working_dir	../src/hal_configurator/lib/app_config.py	/^def get_working_dir():$/;"	kind:function	line:50
-hal_automator.py	../src/hal_automator.py	1;"	kind:file	line:1
 hal_config.py	../src/hal_configurator/lib/models/hal_config.py	1;"	kind:file	line:1
-hal_configurator	../src/hal_automator.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
-hal_configurator	../src/hal_automator.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
 hal_configurator	../src/hal_configurator/lib/configurator_console.py	/^import hal_configurator.lib.app_config as app_config$/;"	kind:namespace	line:8
+hal_configurator	../src/manage.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
+hal_configurator	../src/manage.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
 hal_module.py	../src/hal_configurator/lib/models/hal_module.py	1;"	kind:file	line:1
 hal_rest.py	../src/hal_configurator/lib/hal_rest.py	1;"	kind:file	line:1
 hal_var.py	../src/hal_configurator/lib/models/hal_var.py	1;"	kind:file	line:1
@@ -380,9 +378,9 @@ load_custom_bundles	../src/hal_configurator/lib/config_loaders.py	/^  def load_c
 load_custom_resources	../src/hal_configurator/lib/config_loaders.py	/^  def load_custom_resources(self, config):$/;"	kind:member	line:174
 load_custom_vars	../src/hal_configurator/lib/config_loaders.py	/^  def load_custom_vars(self, config):$/;"	kind:member	line:166
 load_customizations	../src/hal_configurator/lib/config_loaders.py	/^  def load_customizations(self, cfg):$/;"	kind:member	line:213
-load_plugins	../src/hal_automator.py	/^from hal_configurator.lib import load_plugins$/;"	kind:namespace	line:3
 load_plugins	../src/hal_configurator/lib/__init__.py	/^def load_plugins():$/;"	kind:function	line:33
 load_plugins	../src/hal_configurator/lib/plugin_loader.py	/^def load_plugins(plugins):$/;"	kind:function	line:57
+load_plugins	../src/manage.py	/^from hal_configurator.lib import load_plugins$/;"	kind:namespace	line:3
 load_plugins_from_directory_list	../src/hal_configurator/lib/__init__.py	/^  from .plugin_loader import load_plugins_from_directory_list$/;"	kind:namespace	line:35
 load_plugins_from_directory_list	../src/hal_configurator/lib/plugin_loader.py	/^def load_plugins_from_directory_list(plugin_dirs):$/;"	kind:function	line:69
 logers.py	../src/hal_configurator/lib/logers.py	1;"	kind:file	line:1
@@ -391,10 +389,11 @@ login_manager	../src/hal_configurator/web/routes/auth.py	/^login_manager = flask
 login_manager	../src/hal_configurator/web/routes/build_status.py	/^from hal_configurator.web.routes.auth import login_manager$/;"	kind:namespace	line:3
 login_manager	../src/hal_configurator/web/routes/config.py	/^from hal_configurator.web.routes.auth import login_manager$/;"	kind:namespace	line:11
 logout	../src/hal_configurator/web/routes/auth.py	/^def logout():$/;"	kind:function	line:61
-main	../src/hal_automator.py	/^def main():$/;"	kind:function	line:6
 main	../src/hal_configurator/lib/configurator_console.py	/^def main(args=None, loger=None):$/;"	kind:function	line:14
 main	../src/hal_configurator/web/app.py	/^def main(port):$/;"	kind:function	line:4
+main	../src/manage.py	/^def main():$/;"	kind:function	line:6
 make_response	../src/hal_configurator/web/attributes.py	/^from flask import make_response, request, current_app$/;"	kind:namespace	line:8
+manage.py	../src/manage.py	1;"	kind:file	line:1
 message_sender	../src/hal_configurator/lib/logers.py	/^  message_sender = None$/;"	kind:variable	line:15
 mode	../src/hal_configurator/lib/workspace_manager.py	/^  def mode(self):$/;"	kind:member	line:32
 mode	../src/hal_configurator/lib/workspace_manager.py	/^  def mode(self, value):$/;"	kind:member	line:35
@@ -405,7 +404,6 @@ new	../src/hal_configurator/lib/config_loaders.py	/^  def new(cls, fileName):$/;
 on_connect	../src/hal_configurator/web/routes/build_status.py	/^def on_connect():$/;"	kind:function	line:8
 on_disconnect	../src/hal_configurator/web/routes/build_status.py	/^def on_disconnect():$/;"	kind:function	line:15
 operations	../src/hal_configurator/lib/models/hal_module.py	/^	operations = []$/;"	kind:variable	line:8
-os	../src/hal_automator.py	/^import os$/;"	kind:namespace	line:2
 os	../src/hal_configurator/lib/__init__.py	/^import os$/;"	kind:namespace	line:1
 os	../src/hal_configurator/lib/app_configurator.py	/^import os$/;"	kind:namespace	line:1
 os	../src/hal_configurator/lib/config_loaders.py	/^import os$/;"	kind:namespace	line:8
@@ -416,6 +414,7 @@ os	../src/hal_configurator/lib/var_substitutor.py	/^import os$/;"	kind:namespace
 os	../src/hal_configurator/lib/workspace_manager.py	/^import os$/;"	kind:namespace	line:1
 os	../src/hal_configurator/web/routes/__init__.py	/^import os, sys, json$/;"	kind:namespace	line:1
 os	../src/hal_configurator/web/routes/config.py	/^import os$/;"	kind:namespace	line:1
+os	../src/manage.py	/^import os$/;"	kind:namespace	line:2
 parse	../src/hal_configurator/lib/config_loaders.py	/^import urllib.request, urllib.parse, urllib.error$/;"	kind:namespace	line:9
 plugin_dirs	../src/hal_configurator/lib/workspace_manager.py	/^  def plugin_dirs(self):$/;"	kind:member	line:48
 plugin_dirs	../src/hal_configurator/lib/workspace_manager.py	/^  def plugin_dirs(self, value):$/;"	kind:member	line:52
@@ -477,7 +476,6 @@ substitute_vars	../src/hal_configurator/lib/var_substitutor.py	/^  def substitut
 svcUrl	../src/hal_configurator/lib/configurator_console.py	/^svcUrl = "http:\/\/localhost:3000"$/;"	kind:variable	line:11
 sync	../src/hal_configurator/lib/workspace_manager.py	/^  def sync(self):$/;"	kind:member	line:80
 synthesized_value	../src/hal_configurator/lib/app_configurator.py	/^    def synthesized_value(self, kvar, global_vars):$/;"	kind:member	line:150
-sys	../src/hal_automator.py	/^import sys$/;"	kind:namespace	line:1
 sys	../src/hal_configurator/lib/__init__.py	/^import sys$/;"	kind:namespace	line:3
 sys	../src/hal_configurator/lib/command_base.py	/^import sys$/;"	kind:namespace	line:1
 sys	../src/hal_configurator/lib/command_executor.py	/^import sys$/;"	kind:namespace	line:1
@@ -485,6 +483,7 @@ sys	../src/hal_configurator/lib/configurator_console.py	/^import sys$/;"	kind:na
 sys	../src/hal_configurator/lib/plugin_loader.py	/^import sys$/;"	kind:namespace	line:3
 sys	../src/hal_configurator/web/routes/__init__.py	/^import os, sys, json$/;"	kind:namespace	line:1
 sys	../src/hal_configurator/web/routes/config.py	/^import sys$/;"	kind:namespace	line:3
+sys	../src/manage.py	/^import sys$/;"	kind:namespace	line:1
 tearDown	../tests/test_hal_res.py	/^    def tearDown(self):$/;"	kind:member	line:27
 tearDown	../tests/test_hal_var.py	/^    def tearDown(self):$/;"	kind:member	line:28
 testDictionarySet	../tests/test_hal_res.py	/^    def testDictionarySet(self):$/;"	kind:member	line:54
@@ -525,9 +524,9 @@ var_substitutor	../src/hal_configurator/lib/command_executor.py	/^from . import 
 var_substitutor.py	../src/hal_configurator/lib/var_substitutor.py	1;"	kind:file	line:1
 verbose	../src/hal_configurator/lib/hal_rest.py	/^verbose = True$/;"	kind:variable	line:10
 verify_required_vars	../src/hal_configurator/lib/config_loaders.py	/^  def verify_required_vars(self, config):$/;"	kind:member	line:186
-web	../src/hal_automator.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
-web	../src/hal_automator.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
-web_server	../src/hal_automator.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
+web	../src/manage.py	/^            import hal_configurator.web.app as app$/;"	kind:namespace	line:13
+web	../src/manage.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
+web_server	../src/manage.py	/^            import hal_configurator.web.web_server as web_server$/;"	kind:namespace	line:16
 web_server.py	../src/hal_configurator/web/web_server.py	1;"	kind:file	line:1
 workspace_manager.py	../src/hal_configurator/lib/workspace_manager.py	1;"	kind:file	line:1
 workspace_path	../src/hal_configurator/web/routes/__init__.py	/^workspace_path = os.path.expanduser(app_config['workspace_path'])$/;"	kind:variable	line:13
